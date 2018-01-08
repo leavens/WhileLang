@@ -1,0 +1,32 @@
+grammar edu.ucf.cs.whilelang.WhileLang with org.eclipse.xtext.common.Terminals
+
+generate whileLang "http://www.ucf.edu/cs/whilelang/WhileLang"
+
+Program: Stmt;
+Stmt returns S: Assignment | Skip | Block | While | If;
+Block returns CompoundS: '{' stmts+=Stmt (';' stmts+=Stmt)* '}';
+Assignment returns AssignS: (var=ID) ':=' (aexp=AExpression);
+Skip returns SkipS: 'skip' {SkipS};
+While returns WhileS: 'while' (bexp=BExpression) 'do' (block=Block);
+If returns IfS: 'if' (bexp=BExpression) 'then' (s1=Block) 'else' (s2=Block);
+
+AExpression returns AExpr: ATerm ({AExpression.left=current} op=OPPLUS right=AExpression)?;
+ATerm returns AExpr: APrimary ({ATerm.left=current} op=OPMUL right=ATerm)?;
+APrimary returns AExpr: VarRefExpr | NumLitExpr | '(' AExpression ')';
+VarRefExpr: var=ID;
+NumLitExpr: (negated?='-')? val=INT;
+
+BExpression returns BExpr: BTerm ({BExpression.left=current} op=OR right=BExpression)?;
+BTerm returns BExpr: BRelExp ({BTerm.left=current} op=AND right=BTerm)?;
+BRelExp returns BExpr: BoolLitExpr | NotExpr | BCompExp | '(' BExpression ')';
+NotExpr: 'not' (bexp=BRelExp);
+BCompExp: left=AExpression op=OP_R right=AExpression;
+BoolLitExpr: bval='true' | bval='false';
+
+@Override
+terminal SL_COMMENT: '%' !('\n'|'\r')* ('\r'? '\n')?;
+terminal OPPLUS: '+' | '-';
+terminal OPMUL: '*';
+terminal OR: 'or';
+terminal AND: 'and';
+terminal OP_R: '<=' | '==' | '>=' | '<' | '>' | '!=';
