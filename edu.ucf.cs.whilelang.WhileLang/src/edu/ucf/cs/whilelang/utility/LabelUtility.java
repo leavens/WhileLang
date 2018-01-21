@@ -6,9 +6,8 @@ public class LabelUtility {
 	private static int nextNum = 1;
 	
 	/** Return a string representing the next label. */
-	public synchronized static String nextLabel() { 
-		String ret = String.valueOf(nextNum);
-		nextNum++; 
+	public synchronized static int nextLabel() { 
+		int ret = nextNum++; 
 		return ret;
 	}
 	
