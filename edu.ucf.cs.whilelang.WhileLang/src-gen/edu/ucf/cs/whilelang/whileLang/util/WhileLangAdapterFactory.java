@@ -76,11 +76,6 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
     new WhileLangSwitch<Adapter>()
     {
       @Override
-      public Adapter caseProgram(Program object)
-      {
-        return createProgramAdapter();
-      }
-      @Override
       public Adapter caseS(S object)
       {
         return createSAdapter();
@@ -136,19 +131,9 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
         return createNotExprAdapter();
       }
       @Override
-      public Adapter caseFactor(Factor object)
+      public Adapter caseBDisj(BDisj object)
       {
-        return createFactorAdapter();
-      }
-      @Override
-      public Adapter caseAExpression(AExpression object)
-      {
-        return createAExpressionAdapter();
-      }
-      @Override
-      public Adapter caseBRelExp(BRelExp object)
-      {
-        return createBRelExpAdapter();
+        return createBDisjAdapter();
       }
       @Override
       public Adapter caseBConj(BConj object)
@@ -156,9 +141,19 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
         return createBConjAdapter();
       }
       @Override
-      public Adapter caseExpression(Expression object)
+      public Adapter caseBRelExp(BRelExp object)
       {
-        return createExpressionAdapter();
+        return createBRelExpAdapter();
+      }
+      @Override
+      public Adapter caseAExpression(AExpression object)
+      {
+        return createAExpressionAdapter();
+      }
+      @Override
+      public Adapter caseFactor(Factor object)
+      {
+        return createFactorAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -181,21 +176,6 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
     return modelSwitch.doSwitch((EObject)target);
   }
 
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.Program <em>Program</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.ucf.cs.whilelang.whileLang.Program
-   * @generated
-   */
-  public Adapter createProgramAdapter()
-  {
-    return null;
-  }
 
   /**
    * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.S <em>S</em>}'.
@@ -363,46 +343,16 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.Factor <em>Factor</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.BDisj <em>BDisj</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.ucf.cs.whilelang.whileLang.Factor
+   * @see edu.ucf.cs.whilelang.whileLang.BDisj
    * @generated
    */
-  public Adapter createFactorAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.AExpression <em>AExpression</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.ucf.cs.whilelang.whileLang.AExpression
-   * @generated
-   */
-  public Adapter createAExpressionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.BRelExp <em>BRel Exp</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see edu.ucf.cs.whilelang.whileLang.BRelExp
-   * @generated
-   */
-  public Adapter createBRelExpAdapter()
+  public Adapter createBDisjAdapter()
   {
     return null;
   }
@@ -423,16 +373,46 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.Expression <em>Expression</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.BRelExp <em>BRel Exp</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.ucf.cs.whilelang.whileLang.Expression
+   * @see edu.ucf.cs.whilelang.whileLang.BRelExp
    * @generated
    */
-  public Adapter createExpressionAdapter()
+  public Adapter createBRelExpAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.AExpression <em>AExpression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ucf.cs.whilelang.whileLang.AExpression
+   * @generated
+   */
+  public Adapter createAExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.Factor <em>Factor</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ucf.cs.whilelang.whileLang.Factor
+   * @generated
+   */
+  public Adapter createFactorAdapter()
   {
     return null;
   }

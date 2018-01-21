@@ -2,25 +2,25 @@ grammar edu.ucf.cs.whilelang.WhileLang with org.eclipse.xtext.common.Terminals
 
 generate whileLang "http://www.ucf.edu/cs/whilelang/WhileLang"
 
-Program: Stmt;
+Program returns S: Stmt;
 Stmt returns S: Assignment | Skip | Block | While | If;
 Block returns CompoundS: '{' stmts+=Stmt (';' stmts+=Stmt)* '}';
-Assignment returns AssignS: (var=ID) ':=' (aexp=Expression);
+Assignment returns AssignS: (v=ID) ':=' (aexp=Expression);
 Skip returns SkipS: 'skip' {SkipS};
 While returns WhileS: 'while' (bexp=Expression) 'do' (block=Block);
 If returns IfS: 'if' (bexp=Expression) 'then' (s1=Block) 'else' (s2=Block);
 
+Expression returns Expr: BDisj;
+BDisj returns Expr: BConj ({BDisj.left=current} op=OR right=Expression)?;
+BConj returns Expr: BRelExp ({BConj.left=current} op=AND right=BConj)?;
+BRelExp returns Expr: AExpression ({BRelExp.left=current} op=OP_R right=AExpression)?;
+AExpression returns Expr: Factor ({AExpression.left=current} op=OPPLUS right=AExpression)?;
+Factor returns Expr: Primary ({Factor.left=current} op=OPMUL right=Factor)?;
 Primary returns Expr: VarRefExpr | NumLitExpr | BoolLitExpr | NotExpr | '(' Expression ')';
-VarRefExpr: var=ID;
-NumLitExpr: (negated?='-')? val=INT;
+VarRefExpr: vname=ID;
+NumLitExpr: (negated?='-')? num=INT;
 BoolLitExpr: bval='true' | bval='false';
 NotExpr: 'not' (bexp=Primary);
-
-Factor returns Expr: Primary ({Factor.left=current} op=OPMUL right=Factor)?;
-AExpression returns Expr: Factor ({AExpression.left=current} op=OPPLUS right=AExpression)?;
-BRelExp returns Expr: AExpression ({BRelExp.left=current} op=OP_R right=AExpression)?;
-BConj returns Expr: BRelExp ({BConj.left=current} op=AND right=BConj)?;
-Expression returns Expr: BConj ({Expression.left=current} op=OR right=Expression)?;
 
 @Override
 terminal SL_COMMENT: '%' !('\n'|'\r')* ('\r'? '\n')?;

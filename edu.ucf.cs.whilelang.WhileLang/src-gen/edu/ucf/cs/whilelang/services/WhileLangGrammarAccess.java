@@ -27,7 +27,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Program");
 		private final RuleCall cStmtParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//Program:
+		//Program S:
 		//	Stmt;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -111,24 +111,24 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	public class AssignmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Assignment");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cVarAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cVarIDTerminalRuleCall_0_0 = (RuleCall)cVarAssignment_0.eContents().get(0);
+		private final Assignment cVAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cVIDTerminalRuleCall_0_0 = (RuleCall)cVAssignment_0.eContents().get(0);
 		private final Keyword cColonEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cAexpAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cAexpExpressionParserRuleCall_2_0 = (RuleCall)cAexpAssignment_2.eContents().get(0);
 		
 		//Assignment AssignS:
-		//	var=ID ':=' aexp=Expression;
+		//	v=ID ':=' aexp=Expression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//var=ID ':=' aexp=Expression
+		//v=ID ':=' aexp=Expression
 		public Group getGroup() { return cGroup; }
 		
-		//var=ID
-		public Assignment getVarAssignment_0() { return cVarAssignment_0; }
+		//v=ID
+		public Assignment getVAssignment_0() { return cVAssignment_0; }
 		
 		//ID
-		public RuleCall getVarIDTerminalRuleCall_0_0() { return cVarIDTerminalRuleCall_0_0; }
+		public RuleCall getVIDTerminalRuleCall_0_0() { return cVIDTerminalRuleCall_0_0; }
 		
 		//':='
 		public Keyword getColonEqualsSignKeyword_1() { return cColonEqualsSignKeyword_1; }
@@ -240,6 +240,212 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//Block
 		public RuleCall getS2BlockParserRuleCall_5_0() { return cS2BlockParserRuleCall_5_0; }
 	}
+	public class ExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Expression");
+		private final RuleCall cBDisjParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//Expression Expr:
+		//	BDisj;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//BDisj
+		public RuleCall getBDisjParserRuleCall() { return cBDisjParserRuleCall; }
+	}
+	public class BDisjElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.BDisj");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cBConjParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cBDisjLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOpORTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		
+		//BDisj Expr:
+		//	BConj ({BDisj.left=current} op=OR right=Expression)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//BConj ({BDisj.left=current} op=OR right=Expression)?
+		public Group getGroup() { return cGroup; }
+		
+		//BConj
+		public RuleCall getBConjParserRuleCall_0() { return cBConjParserRuleCall_0; }
+		
+		//({BDisj.left=current} op=OR right=Expression)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{BDisj.left=current}
+		public Action getBDisjLeftAction_1_0() { return cBDisjLeftAction_1_0; }
+		
+		//op=OR
+		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
+		
+		//OR
+		public RuleCall getOpORTerminalRuleCall_1_1_0() { return cOpORTerminalRuleCall_1_1_0; }
+		
+		//right=Expression
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
+		
+		//Expression
+		public RuleCall getRightExpressionParserRuleCall_1_2_0() { return cRightExpressionParserRuleCall_1_2_0; }
+	}
+	public class BConjElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.BConj");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cBRelExpParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cBConjLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOpANDTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightBConjParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		
+		//BConj Expr:
+		//	BRelExp ({BConj.left=current} op=AND right=BConj)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//BRelExp ({BConj.left=current} op=AND right=BConj)?
+		public Group getGroup() { return cGroup; }
+		
+		//BRelExp
+		public RuleCall getBRelExpParserRuleCall_0() { return cBRelExpParserRuleCall_0; }
+		
+		//({BConj.left=current} op=AND right=BConj)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{BConj.left=current}
+		public Action getBConjLeftAction_1_0() { return cBConjLeftAction_1_0; }
+		
+		//op=AND
+		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
+		
+		//AND
+		public RuleCall getOpANDTerminalRuleCall_1_1_0() { return cOpANDTerminalRuleCall_1_1_0; }
+		
+		//right=BConj
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
+		
+		//BConj
+		public RuleCall getRightBConjParserRuleCall_1_2_0() { return cRightBConjParserRuleCall_1_2_0; }
+	}
+	public class BRelExpElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.BRelExp");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cAExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cBRelExpLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOpOP_RTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightAExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		
+		//BRelExp Expr:
+		//	AExpression ({BRelExp.left=current} op=OP_R right=AExpression)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//AExpression ({BRelExp.left=current} op=OP_R right=AExpression)?
+		public Group getGroup() { return cGroup; }
+		
+		//AExpression
+		public RuleCall getAExpressionParserRuleCall_0() { return cAExpressionParserRuleCall_0; }
+		
+		//({BRelExp.left=current} op=OP_R right=AExpression)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{BRelExp.left=current}
+		public Action getBRelExpLeftAction_1_0() { return cBRelExpLeftAction_1_0; }
+		
+		//op=OP_R
+		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
+		
+		//OP_R
+		public RuleCall getOpOP_RTerminalRuleCall_1_1_0() { return cOpOP_RTerminalRuleCall_1_1_0; }
+		
+		//right=AExpression
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
+		
+		//AExpression
+		public RuleCall getRightAExpressionParserRuleCall_1_2_0() { return cRightAExpressionParserRuleCall_1_2_0; }
+	}
+	public class AExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.AExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cFactorParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cAExpressionLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOpOPPLUSTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightAExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		
+		//AExpression Expr:
+		//	Factor ({AExpression.left=current} op=OPPLUS right=AExpression)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Factor ({AExpression.left=current} op=OPPLUS right=AExpression)?
+		public Group getGroup() { return cGroup; }
+		
+		//Factor
+		public RuleCall getFactorParserRuleCall_0() { return cFactorParserRuleCall_0; }
+		
+		//({AExpression.left=current} op=OPPLUS right=AExpression)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{AExpression.left=current}
+		public Action getAExpressionLeftAction_1_0() { return cAExpressionLeftAction_1_0; }
+		
+		//op=OPPLUS
+		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
+		
+		//OPPLUS
+		public RuleCall getOpOPPLUSTerminalRuleCall_1_1_0() { return cOpOPPLUSTerminalRuleCall_1_1_0; }
+		
+		//right=AExpression
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
+		
+		//AExpression
+		public RuleCall getRightAExpressionParserRuleCall_1_2_0() { return cRightAExpressionParserRuleCall_1_2_0; }
+	}
+	public class FactorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Factor");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cPrimaryParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cFactorLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOpOPMULTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightFactorParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		
+		//Factor Expr:
+		//	Primary ({Factor.left=current} op=OPMUL right=Factor)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Primary ({Factor.left=current} op=OPMUL right=Factor)?
+		public Group getGroup() { return cGroup; }
+		
+		//Primary
+		public RuleCall getPrimaryParserRuleCall_0() { return cPrimaryParserRuleCall_0; }
+		
+		//({Factor.left=current} op=OPMUL right=Factor)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{Factor.left=current}
+		public Action getFactorLeftAction_1_0() { return cFactorLeftAction_1_0; }
+		
+		//op=OPMUL
+		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
+		
+		//OPMUL
+		public RuleCall getOpOPMULTerminalRuleCall_1_1_0() { return cOpOPMULTerminalRuleCall_1_1_0; }
+		
+		//right=Factor
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
+		
+		//Factor
+		public RuleCall getRightFactorParserRuleCall_1_2_0() { return cRightFactorParserRuleCall_1_2_0; }
+	}
 	public class PrimaryElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Primary");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -285,32 +491,32 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class VarRefExprElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.VarRefExpr");
-		private final Assignment cVarAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cVarIDTerminalRuleCall_0 = (RuleCall)cVarAssignment.eContents().get(0);
+		private final Assignment cVnameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cVnameIDTerminalRuleCall_0 = (RuleCall)cVnameAssignment.eContents().get(0);
 		
 		//VarRefExpr:
-		//	var=ID;
+		//	vname=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//var=ID
-		public Assignment getVarAssignment() { return cVarAssignment; }
+		//vname=ID
+		public Assignment getVnameAssignment() { return cVnameAssignment; }
 		
 		//ID
-		public RuleCall getVarIDTerminalRuleCall_0() { return cVarIDTerminalRuleCall_0; }
+		public RuleCall getVnameIDTerminalRuleCall_0() { return cVnameIDTerminalRuleCall_0; }
 	}
 	public class NumLitExprElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.NumLitExpr");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNegatedAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cNegatedHyphenMinusKeyword_0_0 = (Keyword)cNegatedAssignment_0.eContents().get(0);
-		private final Assignment cValAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cValINTTerminalRuleCall_1_0 = (RuleCall)cValAssignment_1.eContents().get(0);
+		private final Assignment cNumAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNumINTTerminalRuleCall_1_0 = (RuleCall)cNumAssignment_1.eContents().get(0);
 		
 		//NumLitExpr:
-		//	negated?='-'? val=INT;
+		//	negated?='-'? num=INT;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//negated?='-'? val=INT
+		//negated?='-'? num=INT
 		public Group getGroup() { return cGroup; }
 		
 		//negated?='-'?
@@ -319,11 +525,11 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//'-'
 		public Keyword getNegatedHyphenMinusKeyword_0_0() { return cNegatedHyphenMinusKeyword_0_0; }
 		
-		//val=INT
-		public Assignment getValAssignment_1() { return cValAssignment_1; }
+		//num=INT
+		public Assignment getNumAssignment_1() { return cNumAssignment_1; }
 		
 		//INT
-		public RuleCall getValINTTerminalRuleCall_1_0() { return cValINTTerminalRuleCall_1_0; }
+		public RuleCall getNumINTTerminalRuleCall_1_0() { return cNumINTTerminalRuleCall_1_0; }
 	}
 	public class BoolLitExprElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.BoolLitExpr");
@@ -375,201 +581,6 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//Primary
 		public RuleCall getBexpPrimaryParserRuleCall_1_0() { return cBexpPrimaryParserRuleCall_1_0; }
 	}
-	public class FactorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Factor");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cPrimaryParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cFactorLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOpOPMULTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
-		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cRightFactorParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
-		
-		//Factor Expr:
-		//	Primary ({Factor.left=current} op=OPMUL right=Factor)?;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//Primary ({Factor.left=current} op=OPMUL right=Factor)?
-		public Group getGroup() { return cGroup; }
-		
-		//Primary
-		public RuleCall getPrimaryParserRuleCall_0() { return cPrimaryParserRuleCall_0; }
-		
-		//({Factor.left=current} op=OPMUL right=Factor)?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{Factor.left=current}
-		public Action getFactorLeftAction_1_0() { return cFactorLeftAction_1_0; }
-		
-		//op=OPMUL
-		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
-		
-		//OPMUL
-		public RuleCall getOpOPMULTerminalRuleCall_1_1_0() { return cOpOPMULTerminalRuleCall_1_1_0; }
-		
-		//right=Factor
-		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
-		
-		//Factor
-		public RuleCall getRightFactorParserRuleCall_1_2_0() { return cRightFactorParserRuleCall_1_2_0; }
-	}
-	public class AExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.AExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cFactorParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cAExpressionLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOpOPPLUSTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
-		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cRightAExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
-		
-		//AExpression Expr:
-		//	Factor ({AExpression.left=current} op=OPPLUS right=AExpression)?;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//Factor ({AExpression.left=current} op=OPPLUS right=AExpression)?
-		public Group getGroup() { return cGroup; }
-		
-		//Factor
-		public RuleCall getFactorParserRuleCall_0() { return cFactorParserRuleCall_0; }
-		
-		//({AExpression.left=current} op=OPPLUS right=AExpression)?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{AExpression.left=current}
-		public Action getAExpressionLeftAction_1_0() { return cAExpressionLeftAction_1_0; }
-		
-		//op=OPPLUS
-		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
-		
-		//OPPLUS
-		public RuleCall getOpOPPLUSTerminalRuleCall_1_1_0() { return cOpOPPLUSTerminalRuleCall_1_1_0; }
-		
-		//right=AExpression
-		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
-		
-		//AExpression
-		public RuleCall getRightAExpressionParserRuleCall_1_2_0() { return cRightAExpressionParserRuleCall_1_2_0; }
-	}
-	public class BRelExpElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.BRelExp");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cAExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cBRelExpLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOpOP_RTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
-		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cRightAExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
-		
-		//BRelExp Expr:
-		//	AExpression ({BRelExp.left=current} op=OP_R right=AExpression)?;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//AExpression ({BRelExp.left=current} op=OP_R right=AExpression)?
-		public Group getGroup() { return cGroup; }
-		
-		//AExpression
-		public RuleCall getAExpressionParserRuleCall_0() { return cAExpressionParserRuleCall_0; }
-		
-		//({BRelExp.left=current} op=OP_R right=AExpression)?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{BRelExp.left=current}
-		public Action getBRelExpLeftAction_1_0() { return cBRelExpLeftAction_1_0; }
-		
-		//op=OP_R
-		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
-		
-		//OP_R
-		public RuleCall getOpOP_RTerminalRuleCall_1_1_0() { return cOpOP_RTerminalRuleCall_1_1_0; }
-		
-		//right=AExpression
-		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
-		
-		//AExpression
-		public RuleCall getRightAExpressionParserRuleCall_1_2_0() { return cRightAExpressionParserRuleCall_1_2_0; }
-	}
-	public class BConjElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.BConj");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cBRelExpParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cBConjLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOpANDTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
-		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cRightBConjParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
-		
-		//BConj Expr:
-		//	BRelExp ({BConj.left=current} op=AND right=BConj)?;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//BRelExp ({BConj.left=current} op=AND right=BConj)?
-		public Group getGroup() { return cGroup; }
-		
-		//BRelExp
-		public RuleCall getBRelExpParserRuleCall_0() { return cBRelExpParserRuleCall_0; }
-		
-		//({BConj.left=current} op=AND right=BConj)?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{BConj.left=current}
-		public Action getBConjLeftAction_1_0() { return cBConjLeftAction_1_0; }
-		
-		//op=AND
-		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
-		
-		//AND
-		public RuleCall getOpANDTerminalRuleCall_1_1_0() { return cOpANDTerminalRuleCall_1_1_0; }
-		
-		//right=BConj
-		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
-		
-		//BConj
-		public RuleCall getRightBConjParserRuleCall_1_2_0() { return cRightBConjParserRuleCall_1_2_0; }
-	}
-	public class ExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Expression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cBConjParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cExpressionLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOpORTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
-		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cRightExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
-		
-		//Expression Expr:
-		//	BConj ({Expression.left=current} op=OR right=Expression)?;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//BConj ({Expression.left=current} op=OR right=Expression)?
-		public Group getGroup() { return cGroup; }
-		
-		//BConj
-		public RuleCall getBConjParserRuleCall_0() { return cBConjParserRuleCall_0; }
-		
-		//({Expression.left=current} op=OR right=Expression)?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{Expression.left=current}
-		public Action getExpressionLeftAction_1_0() { return cExpressionLeftAction_1_0; }
-		
-		//op=OR
-		public Assignment getOpAssignment_1_1() { return cOpAssignment_1_1; }
-		
-		//OR
-		public RuleCall getOpORTerminalRuleCall_1_1_0() { return cOpORTerminalRuleCall_1_1_0; }
-		
-		//right=Expression
-		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
-		
-		//Expression
-		public RuleCall getRightExpressionParserRuleCall_1_2_0() { return cRightExpressionParserRuleCall_1_2_0; }
-	}
 	
 	
 	private final ProgramElements pProgram;
@@ -579,16 +590,17 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	private final SkipElements pSkip;
 	private final WhileElements pWhile;
 	private final IfElements pIf;
+	private final ExpressionElements pExpression;
+	private final BDisjElements pBDisj;
+	private final BConjElements pBConj;
+	private final BRelExpElements pBRelExp;
+	private final AExpressionElements pAExpression;
+	private final FactorElements pFactor;
 	private final PrimaryElements pPrimary;
 	private final VarRefExprElements pVarRefExpr;
 	private final NumLitExprElements pNumLitExpr;
 	private final BoolLitExprElements pBoolLitExpr;
 	private final NotExprElements pNotExpr;
-	private final FactorElements pFactor;
-	private final AExpressionElements pAExpression;
-	private final BRelExpElements pBRelExp;
-	private final BConjElements pBConj;
-	private final ExpressionElements pExpression;
 	private final TerminalRule tSL_COMMENT;
 	private final TerminalRule tOPPLUS;
 	private final TerminalRule tOPMUL;
@@ -612,16 +624,17 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSkip = new SkipElements();
 		this.pWhile = new WhileElements();
 		this.pIf = new IfElements();
+		this.pExpression = new ExpressionElements();
+		this.pBDisj = new BDisjElements();
+		this.pBConj = new BConjElements();
+		this.pBRelExp = new BRelExpElements();
+		this.pAExpression = new AExpressionElements();
+		this.pFactor = new FactorElements();
 		this.pPrimary = new PrimaryElements();
 		this.pVarRefExpr = new VarRefExprElements();
 		this.pNumLitExpr = new NumLitExprElements();
 		this.pBoolLitExpr = new BoolLitExprElements();
 		this.pNotExpr = new NotExprElements();
-		this.pFactor = new FactorElements();
-		this.pAExpression = new AExpressionElements();
-		this.pBRelExp = new BRelExpElements();
-		this.pBConj = new BConjElements();
-		this.pExpression = new ExpressionElements();
 		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.SL_COMMENT");
 		this.tOPPLUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.OPPLUS");
 		this.tOPMUL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.OPMUL");
@@ -657,7 +670,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	
-	//Program:
+	//Program S:
 	//	Stmt;
 	public ProgramElements getProgramAccess() {
 		return pProgram;
@@ -688,7 +701,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Assignment AssignS:
-	//	var=ID ':=' aexp=Expression;
+	//	v=ID ':=' aexp=Expression;
 	public AssignmentElements getAssignmentAccess() {
 		return pAssignment;
 	}
@@ -727,6 +740,66 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		return getIfAccess().getRule();
 	}
 	
+	//Expression Expr:
+	//	BDisj;
+	public ExpressionElements getExpressionAccess() {
+		return pExpression;
+	}
+	
+	public ParserRule getExpressionRule() {
+		return getExpressionAccess().getRule();
+	}
+	
+	//BDisj Expr:
+	//	BConj ({BDisj.left=current} op=OR right=Expression)?;
+	public BDisjElements getBDisjAccess() {
+		return pBDisj;
+	}
+	
+	public ParserRule getBDisjRule() {
+		return getBDisjAccess().getRule();
+	}
+	
+	//BConj Expr:
+	//	BRelExp ({BConj.left=current} op=AND right=BConj)?;
+	public BConjElements getBConjAccess() {
+		return pBConj;
+	}
+	
+	public ParserRule getBConjRule() {
+		return getBConjAccess().getRule();
+	}
+	
+	//BRelExp Expr:
+	//	AExpression ({BRelExp.left=current} op=OP_R right=AExpression)?;
+	public BRelExpElements getBRelExpAccess() {
+		return pBRelExp;
+	}
+	
+	public ParserRule getBRelExpRule() {
+		return getBRelExpAccess().getRule();
+	}
+	
+	//AExpression Expr:
+	//	Factor ({AExpression.left=current} op=OPPLUS right=AExpression)?;
+	public AExpressionElements getAExpressionAccess() {
+		return pAExpression;
+	}
+	
+	public ParserRule getAExpressionRule() {
+		return getAExpressionAccess().getRule();
+	}
+	
+	//Factor Expr:
+	//	Primary ({Factor.left=current} op=OPMUL right=Factor)?;
+	public FactorElements getFactorAccess() {
+		return pFactor;
+	}
+	
+	public ParserRule getFactorRule() {
+		return getFactorAccess().getRule();
+	}
+	
 	//Primary Expr:
 	//	VarRefExpr | NumLitExpr | BoolLitExpr | NotExpr | '(' Expression ')';
 	public PrimaryElements getPrimaryAccess() {
@@ -738,7 +811,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//VarRefExpr:
-	//	var=ID;
+	//	vname=ID;
 	public VarRefExprElements getVarRefExprAccess() {
 		return pVarRefExpr;
 	}
@@ -748,7 +821,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//NumLitExpr:
-	//	negated?='-'? val=INT;
+	//	negated?='-'? num=INT;
 	public NumLitExprElements getNumLitExprAccess() {
 		return pNumLitExpr;
 	}
@@ -775,56 +848,6 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getNotExprRule() {
 		return getNotExprAccess().getRule();
-	}
-	
-	//Factor Expr:
-	//	Primary ({Factor.left=current} op=OPMUL right=Factor)?;
-	public FactorElements getFactorAccess() {
-		return pFactor;
-	}
-	
-	public ParserRule getFactorRule() {
-		return getFactorAccess().getRule();
-	}
-	
-	//AExpression Expr:
-	//	Factor ({AExpression.left=current} op=OPPLUS right=AExpression)?;
-	public AExpressionElements getAExpressionAccess() {
-		return pAExpression;
-	}
-	
-	public ParserRule getAExpressionRule() {
-		return getAExpressionAccess().getRule();
-	}
-	
-	//BRelExp Expr:
-	//	AExpression ({BRelExp.left=current} op=OP_R right=AExpression)?;
-	public BRelExpElements getBRelExpAccess() {
-		return pBRelExp;
-	}
-	
-	public ParserRule getBRelExpRule() {
-		return getBRelExpAccess().getRule();
-	}
-	
-	//BConj Expr:
-	//	BRelExp ({BConj.left=current} op=AND right=BConj)?;
-	public BConjElements getBConjAccess() {
-		return pBConj;
-	}
-	
-	public ParserRule getBConjRule() {
-		return getBConjAccess().getRule();
-	}
-	
-	//Expression Expr:
-	//	BConj ({Expression.left=current} op=OR right=Expression)?;
-	public ExpressionElements getExpressionAccess() {
-		return pExpression;
-	}
-	
-	public ParserRule getExpressionRule() {
-		return getExpressionAccess().getRule();
 	}
 	
 	//@ Override terminal SL_COMMENT:

@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AssignSImpl#getVar <em>Var</em>}</li>
+ *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AssignSImpl#getV <em>V</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AssignSImpl#getAexp <em>Aexp</em>}</li>
  * </ul>
  * </p>
@@ -32,24 +32,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class AssignSImpl extends SImpl implements AssignS
 {
   /**
-   * The default value of the '{@link #getVar() <em>Var</em>}' attribute.
+   * The default value of the '{@link #getV() <em>V</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVar()
+   * @see #getV()
    * @generated
    * @ordered
    */
-  protected static final String VAR_EDEFAULT = null;
+  protected static final String V_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getVar() <em>Var</em>}' attribute.
+   * The cached value of the '{@link #getV() <em>V</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVar()
+   * @see #getV()
    * @generated
    * @ordered
    */
-  protected String var = VAR_EDEFAULT;
+  protected String v = V_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getAexp() <em>Aexp</em>}' containment reference.
@@ -87,9 +87,9 @@ public class AssignSImpl extends SImpl implements AssignS
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getVar()
+  public String getV()
   {
-    return var;
+    return v;
   }
 
   /**
@@ -97,12 +97,12 @@ public class AssignSImpl extends SImpl implements AssignS
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setVar(String newVar)
+  public void setV(String newV)
   {
-    String oldVar = var;
-    var = newVar;
+    String oldV = v;
+    v = newV;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileLangPackage.ASSIGN_S__VAR, oldVar, var));
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileLangPackage.ASSIGN_S__V, oldV, v));
   }
 
   /**
@@ -179,8 +179,8 @@ public class AssignSImpl extends SImpl implements AssignS
   {
     switch (featureID)
     {
-      case WhileLangPackage.ASSIGN_S__VAR:
-        return getVar();
+      case WhileLangPackage.ASSIGN_S__V:
+        return getV();
       case WhileLangPackage.ASSIGN_S__AEXP:
         return getAexp();
     }
@@ -197,8 +197,8 @@ public class AssignSImpl extends SImpl implements AssignS
   {
     switch (featureID)
     {
-      case WhileLangPackage.ASSIGN_S__VAR:
-        setVar((String)newValue);
+      case WhileLangPackage.ASSIGN_S__V:
+        setV((String)newValue);
         return;
       case WhileLangPackage.ASSIGN_S__AEXP:
         setAexp((Expr)newValue);
@@ -217,8 +217,8 @@ public class AssignSImpl extends SImpl implements AssignS
   {
     switch (featureID)
     {
-      case WhileLangPackage.ASSIGN_S__VAR:
-        setVar(VAR_EDEFAULT);
+      case WhileLangPackage.ASSIGN_S__V:
+        setV(V_EDEFAULT);
         return;
       case WhileLangPackage.ASSIGN_S__AEXP:
         setAexp((Expr)null);
@@ -237,8 +237,8 @@ public class AssignSImpl extends SImpl implements AssignS
   {
     switch (featureID)
     {
-      case WhileLangPackage.ASSIGN_S__VAR:
-        return VAR_EDEFAULT == null ? var != null : !VAR_EDEFAULT.equals(var);
+      case WhileLangPackage.ASSIGN_S__V:
+        return V_EDEFAULT == null ? v != null : !V_EDEFAULT.equals(v);
       case WhileLangPackage.ASSIGN_S__AEXP:
         return aexp != null;
     }
@@ -256,8 +256,8 @@ public class AssignSImpl extends SImpl implements AssignS
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (var: ");
-    result.append(var);
+    result.append(" (v: ");
+    result.append(v);
     result.append(')');
     return result.toString();
   }

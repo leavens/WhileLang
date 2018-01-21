@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.VarRefExprImpl#getVar <em>Var</em>}</li>
+ *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.VarRefExprImpl#getVname <em>Vname</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,24 +28,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class VarRefExprImpl extends ExprImpl implements VarRefExpr
 {
   /**
-   * The default value of the '{@link #getVar() <em>Var</em>}' attribute.
+   * The default value of the '{@link #getVname() <em>Vname</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVar()
+   * @see #getVname()
    * @generated
    * @ordered
    */
-  protected static final String VAR_EDEFAULT = null;
+  protected static final String VNAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getVar() <em>Var</em>}' attribute.
+   * The cached value of the '{@link #getVname() <em>Vname</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVar()
+   * @see #getVname()
    * @generated
    * @ordered
    */
-  protected String var = VAR_EDEFAULT;
+  protected String vname = VNAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,9 +73,9 @@ public class VarRefExprImpl extends ExprImpl implements VarRefExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getVar()
+  public String getVname()
   {
-    return var;
+    return vname;
   }
 
   /**
@@ -83,12 +83,12 @@ public class VarRefExprImpl extends ExprImpl implements VarRefExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setVar(String newVar)
+  public void setVname(String newVname)
   {
-    String oldVar = var;
-    var = newVar;
+    String oldVname = vname;
+    vname = newVname;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileLangPackage.VAR_REF_EXPR__VAR, oldVar, var));
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileLangPackage.VAR_REF_EXPR__VNAME, oldVname, vname));
   }
 
   /**
@@ -101,8 +101,8 @@ public class VarRefExprImpl extends ExprImpl implements VarRefExpr
   {
     switch (featureID)
     {
-      case WhileLangPackage.VAR_REF_EXPR__VAR:
-        return getVar();
+      case WhileLangPackage.VAR_REF_EXPR__VNAME:
+        return getVname();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -117,8 +117,8 @@ public class VarRefExprImpl extends ExprImpl implements VarRefExpr
   {
     switch (featureID)
     {
-      case WhileLangPackage.VAR_REF_EXPR__VAR:
-        setVar((String)newValue);
+      case WhileLangPackage.VAR_REF_EXPR__VNAME:
+        setVname((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -134,8 +134,8 @@ public class VarRefExprImpl extends ExprImpl implements VarRefExpr
   {
     switch (featureID)
     {
-      case WhileLangPackage.VAR_REF_EXPR__VAR:
-        setVar(VAR_EDEFAULT);
+      case WhileLangPackage.VAR_REF_EXPR__VNAME:
+        setVname(VNAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -151,8 +151,8 @@ public class VarRefExprImpl extends ExprImpl implements VarRefExpr
   {
     switch (featureID)
     {
-      case WhileLangPackage.VAR_REF_EXPR__VAR:
-        return VAR_EDEFAULT == null ? var != null : !VAR_EDEFAULT.equals(var);
+      case WhileLangPackage.VAR_REF_EXPR__VNAME:
+        return VNAME_EDEFAULT == null ? vname != null : !VNAME_EDEFAULT.equals(vname);
     }
     return super.eIsSet(featureID);
   }
@@ -168,8 +168,8 @@ public class VarRefExprImpl extends ExprImpl implements VarRefExpr
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (var: ");
-    result.append(var);
+    result.append(" (vname: ");
+    result.append(vname);
     result.append(')');
     return result.toString();
   }

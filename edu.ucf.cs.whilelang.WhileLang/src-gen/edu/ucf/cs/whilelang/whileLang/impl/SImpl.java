@@ -8,6 +8,8 @@ import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>S</b></em>'.
@@ -17,7 +19,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class SImpl extends ProgramImpl implements S
+public class SImpl extends MinimalEObjectImpl.Container implements S
 {
   /**
    * <!-- begin-user-doc -->

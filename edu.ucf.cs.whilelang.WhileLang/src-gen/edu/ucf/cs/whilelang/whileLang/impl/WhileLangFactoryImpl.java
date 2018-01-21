@@ -65,7 +65,6 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
   {
     switch (eClass.getClassifierID())
     {
-      case WhileLangPackage.PROGRAM: return createProgram();
       case WhileLangPackage.S: return createS();
       case WhileLangPackage.COMPOUND_S: return createCompoundS();
       case WhileLangPackage.ASSIGN_S: return createAssignS();
@@ -77,25 +76,14 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
       case WhileLangPackage.NUM_LIT_EXPR: return createNumLitExpr();
       case WhileLangPackage.BOOL_LIT_EXPR: return createBoolLitExpr();
       case WhileLangPackage.NOT_EXPR: return createNotExpr();
-      case WhileLangPackage.FACTOR: return createFactor();
-      case WhileLangPackage.AEXPRESSION: return createAExpression();
-      case WhileLangPackage.BREL_EXP: return createBRelExp();
+      case WhileLangPackage.BDISJ: return createBDisj();
       case WhileLangPackage.BCONJ: return createBConj();
-      case WhileLangPackage.EXPRESSION: return createExpression();
+      case WhileLangPackage.BREL_EXP: return createBRelExp();
+      case WhileLangPackage.AEXPRESSION: return createAExpression();
+      case WhileLangPackage.FACTOR: return createFactor();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Program createProgram()
-  {
-    ProgramImpl program = new ProgramImpl();
-    return program;
   }
 
   /**
@@ -224,32 +212,10 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
    * <!-- end-user-doc -->
    * @generated
    */
-  public Factor createFactor()
+  public BDisj createBDisj()
   {
-    FactorImpl factor = new FactorImpl();
-    return factor;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AExpression createAExpression()
-  {
-    AExpressionImpl aExpression = new AExpressionImpl();
-    return aExpression;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public BRelExp createBRelExp()
-  {
-    BRelExpImpl bRelExp = new BRelExpImpl();
-    return bRelExp;
+    BDisjImpl bDisj = new BDisjImpl();
+    return bDisj;
   }
 
   /**
@@ -268,10 +234,32 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression createExpression()
+  public BRelExp createBRelExp()
   {
-    ExpressionImpl expression = new ExpressionImpl();
-    return expression;
+    BRelExpImpl bRelExp = new BRelExpImpl();
+    return bRelExp;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AExpression createAExpression()
+  {
+    AExpressionImpl aExpression = new AExpressionImpl();
+    return aExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Factor createFactor()
+  {
+    FactorImpl factor = new FactorImpl();
+    return factor;
   }
 
   /**

@@ -13,7 +13,7 @@ package edu.ucf.cs.whilelang.whileLang;
  * The following features are supported:
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr#isNegated <em>Negated</em>}</li>
- *   <li>{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr#getVal <em>Val</em>}</li>
+ *   <li>{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr#getNum <em>Num</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,29 +50,29 @@ public interface NumLitExpr extends Expr
   void setNegated(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Val</b></em>' attribute.
+   * Returns the value of the '<em><b>Num</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Val</em>' attribute isn't clear,
+   * If the meaning of the '<em>Num</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Val</em>' attribute.
-   * @see #setVal(int)
-   * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getNumLitExpr_Val()
+   * @return the value of the '<em>Num</em>' attribute.
+   * @see #setNum(int)
+   * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getNumLitExpr_Num()
    * @model
    * @generated
    */
-  int getVal();
+  int getNum();
 
   /**
-   * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr#getVal <em>Val</em>}' attribute.
+   * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr#getNum <em>Num</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Val</em>' attribute.
-   * @see #getVal()
+   * @param value the new value of the '<em>Num</em>' attribute.
+   * @see #getNum()
    * @generated
    */
-  void setVal(int value);
+  void setNum(int value);
 
 } // NumLitExpr

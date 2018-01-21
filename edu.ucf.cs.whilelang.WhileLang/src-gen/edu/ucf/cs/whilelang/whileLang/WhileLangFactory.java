@@ -24,15 +24,6 @@ public interface WhileLangFactory extends EFactory
   WhileLangFactory eINSTANCE = edu.ucf.cs.whilelang.whileLang.impl.WhileLangFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Program</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Program</em>'.
-   * @generated
-   */
-  Program createProgram();
-
-  /**
    * Returns a new object of class '<em>S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -132,31 +123,13 @@ public interface WhileLangFactory extends EFactory
   NotExpr createNotExpr();
 
   /**
-   * Returns a new object of class '<em>Factor</em>'.
+   * Returns a new object of class '<em>BDisj</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Factor</em>'.
+   * @return a new object of class '<em>BDisj</em>'.
    * @generated
    */
-  Factor createFactor();
-
-  /**
-   * Returns a new object of class '<em>AExpression</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>AExpression</em>'.
-   * @generated
-   */
-  AExpression createAExpression();
-
-  /**
-   * Returns a new object of class '<em>BRel Exp</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>BRel Exp</em>'.
-   * @generated
-   */
-  BRelExp createBRelExp();
+  BDisj createBDisj();
 
   /**
    * Returns a new object of class '<em>BConj</em>'.
@@ -168,13 +141,31 @@ public interface WhileLangFactory extends EFactory
   BConj createBConj();
 
   /**
-   * Returns a new object of class '<em>Expression</em>'.
+   * Returns a new object of class '<em>BRel Exp</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expression</em>'.
+   * @return a new object of class '<em>BRel Exp</em>'.
    * @generated
    */
-  Expression createExpression();
+  BRelExp createBRelExp();
+
+  /**
+   * Returns a new object of class '<em>AExpression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>AExpression</em>'.
+   * @generated
+   */
+  AExpression createAExpression();
+
+  /**
+   * Returns a new object of class '<em>Factor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Factor</em>'.
+   * @generated
+   */
+  Factor createFactor();
 
   /**
    * Returns the package supported by this factory.

@@ -12,7 +12,7 @@ package edu.ucf.cs.whilelang.whileLang;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.ucf.cs.whilelang.whileLang.VarRefExpr#getVar <em>Var</em>}</li>
+ *   <li>{@link edu.ucf.cs.whilelang.whileLang.VarRefExpr#getVname <em>Vname</em>}</li>
  * </ul>
  * </p>
  *
@@ -23,29 +23,29 @@ package edu.ucf.cs.whilelang.whileLang;
 public interface VarRefExpr extends Expr
 {
   /**
-   * Returns the value of the '<em><b>Var</b></em>' attribute.
+   * Returns the value of the '<em><b>Vname</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Var</em>' attribute isn't clear,
+   * If the meaning of the '<em>Vname</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Var</em>' attribute.
-   * @see #setVar(String)
-   * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getVarRefExpr_Var()
+   * @return the value of the '<em>Vname</em>' attribute.
+   * @see #setVname(String)
+   * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getVarRefExpr_Vname()
    * @model
    * @generated
    */
-  String getVar();
+  String getVname();
 
   /**
-   * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.VarRefExpr#getVar <em>Var</em>}' attribute.
+   * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.VarRefExpr#getVname <em>Vname</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Var</em>' attribute.
-   * @see #getVar()
+   * @param value the new value of the '<em>Vname</em>' attribute.
+   * @see #getVname()
    * @generated
    */
-  void setVar(String value);
+  void setVname(String value);
 
 } // VarRefExpr

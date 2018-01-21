@@ -3,6 +3,7 @@
  */
 package edu.ucf.cs.whilelang.whileLang;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +15,6 @@ package edu.ucf.cs.whilelang.whileLang;
  * @model
  * @generated
  */
-public interface S extends Program
+public interface S extends EObject
 {
 } // S

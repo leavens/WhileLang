@@ -59,12 +59,12 @@ public class WhileLangSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) bval='false'
 	 *     (rule start) (ambiguity) bval='true'
 	 *     (rule start) (ambiguity) negated?='-'
-	 *     (rule start) (ambiguity) val=INT
-	 *     (rule start) (ambiguity) var=ID
+	 *     (rule start) (ambiguity) num=INT
+	 *     (rule start) (ambiguity) vname=ID
 	 *     (rule start) (ambiguity) {AExpression.left=}
 	 *     (rule start) (ambiguity) {BConj.left=}
+	 *     (rule start) (ambiguity) {BDisj.left=}
 	 *     (rule start) (ambiguity) {BRelExp.left=}
-	 *     (rule start) (ambiguity) {Expression.left=}
 	 *     (rule start) (ambiguity) {Factor.left=}
 	 */
 	protected void emit_Primary_LeftParenthesisKeyword_4_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -78,8 +78,8 @@ public class WhileLangSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) {AExpression.left=}
 	 *     (rule start) (ambiguity) {BConj.left=}
+	 *     (rule start) (ambiguity) {BDisj.left=}
 	 *     (rule start) (ambiguity) {BRelExp.left=}
-	 *     (rule start) (ambiguity) {Expression.left=}
 	 *     (rule start) (ambiguity) {Factor.left=}
 	 */
 	protected void emit_Primary_LeftParenthesisKeyword_4_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

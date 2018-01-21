@@ -12,7 +12,7 @@ package edu.ucf.cs.whilelang.whileLang;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.ucf.cs.whilelang.whileLang.AssignS#getVar <em>Var</em>}</li>
+ *   <li>{@link edu.ucf.cs.whilelang.whileLang.AssignS#getV <em>V</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.AssignS#getAexp <em>Aexp</em>}</li>
  * </ul>
  * </p>
@@ -24,30 +24,30 @@ package edu.ucf.cs.whilelang.whileLang;
 public interface AssignS extends S
 {
   /**
-   * Returns the value of the '<em><b>Var</b></em>' attribute.
+   * Returns the value of the '<em><b>V</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Var</em>' attribute isn't clear,
+   * If the meaning of the '<em>V</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Var</em>' attribute.
-   * @see #setVar(String)
-   * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getAssignS_Var()
+   * @return the value of the '<em>V</em>' attribute.
+   * @see #setV(String)
+   * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getAssignS_V()
    * @model
    * @generated
    */
-  String getVar();
+  String getV();
 
   /**
-   * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.AssignS#getVar <em>Var</em>}' attribute.
+   * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.AssignS#getV <em>V</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Var</em>' attribute.
-   * @see #getVar()
+   * @param value the new value of the '<em>V</em>' attribute.
+   * @see #getV()
    * @generated
    */
-  void setVar(String value);
+  void setV(String value);
 
   /**
    * Returns the value of the '<em><b>Aexp</b></em>' containment reference.

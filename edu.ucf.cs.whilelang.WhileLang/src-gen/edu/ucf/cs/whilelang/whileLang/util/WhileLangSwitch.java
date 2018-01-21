@@ -73,18 +73,10 @@ public class WhileLangSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
-      case WhileLangPackage.PROGRAM:
-      {
-        Program program = (Program)theEObject;
-        T result = caseProgram(program);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case WhileLangPackage.S:
       {
         S s = (S)theEObject;
         T result = caseS(s);
-        if (result == null) result = caseProgram(s);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -93,7 +85,6 @@ public class WhileLangSwitch<T> extends Switch<T>
         CompoundS compoundS = (CompoundS)theEObject;
         T result = caseCompoundS(compoundS);
         if (result == null) result = caseS(compoundS);
-        if (result == null) result = caseProgram(compoundS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -102,7 +93,6 @@ public class WhileLangSwitch<T> extends Switch<T>
         AssignS assignS = (AssignS)theEObject;
         T result = caseAssignS(assignS);
         if (result == null) result = caseS(assignS);
-        if (result == null) result = caseProgram(assignS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -111,7 +101,6 @@ public class WhileLangSwitch<T> extends Switch<T>
         SkipS skipS = (SkipS)theEObject;
         T result = caseSkipS(skipS);
         if (result == null) result = caseS(skipS);
-        if (result == null) result = caseProgram(skipS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -120,7 +109,6 @@ public class WhileLangSwitch<T> extends Switch<T>
         WhileS whileS = (WhileS)theEObject;
         T result = caseWhileS(whileS);
         if (result == null) result = caseS(whileS);
-        if (result == null) result = caseProgram(whileS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -129,7 +117,6 @@ public class WhileLangSwitch<T> extends Switch<T>
         IfS ifS = (IfS)theEObject;
         T result = caseIfS(ifS);
         if (result == null) result = caseS(ifS);
-        if (result == null) result = caseProgram(ifS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -172,27 +159,11 @@ public class WhileLangSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case WhileLangPackage.FACTOR:
+      case WhileLangPackage.BDISJ:
       {
-        Factor factor = (Factor)theEObject;
-        T result = caseFactor(factor);
-        if (result == null) result = caseExpr(factor);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case WhileLangPackage.AEXPRESSION:
-      {
-        AExpression aExpression = (AExpression)theEObject;
-        T result = caseAExpression(aExpression);
-        if (result == null) result = caseExpr(aExpression);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case WhileLangPackage.BREL_EXP:
-      {
-        BRelExp bRelExp = (BRelExp)theEObject;
-        T result = caseBRelExp(bRelExp);
-        if (result == null) result = caseExpr(bRelExp);
+        BDisj bDisj = (BDisj)theEObject;
+        T result = caseBDisj(bDisj);
+        if (result == null) result = caseExpr(bDisj);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -204,32 +175,32 @@ public class WhileLangSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case WhileLangPackage.EXPRESSION:
+      case WhileLangPackage.BREL_EXP:
       {
-        Expression expression = (Expression)theEObject;
-        T result = caseExpression(expression);
-        if (result == null) result = caseExpr(expression);
+        BRelExp bRelExp = (BRelExp)theEObject;
+        T result = caseBRelExp(bRelExp);
+        if (result == null) result = caseExpr(bRelExp);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case WhileLangPackage.AEXPRESSION:
+      {
+        AExpression aExpression = (AExpression)theEObject;
+        T result = caseAExpression(aExpression);
+        if (result == null) result = caseExpr(aExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case WhileLangPackage.FACTOR:
+      {
+        Factor factor = (Factor)theEObject;
+        T result = caseFactor(factor);
+        if (result == null) result = caseExpr(factor);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
       default: return defaultCase(theEObject);
     }
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Program</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Program</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseProgram(Program object)
-  {
-    return null;
   }
 
   /**
@@ -409,49 +380,17 @@ public class WhileLangSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Factor</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>BDisj</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Factor</em>'.
+   * @return the result of interpreting the object as an instance of '<em>BDisj</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseFactor(Factor object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>AExpression</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>AExpression</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAExpression(AExpression object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>BRel Exp</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>BRel Exp</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBRelExp(BRelExp object)
+  public T caseBDisj(BDisj object)
   {
     return null;
   }
@@ -473,17 +412,49 @@ public class WhileLangSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>BRel Exp</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
+   * @return the result of interpreting the object as an instance of '<em>BRel Exp</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExpression(Expression object)
+  public T caseBRelExp(BRelExp object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>AExpression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>AExpression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAExpression(AExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Factor</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Factor</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFactor(Factor object)
   {
     return null;
   }

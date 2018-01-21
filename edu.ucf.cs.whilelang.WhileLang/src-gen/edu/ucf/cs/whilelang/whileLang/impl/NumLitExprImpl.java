@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.NumLitExprImpl#isNegated <em>Negated</em>}</li>
- *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.NumLitExprImpl#getVal <em>Val</em>}</li>
+ *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.NumLitExprImpl#getNum <em>Num</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,24 +49,24 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
   protected boolean negated = NEGATED_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
+   * The default value of the '{@link #getNum() <em>Num</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVal()
+   * @see #getNum()
    * @generated
    * @ordered
    */
-  protected static final int VAL_EDEFAULT = 0;
+  protected static final int NUM_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
+   * The cached value of the '{@link #getNum() <em>Num</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVal()
+   * @see #getNum()
    * @generated
    * @ordered
    */
-  protected int val = VAL_EDEFAULT;
+  protected int num = NUM_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -117,9 +117,9 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getVal()
+  public int getNum()
   {
-    return val;
+    return num;
   }
 
   /**
@@ -127,12 +127,12 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setVal(int newVal)
+  public void setNum(int newNum)
   {
-    int oldVal = val;
-    val = newVal;
+    int oldNum = num;
+    num = newNum;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileLangPackage.NUM_LIT_EXPR__VAL, oldVal, val));
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileLangPackage.NUM_LIT_EXPR__NUM, oldNum, num));
   }
 
   /**
@@ -147,8 +147,8 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
     {
       case WhileLangPackage.NUM_LIT_EXPR__NEGATED:
         return isNegated();
-      case WhileLangPackage.NUM_LIT_EXPR__VAL:
-        return getVal();
+      case WhileLangPackage.NUM_LIT_EXPR__NUM:
+        return getNum();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -166,8 +166,8 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
       case WhileLangPackage.NUM_LIT_EXPR__NEGATED:
         setNegated((Boolean)newValue);
         return;
-      case WhileLangPackage.NUM_LIT_EXPR__VAL:
-        setVal((Integer)newValue);
+      case WhileLangPackage.NUM_LIT_EXPR__NUM:
+        setNum((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -186,8 +186,8 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
       case WhileLangPackage.NUM_LIT_EXPR__NEGATED:
         setNegated(NEGATED_EDEFAULT);
         return;
-      case WhileLangPackage.NUM_LIT_EXPR__VAL:
-        setVal(VAL_EDEFAULT);
+      case WhileLangPackage.NUM_LIT_EXPR__NUM:
+        setNum(NUM_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -205,8 +205,8 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
     {
       case WhileLangPackage.NUM_LIT_EXPR__NEGATED:
         return negated != NEGATED_EDEFAULT;
-      case WhileLangPackage.NUM_LIT_EXPR__VAL:
-        return val != VAL_EDEFAULT;
+      case WhileLangPackage.NUM_LIT_EXPR__NUM:
+        return num != NUM_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -224,8 +224,8 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (negated: ");
     result.append(negated);
-    result.append(", val: ");
-    result.append(val);
+    result.append(", num: ");
+    result.append(num);
     result.append(')');
     return result.toString();
   }
