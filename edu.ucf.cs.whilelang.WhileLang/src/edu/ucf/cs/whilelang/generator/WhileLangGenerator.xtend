@@ -24,7 +24,7 @@ class WhileLangGenerator extends AbstractGenerator {
 	/** Unparse the given program. */
     def String unparser(Program p) {
         '''
-        proc «p.name»(«FOR i: p.args.names SEPARATOR ', '»«i»«ENDFOR») is
+        proc «p.name»(«IF p.args !== null»«FOR i: p.args.names SEPARATOR ', '»«i»«ENDFOR»«ENDIF») is
         «new WhileLangUnparser().unparse(p.body)»
         '''   
     }

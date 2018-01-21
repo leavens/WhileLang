@@ -92,7 +92,7 @@ class WhileLangCodeGen {
     }
     
     def dispatch String toJava(NumLitExpr nl) {
-        (if (nl.negated) "-" else "") + nl.num.toString()
+        nl.num.toString()
     }
     
     def dispatch String toJava(BoolLitExpr bl) {

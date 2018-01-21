@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.NumLitExprImpl#isNegated <em>Negated</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.NumLitExprImpl#getNum <em>Num</em>}</li>
  * </ul>
  * </p>
@@ -28,26 +27,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class NumLitExprImpl extends ExprImpl implements NumLitExpr
 {
-  /**
-   * The default value of the '{@link #isNegated() <em>Negated</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isNegated()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean NEGATED_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isNegated() <em>Negated</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isNegated()
-   * @generated
-   * @ordered
-   */
-  protected boolean negated = NEGATED_EDEFAULT;
-
   /**
    * The default value of the '{@link #getNum() <em>Num</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -94,29 +73,6 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isNegated()
-  {
-    return negated;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setNegated(boolean newNegated)
-  {
-    boolean oldNegated = negated;
-    negated = newNegated;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileLangPackage.NUM_LIT_EXPR__NEGATED, oldNegated, negated));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public int getNum()
   {
     return num;
@@ -145,8 +101,6 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
   {
     switch (featureID)
     {
-      case WhileLangPackage.NUM_LIT_EXPR__NEGATED:
-        return isNegated();
       case WhileLangPackage.NUM_LIT_EXPR__NUM:
         return getNum();
     }
@@ -163,9 +117,6 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
   {
     switch (featureID)
     {
-      case WhileLangPackage.NUM_LIT_EXPR__NEGATED:
-        setNegated((Boolean)newValue);
-        return;
       case WhileLangPackage.NUM_LIT_EXPR__NUM:
         setNum((Integer)newValue);
         return;
@@ -183,9 +134,6 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
   {
     switch (featureID)
     {
-      case WhileLangPackage.NUM_LIT_EXPR__NEGATED:
-        setNegated(NEGATED_EDEFAULT);
-        return;
       case WhileLangPackage.NUM_LIT_EXPR__NUM:
         setNum(NUM_EDEFAULT);
         return;
@@ -203,8 +151,6 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
   {
     switch (featureID)
     {
-      case WhileLangPackage.NUM_LIT_EXPR__NEGATED:
-        return negated != NEGATED_EDEFAULT;
       case WhileLangPackage.NUM_LIT_EXPR__NUM:
         return num != NUM_EDEFAULT;
     }
@@ -222,9 +168,7 @@ public class NumLitExprImpl extends ExprImpl implements NumLitExpr
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (negated: ");
-    result.append(negated);
-    result.append(", num: ");
+    result.append(" (num: ");
     result.append(num);
     result.append(')');
     return result.toString();

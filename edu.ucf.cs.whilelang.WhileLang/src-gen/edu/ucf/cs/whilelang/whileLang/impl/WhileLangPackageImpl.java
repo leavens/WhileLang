@@ -530,19 +530,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getNumLitExpr_Negated()
-  {
-    return (EAttribute)numLitExprEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getNumLitExpr_Num()
   {
-    return (EAttribute)numLitExprEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)numLitExprEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -855,7 +845,6 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     createEAttribute(varRefExprEClass, VAR_REF_EXPR__VNAME);
 
     numLitExprEClass = createEClass(NUM_LIT_EXPR);
-    createEAttribute(numLitExprEClass, NUM_LIT_EXPR__NEGATED);
     createEAttribute(numLitExprEClass, NUM_LIT_EXPR__NUM);
 
     boolLitExprEClass = createEClass(BOOL_LIT_EXPR);
@@ -975,7 +964,6 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     initEAttribute(getVarRefExpr_Vname(), ecorePackage.getEString(), "vname", null, 0, 1, VarRefExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(numLitExprEClass, NumLitExpr.class, "NumLitExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getNumLitExpr_Negated(), ecorePackage.getEBoolean(), "negated", null, 0, 1, NumLitExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getNumLitExpr_Num(), ecorePackage.getEInt(), "num", null, 0, 1, NumLitExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(boolLitExprEClass, BoolLitExpr.class, "BoolLitExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

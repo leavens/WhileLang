@@ -38,10 +38,10 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBodyStmtParserRuleCall_6_0 = (RuleCall)cBodyAssignment_6.eContents().get(0);
 		
 		//Program:
-		//	'proc' name=ID '(' args=Formals ')' 'is' body=Stmt;
+		//	'proc' name=ID '(' args=Formals? ')' 'is' body=Stmt;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'proc' name=ID '(' args=Formals ')' 'is' body=Stmt
+		//'proc' name=ID '(' args=Formals? ')' 'is' body=Stmt
 		public Group getGroup() { return cGroup; }
 		
 		//'proc'
@@ -56,7 +56,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 		
-		//args=Formals
+		//args=Formals?
 		public Assignment getArgsAssignment_3() { return cArgsAssignment_3; }
 		
 		//Formals
@@ -712,30 +712,18 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class NumLitExprElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.NumLitExpr");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNegatedAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Keyword cNegatedHyphenMinusKeyword_0_0 = (Keyword)cNegatedAssignment_0.eContents().get(0);
-		private final Assignment cNumAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNumINTTerminalRuleCall_1_0 = (RuleCall)cNumAssignment_1.eContents().get(0);
+		private final Assignment cNumAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNumINTTerminalRuleCall_0 = (RuleCall)cNumAssignment.eContents().get(0);
 		
 		//NumLitExpr:
-		//	negated?='-'? num=INT;
+		//	num=INT;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//negated?='-'? num=INT
-		public Group getGroup() { return cGroup; }
-		
-		//negated?='-'?
-		public Assignment getNegatedAssignment_0() { return cNegatedAssignment_0; }
-		
-		//'-'
-		public Keyword getNegatedHyphenMinusKeyword_0_0() { return cNegatedHyphenMinusKeyword_0_0; }
-		
 		//num=INT
-		public Assignment getNumAssignment_1() { return cNumAssignment_1; }
+		public Assignment getNumAssignment() { return cNumAssignment; }
 		
 		//INT
-		public RuleCall getNumINTTerminalRuleCall_1_0() { return cNumINTTerminalRuleCall_1_0; }
+		public RuleCall getNumINTTerminalRuleCall_0() { return cNumINTTerminalRuleCall_0; }
 	}
 	public class BoolLitExprElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.BoolLitExpr");
@@ -810,6 +798,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	private final BoolLitExprElements pBoolLitExpr;
 	private final NotExprElements pNotExpr;
 	private final TerminalRule tSL_COMMENT;
+	private final TerminalRule tINT;
 	private final TerminalRule tOPPLUS;
 	private final TerminalRule tOPMUL;
 	private final TerminalRule tOR;
@@ -846,6 +835,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		this.pBoolLitExpr = new BoolLitExprElements();
 		this.pNotExpr = new NotExprElements();
 		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.SL_COMMENT");
+		this.tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.INT");
 		this.tOPPLUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.OPPLUS");
 		this.tOPMUL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.OPMUL");
 		this.tOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.OR");
@@ -881,7 +871,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Program:
-	//	'proc' name=ID '(' args=Formals ')' 'is' body=Stmt;
+	//	'proc' name=ID '(' args=Formals? ')' 'is' body=Stmt;
 	public ProgramElements getProgramAccess() {
 		return pProgram;
 	}
@@ -1051,7 +1041,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//NumLitExpr:
-	//	negated?='-'? num=INT;
+	//	num=INT;
 	public NumLitExprElements getNumLitExprAccess() {
 		return pNumLitExpr;
 	}
@@ -1084,6 +1074,12 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	//	'%' !('\n' | '\r')* ('\r'? '\n')?;
 	public TerminalRule getSL_COMMENTRule() {
 		return tSL_COMMENT;
+	}
+	
+	//@ Override terminal INT returns ecore::EInt:
+	//	'0'..'9'+ | '-' '0'..'9'+;
+	public TerminalRule getINTRule() {
+		return tINT;
 	}
 	
 	//terminal OPPLUS:
@@ -1120,12 +1116,6 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	//	'^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 	public TerminalRule getIDRule() {
 		return gaTerminals.getIDRule();
-	}
-	
-	//terminal INT returns ecore::EInt:
-	//	'0'..'9'+;
-	public TerminalRule getINTRule() {
-		return gaTerminals.getINTRule();
 	}
 	
 	//terminal STRING:

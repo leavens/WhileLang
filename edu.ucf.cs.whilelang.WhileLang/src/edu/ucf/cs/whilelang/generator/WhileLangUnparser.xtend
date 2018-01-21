@@ -86,7 +86,7 @@ class WhileLangUnparser {
     }
     
     def dispatch String unparse(NumLitExpr nl) {
-        (if (nl.negated) "-" else "") + nl.num.toString()
+        nl.num.toString()
     }
     
     def dispatch String unparse(BoolLitExpr bl) {

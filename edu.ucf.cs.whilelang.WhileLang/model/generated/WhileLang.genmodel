@@ -44,7 +44,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//VarRefExpr/vname"/>
     </genClasses>
     <genClasses ecoreClass="WhileLang.ecore#//NumLitExpr">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//NumLitExpr/negated"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//NumLitExpr/num"/>
     </genClasses>
     <genClasses ecoreClass="WhileLang.ecore#//BoolLitExpr">

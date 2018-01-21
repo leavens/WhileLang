@@ -120,7 +120,7 @@ ruleProgram returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)
+		)?
 		otherlv_4=')'
 		{
 			newLeafNode(otherlv_4, grammarAccess.getProgramAccess().getRightParenthesisKeyword_4());
@@ -474,7 +474,7 @@ ruleAssignment returns [EObject current=null]
 							$current,
 							"label",
 							lv_label_9_0,
-							"org.eclipse.xtext.common.Terminals.INT");
+							"edu.ucf.cs.whilelang.WhileLang.INT");
 					}
 				)
 			)
@@ -543,7 +543,7 @@ ruleSkip returns [EObject current=null]
 							$current,
 							"label",
 							lv_label_6_0,
-							"org.eclipse.xtext.common.Terminals.INT");
+							"edu.ucf.cs.whilelang.WhileLang.INT");
 					}
 				)
 			)
@@ -786,7 +786,7 @@ ruleLabeledExp returns [EObject current=null]
 							$current,
 							"label",
 							lv_label_5_0,
-							"org.eclipse.xtext.common.Terminals.INT");
+							"edu.ucf.cs.whilelang.WhileLang.INT");
 					}
 				)
 			)
@@ -1309,36 +1309,20 @@ ruleNumLitExpr returns [EObject current=null]
 }:
 	(
 		(
-			(
-				lv_negated_0_0='-'
-				{
-					newLeafNode(lv_negated_0_0, grammarAccess.getNumLitExprAccess().getNegatedHyphenMinusKeyword_0_0());
+			lv_num_0_0=RULE_INT
+			{
+				newLeafNode(lv_num_0_0, grammarAccess.getNumLitExprAccess().getNumINTTerminalRuleCall_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getNumLitExprRule());
 				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getNumLitExprRule());
-					}
-					setWithLastConsumed($current, "negated", true, "-");
-				}
-			)
-		)?
-		(
-			(
-				lv_num_1_0=RULE_INT
-				{
-					newLeafNode(lv_num_1_0, grammarAccess.getNumLitExprAccess().getNumINTTerminalRuleCall_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getNumLitExprRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"num",
-						lv_num_1_0,
-						"org.eclipse.xtext.common.Terminals.INT");
-				}
-			)
+				setWithLastConsumed(
+					$current,
+					"num",
+					lv_num_0_0,
+					"edu.ucf.cs.whilelang.WhileLang.INT");
+			}
 		)
 	)
 ;
@@ -1435,6 +1419,8 @@ ruleNotExpr returns [EObject current=null]
 
 RULE_SL_COMMENT : '%' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
+RULE_INT : (('0'..'9')+|'-' ('0'..'9')+);
+
 RULE_OPPLUS : ('+'|'-');
 
 RULE_OPMUL : ('*'|'/');
@@ -1446,8 +1432,6 @@ RULE_AND : 'and';
 RULE_OP_R : ('=='|'!='|'<='|'>='|'<'|'>');
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
-
-RULE_INT : ('0'..'9')+;
 
 RULE_STRING : ('"' ('\\' .|~(('\\'|'"')))* '"'|'\'' ('\\' .|~(('\\'|'\'')))* '\'');
 

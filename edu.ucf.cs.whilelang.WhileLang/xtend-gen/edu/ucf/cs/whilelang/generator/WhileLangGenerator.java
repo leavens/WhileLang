@@ -2,6 +2,7 @@ package edu.ucf.cs.whilelang.generator;
 
 import edu.ucf.cs.whilelang.generator.WhileLangCodeGen;
 import edu.ucf.cs.whilelang.generator.WhileLangUnparser;
+import edu.ucf.cs.whilelang.whileLang.Formals;
 import edu.ucf.cs.whilelang.whileLang.Program;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -42,15 +43,21 @@ public class WhileLangGenerator extends AbstractGenerator {
     _builder.append(_name);
     _builder.append("(");
     {
-      EList<String> _names = p.getArgs().getNames();
-      boolean _hasElements = false;
-      for(final String i : _names) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(", ", "");
+      Formals _args = p.getArgs();
+      boolean _tripleNotEquals = (_args != null);
+      if (_tripleNotEquals) {
+        {
+          EList<String> _names = p.getArgs().getNames();
+          boolean _hasElements = false;
+          for(final String i : _names) {
+            if (!_hasElements) {
+              _hasElements = true;
+            } else {
+              _builder.appendImmediate(", ", "");
+            }
+            _builder.append(i);
+          }
         }
-        _builder.append(i);
       }
     }
     _builder.append(") is");

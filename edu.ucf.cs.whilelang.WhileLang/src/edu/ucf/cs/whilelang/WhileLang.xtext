@@ -1,8 +1,10 @@
 grammar edu.ucf.cs.whilelang.WhileLang with org.eclipse.xtext.common.Terminals
 
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
 generate whileLang "http://www.ucf.edu/cs/whilelang/WhileLang"
 
-Program: 'proc' name=ID '(' args=Formals ')' 'is' body=Stmt;
+Program: 'proc' name=ID '(' (args=Formals)? ')' 'is' body=Stmt;
 Formals: names+=ID (',' names+=ID)*;
 
 Stmt returns S: Assignment | Skip | Block | While | If;
@@ -22,12 +24,14 @@ AExpression returns Expr: Factor ({AExpression.left=current} op=OPPLUS right=AEx
 Factor returns Expr: Primary ({Factor.left=current} op=OPMUL right=Factor)?;
 Primary returns Expr: VarRefExpr | NumLitExpr | BoolLitExpr | NotExpr | '(' Expression ')';
 VarRefExpr: vname=ID;
-NumLitExpr: (negated?='-')? num=INT;
+NumLitExpr: num=INT;
 BoolLitExpr: bval='true' | bval='false';
 NotExpr: 'not' (bexp=Primary);
 
 @Override
 terminal SL_COMMENT: '%' !('\n'|'\r')* ('\r'? '\n')?;
+@Override
+terminal INT returns ecore::EInt: ('0'..'9')+ | '-'('0'..'9')+;
 terminal OPPLUS: '+' | '-';
 terminal OPMUL: '*' | '/';
 terminal OR: 'or';

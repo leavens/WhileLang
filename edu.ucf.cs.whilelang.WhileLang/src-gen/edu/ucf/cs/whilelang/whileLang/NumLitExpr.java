@@ -12,7 +12,6 @@ package edu.ucf.cs.whilelang.whileLang;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr#isNegated <em>Negated</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr#getNum <em>Num</em>}</li>
  * </ul>
  * </p>
@@ -23,32 +22,6 @@ package edu.ucf.cs.whilelang.whileLang;
  */
 public interface NumLitExpr extends Expr
 {
-  /**
-   * Returns the value of the '<em><b>Negated</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Negated</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Negated</em>' attribute.
-   * @see #setNegated(boolean)
-   * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getNumLitExpr_Negated()
-   * @model
-   * @generated
-   */
-  boolean isNegated();
-
-  /**
-   * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr#isNegated <em>Negated</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Negated</em>' attribute.
-   * @see #isNegated()
-   * @generated
-   */
-  void setNegated(boolean value);
-
   /**
    * Returns the value of the '<em><b>Num</b></em>' attribute.
    * <!-- begin-user-doc -->

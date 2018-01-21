@@ -425,10 +425,16 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     NumLitExpr returns NumLitExpr
 	 *
 	 * Constraint:
-	 *     (negated?='-'? num=INT)
+	 *     num=INT
 	 */
 	protected void sequence_NumLitExpr(ISerializationContext context, NumLitExpr semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.NUM_LIT_EXPR__NUM) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.NUM_LIT_EXPR__NUM));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNumLitExprAccess().getNumINTTerminalRuleCall_0(), semanticObject.getNum());
+		feeder.finish();
 	}
 	
 	
@@ -437,22 +443,10 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Program returns Program
 	 *
 	 * Constraint:
-	 *     (name=ID args=Formals body=Stmt)
+	 *     (name=ID args=Formals? body=Stmt)
 	 */
 	protected void sequence_Program(ISerializationContext context, Program semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.PROGRAM__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.PROGRAM__NAME));
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.PROGRAM__ARGS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.PROGRAM__ARGS));
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.PROGRAM__BODY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.PROGRAM__BODY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getProgramAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getProgramAccess().getArgsFormalsParserRuleCall_3_0(), semanticObject.getArgs());
-		feeder.accept(grammarAccess.getProgramAccess().getBodyStmtParserRuleCall_6_0(), semanticObject.getBody());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

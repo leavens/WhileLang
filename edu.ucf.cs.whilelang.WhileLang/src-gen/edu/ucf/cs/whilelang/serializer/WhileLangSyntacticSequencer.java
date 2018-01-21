@@ -58,7 +58,6 @@ public class WhileLangSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'not' bexp=Primary
 	 *     (rule start) (ambiguity) bval='false'
 	 *     (rule start) (ambiguity) bval='true'
-	 *     (rule start) (ambiguity) negated?='-'
 	 *     (rule start) (ambiguity) num=INT
 	 *     (rule start) (ambiguity) vname=ID
 	 *     (rule start) (ambiguity) {AExpression.left=}

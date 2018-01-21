@@ -430,22 +430,13 @@ public interface WhileLangPackage extends EPackage
   int NUM_LIT_EXPR = 11;
 
   /**
-   * The feature id for the '<em><b>Negated</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NUM_LIT_EXPR__NEGATED = EXPR_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Num</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NUM_LIT_EXPR__NUM = EXPR_FEATURE_COUNT + 1;
+  int NUM_LIT_EXPR__NUM = EXPR_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Num Lit Expr</em>' class.
@@ -454,7 +445,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NUM_LIT_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
+  int NUM_LIT_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BoolLitExprImpl <em>Bool Lit Expr</em>}' class.
@@ -1051,17 +1042,6 @@ public interface WhileLangPackage extends EPackage
   EClass getNumLitExpr();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr#isNegated <em>Negated</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Negated</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.NumLitExpr#isNegated()
-   * @see #getNumLitExpr()
-   * @generated
-   */
-  EAttribute getNumLitExpr_Negated();
-
-  /**
    * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr#getNum <em>Num</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1607,14 +1587,6 @@ public interface WhileLangPackage extends EPackage
      * @generated
      */
     EClass NUM_LIT_EXPR = eINSTANCE.getNumLitExpr();
-
-    /**
-     * The meta object literal for the '<em><b>Negated</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NUM_LIT_EXPR__NEGATED = eINSTANCE.getNumLitExpr_Negated();
 
     /**
      * The meta object literal for the '<em><b>Num</b></em>' attribute feature.
