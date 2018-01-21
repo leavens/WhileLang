@@ -51,7 +51,7 @@ public class WhileLangSwitch<T> extends Switch<T>
    * Checks whether this is a switch for the given package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param ePackage the package in question.
+   * @parameter ePackage the package in question.
    * @return whether this is a switch for the given package.
    * @generated
    */
@@ -133,10 +133,10 @@ public class WhileLangSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case WhileLangPackage.AEXPR:
+      case WhileLangPackage.EXPR:
       {
-        AExpr aExpr = (AExpr)theEObject;
-        T result = caseAExpr(aExpr);
+        Expr expr = (Expr)theEObject;
+        T result = caseExpr(expr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -144,7 +144,7 @@ public class WhileLangSwitch<T> extends Switch<T>
       {
         VarRefExpr varRefExpr = (VarRefExpr)theEObject;
         T result = caseVarRefExpr(varRefExpr);
-        if (result == null) result = caseAExpr(varRefExpr);
+        if (result == null) result = caseExpr(varRefExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -152,14 +152,15 @@ public class WhileLangSwitch<T> extends Switch<T>
       {
         NumLitExpr numLitExpr = (NumLitExpr)theEObject;
         T result = caseNumLitExpr(numLitExpr);
-        if (result == null) result = caseAExpr(numLitExpr);
+        if (result == null) result = caseExpr(numLitExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case WhileLangPackage.BEXPR:
+      case WhileLangPackage.BOOL_LIT_EXPR:
       {
-        BExpr bExpr = (BExpr)theEObject;
-        T result = caseBExpr(bExpr);
+        BoolLitExpr boolLitExpr = (BoolLitExpr)theEObject;
+        T result = caseBoolLitExpr(boolLitExpr);
+        if (result == null) result = caseExpr(boolLitExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -167,23 +168,15 @@ public class WhileLangSwitch<T> extends Switch<T>
       {
         NotExpr notExpr = (NotExpr)theEObject;
         T result = caseNotExpr(notExpr);
-        if (result == null) result = caseBExpr(notExpr);
+        if (result == null) result = caseExpr(notExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case WhileLangPackage.BCOMP_EXP:
+      case WhileLangPackage.FACTOR:
       {
-        BCompExp bCompExp = (BCompExp)theEObject;
-        T result = caseBCompExp(bCompExp);
-        if (result == null) result = caseBExpr(bCompExp);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case WhileLangPackage.BPRIMARY:
-      {
-        BPrimary bPrimary = (BPrimary)theEObject;
-        T result = caseBPrimary(bPrimary);
-        if (result == null) result = caseBExpr(bPrimary);
+        Factor factor = (Factor)theEObject;
+        T result = caseFactor(factor);
+        if (result == null) result = caseExpr(factor);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -191,31 +184,31 @@ public class WhileLangSwitch<T> extends Switch<T>
       {
         AExpression aExpression = (AExpression)theEObject;
         T result = caseAExpression(aExpression);
-        if (result == null) result = caseAExpr(aExpression);
+        if (result == null) result = caseExpr(aExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case WhileLangPackage.ATERM:
+      case WhileLangPackage.BREL_EXP:
       {
-        ATerm aTerm = (ATerm)theEObject;
-        T result = caseATerm(aTerm);
-        if (result == null) result = caseAExpr(aTerm);
+        BRelExp bRelExp = (BRelExp)theEObject;
+        T result = caseBRelExp(bRelExp);
+        if (result == null) result = caseExpr(bRelExp);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case WhileLangPackage.BEXPRESSION:
+      case WhileLangPackage.BCONJ:
       {
-        BExpression bExpression = (BExpression)theEObject;
-        T result = caseBExpression(bExpression);
-        if (result == null) result = caseBExpr(bExpression);
+        BConj bConj = (BConj)theEObject;
+        T result = caseBConj(bConj);
+        if (result == null) result = caseExpr(bConj);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case WhileLangPackage.BTERM:
+      case WhileLangPackage.EXPRESSION:
       {
-        BTerm bTerm = (BTerm)theEObject;
-        T result = caseBTerm(bTerm);
-        if (result == null) result = caseBExpr(bTerm);
+        Expression expression = (Expression)theEObject;
+        T result = caseExpression(expression);
+        if (result == null) result = caseExpr(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -336,17 +329,17 @@ public class WhileLangSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>AExpr</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expr</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>AExpr</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseAExpr(AExpr object)
+  public T caseExpr(Expr object)
   {
     return null;
   }
@@ -384,17 +377,17 @@ public class WhileLangSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>BExpr</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Bool Lit Expr</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>BExpr</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Bool Lit Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBExpr(BExpr object)
+  public T caseBoolLitExpr(BoolLitExpr object)
   {
     return null;
   }
@@ -416,33 +409,17 @@ public class WhileLangSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>BComp Exp</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Factor</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>BComp Exp</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Factor</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBCompExp(BCompExp object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>BPrimary</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>BPrimary</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBPrimary(BPrimary object)
+  public T caseFactor(Factor object)
   {
     return null;
   }
@@ -464,49 +441,49 @@ public class WhileLangSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>ATerm</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>BRel Exp</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>ATerm</em>'.
+   * @return the result of interpreting the object as an instance of '<em>BRel Exp</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseATerm(ATerm object)
+  public T caseBRelExp(BRelExp object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>BExpression</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>BConj</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>BExpression</em>'.
+   * @return the result of interpreting the object as an instance of '<em>BConj</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBExpression(BExpression object)
+  public T caseBConj(BConj object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>BTerm</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>BTerm</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBTerm(BTerm object)
+  public T caseExpression(Expression object)
   {
     return null;
   }

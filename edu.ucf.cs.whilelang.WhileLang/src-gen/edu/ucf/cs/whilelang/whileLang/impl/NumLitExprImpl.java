@@ -18,15 +18,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.NumLitExprImpl#isNegated <em>Negated</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.NumLitExprImpl#getVal <em>Val</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
-public class NumLitExprImpl extends AExprImpl implements NumLitExpr
+public class NumLitExprImpl extends ExprImpl implements NumLitExpr
 {
   /**
    * The default value of the '{@link #isNegated() <em>Negated</em>}' attribute.

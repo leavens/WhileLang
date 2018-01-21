@@ -20,18 +20,14 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class WhileLangSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected WhileLangGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_APrimary_LeftParenthesisKeyword_2_0_a;
-	protected AbstractElementAlias match_APrimary_LeftParenthesisKeyword_2_0_p;
-	protected AbstractElementAlias match_BRelExp_LeftParenthesisKeyword_3_0_a;
-	protected AbstractElementAlias match_BRelExp_LeftParenthesisKeyword_3_0_p;
+	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_4_0_a;
+	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_4_0_p;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (WhileLangGrammarAccess) access;
-		match_APrimary_LeftParenthesisKeyword_2_0_a = new TokenAlias(true, true, grammarAccess.getAPrimaryAccess().getLeftParenthesisKeyword_2_0());
-		match_APrimary_LeftParenthesisKeyword_2_0_p = new TokenAlias(true, false, grammarAccess.getAPrimaryAccess().getLeftParenthesisKeyword_2_0());
-		match_BRelExp_LeftParenthesisKeyword_3_0_a = new TokenAlias(true, true, grammarAccess.getBRelExpAccess().getLeftParenthesisKeyword_3_0());
-		match_BRelExp_LeftParenthesisKeyword_3_0_p = new TokenAlias(true, false, grammarAccess.getBRelExpAccess().getLeftParenthesisKeyword_3_0());
+		match_Primary_LeftParenthesisKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_4_0());
+		match_Primary_LeftParenthesisKeyword_4_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_4_0());
 	}
 	
 	@Override
@@ -46,14 +42,10 @@ public class WhileLangSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_APrimary_LeftParenthesisKeyword_2_0_a.equals(syntax))
-				emit_APrimary_LeftParenthesisKeyword_2_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_APrimary_LeftParenthesisKeyword_2_0_p.equals(syntax))
-				emit_APrimary_LeftParenthesisKeyword_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BRelExp_LeftParenthesisKeyword_3_0_a.equals(syntax))
-				emit_BRelExp_LeftParenthesisKeyword_3_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BRelExp_LeftParenthesisKeyword_3_0_p.equals(syntax))
-				emit_BRelExp_LeftParenthesisKeyword_3_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_Primary_LeftParenthesisKeyword_4_0_a.equals(syntax))
+				emit_Primary_LeftParenthesisKeyword_4_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Primary_LeftParenthesisKeyword_4_0_p.equals(syntax))
+				emit_Primary_LeftParenthesisKeyword_4_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -63,13 +55,19 @@ public class WhileLangSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '('*
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'not' bexp=Primary
+	 *     (rule start) (ambiguity) bval='false'
+	 *     (rule start) (ambiguity) bval='true'
 	 *     (rule start) (ambiguity) negated?='-'
 	 *     (rule start) (ambiguity) val=INT
 	 *     (rule start) (ambiguity) var=ID
 	 *     (rule start) (ambiguity) {AExpression.left=}
-	 *     (rule start) (ambiguity) {ATerm.left=}
+	 *     (rule start) (ambiguity) {BConj.left=}
+	 *     (rule start) (ambiguity) {BRelExp.left=}
+	 *     (rule start) (ambiguity) {Expression.left=}
+	 *     (rule start) (ambiguity) {Factor.left=}
 	 */
-	protected void emit_APrimary_LeftParenthesisKeyword_2_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Primary_LeftParenthesisKeyword_4_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -79,37 +77,12 @@ public class WhileLangSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) {AExpression.left=}
-	 *     (rule start) (ambiguity) {ATerm.left=}
+	 *     (rule start) (ambiguity) {BConj.left=}
+	 *     (rule start) (ambiguity) {BRelExp.left=}
+	 *     (rule start) (ambiguity) {Expression.left=}
+	 *     (rule start) (ambiguity) {Factor.left=}
 	 */
-	protected void emit_APrimary_LeftParenthesisKeyword_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '('*
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'not' bexp=BRelExp
-	 *     (rule start) (ambiguity) bval='false'
-	 *     (rule start) (ambiguity) bval='true'
-	 *     (rule start) (ambiguity) left=AExpression
-	 *     (rule start) (ambiguity) {BExpression.left=}
-	 *     (rule start) (ambiguity) {BTerm.left=}
-	 */
-	protected void emit_BRelExp_LeftParenthesisKeyword_3_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '('+
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) {BExpression.left=}
-	 *     (rule start) (ambiguity) {BTerm.left=}
-	 */
-	protected void emit_BRelExp_LeftParenthesisKeyword_3_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Primary_LeftParenthesisKeyword_4_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

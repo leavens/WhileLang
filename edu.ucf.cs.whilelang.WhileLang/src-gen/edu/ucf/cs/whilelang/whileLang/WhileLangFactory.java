@@ -87,13 +87,13 @@ public interface WhileLangFactory extends EFactory
   IfS createIfS();
 
   /**
-   * Returns a new object of class '<em>AExpr</em>'.
+   * Returns a new object of class '<em>Expr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>AExpr</em>'.
+   * @return a new object of class '<em>Expr</em>'.
    * @generated
    */
-  AExpr createAExpr();
+  Expr createExpr();
 
   /**
    * Returns a new object of class '<em>Var Ref Expr</em>'.
@@ -114,13 +114,13 @@ public interface WhileLangFactory extends EFactory
   NumLitExpr createNumLitExpr();
 
   /**
-   * Returns a new object of class '<em>BExpr</em>'.
+   * Returns a new object of class '<em>Bool Lit Expr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>BExpr</em>'.
+   * @return a new object of class '<em>Bool Lit Expr</em>'.
    * @generated
    */
-  BExpr createBExpr();
+  BoolLitExpr createBoolLitExpr();
 
   /**
    * Returns a new object of class '<em>Not Expr</em>'.
@@ -132,22 +132,13 @@ public interface WhileLangFactory extends EFactory
   NotExpr createNotExpr();
 
   /**
-   * Returns a new object of class '<em>BComp Exp</em>'.
+   * Returns a new object of class '<em>Factor</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>BComp Exp</em>'.
+   * @return a new object of class '<em>Factor</em>'.
    * @generated
    */
-  BCompExp createBCompExp();
-
-  /**
-   * Returns a new object of class '<em>BPrimary</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>BPrimary</em>'.
-   * @generated
-   */
-  BPrimary createBPrimary();
+  Factor createFactor();
 
   /**
    * Returns a new object of class '<em>AExpression</em>'.
@@ -159,31 +150,31 @@ public interface WhileLangFactory extends EFactory
   AExpression createAExpression();
 
   /**
-   * Returns a new object of class '<em>ATerm</em>'.
+   * Returns a new object of class '<em>BRel Exp</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>ATerm</em>'.
+   * @return a new object of class '<em>BRel Exp</em>'.
    * @generated
    */
-  ATerm createATerm();
+  BRelExp createBRelExp();
 
   /**
-   * Returns a new object of class '<em>BExpression</em>'.
+   * Returns a new object of class '<em>BConj</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>BExpression</em>'.
+   * @return a new object of class '<em>BConj</em>'.
    * @generated
    */
-  BExpression createBExpression();
+  BConj createBConj();
 
   /**
-   * Returns a new object of class '<em>BTerm</em>'.
+   * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>BTerm</em>'.
+   * @return a new object of class '<em>Expression</em>'.
    * @generated
    */
-  BTerm createBTerm();
+  Expression createExpression();
 
   /**
    * Returns the package supported by this factory.

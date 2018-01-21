@@ -3,8 +3,8 @@
  */
 package edu.ucf.cs.whilelang.whileLang.impl;
 
-import edu.ucf.cs.whilelang.whileLang.BExpr;
 import edu.ucf.cs.whilelang.whileLang.CompoundS;
+import edu.ucf.cs.whilelang.whileLang.Expr;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
 import edu.ucf.cs.whilelang.whileLang.WhileS;
 
@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.WhileSImpl#getBexp <em>Bexp</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.WhileSImpl#getBlock <em>Block</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
@@ -40,7 +40,7 @@ public class WhileSImpl extends SImpl implements WhileS
    * @generated
    * @ordered
    */
-  protected BExpr bexp;
+  protected Expr bexp;
 
   /**
    * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
@@ -78,7 +78,7 @@ public class WhileSImpl extends SImpl implements WhileS
    * <!-- end-user-doc -->
    * @generated
    */
-  public BExpr getBexp()
+  public Expr getBexp()
   {
     return bexp;
   }
@@ -88,9 +88,9 @@ public class WhileSImpl extends SImpl implements WhileS
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetBexp(BExpr newBexp, NotificationChain msgs)
+  public NotificationChain basicSetBexp(Expr newBexp, NotificationChain msgs)
   {
-    BExpr oldBexp = bexp;
+    Expr oldBexp = bexp;
     bexp = newBexp;
     if (eNotificationRequired())
     {
@@ -105,7 +105,7 @@ public class WhileSImpl extends SImpl implements WhileS
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setBexp(BExpr newBexp)
+  public void setBexp(Expr newBexp)
   {
     if (newBexp != bexp)
     {
@@ -216,7 +216,7 @@ public class WhileSImpl extends SImpl implements WhileS
     switch (featureID)
     {
       case WhileLangPackage.WHILE_S__BEXP:
-        setBexp((BExpr)newValue);
+        setBexp((Expr)newValue);
         return;
       case WhileLangPackage.WHILE_S__BLOCK:
         setBlock((CompoundS)newValue);
@@ -236,7 +236,7 @@ public class WhileSImpl extends SImpl implements WhileS
     switch (featureID)
     {
       case WhileLangPackage.WHILE_S__BEXP:
-        setBexp((BExpr)null);
+        setBexp((Expr)null);
         return;
       case WhileLangPackage.WHILE_S__BLOCK:
         setBlock((CompoundS)null);

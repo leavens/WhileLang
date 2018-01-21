@@ -11,18 +11,18 @@ package edu.ucf.cs.whilelang.whileLang;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.AExpression#getLeft <em>Left</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.AExpression#getOp <em>Op</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.AExpression#getRight <em>Right</em>}</li>
  * </ul>
+ * </p>
  *
  * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getAExpression()
  * @model
  * @generated
  */
-public interface AExpression extends AExpr
+public interface AExpression extends Expr
 {
   /**
    * Returns the value of the '<em><b>Left</b></em>' containment reference.
@@ -33,12 +33,12 @@ public interface AExpression extends AExpr
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Left</em>' containment reference.
-   * @see #setLeft(AExpr)
+   * @see #setLeft(Expr)
    * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getAExpression_Left()
    * @model containment="true"
    * @generated
    */
-  AExpr getLeft();
+  Expr getLeft();
 
   /**
    * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.AExpression#getLeft <em>Left</em>}' containment reference.
@@ -48,7 +48,7 @@ public interface AExpression extends AExpr
    * @see #getLeft()
    * @generated
    */
-  void setLeft(AExpr value);
+  void setLeft(Expr value);
 
   /**
    * Returns the value of the '<em><b>Op</b></em>' attribute.
@@ -85,12 +85,12 @@ public interface AExpression extends AExpr
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Right</em>' containment reference.
-   * @see #setRight(AExpr)
+   * @see #setRight(Expr)
    * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getAExpression_Right()
    * @model containment="true"
    * @generated
    */
-  AExpr getRight();
+  Expr getRight();
 
   /**
    * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.AExpression#getRight <em>Right</em>}' containment reference.
@@ -100,6 +100,6 @@ public interface AExpression extends AExpr
    * @see #getRight()
    * @generated
    */
-  void setRight(AExpr value);
+  void setRight(Expr value);
 
 } // AExpression

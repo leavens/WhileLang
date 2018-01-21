@@ -3,8 +3,8 @@
  */
 package edu.ucf.cs.whilelang.whileLang.impl;
 
-import edu.ucf.cs.whilelang.whileLang.AExpr;
 import edu.ucf.cs.whilelang.whileLang.AExpression;
+import edu.ucf.cs.whilelang.whileLang.Expr;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -21,16 +21,16 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AExpressionImpl#getLeft <em>Left</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AExpressionImpl#getOp <em>Op</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AExpressionImpl#getRight <em>Right</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
-public class AExpressionImpl extends AExprImpl implements AExpression
+public class AExpressionImpl extends ExprImpl implements AExpression
 {
   /**
    * The cached value of the '{@link #getLeft() <em>Left</em>}' containment reference.
@@ -40,7 +40,7 @@ public class AExpressionImpl extends AExprImpl implements AExpression
    * @generated
    * @ordered
    */
-  protected AExpr left;
+  protected Expr left;
 
   /**
    * The default value of the '{@link #getOp() <em>Op</em>}' attribute.
@@ -70,7 +70,7 @@ public class AExpressionImpl extends AExprImpl implements AExpression
    * @generated
    * @ordered
    */
-  protected AExpr right;
+  protected Expr right;
 
   /**
    * <!-- begin-user-doc -->
@@ -98,7 +98,7 @@ public class AExpressionImpl extends AExprImpl implements AExpression
    * <!-- end-user-doc -->
    * @generated
    */
-  public AExpr getLeft()
+  public Expr getLeft()
   {
     return left;
   }
@@ -108,9 +108,9 @@ public class AExpressionImpl extends AExprImpl implements AExpression
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLeft(AExpr newLeft, NotificationChain msgs)
+  public NotificationChain basicSetLeft(Expr newLeft, NotificationChain msgs)
   {
-    AExpr oldLeft = left;
+    Expr oldLeft = left;
     left = newLeft;
     if (eNotificationRequired())
     {
@@ -125,7 +125,7 @@ public class AExpressionImpl extends AExprImpl implements AExpression
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setLeft(AExpr newLeft)
+  public void setLeft(Expr newLeft)
   {
     if (newLeft != left)
     {
@@ -169,7 +169,7 @@ public class AExpressionImpl extends AExprImpl implements AExpression
    * <!-- end-user-doc -->
    * @generated
    */
-  public AExpr getRight()
+  public Expr getRight()
   {
     return right;
   }
@@ -179,9 +179,9 @@ public class AExpressionImpl extends AExprImpl implements AExpression
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRight(AExpr newRight, NotificationChain msgs)
+  public NotificationChain basicSetRight(Expr newRight, NotificationChain msgs)
   {
-    AExpr oldRight = right;
+    Expr oldRight = right;
     right = newRight;
     if (eNotificationRequired())
     {
@@ -196,7 +196,7 @@ public class AExpressionImpl extends AExprImpl implements AExpression
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRight(AExpr newRight)
+  public void setRight(Expr newRight)
   {
     if (newRight != right)
     {
@@ -261,13 +261,13 @@ public class AExpressionImpl extends AExprImpl implements AExpression
     switch (featureID)
     {
       case WhileLangPackage.AEXPRESSION__LEFT:
-        setLeft((AExpr)newValue);
+        setLeft((Expr)newValue);
         return;
       case WhileLangPackage.AEXPRESSION__OP:
         setOp((String)newValue);
         return;
       case WhileLangPackage.AEXPRESSION__RIGHT:
-        setRight((AExpr)newValue);
+        setRight((Expr)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -284,13 +284,13 @@ public class AExpressionImpl extends AExprImpl implements AExpression
     switch (featureID)
     {
       case WhileLangPackage.AEXPRESSION__LEFT:
-        setLeft((AExpr)null);
+        setLeft((Expr)null);
         return;
       case WhileLangPackage.AEXPRESSION__OP:
         setOp(OP_EDEFAULT);
         return;
       case WhileLangPackage.AEXPRESSION__RIGHT:
-        setRight((AExpr)null);
+        setRight((Expr)null);
         return;
     }
     super.eUnset(featureID);

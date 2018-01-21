@@ -3,7 +3,7 @@
  */
 package edu.ucf.cs.whilelang.whileLang.impl;
 
-import edu.ucf.cs.whilelang.whileLang.BExpr;
+import edu.ucf.cs.whilelang.whileLang.Expr;
 import edu.ucf.cs.whilelang.whileLang.NotExpr;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
 
@@ -21,14 +21,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.NotExprImpl#getBexp <em>Bexp</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
-public class NotExprImpl extends BExprImpl implements NotExpr
+public class NotExprImpl extends ExprImpl implements NotExpr
 {
   /**
    * The cached value of the '{@link #getBexp() <em>Bexp</em>}' containment reference.
@@ -38,7 +38,7 @@ public class NotExprImpl extends BExprImpl implements NotExpr
    * @generated
    * @ordered
    */
-  protected BExpr bexp;
+  protected Expr bexp;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class NotExprImpl extends BExprImpl implements NotExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public BExpr getBexp()
+  public Expr getBexp()
   {
     return bexp;
   }
@@ -76,9 +76,9 @@ public class NotExprImpl extends BExprImpl implements NotExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetBexp(BExpr newBexp, NotificationChain msgs)
+  public NotificationChain basicSetBexp(Expr newBexp, NotificationChain msgs)
   {
-    BExpr oldBexp = bexp;
+    Expr oldBexp = bexp;
     bexp = newBexp;
     if (eNotificationRequired())
     {
@@ -93,7 +93,7 @@ public class NotExprImpl extends BExprImpl implements NotExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setBexp(BExpr newBexp)
+  public void setBexp(Expr newBexp)
   {
     if (newBexp != bexp)
     {
@@ -152,7 +152,7 @@ public class NotExprImpl extends BExprImpl implements NotExpr
     switch (featureID)
     {
       case WhileLangPackage.NOT_EXPR__BEXP:
-        setBexp((BExpr)newValue);
+        setBexp((Expr)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,7 +169,7 @@ public class NotExprImpl extends BExprImpl implements NotExpr
     switch (featureID)
     {
       case WhileLangPackage.NOT_EXPR__BEXP:
-        setBexp((BExpr)null);
+        setBexp((Expr)null);
         return;
     }
     super.eUnset(featureID);

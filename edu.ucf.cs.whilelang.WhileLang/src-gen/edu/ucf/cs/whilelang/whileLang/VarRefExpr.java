@@ -11,16 +11,16 @@ package edu.ucf.cs.whilelang.whileLang;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.VarRefExpr#getVar <em>Var</em>}</li>
  * </ul>
+ * </p>
  *
  * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getVarRefExpr()
  * @model
  * @generated
  */
-public interface VarRefExpr extends AExpr
+public interface VarRefExpr extends Expr
 {
   /**
    * Returns the value of the '<em><b>Var</b></em>' attribute.

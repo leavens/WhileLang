@@ -11,17 +11,17 @@ package edu.ucf.cs.whilelang.whileLang;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr#isNegated <em>Negated</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr#getVal <em>Val</em>}</li>
  * </ul>
+ * </p>
  *
  * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getNumLitExpr()
  * @model
  * @generated
  */
-public interface NumLitExpr extends AExpr
+public interface NumLitExpr extends Expr
 {
   /**
    * Returns the value of the '<em><b>Negated</b></em>' attribute.

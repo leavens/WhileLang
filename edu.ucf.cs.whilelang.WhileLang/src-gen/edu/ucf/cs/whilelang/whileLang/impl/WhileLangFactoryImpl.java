@@ -72,17 +72,16 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
       case WhileLangPackage.SKIP_S: return createSkipS();
       case WhileLangPackage.WHILE_S: return createWhileS();
       case WhileLangPackage.IF_S: return createIfS();
-      case WhileLangPackage.AEXPR: return createAExpr();
+      case WhileLangPackage.EXPR: return createExpr();
       case WhileLangPackage.VAR_REF_EXPR: return createVarRefExpr();
       case WhileLangPackage.NUM_LIT_EXPR: return createNumLitExpr();
-      case WhileLangPackage.BEXPR: return createBExpr();
+      case WhileLangPackage.BOOL_LIT_EXPR: return createBoolLitExpr();
       case WhileLangPackage.NOT_EXPR: return createNotExpr();
-      case WhileLangPackage.BCOMP_EXP: return createBCompExp();
-      case WhileLangPackage.BPRIMARY: return createBPrimary();
+      case WhileLangPackage.FACTOR: return createFactor();
       case WhileLangPackage.AEXPRESSION: return createAExpression();
-      case WhileLangPackage.ATERM: return createATerm();
-      case WhileLangPackage.BEXPRESSION: return createBExpression();
-      case WhileLangPackage.BTERM: return createBTerm();
+      case WhileLangPackage.BREL_EXP: return createBRelExp();
+      case WhileLangPackage.BCONJ: return createBConj();
+      case WhileLangPackage.EXPRESSION: return createExpression();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -170,10 +169,10 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
    * <!-- end-user-doc -->
    * @generated
    */
-  public AExpr createAExpr()
+  public Expr createExpr()
   {
-    AExprImpl aExpr = new AExprImpl();
-    return aExpr;
+    ExprImpl expr = new ExprImpl();
+    return expr;
   }
 
   /**
@@ -203,10 +202,10 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
    * <!-- end-user-doc -->
    * @generated
    */
-  public BExpr createBExpr()
+  public BoolLitExpr createBoolLitExpr()
   {
-    BExprImpl bExpr = new BExprImpl();
-    return bExpr;
+    BoolLitExprImpl boolLitExpr = new BoolLitExprImpl();
+    return boolLitExpr;
   }
 
   /**
@@ -225,21 +224,10 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
    * <!-- end-user-doc -->
    * @generated
    */
-  public BCompExp createBCompExp()
+  public Factor createFactor()
   {
-    BCompExpImpl bCompExp = new BCompExpImpl();
-    return bCompExp;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public BPrimary createBPrimary()
-  {
-    BPrimaryImpl bPrimary = new BPrimaryImpl();
-    return bPrimary;
+    FactorImpl factor = new FactorImpl();
+    return factor;
   }
 
   /**
@@ -258,10 +246,10 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
    * <!-- end-user-doc -->
    * @generated
    */
-  public ATerm createATerm()
+  public BRelExp createBRelExp()
   {
-    ATermImpl aTerm = new ATermImpl();
-    return aTerm;
+    BRelExpImpl bRelExp = new BRelExpImpl();
+    return bRelExp;
   }
 
   /**
@@ -269,10 +257,10 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
    * <!-- end-user-doc -->
    * @generated
    */
-  public BExpression createBExpression()
+  public BConj createBConj()
   {
-    BExpressionImpl bExpression = new BExpressionImpl();
-    return bExpression;
+    BConjImpl bConj = new BConjImpl();
+    return bConj;
   }
 
   /**
@@ -280,10 +268,10 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
    * <!-- end-user-doc -->
    * @generated
    */
-  public BTerm createBTerm()
+  public Expression createExpression()
   {
-    BTermImpl bTerm = new BTermImpl();
-    return bTerm;
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
   }
 
   /**

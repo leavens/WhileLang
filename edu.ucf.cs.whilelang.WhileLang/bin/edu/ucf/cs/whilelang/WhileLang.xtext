@@ -5,28 +5,27 @@ generate whileLang "http://www.ucf.edu/cs/whilelang/WhileLang"
 Program: Stmt;
 Stmt returns S: Assignment | Skip | Block | While | If;
 Block returns CompoundS: '{' stmts+=Stmt (';' stmts+=Stmt)* '}';
-Assignment returns AssignS: (var=ID) ':=' (aexp=AExpression);
+Assignment returns AssignS: (var=ID) ':=' (aexp=Expression);
 Skip returns SkipS: 'skip' {SkipS};
-While returns WhileS: 'while' (bexp=BExpression) 'do' (block=Block);
-If returns IfS: 'if' (bexp=BExpression) 'then' (s1=Block) 'else' (s2=Block);
+While returns WhileS: 'while' (bexp=Expression) 'do' (block=Block);
+If returns IfS: 'if' (bexp=Expression) 'then' (s1=Block) 'else' (s2=Block);
 
-AExpression returns AExpr: ATerm ({AExpression.left=current} op=OPPLUS right=AExpression)?;
-ATerm returns AExpr: APrimary ({ATerm.left=current} op=OPMUL right=ATerm)?;
-APrimary returns AExpr: VarRefExpr | NumLitExpr | '(' AExpression ')';
+Primary returns Expr: VarRefExpr | NumLitExpr | BoolLitExpr | NotExpr | '(' Expression ')';
 VarRefExpr: var=ID;
 NumLitExpr: (negated?='-')? val=INT;
-
-BExpression returns BExpr: BTerm ({BExpression.left=current} op=OR right=BExpression)?;
-BTerm returns BExpr: BRelExp ({BTerm.left=current} op=AND right=BTerm)?;
-BRelExp returns BExpr: BoolLitExpr | NotExpr | BCompExp | '(' BExpression ')';
-NotExpr: 'not' (bexp=BRelExp);
-BCompExp: left=AExpression op=OP_R right=AExpression;
 BoolLitExpr: bval='true' | bval='false';
+NotExpr: 'not' (bexp=Primary);
+
+Factor returns Expr: Primary ({Factor.left=current} op=OPMUL right=Factor)?;
+AExpression returns Expr: Factor ({AExpression.left=current} op=OPPLUS right=AExpression)?;
+BRelExp returns Expr: AExpression ({BRelExp.left=current} op=OP_R right=AExpression)?;
+BConj returns Expr: BRelExp ({BConj.left=current} op=AND right=BConj)?;
+Expression returns Expr: BConj ({Expression.left=current} op=OR right=Expression)?;
 
 @Override
 terminal SL_COMMENT: '%' !('\n'|'\r')* ('\r'? '\n')?;
 terminal OPPLUS: '+' | '-';
-terminal OPMUL: '*';
+terminal OPMUL: '*' | '/';
 terminal OR: 'or';
 terminal AND: 'and';
-terminal OP_R: '<=' | '==' | '>=' | '<' | '>' | '!=';
+terminal OP_R: '=='| '!=' | '<=' | '>=' | '<' | '>' ;

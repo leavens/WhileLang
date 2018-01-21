@@ -11,11 +11,11 @@ package edu.ucf.cs.whilelang.whileLang;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.AssignS#getVar <em>Var</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.AssignS#getAexp <em>Aexp</em>}</li>
  * </ul>
+ * </p>
  *
  * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getAssignS()
  * @model
@@ -58,12 +58,12 @@ public interface AssignS extends S
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Aexp</em>' containment reference.
-   * @see #setAexp(AExpr)
+   * @see #setAexp(Expr)
    * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getAssignS_Aexp()
    * @model containment="true"
    * @generated
    */
-  AExpr getAexp();
+  Expr getAexp();
 
   /**
    * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.AssignS#getAexp <em>Aexp</em>}' containment reference.
@@ -73,6 +73,6 @@ public interface AssignS extends S
    * @see #getAexp()
    * @generated
    */
-  void setAexp(AExpr value);
+  void setAexp(Expr value);
 
 } // AssignS

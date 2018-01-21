@@ -11,11 +11,11 @@ package edu.ucf.cs.whilelang.whileLang;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.WhileS#getBexp <em>Bexp</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.WhileS#getBlock <em>Block</em>}</li>
  * </ul>
+ * </p>
  *
  * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getWhileS()
  * @model
@@ -32,12 +32,12 @@ public interface WhileS extends S
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Bexp</em>' containment reference.
-   * @see #setBexp(BExpr)
+   * @see #setBexp(Expr)
    * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getWhileS_Bexp()
    * @model containment="true"
    * @generated
    */
-  BExpr getBexp();
+  Expr getBexp();
 
   /**
    * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.WhileS#getBexp <em>Bexp</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface WhileS extends S
    * @see #getBexp()
    * @generated
    */
-  void setBexp(BExpr value);
+  void setBexp(Expr value);
 
   /**
    * Returns the value of the '<em><b>Block</b></em>' containment reference.

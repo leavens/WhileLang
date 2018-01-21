@@ -3,8 +3,8 @@
  */
 package edu.ucf.cs.whilelang.whileLang.impl;
 
-import edu.ucf.cs.whilelang.whileLang.BExpr;
 import edu.ucf.cs.whilelang.whileLang.CompoundS;
+import edu.ucf.cs.whilelang.whileLang.Expr;
 import edu.ucf.cs.whilelang.whileLang.IfS;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
 
@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.IfSImpl#getBexp <em>Bexp</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.IfSImpl#getS1 <em>S1</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.IfSImpl#getS2 <em>S2</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
@@ -41,7 +41,7 @@ public class IfSImpl extends SImpl implements IfS
    * @generated
    * @ordered
    */
-  protected BExpr bexp;
+  protected Expr bexp;
 
   /**
    * The cached value of the '{@link #getS1() <em>S1</em>}' containment reference.
@@ -89,7 +89,7 @@ public class IfSImpl extends SImpl implements IfS
    * <!-- end-user-doc -->
    * @generated
    */
-  public BExpr getBexp()
+  public Expr getBexp()
   {
     return bexp;
   }
@@ -99,9 +99,9 @@ public class IfSImpl extends SImpl implements IfS
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetBexp(BExpr newBexp, NotificationChain msgs)
+  public NotificationChain basicSetBexp(Expr newBexp, NotificationChain msgs)
   {
-    BExpr oldBexp = bexp;
+    Expr oldBexp = bexp;
     bexp = newBexp;
     if (eNotificationRequired())
     {
@@ -116,7 +116,7 @@ public class IfSImpl extends SImpl implements IfS
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setBexp(BExpr newBexp)
+  public void setBexp(Expr newBexp)
   {
     if (newBexp != bexp)
     {
@@ -279,7 +279,7 @@ public class IfSImpl extends SImpl implements IfS
     switch (featureID)
     {
       case WhileLangPackage.IF_S__BEXP:
-        setBexp((BExpr)newValue);
+        setBexp((Expr)newValue);
         return;
       case WhileLangPackage.IF_S__S1:
         setS1((CompoundS)newValue);
@@ -302,7 +302,7 @@ public class IfSImpl extends SImpl implements IfS
     switch (featureID)
     {
       case WhileLangPackage.IF_S__BEXP:
-        setBexp((BExpr)null);
+        setBexp((Expr)null);
         return;
       case WhileLangPackage.IF_S__S1:
         setS1((CompoundS)null);

@@ -6,13 +6,13 @@ package edu.ucf.cs.whilelang.serializer;
 import com.google.inject.Inject;
 import edu.ucf.cs.whilelang.services.WhileLangGrammarAccess;
 import edu.ucf.cs.whilelang.whileLang.AExpression;
-import edu.ucf.cs.whilelang.whileLang.ATerm;
 import edu.ucf.cs.whilelang.whileLang.AssignS;
-import edu.ucf.cs.whilelang.whileLang.BCompExp;
-import edu.ucf.cs.whilelang.whileLang.BExpression;
-import edu.ucf.cs.whilelang.whileLang.BPrimary;
-import edu.ucf.cs.whilelang.whileLang.BTerm;
+import edu.ucf.cs.whilelang.whileLang.BConj;
+import edu.ucf.cs.whilelang.whileLang.BRelExp;
+import edu.ucf.cs.whilelang.whileLang.BoolLitExpr;
 import edu.ucf.cs.whilelang.whileLang.CompoundS;
+import edu.ucf.cs.whilelang.whileLang.Expression;
+import edu.ucf.cs.whilelang.whileLang.Factor;
 import edu.ucf.cs.whilelang.whileLang.IfS;
 import edu.ucf.cs.whilelang.whileLang.NotExpr;
 import edu.ucf.cs.whilelang.whileLang.NumLitExpr;
@@ -48,26 +48,26 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case WhileLangPackage.AEXPRESSION:
 				sequence_AExpression(context, (AExpression) semanticObject); 
 				return; 
-			case WhileLangPackage.ATERM:
-				sequence_ATerm(context, (ATerm) semanticObject); 
-				return; 
 			case WhileLangPackage.ASSIGN_S:
 				sequence_Assignment(context, (AssignS) semanticObject); 
 				return; 
-			case WhileLangPackage.BCOMP_EXP:
-				sequence_BCompExp(context, (BCompExp) semanticObject); 
+			case WhileLangPackage.BCONJ:
+				sequence_BConj(context, (BConj) semanticObject); 
 				return; 
-			case WhileLangPackage.BEXPRESSION:
-				sequence_BExpression(context, (BExpression) semanticObject); 
+			case WhileLangPackage.BREL_EXP:
+				sequence_BRelExp(context, (BRelExp) semanticObject); 
 				return; 
-			case WhileLangPackage.BPRIMARY:
-				sequence_BPrimary(context, (BPrimary) semanticObject); 
-				return; 
-			case WhileLangPackage.BTERM:
-				sequence_BTerm(context, (BTerm) semanticObject); 
+			case WhileLangPackage.BOOL_LIT_EXPR:
+				sequence_BoolLitExpr(context, (BoolLitExpr) semanticObject); 
 				return; 
 			case WhileLangPackage.COMPOUND_S:
 				sequence_Block(context, (CompoundS) semanticObject); 
+				return; 
+			case WhileLangPackage.EXPRESSION:
+				sequence_Expression(context, (Expression) semanticObject); 
+				return; 
+			case WhileLangPackage.FACTOR:
+				sequence_Factor(context, (Factor) semanticObject); 
 				return; 
 			case WhileLangPackage.IF_S:
 				sequence_If(context, (IfS) semanticObject); 
@@ -94,11 +94,17 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
+	 *     Primary returns AExpression
+	 *     Factor returns AExpression
+	 *     Factor.Factor_1_0 returns AExpression
 	 *     AExpression returns AExpression
 	 *     AExpression.AExpression_1_0 returns AExpression
-	 *     ATerm returns AExpression
-	 *     ATerm.ATerm_1_0 returns AExpression
-	 *     APrimary returns AExpression
+	 *     BRelExp returns AExpression
+	 *     BRelExp.BRelExp_1_0 returns AExpression
+	 *     BConj returns AExpression
+	 *     BConj.BConj_1_0 returns AExpression
+	 *     Expression returns AExpression
+	 *     Expression.Expression_1_0 returns AExpression
 	 *
 	 * Constraint:
 	 *     (left=AExpression_AExpression_1_0 op=OPPLUS right=AExpression)
@@ -122,40 +128,12 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     AExpression returns ATerm
-	 *     AExpression.AExpression_1_0 returns ATerm
-	 *     ATerm returns ATerm
-	 *     ATerm.ATerm_1_0 returns ATerm
-	 *     APrimary returns ATerm
-	 *
-	 * Constraint:
-	 *     (left=ATerm_ATerm_1_0 op=OPMUL right=ATerm)
-	 */
-	protected void sequence_ATerm(ISerializationContext context, ATerm semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.ATERM__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.ATERM__LEFT));
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.ATERM__OP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.ATERM__OP));
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.ATERM__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.ATERM__RIGHT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getATermAccess().getATermLeftAction_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getATermAccess().getOpOPMULTerminalRuleCall_1_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getATermAccess().getRightATermParserRuleCall_1_2_0(), semanticObject.getRight());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Program returns AssignS
 	 *     Stmt returns AssignS
 	 *     Assignment returns AssignS
 	 *
 	 * Constraint:
-	 *     (var=ID aexp=AExpression)
+	 *     (var=ID aexp=Expression)
 	 */
 	protected void sequence_Assignment(ISerializationContext context, AssignS semanticObject) {
 		if (errorAcceptor != null) {
@@ -166,109 +144,75 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAssignmentAccess().getVarIDTerminalRuleCall_0_0(), semanticObject.getVar());
-		feeder.accept(grammarAccess.getAssignmentAccess().getAexpAExpressionParserRuleCall_2_0(), semanticObject.getAexp());
+		feeder.accept(grammarAccess.getAssignmentAccess().getAexpExpressionParserRuleCall_2_0(), semanticObject.getAexp());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     BExpression returns BCompExp
-	 *     BExpression.BExpression_1_0 returns BCompExp
-	 *     BTerm returns BCompExp
-	 *     BTerm.BTerm_1_0 returns BCompExp
-	 *     BRelExp returns BCompExp
-	 *     BCompExp returns BCompExp
+	 *     Primary returns BConj
+	 *     Factor returns BConj
+	 *     Factor.Factor_1_0 returns BConj
+	 *     AExpression returns BConj
+	 *     AExpression.AExpression_1_0 returns BConj
+	 *     BRelExp returns BConj
+	 *     BRelExp.BRelExp_1_0 returns BConj
+	 *     BConj returns BConj
+	 *     BConj.BConj_1_0 returns BConj
+	 *     Expression returns BConj
+	 *     Expression.Expression_1_0 returns BConj
 	 *
 	 * Constraint:
-	 *     (left=AExpression op=OP_R right=AExpression)
+	 *     (left=BConj_BConj_1_0 op=AND right=BConj)
 	 */
-	protected void sequence_BCompExp(ISerializationContext context, BCompExp semanticObject) {
+	protected void sequence_BConj(ISerializationContext context, BConj semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BCOMP_EXP__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BCOMP_EXP__LEFT));
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BCOMP_EXP__OP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BCOMP_EXP__OP));
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BCOMP_EXP__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BCOMP_EXP__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BCONJ__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BCONJ__LEFT));
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BCONJ__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BCONJ__OP));
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BCONJ__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BCONJ__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getBCompExpAccess().getLeftAExpressionParserRuleCall_0_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getBCompExpAccess().getOpOP_RTerminalRuleCall_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getBCompExpAccess().getRightAExpressionParserRuleCall_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getBConjAccess().getBConjLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getBConjAccess().getOpANDTerminalRuleCall_1_1_0(), semanticObject.getOp());
+		feeder.accept(grammarAccess.getBConjAccess().getRightBConjParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     BExpression returns BExpression
-	 *     BExpression.BExpression_1_0 returns BExpression
-	 *     BTerm returns BExpression
-	 *     BTerm.BTerm_1_0 returns BExpression
-	 *     BRelExp returns BExpression
+	 *     Primary returns BRelExp
+	 *     Factor returns BRelExp
+	 *     Factor.Factor_1_0 returns BRelExp
+	 *     AExpression returns BRelExp
+	 *     AExpression.AExpression_1_0 returns BRelExp
+	 *     BRelExp returns BRelExp
+	 *     BRelExp.BRelExp_1_0 returns BRelExp
+	 *     BConj returns BRelExp
+	 *     BConj.BConj_1_0 returns BRelExp
+	 *     Expression returns BRelExp
+	 *     Expression.Expression_1_0 returns BRelExp
 	 *
 	 * Constraint:
-	 *     (left=BExpression_BExpression_1_0 op=OR right=BExpression)
+	 *     (left=BRelExp_BRelExp_1_0 op=OP_R right=AExpression)
 	 */
-	protected void sequence_BExpression(ISerializationContext context, BExpression semanticObject) {
+	protected void sequence_BRelExp(ISerializationContext context, BRelExp semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BEXPRESSION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BEXPRESSION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BEXPRESSION__OP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BEXPRESSION__OP));
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BEXPRESSION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BEXPRESSION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BREL_EXP__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BREL_EXP__LEFT));
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BREL_EXP__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BREL_EXP__OP));
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BREL_EXP__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BREL_EXP__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getBExpressionAccess().getBExpressionLeftAction_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getBExpressionAccess().getOpORTerminalRuleCall_1_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getBExpressionAccess().getRightBExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     BExpression returns BPrimary
-	 *     BExpression.BExpression_1_0 returns BPrimary
-	 *     BTerm returns BPrimary
-	 *     BTerm.BTerm_1_0 returns BPrimary
-	 *     BRelExp returns BPrimary
-	 *     BPrimary returns BPrimary
-	 *
-	 * Constraint:
-	 *     (bval='true' | bval='false')
-	 */
-	protected void sequence_BPrimary(ISerializationContext context, BPrimary semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     BExpression returns BTerm
-	 *     BExpression.BExpression_1_0 returns BTerm
-	 *     BTerm returns BTerm
-	 *     BTerm.BTerm_1_0 returns BTerm
-	 *     BRelExp returns BTerm
-	 *
-	 * Constraint:
-	 *     (left=BTerm_BTerm_1_0 op=AND right=BTerm)
-	 */
-	protected void sequence_BTerm(ISerializationContext context, BTerm semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BTERM__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BTERM__LEFT));
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BTERM__OP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BTERM__OP));
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.BTERM__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.BTERM__RIGHT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getBTermAccess().getBTermLeftAction_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getBTermAccess().getOpANDTerminalRuleCall_1_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getBTermAccess().getRightBTermParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getBRelExpAccess().getBRelExpLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getBRelExpAccess().getOpOP_RTerminalRuleCall_1_1_0(), semanticObject.getOp());
+		feeder.accept(grammarAccess.getBRelExpAccess().getRightAExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -289,12 +233,103 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
+	 *     Primary returns BoolLitExpr
+	 *     BoolLitExpr returns BoolLitExpr
+	 *     Factor returns BoolLitExpr
+	 *     Factor.Factor_1_0 returns BoolLitExpr
+	 *     AExpression returns BoolLitExpr
+	 *     AExpression.AExpression_1_0 returns BoolLitExpr
+	 *     BRelExp returns BoolLitExpr
+	 *     BRelExp.BRelExp_1_0 returns BoolLitExpr
+	 *     BConj returns BoolLitExpr
+	 *     BConj.BConj_1_0 returns BoolLitExpr
+	 *     Expression returns BoolLitExpr
+	 *     Expression.Expression_1_0 returns BoolLitExpr
+	 *
+	 * Constraint:
+	 *     (bval='true' | bval='false')
+	 */
+	protected void sequence_BoolLitExpr(ISerializationContext context, BoolLitExpr semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Primary returns Expression
+	 *     Factor returns Expression
+	 *     Factor.Factor_1_0 returns Expression
+	 *     AExpression returns Expression
+	 *     AExpression.AExpression_1_0 returns Expression
+	 *     BRelExp returns Expression
+	 *     BRelExp.BRelExp_1_0 returns Expression
+	 *     BConj returns Expression
+	 *     BConj.BConj_1_0 returns Expression
+	 *     Expression returns Expression
+	 *     Expression.Expression_1_0 returns Expression
+	 *
+	 * Constraint:
+	 *     (left=Expression_Expression_1_0 op=OR right=Expression)
+	 */
+	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.EXPRESSION__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.EXPRESSION__OP));
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.EXPRESSION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.EXPRESSION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getExpressionAccess().getExpressionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getExpressionAccess().getOpORTerminalRuleCall_1_1_0(), semanticObject.getOp());
+		feeder.accept(grammarAccess.getExpressionAccess().getRightExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Primary returns Factor
+	 *     Factor returns Factor
+	 *     Factor.Factor_1_0 returns Factor
+	 *     AExpression returns Factor
+	 *     AExpression.AExpression_1_0 returns Factor
+	 *     BRelExp returns Factor
+	 *     BRelExp.BRelExp_1_0 returns Factor
+	 *     BConj returns Factor
+	 *     BConj.BConj_1_0 returns Factor
+	 *     Expression returns Factor
+	 *     Expression.Expression_1_0 returns Factor
+	 *
+	 * Constraint:
+	 *     (left=Factor_Factor_1_0 op=OPMUL right=Factor)
+	 */
+	protected void sequence_Factor(ISerializationContext context, Factor semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.FACTOR__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.FACTOR__LEFT));
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.FACTOR__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.FACTOR__OP));
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.FACTOR__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.FACTOR__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFactorAccess().getFactorLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getFactorAccess().getOpOPMULTerminalRuleCall_1_1_0(), semanticObject.getOp());
+		feeder.accept(grammarAccess.getFactorAccess().getRightFactorParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Program returns IfS
 	 *     Stmt returns IfS
 	 *     If returns IfS
 	 *
 	 * Constraint:
-	 *     (bexp=BExpression s1=Block s2=Block)
+	 *     (bexp=Expression s1=Block s2=Block)
 	 */
 	protected void sequence_If(ISerializationContext context, IfS semanticObject) {
 		if (errorAcceptor != null) {
@@ -306,7 +341,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.IF_S__S2));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getIfAccess().getBexpBExpressionParserRuleCall_1_0(), semanticObject.getBexp());
+		feeder.accept(grammarAccess.getIfAccess().getBexpExpressionParserRuleCall_1_0(), semanticObject.getBexp());
 		feeder.accept(grammarAccess.getIfAccess().getS1BlockParserRuleCall_3_0(), semanticObject.getS1());
 		feeder.accept(grammarAccess.getIfAccess().getS2BlockParserRuleCall_5_0(), semanticObject.getS2());
 		feeder.finish();
@@ -315,15 +350,21 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
-	 *     BExpression returns NotExpr
-	 *     BExpression.BExpression_1_0 returns NotExpr
-	 *     BTerm returns NotExpr
-	 *     BTerm.BTerm_1_0 returns NotExpr
-	 *     BRelExp returns NotExpr
+	 *     Primary returns NotExpr
 	 *     NotExpr returns NotExpr
+	 *     Factor returns NotExpr
+	 *     Factor.Factor_1_0 returns NotExpr
+	 *     AExpression returns NotExpr
+	 *     AExpression.AExpression_1_0 returns NotExpr
+	 *     BRelExp returns NotExpr
+	 *     BRelExp.BRelExp_1_0 returns NotExpr
+	 *     BConj returns NotExpr
+	 *     BConj.BConj_1_0 returns NotExpr
+	 *     Expression returns NotExpr
+	 *     Expression.Expression_1_0 returns NotExpr
 	 *
 	 * Constraint:
-	 *     bexp=BRelExp
+	 *     bexp=Primary
 	 */
 	protected void sequence_NotExpr(ISerializationContext context, NotExpr semanticObject) {
 		if (errorAcceptor != null) {
@@ -331,19 +372,25 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.NOT_EXPR__BEXP));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNotExprAccess().getBexpBRelExpParserRuleCall_1_0(), semanticObject.getBexp());
+		feeder.accept(grammarAccess.getNotExprAccess().getBexpPrimaryParserRuleCall_1_0(), semanticObject.getBexp());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
+	 *     Primary returns NumLitExpr
+	 *     NumLitExpr returns NumLitExpr
+	 *     Factor returns NumLitExpr
+	 *     Factor.Factor_1_0 returns NumLitExpr
 	 *     AExpression returns NumLitExpr
 	 *     AExpression.AExpression_1_0 returns NumLitExpr
-	 *     ATerm returns NumLitExpr
-	 *     ATerm.ATerm_1_0 returns NumLitExpr
-	 *     APrimary returns NumLitExpr
-	 *     NumLitExpr returns NumLitExpr
+	 *     BRelExp returns NumLitExpr
+	 *     BRelExp.BRelExp_1_0 returns NumLitExpr
+	 *     BConj returns NumLitExpr
+	 *     BConj.BConj_1_0 returns NumLitExpr
+	 *     Expression returns NumLitExpr
+	 *     Expression.Expression_1_0 returns NumLitExpr
 	 *
 	 * Constraint:
 	 *     (negated?='-'? val=INT)
@@ -369,12 +416,18 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
+	 *     Primary returns VarRefExpr
+	 *     VarRefExpr returns VarRefExpr
+	 *     Factor returns VarRefExpr
+	 *     Factor.Factor_1_0 returns VarRefExpr
 	 *     AExpression returns VarRefExpr
 	 *     AExpression.AExpression_1_0 returns VarRefExpr
-	 *     ATerm returns VarRefExpr
-	 *     ATerm.ATerm_1_0 returns VarRefExpr
-	 *     APrimary returns VarRefExpr
-	 *     VarRefExpr returns VarRefExpr
+	 *     BRelExp returns VarRefExpr
+	 *     BRelExp.BRelExp_1_0 returns VarRefExpr
+	 *     BConj returns VarRefExpr
+	 *     BConj.BConj_1_0 returns VarRefExpr
+	 *     Expression returns VarRefExpr
+	 *     Expression.Expression_1_0 returns VarRefExpr
 	 *
 	 * Constraint:
 	 *     var=ID
@@ -397,7 +450,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     While returns WhileS
 	 *
 	 * Constraint:
-	 *     (bexp=BExpression block=Block)
+	 *     (bexp=Expression block=Block)
 	 */
 	protected void sequence_While(ISerializationContext context, WhileS semanticObject) {
 		if (errorAcceptor != null) {
@@ -407,7 +460,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.WHILE_S__BLOCK));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getWhileAccess().getBexpBExpressionParserRuleCall_1_0(), semanticObject.getBexp());
+		feeder.accept(grammarAccess.getWhileAccess().getBexpExpressionParserRuleCall_1_0(), semanticObject.getBexp());
 		feeder.accept(grammarAccess.getWhileAccess().getBlockBlockParserRuleCall_3_0(), semanticObject.getBlock());
 		feeder.finish();
 	}

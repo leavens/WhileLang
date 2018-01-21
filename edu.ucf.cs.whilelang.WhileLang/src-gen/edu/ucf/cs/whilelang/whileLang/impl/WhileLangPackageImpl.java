@@ -3,16 +3,15 @@
  */
 package edu.ucf.cs.whilelang.whileLang.impl;
 
-import edu.ucf.cs.whilelang.whileLang.AExpr;
 import edu.ucf.cs.whilelang.whileLang.AExpression;
-import edu.ucf.cs.whilelang.whileLang.ATerm;
 import edu.ucf.cs.whilelang.whileLang.AssignS;
-import edu.ucf.cs.whilelang.whileLang.BCompExp;
-import edu.ucf.cs.whilelang.whileLang.BExpr;
-import edu.ucf.cs.whilelang.whileLang.BExpression;
-import edu.ucf.cs.whilelang.whileLang.BPrimary;
-import edu.ucf.cs.whilelang.whileLang.BTerm;
+import edu.ucf.cs.whilelang.whileLang.BConj;
+import edu.ucf.cs.whilelang.whileLang.BRelExp;
+import edu.ucf.cs.whilelang.whileLang.BoolLitExpr;
 import edu.ucf.cs.whilelang.whileLang.CompoundS;
+import edu.ucf.cs.whilelang.whileLang.Expr;
+import edu.ucf.cs.whilelang.whileLang.Expression;
+import edu.ucf.cs.whilelang.whileLang.Factor;
 import edu.ucf.cs.whilelang.whileLang.IfS;
 import edu.ucf.cs.whilelang.whileLang.NotExpr;
 import edu.ucf.cs.whilelang.whileLang.NumLitExpr;
@@ -92,7 +91,7 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass aExprEClass = null;
+  private EClass exprEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -113,7 +112,7 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass bExprEClass = null;
+  private EClass boolLitExprEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -127,14 +126,7 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass bCompExpEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass bPrimaryEClass = null;
+  private EClass factorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -148,21 +140,21 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass aTermEClass = null;
+  private EClass bRelExpEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass bExpressionEClass = null;
+  private EClass bConjEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass bTermEClass = null;
+  private EClass expressionEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -382,9 +374,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getAExpr()
+  public EClass getExpr()
   {
-    return aExprEClass;
+    return exprEClass;
   }
 
   /**
@@ -442,9 +434,19 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getBExpr()
+  public EClass getBoolLitExpr()
   {
-    return bExprEClass;
+    return boolLitExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBoolLitExpr_Bval()
+  {
+    return (EAttribute)boolLitExprEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -472,9 +474,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getBCompExp()
+  public EClass getFactor()
   {
-    return bCompExpEClass;
+    return factorEClass;
   }
 
   /**
@@ -482,9 +484,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getBCompExp_Left()
+  public EReference getFactor_Left()
   {
-    return (EReference)bCompExpEClass.getEStructuralFeatures().get(0);
+    return (EReference)factorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -492,9 +494,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getBCompExp_Op()
+  public EAttribute getFactor_Op()
   {
-    return (EAttribute)bCompExpEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)factorEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -502,29 +504,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getBCompExp_Right()
+  public EReference getFactor_Right()
   {
-    return (EReference)bCompExpEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getBPrimary()
-  {
-    return bPrimaryEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getBPrimary_Bval()
-  {
-    return (EAttribute)bPrimaryEClass.getEStructuralFeatures().get(0);
+    return (EReference)factorEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -572,9 +554,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getATerm()
+  public EClass getBRelExp()
   {
-    return aTermEClass;
+    return bRelExpEClass;
   }
 
   /**
@@ -582,9 +564,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getATerm_Left()
+  public EReference getBRelExp_Left()
   {
-    return (EReference)aTermEClass.getEStructuralFeatures().get(0);
+    return (EReference)bRelExpEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -592,9 +574,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getATerm_Op()
+  public EAttribute getBRelExp_Op()
   {
-    return (EAttribute)aTermEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)bRelExpEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -602,9 +584,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getATerm_Right()
+  public EReference getBRelExp_Right()
   {
-    return (EReference)aTermEClass.getEStructuralFeatures().get(2);
+    return (EReference)bRelExpEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -612,9 +594,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getBExpression()
+  public EClass getBConj()
   {
-    return bExpressionEClass;
+    return bConjEClass;
   }
 
   /**
@@ -622,9 +604,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getBExpression_Left()
+  public EReference getBConj_Left()
   {
-    return (EReference)bExpressionEClass.getEStructuralFeatures().get(0);
+    return (EReference)bConjEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -632,9 +614,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getBExpression_Op()
+  public EAttribute getBConj_Op()
   {
-    return (EAttribute)bExpressionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)bConjEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -642,9 +624,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getBExpression_Right()
+  public EReference getBConj_Right()
   {
-    return (EReference)bExpressionEClass.getEStructuralFeatures().get(2);
+    return (EReference)bConjEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -652,9 +634,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getBTerm()
+  public EClass getExpression()
   {
-    return bTermEClass;
+    return expressionEClass;
   }
 
   /**
@@ -662,9 +644,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getBTerm_Left()
+  public EReference getExpression_Left()
   {
-    return (EReference)bTermEClass.getEStructuralFeatures().get(0);
+    return (EReference)expressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -672,9 +654,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getBTerm_Op()
+  public EAttribute getExpression_Op()
   {
-    return (EAttribute)bTermEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)expressionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -682,9 +664,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getBTerm_Right()
+  public EReference getExpression_Right()
   {
-    return (EReference)bTermEClass.getEStructuralFeatures().get(2);
+    return (EReference)expressionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -739,7 +721,7 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     createEReference(ifSEClass, IF_S__S1);
     createEReference(ifSEClass, IF_S__S2);
 
-    aExprEClass = createEClass(AEXPR);
+    exprEClass = createEClass(EXPR);
 
     varRefExprEClass = createEClass(VAR_REF_EXPR);
     createEAttribute(varRefExprEClass, VAR_REF_EXPR__VAR);
@@ -748,38 +730,36 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     createEAttribute(numLitExprEClass, NUM_LIT_EXPR__NEGATED);
     createEAttribute(numLitExprEClass, NUM_LIT_EXPR__VAL);
 
-    bExprEClass = createEClass(BEXPR);
+    boolLitExprEClass = createEClass(BOOL_LIT_EXPR);
+    createEAttribute(boolLitExprEClass, BOOL_LIT_EXPR__BVAL);
 
     notExprEClass = createEClass(NOT_EXPR);
     createEReference(notExprEClass, NOT_EXPR__BEXP);
 
-    bCompExpEClass = createEClass(BCOMP_EXP);
-    createEReference(bCompExpEClass, BCOMP_EXP__LEFT);
-    createEAttribute(bCompExpEClass, BCOMP_EXP__OP);
-    createEReference(bCompExpEClass, BCOMP_EXP__RIGHT);
-
-    bPrimaryEClass = createEClass(BPRIMARY);
-    createEAttribute(bPrimaryEClass, BPRIMARY__BVAL);
+    factorEClass = createEClass(FACTOR);
+    createEReference(factorEClass, FACTOR__LEFT);
+    createEAttribute(factorEClass, FACTOR__OP);
+    createEReference(factorEClass, FACTOR__RIGHT);
 
     aExpressionEClass = createEClass(AEXPRESSION);
     createEReference(aExpressionEClass, AEXPRESSION__LEFT);
     createEAttribute(aExpressionEClass, AEXPRESSION__OP);
     createEReference(aExpressionEClass, AEXPRESSION__RIGHT);
 
-    aTermEClass = createEClass(ATERM);
-    createEReference(aTermEClass, ATERM__LEFT);
-    createEAttribute(aTermEClass, ATERM__OP);
-    createEReference(aTermEClass, ATERM__RIGHT);
+    bRelExpEClass = createEClass(BREL_EXP);
+    createEReference(bRelExpEClass, BREL_EXP__LEFT);
+    createEAttribute(bRelExpEClass, BREL_EXP__OP);
+    createEReference(bRelExpEClass, BREL_EXP__RIGHT);
 
-    bExpressionEClass = createEClass(BEXPRESSION);
-    createEReference(bExpressionEClass, BEXPRESSION__LEFT);
-    createEAttribute(bExpressionEClass, BEXPRESSION__OP);
-    createEReference(bExpressionEClass, BEXPRESSION__RIGHT);
+    bConjEClass = createEClass(BCONJ);
+    createEReference(bConjEClass, BCONJ__LEFT);
+    createEAttribute(bConjEClass, BCONJ__OP);
+    createEReference(bConjEClass, BCONJ__RIGHT);
 
-    bTermEClass = createEClass(BTERM);
-    createEReference(bTermEClass, BTERM__LEFT);
-    createEAttribute(bTermEClass, BTERM__OP);
-    createEReference(bTermEClass, BTERM__RIGHT);
+    expressionEClass = createEClass(EXPRESSION);
+    createEReference(expressionEClass, EXPRESSION__LEFT);
+    createEAttribute(expressionEClass, EXPRESSION__OP);
+    createEReference(expressionEClass, EXPRESSION__RIGHT);
   }
 
   /**
@@ -817,15 +797,15 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     skipSEClass.getESuperTypes().add(this.getS());
     whileSEClass.getESuperTypes().add(this.getS());
     ifSEClass.getESuperTypes().add(this.getS());
-    varRefExprEClass.getESuperTypes().add(this.getAExpr());
-    numLitExprEClass.getESuperTypes().add(this.getAExpr());
-    notExprEClass.getESuperTypes().add(this.getBExpr());
-    bCompExpEClass.getESuperTypes().add(this.getBExpr());
-    bPrimaryEClass.getESuperTypes().add(this.getBExpr());
-    aExpressionEClass.getESuperTypes().add(this.getAExpr());
-    aTermEClass.getESuperTypes().add(this.getAExpr());
-    bExpressionEClass.getESuperTypes().add(this.getBExpr());
-    bTermEClass.getESuperTypes().add(this.getBExpr());
+    varRefExprEClass.getESuperTypes().add(this.getExpr());
+    numLitExprEClass.getESuperTypes().add(this.getExpr());
+    boolLitExprEClass.getESuperTypes().add(this.getExpr());
+    notExprEClass.getESuperTypes().add(this.getExpr());
+    factorEClass.getESuperTypes().add(this.getExpr());
+    aExpressionEClass.getESuperTypes().add(this.getExpr());
+    bRelExpEClass.getESuperTypes().add(this.getExpr());
+    bConjEClass.getESuperTypes().add(this.getExpr());
+    expressionEClass.getESuperTypes().add(this.getExpr());
 
     // Initialize classes and features; add operations and parameters
     initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -837,20 +817,20 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
 
     initEClass(assignSEClass, AssignS.class, "AssignS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAssignS_Var(), ecorePackage.getEString(), "var", null, 0, 1, AssignS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAssignS_Aexp(), this.getAExpr(), null, "aexp", null, 0, 1, AssignS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssignS_Aexp(), this.getExpr(), null, "aexp", null, 0, 1, AssignS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(skipSEClass, SkipS.class, "SkipS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(whileSEClass, WhileS.class, "WhileS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getWhileS_Bexp(), this.getBExpr(), null, "bexp", null, 0, 1, WhileS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getWhileS_Bexp(), this.getExpr(), null, "bexp", null, 0, 1, WhileS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getWhileS_Block(), this.getCompoundS(), null, "block", null, 0, 1, WhileS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ifSEClass, IfS.class, "IfS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getIfS_Bexp(), this.getBExpr(), null, "bexp", null, 0, 1, IfS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfS_Bexp(), this.getExpr(), null, "bexp", null, 0, 1, IfS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfS_S1(), this.getCompoundS(), null, "s1", null, 0, 1, IfS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfS_S2(), this.getCompoundS(), null, "s2", null, 0, 1, IfS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(aExprEClass, AExpr.class, "AExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(exprEClass, Expr.class, "Expr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(varRefExprEClass, VarRefExpr.class, "VarRefExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVarRefExpr_Var(), ecorePackage.getEString(), "var", null, 0, 1, VarRefExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -859,38 +839,36 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     initEAttribute(getNumLitExpr_Negated(), ecorePackage.getEBoolean(), "negated", null, 0, 1, NumLitExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getNumLitExpr_Val(), ecorePackage.getEInt(), "val", null, 0, 1, NumLitExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(bExprEClass, BExpr.class, "BExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(boolLitExprEClass, BoolLitExpr.class, "BoolLitExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBoolLitExpr_Bval(), ecorePackage.getEString(), "bval", null, 0, 1, BoolLitExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(notExprEClass, NotExpr.class, "NotExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNotExpr_Bexp(), this.getBExpr(), null, "bexp", null, 0, 1, NotExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNotExpr_Bexp(), this.getExpr(), null, "bexp", null, 0, 1, NotExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(bCompExpEClass, BCompExp.class, "BCompExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getBCompExp_Left(), this.getAExpr(), null, "left", null, 0, 1, BCompExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getBCompExp_Op(), ecorePackage.getEString(), "op", null, 0, 1, BCompExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getBCompExp_Right(), this.getAExpr(), null, "right", null, 0, 1, BCompExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(bPrimaryEClass, BPrimary.class, "BPrimary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getBPrimary_Bval(), ecorePackage.getEString(), "bval", null, 0, 1, BPrimary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(factorEClass, Factor.class, "Factor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFactor_Left(), this.getExpr(), null, "left", null, 0, 1, Factor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFactor_Op(), ecorePackage.getEString(), "op", null, 0, 1, Factor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFactor_Right(), this.getExpr(), null, "right", null, 0, 1, Factor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(aExpressionEClass, AExpression.class, "AExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAExpression_Left(), this.getAExpr(), null, "left", null, 0, 1, AExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAExpression_Left(), this.getExpr(), null, "left", null, 0, 1, AExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, AExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAExpression_Right(), this.getAExpr(), null, "right", null, 0, 1, AExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAExpression_Right(), this.getExpr(), null, "right", null, 0, 1, AExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(aTermEClass, ATerm.class, "ATerm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getATerm_Left(), this.getAExpr(), null, "left", null, 0, 1, ATerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getATerm_Op(), ecorePackage.getEString(), "op", null, 0, 1, ATerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getATerm_Right(), this.getAExpr(), null, "right", null, 0, 1, ATerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(bRelExpEClass, BRelExp.class, "BRelExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBRelExp_Left(), this.getExpr(), null, "left", null, 0, 1, BRelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBRelExp_Op(), ecorePackage.getEString(), "op", null, 0, 1, BRelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBRelExp_Right(), this.getExpr(), null, "right", null, 0, 1, BRelExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(bExpressionEClass, BExpression.class, "BExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getBExpression_Left(), this.getBExpr(), null, "left", null, 0, 1, BExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getBExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, BExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getBExpression_Right(), this.getBExpr(), null, "right", null, 0, 1, BExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(bConjEClass, BConj.class, "BConj", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBConj_Left(), this.getExpr(), null, "left", null, 0, 1, BConj.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBConj_Op(), ecorePackage.getEString(), "op", null, 0, 1, BConj.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBConj_Right(), this.getExpr(), null, "right", null, 0, 1, BConj.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(bTermEClass, BTerm.class, "BTerm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getBTerm_Left(), this.getBExpr(), null, "left", null, 0, 1, BTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getBTerm_Op(), ecorePackage.getEString(), "op", null, 0, 1, BTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getBTerm_Right(), this.getBExpr(), null, "right", null, 0, 1, BTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExpression_Left(), this.getExpr(), null, "left", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExpression_Right(), this.getExpr(), null, "right", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

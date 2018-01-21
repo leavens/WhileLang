@@ -3,8 +3,8 @@
  */
 package edu.ucf.cs.whilelang.whileLang.impl;
 
-import edu.ucf.cs.whilelang.whileLang.AExpr;
 import edu.ucf.cs.whilelang.whileLang.AssignS;
+import edu.ucf.cs.whilelang.whileLang.Expr;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -21,11 +21,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AssignSImpl#getVar <em>Var</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AssignSImpl#getAexp <em>Aexp</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
@@ -59,7 +59,7 @@ public class AssignSImpl extends SImpl implements AssignS
    * @generated
    * @ordered
    */
-  protected AExpr aexp;
+  protected Expr aexp;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,7 +110,7 @@ public class AssignSImpl extends SImpl implements AssignS
    * <!-- end-user-doc -->
    * @generated
    */
-  public AExpr getAexp()
+  public Expr getAexp()
   {
     return aexp;
   }
@@ -120,9 +120,9 @@ public class AssignSImpl extends SImpl implements AssignS
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAexp(AExpr newAexp, NotificationChain msgs)
+  public NotificationChain basicSetAexp(Expr newAexp, NotificationChain msgs)
   {
-    AExpr oldAexp = aexp;
+    Expr oldAexp = aexp;
     aexp = newAexp;
     if (eNotificationRequired())
     {
@@ -137,7 +137,7 @@ public class AssignSImpl extends SImpl implements AssignS
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAexp(AExpr newAexp)
+  public void setAexp(Expr newAexp)
   {
     if (newAexp != aexp)
     {
@@ -201,7 +201,7 @@ public class AssignSImpl extends SImpl implements AssignS
         setVar((String)newValue);
         return;
       case WhileLangPackage.ASSIGN_S__AEXP:
-        setAexp((AExpr)newValue);
+        setAexp((Expr)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,7 +221,7 @@ public class AssignSImpl extends SImpl implements AssignS
         setVar(VAR_EDEFAULT);
         return;
       case WhileLangPackage.ASSIGN_S__AEXP:
-        setAexp((AExpr)null);
+        setAexp((Expr)null);
         return;
     }
     super.eUnset(featureID);

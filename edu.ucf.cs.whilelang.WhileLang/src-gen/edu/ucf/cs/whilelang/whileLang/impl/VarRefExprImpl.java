@@ -18,14 +18,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.VarRefExprImpl#getVar <em>Var</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
-public class VarRefExprImpl extends AExprImpl implements VarRefExpr
+public class VarRefExprImpl extends ExprImpl implements VarRefExpr
 {
   /**
    * The default value of the '{@link #getVar() <em>Var</em>}' attribute.

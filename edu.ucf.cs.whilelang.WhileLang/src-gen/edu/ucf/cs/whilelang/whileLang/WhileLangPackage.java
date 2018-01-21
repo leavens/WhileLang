@@ -263,23 +263,23 @@ public interface WhileLangPackage extends EPackage
   int IF_S_FEATURE_COUNT = S_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.AExprImpl <em>AExpr</em>}' class.
+   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.ExprImpl <em>Expr</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.ucf.cs.whilelang.whileLang.impl.AExprImpl
-   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getAExpr()
+   * @see edu.ucf.cs.whilelang.whileLang.impl.ExprImpl
+   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getExpr()
    * @generated
    */
-  int AEXPR = 7;
+  int EXPR = 7;
 
   /**
-   * The number of structural features of the '<em>AExpr</em>' class.
+   * The number of structural features of the '<em>Expr</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int AEXPR_FEATURE_COUNT = 0;
+  int EXPR_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.VarRefExprImpl <em>Var Ref Expr</em>}' class.
@@ -298,7 +298,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR_REF_EXPR__VAR = AEXPR_FEATURE_COUNT + 0;
+  int VAR_REF_EXPR__VAR = EXPR_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Var Ref Expr</em>' class.
@@ -307,7 +307,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR_REF_EXPR_FEATURE_COUNT = AEXPR_FEATURE_COUNT + 1;
+  int VAR_REF_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.NumLitExprImpl <em>Num Lit Expr</em>}' class.
@@ -326,7 +326,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NUM_LIT_EXPR__NEGATED = AEXPR_FEATURE_COUNT + 0;
+  int NUM_LIT_EXPR__NEGATED = EXPR_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -335,7 +335,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NUM_LIT_EXPR__VAL = AEXPR_FEATURE_COUNT + 1;
+  int NUM_LIT_EXPR__VAL = EXPR_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Num Lit Expr</em>' class.
@@ -344,26 +344,35 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NUM_LIT_EXPR_FEATURE_COUNT = AEXPR_FEATURE_COUNT + 2;
+  int NUM_LIT_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BExprImpl <em>BExpr</em>}' class.
+   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BoolLitExprImpl <em>Bool Lit Expr</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.ucf.cs.whilelang.whileLang.impl.BExprImpl
-   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBExpr()
+   * @see edu.ucf.cs.whilelang.whileLang.impl.BoolLitExprImpl
+   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBoolLitExpr()
    * @generated
    */
-  int BEXPR = 10;
+  int BOOL_LIT_EXPR = 10;
 
   /**
-   * The number of structural features of the '<em>BExpr</em>' class.
+   * The feature id for the '<em><b>Bval</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BEXPR_FEATURE_COUNT = 0;
+  int BOOL_LIT_EXPR__BVAL = EXPR_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Bool Lit Expr</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOL_LIT_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.NotExprImpl <em>Not Expr</em>}' class.
@@ -382,7 +391,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NOT_EXPR__BEXP = BEXPR_FEATURE_COUNT + 0;
+  int NOT_EXPR__BEXP = EXPR_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Not Expr</em>' class.
@@ -391,17 +400,17 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NOT_EXPR_FEATURE_COUNT = BEXPR_FEATURE_COUNT + 1;
+  int NOT_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BCompExpImpl <em>BComp Exp</em>}' class.
+   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.FactorImpl <em>Factor</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.ucf.cs.whilelang.whileLang.impl.BCompExpImpl
-   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBCompExp()
+   * @see edu.ucf.cs.whilelang.whileLang.impl.FactorImpl
+   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getFactor()
    * @generated
    */
-  int BCOMP_EXP = 12;
+  int FACTOR = 12;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -410,7 +419,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BCOMP_EXP__LEFT = BEXPR_FEATURE_COUNT + 0;
+  int FACTOR__LEFT = EXPR_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -419,7 +428,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BCOMP_EXP__OP = BEXPR_FEATURE_COUNT + 1;
+  int FACTOR__OP = EXPR_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -428,44 +437,16 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BCOMP_EXP__RIGHT = BEXPR_FEATURE_COUNT + 2;
+  int FACTOR__RIGHT = EXPR_FEATURE_COUNT + 2;
 
   /**
-   * The number of structural features of the '<em>BComp Exp</em>' class.
+   * The number of structural features of the '<em>Factor</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BCOMP_EXP_FEATURE_COUNT = BEXPR_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BPrimaryImpl <em>BPrimary</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.ucf.cs.whilelang.whileLang.impl.BPrimaryImpl
-   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBPrimary()
-   * @generated
-   */
-  int BPRIMARY = 13;
-
-  /**
-   * The feature id for the '<em><b>Bval</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BPRIMARY__BVAL = BEXPR_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>BPrimary</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BPRIMARY_FEATURE_COUNT = BEXPR_FEATURE_COUNT + 1;
+  int FACTOR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.AExpressionImpl <em>AExpression</em>}' class.
@@ -475,7 +456,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getAExpression()
    * @generated
    */
-  int AEXPRESSION = 14;
+  int AEXPRESSION = 13;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -484,7 +465,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AEXPRESSION__LEFT = AEXPR_FEATURE_COUNT + 0;
+  int AEXPRESSION__LEFT = EXPR_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -493,7 +474,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AEXPRESSION__OP = AEXPR_FEATURE_COUNT + 1;
+  int AEXPRESSION__OP = EXPR_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -502,7 +483,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AEXPRESSION__RIGHT = AEXPR_FEATURE_COUNT + 2;
+  int AEXPRESSION__RIGHT = EXPR_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>AExpression</em>' class.
@@ -511,63 +492,17 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AEXPRESSION_FEATURE_COUNT = AEXPR_FEATURE_COUNT + 3;
+  int AEXPRESSION_FEATURE_COUNT = EXPR_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.ATermImpl <em>ATerm</em>}' class.
+   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BRelExpImpl <em>BRel Exp</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.ucf.cs.whilelang.whileLang.impl.ATermImpl
-   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getATerm()
+   * @see edu.ucf.cs.whilelang.whileLang.impl.BRelExpImpl
+   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBRelExp()
    * @generated
    */
-  int ATERM = 15;
-
-  /**
-   * The feature id for the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ATERM__LEFT = AEXPR_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ATERM__OP = AEXPR_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ATERM__RIGHT = AEXPR_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>ATerm</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ATERM_FEATURE_COUNT = AEXPR_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BExpressionImpl <em>BExpression</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see edu.ucf.cs.whilelang.whileLang.impl.BExpressionImpl
-   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBExpression()
-   * @generated
-   */
-  int BEXPRESSION = 16;
+  int BREL_EXP = 14;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -576,7 +511,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BEXPRESSION__LEFT = BEXPR_FEATURE_COUNT + 0;
+  int BREL_EXP__LEFT = EXPR_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -585,7 +520,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BEXPRESSION__OP = BEXPR_FEATURE_COUNT + 1;
+  int BREL_EXP__OP = EXPR_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -594,26 +529,26 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BEXPRESSION__RIGHT = BEXPR_FEATURE_COUNT + 2;
+  int BREL_EXP__RIGHT = EXPR_FEATURE_COUNT + 2;
 
   /**
-   * The number of structural features of the '<em>BExpression</em>' class.
+   * The number of structural features of the '<em>BRel Exp</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BEXPRESSION_FEATURE_COUNT = BEXPR_FEATURE_COUNT + 3;
+  int BREL_EXP_FEATURE_COUNT = EXPR_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BTermImpl <em>BTerm</em>}' class.
+   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BConjImpl <em>BConj</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see edu.ucf.cs.whilelang.whileLang.impl.BTermImpl
-   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBTerm()
+   * @see edu.ucf.cs.whilelang.whileLang.impl.BConjImpl
+   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBConj()
    * @generated
    */
-  int BTERM = 17;
+  int BCONJ = 15;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -622,7 +557,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BTERM__LEFT = BEXPR_FEATURE_COUNT + 0;
+  int BCONJ__LEFT = EXPR_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -631,7 +566,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BTERM__OP = BEXPR_FEATURE_COUNT + 1;
+  int BCONJ__OP = EXPR_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -640,16 +575,62 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BTERM__RIGHT = BEXPR_FEATURE_COUNT + 2;
+  int BCONJ__RIGHT = EXPR_FEATURE_COUNT + 2;
 
   /**
-   * The number of structural features of the '<em>BTerm</em>' class.
+   * The number of structural features of the '<em>BConj</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BTERM_FEATURE_COUNT = BEXPR_FEATURE_COUNT + 3;
+  int BCONJ_FEATURE_COUNT = EXPR_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.ExpressionImpl <em>Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ucf.cs.whilelang.whileLang.impl.ExpressionImpl
+   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getExpression()
+   * @generated
+   */
+  int EXPRESSION = 16;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION__LEFT = EXPR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION__OP = EXPR_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION__RIGHT = EXPR_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_FEATURE_COUNT = EXPR_FEATURE_COUNT + 3;
 
 
   /**
@@ -811,14 +792,14 @@ public interface WhileLangPackage extends EPackage
   EReference getIfS_S2();
 
   /**
-   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.AExpr <em>AExpr</em>}'.
+   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.Expr <em>Expr</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>AExpr</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.AExpr
+   * @return the meta object for class '<em>Expr</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.Expr
    * @generated
    */
-  EClass getAExpr();
+  EClass getExpr();
 
   /**
    * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.VarRefExpr <em>Var Ref Expr</em>}'.
@@ -874,14 +855,25 @@ public interface WhileLangPackage extends EPackage
   EAttribute getNumLitExpr_Val();
 
   /**
-   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.BExpr <em>BExpr</em>}'.
+   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.BoolLitExpr <em>Bool Lit Expr</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>BExpr</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BExpr
+   * @return the meta object for class '<em>Bool Lit Expr</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.BoolLitExpr
    * @generated
    */
-  EClass getBExpr();
+  EClass getBoolLitExpr();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.BoolLitExpr#getBval <em>Bval</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Bval</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.BoolLitExpr#getBval()
+   * @see #getBoolLitExpr()
+   * @generated
+   */
+  EAttribute getBoolLitExpr_Bval();
 
   /**
    * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.NotExpr <em>Not Expr</em>}'.
@@ -905,68 +897,47 @@ public interface WhileLangPackage extends EPackage
   EReference getNotExpr_Bexp();
 
   /**
-   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.BCompExp <em>BComp Exp</em>}'.
+   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.Factor <em>Factor</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>BComp Exp</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BCompExp
+   * @return the meta object for class '<em>Factor</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.Factor
    * @generated
    */
-  EClass getBCompExp();
+  EClass getFactor();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.BCompExp#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.Factor#getLeft <em>Left</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BCompExp#getLeft()
-   * @see #getBCompExp()
+   * @see edu.ucf.cs.whilelang.whileLang.Factor#getLeft()
+   * @see #getFactor()
    * @generated
    */
-  EReference getBCompExp_Left();
+  EReference getFactor_Left();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.BCompExp#getOp <em>Op</em>}'.
+   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.Factor#getOp <em>Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Op</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BCompExp#getOp()
-   * @see #getBCompExp()
+   * @see edu.ucf.cs.whilelang.whileLang.Factor#getOp()
+   * @see #getFactor()
    * @generated
    */
-  EAttribute getBCompExp_Op();
+  EAttribute getFactor_Op();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.BCompExp#getRight <em>Right</em>}'.
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.Factor#getRight <em>Right</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BCompExp#getRight()
-   * @see #getBCompExp()
+   * @see edu.ucf.cs.whilelang.whileLang.Factor#getRight()
+   * @see #getFactor()
    * @generated
    */
-  EReference getBCompExp_Right();
-
-  /**
-   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.BPrimary <em>BPrimary</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>BPrimary</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BPrimary
-   * @generated
-   */
-  EClass getBPrimary();
-
-  /**
-   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.BPrimary#getBval <em>Bval</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Bval</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BPrimary#getBval()
-   * @see #getBPrimary()
-   * @generated
-   */
-  EAttribute getBPrimary_Bval();
+  EReference getFactor_Right();
 
   /**
    * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.AExpression <em>AExpression</em>}'.
@@ -1012,133 +983,133 @@ public interface WhileLangPackage extends EPackage
   EReference getAExpression_Right();
 
   /**
-   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.ATerm <em>ATerm</em>}'.
+   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.BRelExp <em>BRel Exp</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>ATerm</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.ATerm
+   * @return the meta object for class '<em>BRel Exp</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.BRelExp
    * @generated
    */
-  EClass getATerm();
+  EClass getBRelExp();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.ATerm#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.BRelExp#getLeft <em>Left</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.ATerm#getLeft()
-   * @see #getATerm()
+   * @see edu.ucf.cs.whilelang.whileLang.BRelExp#getLeft()
+   * @see #getBRelExp()
    * @generated
    */
-  EReference getATerm_Left();
+  EReference getBRelExp_Left();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.ATerm#getOp <em>Op</em>}'.
+   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.BRelExp#getOp <em>Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Op</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.ATerm#getOp()
-   * @see #getATerm()
+   * @see edu.ucf.cs.whilelang.whileLang.BRelExp#getOp()
+   * @see #getBRelExp()
    * @generated
    */
-  EAttribute getATerm_Op();
+  EAttribute getBRelExp_Op();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.ATerm#getRight <em>Right</em>}'.
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.BRelExp#getRight <em>Right</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.ATerm#getRight()
-   * @see #getATerm()
+   * @see edu.ucf.cs.whilelang.whileLang.BRelExp#getRight()
+   * @see #getBRelExp()
    * @generated
    */
-  EReference getATerm_Right();
+  EReference getBRelExp_Right();
 
   /**
-   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.BExpression <em>BExpression</em>}'.
+   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.BConj <em>BConj</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>BExpression</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BExpression
+   * @return the meta object for class '<em>BConj</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.BConj
    * @generated
    */
-  EClass getBExpression();
+  EClass getBConj();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.BExpression#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.BConj#getLeft <em>Left</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BExpression#getLeft()
-   * @see #getBExpression()
+   * @see edu.ucf.cs.whilelang.whileLang.BConj#getLeft()
+   * @see #getBConj()
    * @generated
    */
-  EReference getBExpression_Left();
+  EReference getBConj_Left();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.BExpression#getOp <em>Op</em>}'.
+   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.BConj#getOp <em>Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Op</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BExpression#getOp()
-   * @see #getBExpression()
+   * @see edu.ucf.cs.whilelang.whileLang.BConj#getOp()
+   * @see #getBConj()
    * @generated
    */
-  EAttribute getBExpression_Op();
+  EAttribute getBConj_Op();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.BExpression#getRight <em>Right</em>}'.
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.BConj#getRight <em>Right</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BExpression#getRight()
-   * @see #getBExpression()
+   * @see edu.ucf.cs.whilelang.whileLang.BConj#getRight()
+   * @see #getBConj()
    * @generated
    */
-  EReference getBExpression_Right();
+  EReference getBConj_Right();
 
   /**
-   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.BTerm <em>BTerm</em>}'.
+   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>BTerm</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BTerm
+   * @return the meta object for class '<em>Expression</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.Expression
    * @generated
    */
-  EClass getBTerm();
+  EClass getExpression();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.BTerm#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.Expression#getLeft <em>Left</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BTerm#getLeft()
-   * @see #getBTerm()
+   * @see edu.ucf.cs.whilelang.whileLang.Expression#getLeft()
+   * @see #getExpression()
    * @generated
    */
-  EReference getBTerm_Left();
+  EReference getExpression_Left();
 
   /**
-   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.BTerm#getOp <em>Op</em>}'.
+   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.Expression#getOp <em>Op</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Op</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BTerm#getOp()
-   * @see #getBTerm()
+   * @see edu.ucf.cs.whilelang.whileLang.Expression#getOp()
+   * @see #getExpression()
    * @generated
    */
-  EAttribute getBTerm_Op();
+  EAttribute getExpression_Op();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.BTerm#getRight <em>Right</em>}'.
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.Expression#getRight <em>Right</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.BTerm#getRight()
-   * @see #getBTerm()
+   * @see edu.ucf.cs.whilelang.whileLang.Expression#getRight()
+   * @see #getExpression()
    * @generated
    */
-  EReference getBTerm_Right();
+  EReference getExpression_Right();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1298,14 +1269,14 @@ public interface WhileLangPackage extends EPackage
     EReference IF_S__S2 = eINSTANCE.getIfS_S2();
 
     /**
-     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.AExprImpl <em>AExpr</em>}' class.
+     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.ExprImpl <em>Expr</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.ucf.cs.whilelang.whileLang.impl.AExprImpl
-     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getAExpr()
+     * @see edu.ucf.cs.whilelang.whileLang.impl.ExprImpl
+     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getExpr()
      * @generated
      */
-    EClass AEXPR = eINSTANCE.getAExpr();
+    EClass EXPR = eINSTANCE.getExpr();
 
     /**
      * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.VarRefExprImpl <em>Var Ref Expr</em>}' class.
@@ -1352,14 +1323,22 @@ public interface WhileLangPackage extends EPackage
     EAttribute NUM_LIT_EXPR__VAL = eINSTANCE.getNumLitExpr_Val();
 
     /**
-     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BExprImpl <em>BExpr</em>}' class.
+     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BoolLitExprImpl <em>Bool Lit Expr</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.ucf.cs.whilelang.whileLang.impl.BExprImpl
-     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBExpr()
+     * @see edu.ucf.cs.whilelang.whileLang.impl.BoolLitExprImpl
+     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBoolLitExpr()
      * @generated
      */
-    EClass BEXPR = eINSTANCE.getBExpr();
+    EClass BOOL_LIT_EXPR = eINSTANCE.getBoolLitExpr();
+
+    /**
+     * The meta object literal for the '<em><b>Bval</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BOOL_LIT_EXPR__BVAL = eINSTANCE.getBoolLitExpr_Bval();
 
     /**
      * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.NotExprImpl <em>Not Expr</em>}' class.
@@ -1380,14 +1359,14 @@ public interface WhileLangPackage extends EPackage
     EReference NOT_EXPR__BEXP = eINSTANCE.getNotExpr_Bexp();
 
     /**
-     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BCompExpImpl <em>BComp Exp</em>}' class.
+     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.FactorImpl <em>Factor</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.ucf.cs.whilelang.whileLang.impl.BCompExpImpl
-     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBCompExp()
+     * @see edu.ucf.cs.whilelang.whileLang.impl.FactorImpl
+     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getFactor()
      * @generated
      */
-    EClass BCOMP_EXP = eINSTANCE.getBCompExp();
+    EClass FACTOR = eINSTANCE.getFactor();
 
     /**
      * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
@@ -1395,7 +1374,7 @@ public interface WhileLangPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference BCOMP_EXP__LEFT = eINSTANCE.getBCompExp_Left();
+    EReference FACTOR__LEFT = eINSTANCE.getFactor_Left();
 
     /**
      * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
@@ -1403,7 +1382,7 @@ public interface WhileLangPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute BCOMP_EXP__OP = eINSTANCE.getBCompExp_Op();
+    EAttribute FACTOR__OP = eINSTANCE.getFactor_Op();
 
     /**
      * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
@@ -1411,25 +1390,7 @@ public interface WhileLangPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference BCOMP_EXP__RIGHT = eINSTANCE.getBCompExp_Right();
-
-    /**
-     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BPrimaryImpl <em>BPrimary</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see edu.ucf.cs.whilelang.whileLang.impl.BPrimaryImpl
-     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBPrimary()
-     * @generated
-     */
-    EClass BPRIMARY = eINSTANCE.getBPrimary();
-
-    /**
-     * The meta object literal for the '<em><b>Bval</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BPRIMARY__BVAL = eINSTANCE.getBPrimary_Bval();
+    EReference FACTOR__RIGHT = eINSTANCE.getFactor_Right();
 
     /**
      * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.AExpressionImpl <em>AExpression</em>}' class.
@@ -1466,14 +1427,14 @@ public interface WhileLangPackage extends EPackage
     EReference AEXPRESSION__RIGHT = eINSTANCE.getAExpression_Right();
 
     /**
-     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.ATermImpl <em>ATerm</em>}' class.
+     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BRelExpImpl <em>BRel Exp</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.ucf.cs.whilelang.whileLang.impl.ATermImpl
-     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getATerm()
+     * @see edu.ucf.cs.whilelang.whileLang.impl.BRelExpImpl
+     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBRelExp()
      * @generated
      */
-    EClass ATERM = eINSTANCE.getATerm();
+    EClass BREL_EXP = eINSTANCE.getBRelExp();
 
     /**
      * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
@@ -1481,7 +1442,7 @@ public interface WhileLangPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ATERM__LEFT = eINSTANCE.getATerm_Left();
+    EReference BREL_EXP__LEFT = eINSTANCE.getBRelExp_Left();
 
     /**
      * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
@@ -1489,7 +1450,7 @@ public interface WhileLangPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ATERM__OP = eINSTANCE.getATerm_Op();
+    EAttribute BREL_EXP__OP = eINSTANCE.getBRelExp_Op();
 
     /**
      * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
@@ -1497,17 +1458,17 @@ public interface WhileLangPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ATERM__RIGHT = eINSTANCE.getATerm_Right();
+    EReference BREL_EXP__RIGHT = eINSTANCE.getBRelExp_Right();
 
     /**
-     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BExpressionImpl <em>BExpression</em>}' class.
+     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BConjImpl <em>BConj</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.ucf.cs.whilelang.whileLang.impl.BExpressionImpl
-     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBExpression()
+     * @see edu.ucf.cs.whilelang.whileLang.impl.BConjImpl
+     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBConj()
      * @generated
      */
-    EClass BEXPRESSION = eINSTANCE.getBExpression();
+    EClass BCONJ = eINSTANCE.getBConj();
 
     /**
      * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
@@ -1515,7 +1476,7 @@ public interface WhileLangPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference BEXPRESSION__LEFT = eINSTANCE.getBExpression_Left();
+    EReference BCONJ__LEFT = eINSTANCE.getBConj_Left();
 
     /**
      * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
@@ -1523,7 +1484,7 @@ public interface WhileLangPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute BEXPRESSION__OP = eINSTANCE.getBExpression_Op();
+    EAttribute BCONJ__OP = eINSTANCE.getBConj_Op();
 
     /**
      * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
@@ -1531,17 +1492,17 @@ public interface WhileLangPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference BEXPRESSION__RIGHT = eINSTANCE.getBExpression_Right();
+    EReference BCONJ__RIGHT = eINSTANCE.getBConj_Right();
 
     /**
-     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BTermImpl <em>BTerm</em>}' class.
+     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.ExpressionImpl <em>Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see edu.ucf.cs.whilelang.whileLang.impl.BTermImpl
-     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBTerm()
+     * @see edu.ucf.cs.whilelang.whileLang.impl.ExpressionImpl
+     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getExpression()
      * @generated
      */
-    EClass BTERM = eINSTANCE.getBTerm();
+    EClass EXPRESSION = eINSTANCE.getExpression();
 
     /**
      * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
@@ -1549,7 +1510,7 @@ public interface WhileLangPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference BTERM__LEFT = eINSTANCE.getBTerm_Left();
+    EReference EXPRESSION__LEFT = eINSTANCE.getExpression_Left();
 
     /**
      * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
@@ -1557,7 +1518,7 @@ public interface WhileLangPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute BTERM__OP = eINSTANCE.getBTerm_Op();
+    EAttribute EXPRESSION__OP = eINSTANCE.getExpression_Op();
 
     /**
      * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
@@ -1565,7 +1526,7 @@ public interface WhileLangPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference BTERM__RIGHT = eINSTANCE.getBTerm_Right();
+    EReference EXPRESSION__RIGHT = eINSTANCE.getExpression_Right();
 
   }
 

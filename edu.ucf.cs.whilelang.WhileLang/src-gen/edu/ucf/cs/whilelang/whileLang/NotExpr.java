@@ -11,16 +11,16 @@ package edu.ucf.cs.whilelang.whileLang;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.NotExpr#getBexp <em>Bexp</em>}</li>
  * </ul>
+ * </p>
  *
  * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getNotExpr()
  * @model
  * @generated
  */
-public interface NotExpr extends BExpr
+public interface NotExpr extends Expr
 {
   /**
    * Returns the value of the '<em><b>Bexp</b></em>' containment reference.
@@ -31,12 +31,12 @@ public interface NotExpr extends BExpr
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Bexp</em>' containment reference.
-   * @see #setBexp(BExpr)
+   * @see #setBexp(Expr)
    * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getNotExpr_Bexp()
    * @model containment="true"
    * @generated
    */
-  BExpr getBexp();
+  Expr getBexp();
 
   /**
    * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.NotExpr#getBexp <em>Bexp</em>}' containment reference.
@@ -46,6 +46,6 @@ public interface NotExpr extends BExpr
    * @see #getBexp()
    * @generated
    */
-  void setBexp(BExpr value);
+  void setBexp(Expr value);
 
 } // NotExpr
