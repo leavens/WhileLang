@@ -4,8 +4,8 @@
 package edu.ucf.cs.whilelang.whileLang.impl;
 
 import edu.ucf.cs.whilelang.whileLang.CompoundS;
-import edu.ucf.cs.whilelang.whileLang.Expr;
 import edu.ucf.cs.whilelang.whileLang.IfS;
+import edu.ucf.cs.whilelang.whileLang.LabeledExp;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -41,7 +41,7 @@ public class IfSImpl extends SImpl implements IfS
    * @generated
    * @ordered
    */
-  protected Expr bexp;
+  protected LabeledExp bexp;
 
   /**
    * The cached value of the '{@link #getS1() <em>S1</em>}' containment reference.
@@ -89,7 +89,7 @@ public class IfSImpl extends SImpl implements IfS
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expr getBexp()
+  public LabeledExp getBexp()
   {
     return bexp;
   }
@@ -99,9 +99,9 @@ public class IfSImpl extends SImpl implements IfS
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetBexp(Expr newBexp, NotificationChain msgs)
+  public NotificationChain basicSetBexp(LabeledExp newBexp, NotificationChain msgs)
   {
-    Expr oldBexp = bexp;
+    LabeledExp oldBexp = bexp;
     bexp = newBexp;
     if (eNotificationRequired())
     {
@@ -116,7 +116,7 @@ public class IfSImpl extends SImpl implements IfS
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setBexp(Expr newBexp)
+  public void setBexp(LabeledExp newBexp)
   {
     if (newBexp != bexp)
     {
@@ -279,7 +279,7 @@ public class IfSImpl extends SImpl implements IfS
     switch (featureID)
     {
       case WhileLangPackage.IF_S__BEXP:
-        setBexp((Expr)newValue);
+        setBexp((LabeledExp)newValue);
         return;
       case WhileLangPackage.IF_S__S1:
         setS1((CompoundS)newValue);
@@ -302,7 +302,7 @@ public class IfSImpl extends SImpl implements IfS
     switch (featureID)
     {
       case WhileLangPackage.IF_S__BEXP:
-        setBexp((Expr)null);
+        setBexp((LabeledExp)null);
         return;
       case WhileLangPackage.IF_S__S1:
         setS1((CompoundS)null);

@@ -9,6 +9,7 @@ import edu.ucf.cs.whilelang.whileLang.BoolLitExpr
 import edu.ucf.cs.whilelang.whileLang.CompoundS
 import edu.ucf.cs.whilelang.whileLang.Factor
 import edu.ucf.cs.whilelang.whileLang.IfS
+import edu.ucf.cs.whilelang.whileLang.LabeledExp
 import edu.ucf.cs.whilelang.whileLang.NotExpr
 import edu.ucf.cs.whilelang.whileLang.NumLitExpr
 import edu.ucf.cs.whilelang.whileLang.SkipS
@@ -23,7 +24,7 @@ class WhileLangCodeGen {
     // Statements
     def dispatch String toJava(AssignS a) {
         '''
-        «a.v» = «a.aexp.toJava»;
+        «a.v» = «a.aexp.toJava»; /* «a.label.toString» */
         '''
     }
   	
@@ -39,7 +40,7 @@ class WhileLangCodeGen {
 
     def dispatch String toJava(SkipS s) {
         '''
-        ;
+        /* «s.label.toString» */;
         '''
     }
 
@@ -58,6 +59,11 @@ class WhileLangCodeGen {
     		«i.s2.toJava»
     	}
     	'''
+    }
+    
+    // LabeledExp
+    def dispatch String toJava(LabeledExp le) {
+        '''«le.be.toJava»/*^«le.label.toString»*/'''
     }
     
     // Expressions     

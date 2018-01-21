@@ -4,7 +4,7 @@
 package edu.ucf.cs.whilelang.whileLang.impl;
 
 import edu.ucf.cs.whilelang.whileLang.CompoundS;
-import edu.ucf.cs.whilelang.whileLang.Expr;
+import edu.ucf.cs.whilelang.whileLang.LabeledExp;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
 import edu.ucf.cs.whilelang.whileLang.WhileS;
 
@@ -40,7 +40,7 @@ public class WhileSImpl extends SImpl implements WhileS
    * @generated
    * @ordered
    */
-  protected Expr bexp;
+  protected LabeledExp bexp;
 
   /**
    * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference.
@@ -78,7 +78,7 @@ public class WhileSImpl extends SImpl implements WhileS
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expr getBexp()
+  public LabeledExp getBexp()
   {
     return bexp;
   }
@@ -88,9 +88,9 @@ public class WhileSImpl extends SImpl implements WhileS
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetBexp(Expr newBexp, NotificationChain msgs)
+  public NotificationChain basicSetBexp(LabeledExp newBexp, NotificationChain msgs)
   {
-    Expr oldBexp = bexp;
+    LabeledExp oldBexp = bexp;
     bexp = newBexp;
     if (eNotificationRequired())
     {
@@ -105,7 +105,7 @@ public class WhileSImpl extends SImpl implements WhileS
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setBexp(Expr newBexp)
+  public void setBexp(LabeledExp newBexp)
   {
     if (newBexp != bexp)
     {
@@ -216,7 +216,7 @@ public class WhileSImpl extends SImpl implements WhileS
     switch (featureID)
     {
       case WhileLangPackage.WHILE_S__BEXP:
-        setBexp((Expr)newValue);
+        setBexp((LabeledExp)newValue);
         return;
       case WhileLangPackage.WHILE_S__BLOCK:
         setBlock((CompoundS)newValue);
@@ -236,7 +236,7 @@ public class WhileSImpl extends SImpl implements WhileS
     switch (featureID)
     {
       case WhileLangPackage.WHILE_S__BEXP:
-        setBexp((Expr)null);
+        setBexp((LabeledExp)null);
         return;
       case WhileLangPackage.WHILE_S__BLOCK:
         setBlock((CompoundS)null);

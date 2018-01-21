@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AssignSImpl#getV <em>V</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AssignSImpl#getAexp <em>Aexp</em>}</li>
+ *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AssignSImpl#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,6 +61,26 @@ public class AssignSImpl extends SImpl implements AssignS
    * @ordered
    */
   protected Expr aexp;
+
+  /**
+   * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLabel()
+   * @generated
+   * @ordered
+   */
+  protected static final int LABEL_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLabel()
+   * @generated
+   * @ordered
+   */
+  protected int label = LABEL_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -158,6 +179,29 @@ public class AssignSImpl extends SImpl implements AssignS
    * <!-- end-user-doc -->
    * @generated
    */
+  public int getLabel()
+  {
+    return label;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setLabel(int newLabel)
+  {
+    int oldLabel = label;
+    label = newLabel;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileLangPackage.ASSIGN_S__LABEL, oldLabel, label));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -183,6 +227,8 @@ public class AssignSImpl extends SImpl implements AssignS
         return getV();
       case WhileLangPackage.ASSIGN_S__AEXP:
         return getAexp();
+      case WhileLangPackage.ASSIGN_S__LABEL:
+        return getLabel();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -202,6 +248,9 @@ public class AssignSImpl extends SImpl implements AssignS
         return;
       case WhileLangPackage.ASSIGN_S__AEXP:
         setAexp((Expr)newValue);
+        return;
+      case WhileLangPackage.ASSIGN_S__LABEL:
+        setLabel((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -223,6 +272,9 @@ public class AssignSImpl extends SImpl implements AssignS
       case WhileLangPackage.ASSIGN_S__AEXP:
         setAexp((Expr)null);
         return;
+      case WhileLangPackage.ASSIGN_S__LABEL:
+        setLabel(LABEL_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -241,6 +293,8 @@ public class AssignSImpl extends SImpl implements AssignS
         return V_EDEFAULT == null ? v != null : !V_EDEFAULT.equals(v);
       case WhileLangPackage.ASSIGN_S__AEXP:
         return aexp != null;
+      case WhileLangPackage.ASSIGN_S__LABEL:
+        return label != LABEL_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -258,6 +312,8 @@ public class AssignSImpl extends SImpl implements AssignS
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (v: ");
     result.append(v);
+    result.append(", label: ");
+    result.append(label);
     result.append(')');
     return result.toString();
   }

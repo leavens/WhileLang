@@ -9,9 +9,9 @@ import edu.ucf.cs.whilelang.whileLang.BoolLitExpr
 import edu.ucf.cs.whilelang.whileLang.CompoundS
 import edu.ucf.cs.whilelang.whileLang.Factor
 import edu.ucf.cs.whilelang.whileLang.IfS
+import edu.ucf.cs.whilelang.whileLang.LabeledExp
 import edu.ucf.cs.whilelang.whileLang.NotExpr
 import edu.ucf.cs.whilelang.whileLang.NumLitExpr
-import edu.ucf.cs.whilelang.whileLang.S
 import edu.ucf.cs.whilelang.whileLang.SkipS
 import edu.ucf.cs.whilelang.whileLang.VarRefExpr
 import edu.ucf.cs.whilelang.whileLang.WhileS
@@ -23,7 +23,7 @@ class WhileLangUnparser {
     
     // Statements
     def dispatch String unparse(AssignS s) {
-        '''«s.v»''' + " := " + '''«s.aexp.unparse»''' 	
+        '''[«s.v»''' + " := " + '''«s.aexp.unparse»]^«s.label.toString»''' 	
     }
 	
 	def dispatch String unparse(CompoundS c) {
@@ -37,12 +37,12 @@ class WhileLangUnparser {
     }
 
     def dispatch String unparse(SkipS s) {
-        '''skip'''
+        '''[skip]^«s.label.toString»'''
     }
 
     def dispatch String unparse(WhileS w) {
         '''
-        while («w.bexp.unparse») 
+        while «w.bexp.unparse» 
         do «w.block.unparse»
         '''
     }
@@ -53,6 +53,11 @@ class WhileLangUnparser {
         then «i.s1.unparse»
         else «i.s2.unparse»
         '''
+    }
+    
+    // LabeledExp
+    def dispatch String unparse(LabeledExp le) {
+        '''[«le.be.unparse»]^«le.label.toString»'''
     }
     
     // Expressions         

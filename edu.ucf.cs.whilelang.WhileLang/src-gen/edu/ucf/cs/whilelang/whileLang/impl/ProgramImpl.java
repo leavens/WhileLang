@@ -3,10 +3,10 @@
  */
 package edu.ucf.cs.whilelang.whileLang.impl;
 
+import edu.ucf.cs.whilelang.whileLang.Formals;
 import edu.ucf.cs.whilelang.whileLang.Program;
 import edu.ucf.cs.whilelang.whileLang.S;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
-import edu.ucf.cs.whilelang.whileLang.formals;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -62,7 +62,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
    * @generated
    * @ordered
    */
-  protected formals args;
+  protected Formals args;
 
   /**
    * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
@@ -123,7 +123,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
    * <!-- end-user-doc -->
    * @generated
    */
-  public formals getArgs()
+  public Formals getArgs()
   {
     return args;
   }
@@ -133,9 +133,9 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetArgs(formals newArgs, NotificationChain msgs)
+  public NotificationChain basicSetArgs(Formals newArgs, NotificationChain msgs)
   {
-    formals oldArgs = args;
+    Formals oldArgs = args;
     args = newArgs;
     if (eNotificationRequired())
     {
@@ -150,7 +150,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setArgs(formals newArgs)
+  public void setArgs(Formals newArgs)
   {
     if (newArgs != args)
     {
@@ -266,7 +266,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         setName((String)newValue);
         return;
       case WhileLangPackage.PROGRAM__ARGS:
-        setArgs((formals)newValue);
+        setArgs((Formals)newValue);
         return;
       case WhileLangPackage.PROGRAM__BODY:
         setBody((S)newValue);
@@ -289,7 +289,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
         setName(NAME_EDEFAULT);
         return;
       case WhileLangPackage.PROGRAM__ARGS:
-        setArgs((formals)null);
+        setArgs((Formals)null);
         return;
       case WhileLangPackage.PROGRAM__BODY:
         setBody((S)null);

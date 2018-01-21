@@ -81,9 +81,9 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
         return createProgramAdapter();
       }
       @Override
-      public Adapter caseformals(formals object)
+      public Adapter caseFormals(Formals object)
       {
-        return createformalsAdapter();
+        return createFormalsAdapter();
       }
       @Override
       public Adapter caseS(S object)
@@ -114,6 +114,11 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
       public Adapter caseIfS(IfS object)
       {
         return createIfSAdapter();
+      }
+      @Override
+      public Adapter caseLabeledExp(LabeledExp object)
+      {
+        return createLabeledExpAdapter();
       }
       @Override
       public Adapter caseExpr(Expr object)
@@ -203,16 +208,16 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.formals <em>formals</em>}'.
+   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.Formals <em>Formals</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see edu.ucf.cs.whilelang.whileLang.formals
+   * @see edu.ucf.cs.whilelang.whileLang.Formals
    * @generated
    */
-  public Adapter createformalsAdapter()
+  public Adapter createFormalsAdapter()
   {
     return null;
   }
@@ -303,6 +308,21 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIfSAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.LabeledExp <em>Labeled Exp</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ucf.cs.whilelang.whileLang.LabeledExp
+   * @generated
+   */
+  public Adapter createLabeledExpAdapter()
   {
     return null;
   }

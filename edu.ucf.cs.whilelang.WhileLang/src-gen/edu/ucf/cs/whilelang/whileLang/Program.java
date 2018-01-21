@@ -60,12 +60,12 @@ public interface Program extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Args</em>' containment reference.
-   * @see #setArgs(formals)
+   * @see #setArgs(Formals)
    * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getProgram_Args()
    * @model containment="true"
    * @generated
    */
-  formals getArgs();
+  Formals getArgs();
 
   /**
    * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.Program#getArgs <em>Args</em>}' containment reference.
@@ -75,7 +75,7 @@ public interface Program extends EObject
    * @see #getArgs()
    * @generated
    */
-  void setArgs(formals value);
+  void setArgs(Formals value);
 
   /**
    * Returns the value of the '<em><b>Body</b></em>' containment reference.

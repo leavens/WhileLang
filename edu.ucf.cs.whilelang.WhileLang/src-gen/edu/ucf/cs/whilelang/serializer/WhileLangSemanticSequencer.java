@@ -13,7 +13,9 @@ import edu.ucf.cs.whilelang.whileLang.BRelExp;
 import edu.ucf.cs.whilelang.whileLang.BoolLitExpr;
 import edu.ucf.cs.whilelang.whileLang.CompoundS;
 import edu.ucf.cs.whilelang.whileLang.Factor;
+import edu.ucf.cs.whilelang.whileLang.Formals;
 import edu.ucf.cs.whilelang.whileLang.IfS;
+import edu.ucf.cs.whilelang.whileLang.LabeledExp;
 import edu.ucf.cs.whilelang.whileLang.NotExpr;
 import edu.ucf.cs.whilelang.whileLang.NumLitExpr;
 import edu.ucf.cs.whilelang.whileLang.Program;
@@ -21,7 +23,6 @@ import edu.ucf.cs.whilelang.whileLang.SkipS;
 import edu.ucf.cs.whilelang.whileLang.VarRefExpr;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
 import edu.ucf.cs.whilelang.whileLang.WhileS;
-import edu.ucf.cs.whilelang.whileLang.formals;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -71,8 +72,14 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case WhileLangPackage.FACTOR:
 				sequence_Factor(context, (Factor) semanticObject); 
 				return; 
+			case WhileLangPackage.FORMALS:
+				sequence_Formals(context, (Formals) semanticObject); 
+				return; 
 			case WhileLangPackage.IF_S:
 				sequence_If(context, (IfS) semanticObject); 
+				return; 
+			case WhileLangPackage.LABELED_EXP:
+				sequence_LabeledExp(context, (LabeledExp) semanticObject); 
 				return; 
 			case WhileLangPackage.NOT_EXPR:
 				sequence_NotExpr(context, (NotExpr) semanticObject); 
@@ -91,9 +98,6 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case WhileLangPackage.WHILE_S:
 				sequence_While(context, (WhileS) semanticObject); 
-				return; 
-			case WhileLangPackage.FORMALS:
-				sequence_formals(context, (formals) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -141,19 +145,10 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Assignment returns AssignS
 	 *
 	 * Constraint:
-	 *     (v=ID aexp=Expression)
+	 *     ((v=ID aexp=Expression) | (v=ID aexp=Expression label=INT))
 	 */
 	protected void sequence_Assignment(ISerializationContext context, AssignS semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.ASSIGN_S__V) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.ASSIGN_S__V));
-			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.ASSIGN_S__AEXP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.ASSIGN_S__AEXP));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAssignmentAccess().getVIDTerminalRuleCall_0_0(), semanticObject.getV());
-		feeder.accept(grammarAccess.getAssignmentAccess().getAexpExpressionParserRuleCall_2_0(), semanticObject.getAexp());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -336,11 +331,23 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
+	 *     Formals returns Formals
+	 *
+	 * Constraint:
+	 *     (names+=ID names+=ID*)
+	 */
+	protected void sequence_Formals(ISerializationContext context, Formals semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Stmt returns IfS
 	 *     If returns IfS
 	 *
 	 * Constraint:
-	 *     (bexp=Expression s1=Block s2=Block)
+	 *     (bexp=LabeledExp s1=Block s2=Block)
 	 */
 	protected void sequence_If(ISerializationContext context, IfS semanticObject) {
 		if (errorAcceptor != null) {
@@ -352,10 +359,22 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.IF_S__S2));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getIfAccess().getBexpExpressionParserRuleCall_1_0(), semanticObject.getBexp());
+		feeder.accept(grammarAccess.getIfAccess().getBexpLabeledExpParserRuleCall_1_0(), semanticObject.getBexp());
 		feeder.accept(grammarAccess.getIfAccess().getS1BlockParserRuleCall_3_0(), semanticObject.getS1());
 		feeder.accept(grammarAccess.getIfAccess().getS2BlockParserRuleCall_5_0(), semanticObject.getS2());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     LabeledExp returns LabeledExp
+	 *
+	 * Constraint:
+	 *     (be=Expression | (be=Expression label=INT))
+	 */
+	protected void sequence_LabeledExp(ISerializationContext context, LabeledExp semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -418,7 +437,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Program returns Program
 	 *
 	 * Constraint:
-	 *     (name=ID args=formals body=Stmt)
+	 *     (name=ID args=Formals body=Stmt)
 	 */
 	protected void sequence_Program(ISerializationContext context, Program semanticObject) {
 		if (errorAcceptor != null) {
@@ -443,7 +462,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Skip returns SkipS
 	 *
 	 * Constraint:
-	 *     {SkipS}
+	 *     label=INT?
 	 */
 	protected void sequence_Skip(ISerializationContext context, SkipS semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -486,7 +505,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     While returns WhileS
 	 *
 	 * Constraint:
-	 *     (bexp=Expression block=Block)
+	 *     (bexp=LabeledExp block=Block)
 	 */
 	protected void sequence_While(ISerializationContext context, WhileS semanticObject) {
 		if (errorAcceptor != null) {
@@ -496,21 +515,9 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.WHILE_S__BLOCK));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getWhileAccess().getBexpExpressionParserRuleCall_1_0(), semanticObject.getBexp());
+		feeder.accept(grammarAccess.getWhileAccess().getBexpLabeledExpParserRuleCall_1_0(), semanticObject.getBexp());
 		feeder.accept(grammarAccess.getWhileAccess().getBlockBlockParserRuleCall_3_0(), semanticObject.getBlock());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     formals returns formals
-	 *
-	 * Constraint:
-	 *     (names+=ID names+=ID*)
-	 */
-	protected void sequence_formals(ISerializationContext context, formals semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

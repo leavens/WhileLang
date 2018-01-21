@@ -11,8 +11,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//Program/args"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//Program/body"/>
     </genClasses>
-    <genClasses ecoreClass="WhileLang.ecore#//formals">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//formals/names"/>
+    <genClasses ecoreClass="WhileLang.ecore#//Formals">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//Formals/names"/>
     </genClasses>
     <genClasses ecoreClass="WhileLang.ecore#//S"/>
     <genClasses ecoreClass="WhileLang.ecore#//CompoundS">
@@ -21,8 +21,11 @@
     <genClasses ecoreClass="WhileLang.ecore#//AssignS">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//AssignS/v"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//AssignS/aexp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//AssignS/label"/>
     </genClasses>
-    <genClasses ecoreClass="WhileLang.ecore#//SkipS"/>
+    <genClasses ecoreClass="WhileLang.ecore#//SkipS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//SkipS/label"/>
+    </genClasses>
     <genClasses ecoreClass="WhileLang.ecore#//WhileS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//WhileS/bexp"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//WhileS/block"/>
@@ -31,6 +34,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//IfS/bexp"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//IfS/s1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//IfS/s2"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileLang.ecore#//LabeledExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//LabeledExp/be"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//LabeledExp/label"/>
     </genClasses>
     <genClasses ecoreClass="WhileLang.ecore#//Expr"/>
     <genClasses ecoreClass="WhileLang.ecore#//VarRefExpr">

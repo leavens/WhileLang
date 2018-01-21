@@ -1,6 +1,5 @@
 package edu.ucf.cs.whilelang.generator
 
-import edu.ucf.cs.whilelang.whileLang.S
 import edu.ucf.cs.whilelang.whileLang.Program
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator

@@ -9,6 +9,12 @@ package edu.ucf.cs.whilelang.whileLang;
  * A representation of the model object '<em><b>Skip S</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link edu.ucf.cs.whilelang.whileLang.SkipS#getLabel <em>Label</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getSkipS()
  * @model
@@ -16,4 +22,30 @@ package edu.ucf.cs.whilelang.whileLang;
  */
 public interface SkipS extends S
 {
+  /**
+   * Returns the value of the '<em><b>Label</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Label</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Label</em>' attribute.
+   * @see #setLabel(int)
+   * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getSkipS_Label()
+   * @model
+   * @generated
+   */
+  int getLabel();
+
+  /**
+   * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.SkipS#getLabel <em>Label</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Label</em>' attribute.
+   * @see #getLabel()
+   * @generated
+   */
+  void setLabel(int value);
+
 } // SkipS

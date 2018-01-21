@@ -66,13 +66,14 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
     switch (eClass.getClassifierID())
     {
       case WhileLangPackage.PROGRAM: return createProgram();
-      case WhileLangPackage.FORMALS: return createformals();
+      case WhileLangPackage.FORMALS: return createFormals();
       case WhileLangPackage.S: return createS();
       case WhileLangPackage.COMPOUND_S: return createCompoundS();
       case WhileLangPackage.ASSIGN_S: return createAssignS();
       case WhileLangPackage.SKIP_S: return createSkipS();
       case WhileLangPackage.WHILE_S: return createWhileS();
       case WhileLangPackage.IF_S: return createIfS();
+      case WhileLangPackage.LABELED_EXP: return createLabeledExp();
       case WhileLangPackage.EXPR: return createExpr();
       case WhileLangPackage.VAR_REF_EXPR: return createVarRefExpr();
       case WhileLangPackage.NUM_LIT_EXPR: return createNumLitExpr();
@@ -104,9 +105,9 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
    * <!-- end-user-doc -->
    * @generated
    */
-  public formals createformals()
+  public Formals createFormals()
   {
-    formalsImpl formals = new formalsImpl();
+    FormalsImpl formals = new FormalsImpl();
     return formals;
   }
 
@@ -174,6 +175,17 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
   {
     IfSImpl ifS = new IfSImpl();
     return ifS;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LabeledExp createLabeledExp()
+  {
+    LabeledExpImpl labeledExp = new LabeledExpImpl();
+    return labeledExp;
   }
 
   /**

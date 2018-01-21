@@ -82,8 +82,8 @@ public class WhileLangSwitch<T> extends Switch<T>
       }
       case WhileLangPackage.FORMALS:
       {
-        formals formals = (formals)theEObject;
-        T result = caseformals(formals);
+        Formals formals = (Formals)theEObject;
+        T result = caseFormals(formals);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -131,6 +131,13 @@ public class WhileLangSwitch<T> extends Switch<T>
         IfS ifS = (IfS)theEObject;
         T result = caseIfS(ifS);
         if (result == null) result = caseS(ifS);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case WhileLangPackage.LABELED_EXP:
+      {
+        LabeledExp labeledExp = (LabeledExp)theEObject;
+        T result = caseLabeledExp(labeledExp);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -234,17 +241,17 @@ public class WhileLangSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>formals</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Formals</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>formals</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Formals</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseformals(formals object)
+  public T caseFormals(Formals object)
   {
     return null;
   }
@@ -341,6 +348,22 @@ public class WhileLangSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseIfS(IfS object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Labeled Exp</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Labeled Exp</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLabeledExp(LabeledExp object)
   {
     return null;
   }

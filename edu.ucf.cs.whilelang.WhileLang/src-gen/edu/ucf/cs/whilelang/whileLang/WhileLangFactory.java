@@ -33,13 +33,13 @@ public interface WhileLangFactory extends EFactory
   Program createProgram();
 
   /**
-   * Returns a new object of class '<em>formals</em>'.
+   * Returns a new object of class '<em>Formals</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>formals</em>'.
+   * @return a new object of class '<em>Formals</em>'.
    * @generated
    */
-  formals createformals();
+  Formals createFormals();
 
   /**
    * Returns a new object of class '<em>S</em>'.
@@ -94,6 +94,15 @@ public interface WhileLangFactory extends EFactory
    * @generated
    */
   IfS createIfS();
+
+  /**
+   * Returns a new object of class '<em>Labeled Exp</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Labeled Exp</em>'.
+   * @generated
+   */
+  LabeledExp createLabeledExp();
 
   /**
    * Returns a new object of class '<em>Expr</em>'.

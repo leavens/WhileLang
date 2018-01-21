@@ -12,7 +12,9 @@ import edu.ucf.cs.whilelang.whileLang.BoolLitExpr;
 import edu.ucf.cs.whilelang.whileLang.CompoundS;
 import edu.ucf.cs.whilelang.whileLang.Expr;
 import edu.ucf.cs.whilelang.whileLang.Factor;
+import edu.ucf.cs.whilelang.whileLang.Formals;
 import edu.ucf.cs.whilelang.whileLang.IfS;
+import edu.ucf.cs.whilelang.whileLang.LabeledExp;
 import edu.ucf.cs.whilelang.whileLang.NotExpr;
 import edu.ucf.cs.whilelang.whileLang.NumLitExpr;
 import edu.ucf.cs.whilelang.whileLang.Program;
@@ -21,7 +23,6 @@ import edu.ucf.cs.whilelang.whileLang.VarRefExpr;
 import edu.ucf.cs.whilelang.whileLang.WhileLangFactory;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
 import edu.ucf.cs.whilelang.whileLang.WhileS;
-import edu.ucf.cs.whilelang.whileLang.formals;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -93,6 +94,13 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * @generated
    */
   private EClass ifSEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass labeledExpEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -272,7 +280,7 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getformals()
+  public EClass getFormals()
   {
     return formalsEClass;
   }
@@ -282,7 +290,7 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getformals_Names()
+  public EAttribute getFormals_Names()
   {
     return (EAttribute)formalsEClass.getEStructuralFeatures().get(0);
   }
@@ -352,9 +360,29 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getAssignS_Label()
+  {
+    return (EAttribute)assignSEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getSkipS()
   {
     return skipSEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSkipS_Label()
+  {
+    return (EAttribute)skipSEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -425,6 +453,36 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
   public EReference getIfS_S2()
   {
     return (EReference)ifSEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLabeledExp()
+  {
+    return labeledExpEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLabeledExp_Be()
+  {
+    return (EReference)labeledExpEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getLabeledExp_Label()
+  {
+    return (EAttribute)labeledExpEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -773,8 +831,10 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     assignSEClass = createEClass(ASSIGN_S);
     createEAttribute(assignSEClass, ASSIGN_S__V);
     createEReference(assignSEClass, ASSIGN_S__AEXP);
+    createEAttribute(assignSEClass, ASSIGN_S__LABEL);
 
     skipSEClass = createEClass(SKIP_S);
+    createEAttribute(skipSEClass, SKIP_S__LABEL);
 
     whileSEClass = createEClass(WHILE_S);
     createEReference(whileSEClass, WHILE_S__BEXP);
@@ -784,6 +844,10 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     createEReference(ifSEClass, IF_S__BEXP);
     createEReference(ifSEClass, IF_S__S1);
     createEReference(ifSEClass, IF_S__S2);
+
+    labeledExpEClass = createEClass(LABELED_EXP);
+    createEReference(labeledExpEClass, LABELED_EXP__BE);
+    createEAttribute(labeledExpEClass, LABELED_EXP__LABEL);
 
     exprEClass = createEClass(EXPR);
 
@@ -873,11 +937,11 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     // Initialize classes and features; add operations and parameters
     initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProgram_Name(), ecorePackage.getEString(), "name", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getProgram_Args(), this.getformals(), null, "args", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgram_Args(), this.getFormals(), null, "args", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProgram_Body(), this.getS(), null, "body", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(formalsEClass, formals.class, "formals", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getformals_Names(), ecorePackage.getEString(), "names", null, 0, -1, formals.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(formalsEClass, Formals.class, "Formals", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFormals_Names(), ecorePackage.getEString(), "names", null, 0, -1, Formals.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sEClass, edu.ucf.cs.whilelang.whileLang.S.class, "S", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -887,17 +951,23 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     initEClass(assignSEClass, AssignS.class, "AssignS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAssignS_V(), ecorePackage.getEString(), "v", null, 0, 1, AssignS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAssignS_Aexp(), this.getExpr(), null, "aexp", null, 0, 1, AssignS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAssignS_Label(), ecorePackage.getEInt(), "label", null, 0, 1, AssignS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(skipSEClass, SkipS.class, "SkipS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSkipS_Label(), ecorePackage.getEInt(), "label", null, 0, 1, SkipS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(whileSEClass, WhileS.class, "WhileS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getWhileS_Bexp(), this.getExpr(), null, "bexp", null, 0, 1, WhileS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getWhileS_Bexp(), this.getLabeledExp(), null, "bexp", null, 0, 1, WhileS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getWhileS_Block(), this.getCompoundS(), null, "block", null, 0, 1, WhileS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ifSEClass, IfS.class, "IfS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getIfS_Bexp(), this.getExpr(), null, "bexp", null, 0, 1, IfS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfS_Bexp(), this.getLabeledExp(), null, "bexp", null, 0, 1, IfS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfS_S1(), this.getCompoundS(), null, "s1", null, 0, 1, IfS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfS_S2(), this.getCompoundS(), null, "s2", null, 0, 1, IfS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(labeledExpEClass, LabeledExp.class, "LabeledExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLabeledExp_Be(), this.getExpr(), null, "be", null, 0, 1, LabeledExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLabeledExp_Label(), ecorePackage.getEInt(), "label", null, 0, 1, LabeledExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exprEClass, Expr.class, "Expr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
