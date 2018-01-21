@@ -30,9 +30,9 @@ class WhileLangCodeGen {
 	def dispatch String toJava(CompoundS c) {
 		'''
 		{
-		«FOR s : c.stmts»
-		    «s.toJava»
-		«ENDFOR»
+		    «FOR s : c.stmts»
+		      «s.toJava»
+		    «ENDFOR»
 		}
 		'''
 	}
@@ -62,23 +62,23 @@ class WhileLangCodeGen {
     
     // Expressions     
     def dispatch String toJava(BDisj be) {
-        '''(«be.left» || «be.right»)'''
+        '''(«be.left.toJava» || «be.right.toJava»)'''
     }
     
     def dispatch String toJava(BConj be) {
-        '''(«be.left» && «be.right»)'''
+        '''(«be.left.toJava» && «be.right.toJava»)'''
     }
     
     def dispatch String toJava(BRelExp be) {
-        '''(«be.left» «be.op» «be.right»)'''
+        '''(«be.left.toJava» «be.op» «be.right.toJava»)'''
     }
 
     def dispatch String toJava(AExpression ae) {
-        '''(«ae.left» «ae.op» «ae.right»)'''
+        '''(«ae.left.toJava» «ae.op» «ae.right.toJava»)'''
     }
 
     def dispatch String toJava(Factor ae) {
-        '''(«ae.left» «ae.op» «ae.right»)'''
+        '''(«ae.left.toJava» «ae.op» «ae.right.toJava»)'''
     }
 
     def dispatch String toJava(VarRefExpr vre) {

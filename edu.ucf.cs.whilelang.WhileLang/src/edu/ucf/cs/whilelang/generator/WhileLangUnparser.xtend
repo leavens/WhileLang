@@ -11,6 +11,7 @@ import edu.ucf.cs.whilelang.whileLang.Factor
 import edu.ucf.cs.whilelang.whileLang.IfS
 import edu.ucf.cs.whilelang.whileLang.NotExpr
 import edu.ucf.cs.whilelang.whileLang.NumLitExpr
+import edu.ucf.cs.whilelang.whileLang.S
 import edu.ucf.cs.whilelang.whileLang.SkipS
 import edu.ucf.cs.whilelang.whileLang.VarRefExpr
 import edu.ucf.cs.whilelang.whileLang.WhileS
@@ -19,64 +20,60 @@ import edu.ucf.cs.whilelang.whileLang.WhileS
  * Produces unparsed version of the While program
  */
 class WhileLangUnparser {
-     
+    
+    // Statements
     def dispatch String unparse(AssignS s) {
         '''«s.v»''' + " := " + '''«s.aexp.unparse»''' 	
     }
 	
 	def dispatch String unparse(CompoundS c) {
-        val ret = 
         '''
         {
-        «FOR s : c.stmts»
-            «s.unparse» ;
-        «ENDFOR»
+            «FOR s : c.stmts SEPARATOR ';'»
+                «s.unparse»
+            «ENDFOR»
         }
         '''
-        return ret.substring(0,ret.length()-2) // take out the last semicolon
     }
 
     def dispatch String unparse(SkipS s) {
-        '''
-        skip
-        '''
+        '''skip'''
     }
 
     def dispatch String unparse(WhileS w) {
         '''
         while («w.bexp.unparse») 
-        «w.block.unparse»
+        do «w.block.unparse»
         '''
     }
     
     def dispatch String unparse(IfS i) {
         '''
         if «i.bexp.unparse» 
-            «i.s1.unparse»
-        } else {
-            «i.s2.unparse»
-        }
+        then «i.s1.unparse»
+        else «i.s2.unparse»
         '''
     }
-             
+    
+    // Expressions         
     def dispatch String unparse(BDisj be) {
-        '''(«be.left» || «be.right»)'''
+        '''(«be.left.unparse» || «be.right.unparse»)'''
     }
     
     def dispatch String unparse(BConj be) {
-        '''(«be.left» && «be.right»)'''
+        '''(«be.left.unparse» && «be.right.unparse»)'''
     }
     
     def dispatch String unparse(BRelExp be) {
-        '''(«be.left» «be.op» «be.right»)'''
+        '''(«be.left.unparse» «be.op» «be.right.unparse»)'''
     }
 
     def dispatch String unparse(AExpression ae) {
-        '''(«ae.left» «ae.op» «ae.right»)'''
+        '''(«ae.left.unparse» «ae.op» «ae.right.unparse»)'''
     }
 
     def dispatch String unparse(Factor ae) {
-        '''(«ae.left» «ae.op» «ae.right»)'''
+        '''(«ae.left.unparse» «ae.op» «ae.right.unparse»)'''
     }
 
     def dispatch String unparse(VarRefExpr vre) {
