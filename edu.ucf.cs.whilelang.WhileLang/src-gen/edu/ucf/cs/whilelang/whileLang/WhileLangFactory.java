@@ -24,6 +24,24 @@ public interface WhileLangFactory extends EFactory
   WhileLangFactory eINSTANCE = edu.ucf.cs.whilelang.whileLang.impl.WhileLangFactoryImpl.init();
 
   /**
+   * Returns a new object of class '<em>Program</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Program</em>'.
+   * @generated
+   */
+  Program createProgram();
+
+  /**
+   * Returns a new object of class '<em>formals</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>formals</em>'.
+   * @generated
+   */
+  formals createformals();
+
+  /**
    * Returns a new object of class '<em>S</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -75,14 +75,141 @@ ruleProgram returns [EObject current=null]
 @after {
 	leaveRule();
 }:
-	{
-		newCompositeNode(grammarAccess.getProgramAccess().getStmtParserRuleCall());
-	}
-	this_Stmt_0=ruleStmt
-	{
-		$current = $this_Stmt_0.current;
-		afterParserOrEnumRuleCall();
-	}
+	(
+		otherlv_0='proc'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getProgramAccess().getProcKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getProgramAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getProgramRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='('
+		{
+			newLeafNode(otherlv_2, grammarAccess.getProgramAccess().getLeftParenthesisKeyword_2());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getProgramAccess().getArgsFormalsParserRuleCall_3_0());
+				}
+				lv_args_3_0=ruleformals
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getProgramRule());
+					}
+					set(
+						$current,
+						"args",
+						lv_args_3_0,
+						"edu.ucf.cs.whilelang.WhileLang.formals");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_4=')'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getProgramAccess().getRightParenthesisKeyword_4());
+		}
+		otherlv_5='is'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getProgramAccess().getIsKeyword_5());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getProgramAccess().getBodyStmtParserRuleCall_6_0());
+				}
+				lv_body_6_0=ruleStmt
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getProgramRule());
+					}
+					set(
+						$current,
+						"body",
+						lv_body_6_0,
+						"edu.ucf.cs.whilelang.WhileLang.Stmt");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleformals
+entryRuleformals returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFormalsRule()); }
+	iv_ruleformals=ruleformals
+	{ $current=$iv_ruleformals.current; }
+	EOF;
+
+// Rule formals
+ruleformals returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_names_0_0=RULE_ID
+				{
+					newLeafNode(lv_names_0_0, grammarAccess.getFormalsAccess().getNamesIDTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFormalsRule());
+					}
+					addWithLastConsumed(
+						$current,
+						"names",
+						lv_names_0_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		(
+			otherlv_1=','
+			{
+				newLeafNode(otherlv_1, grammarAccess.getFormalsAccess().getCommaKeyword_1_0());
+			}
+			(
+				(
+					lv_names_2_0=RULE_ID
+					{
+						newLeafNode(lv_names_2_0, grammarAccess.getFormalsAccess().getNamesIDTerminalRuleCall_1_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getFormalsRule());
+						}
+						addWithLastConsumed(
+							$current,
+							"names",
+							lv_names_2_0,
+							"org.eclipse.xtext.common.Terminals.ID");
+					}
+				)
+			)
+		)*
+	)
 ;
 
 // Entry rule entryRuleStmt

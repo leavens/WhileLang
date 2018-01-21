@@ -76,6 +76,16 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
     new WhileLangSwitch<Adapter>()
     {
       @Override
+      public Adapter caseProgram(Program object)
+      {
+        return createProgramAdapter();
+      }
+      @Override
+      public Adapter caseformals(formals object)
+      {
+        return createformalsAdapter();
+      }
+      @Override
       public Adapter caseS(S object)
       {
         return createSAdapter();
@@ -176,6 +186,36 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
     return modelSwitch.doSwitch((EObject)target);
   }
 
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.Program <em>Program</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ucf.cs.whilelang.whileLang.Program
+   * @generated
+   */
+  public Adapter createProgramAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.formals <em>formals</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ucf.cs.whilelang.whileLang.formals
+   * @generated
+   */
+  public Adapter createformalsAdapter()
+  {
+    return null;
+  }
 
   /**
    * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.S <em>S</em>}'.

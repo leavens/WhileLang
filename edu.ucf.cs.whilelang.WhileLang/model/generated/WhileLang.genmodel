@@ -6,6 +6,14 @@
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.10">
   <genPackages prefix="WhileLang" basePackage="edu.ucf.cs.whilelang" disposableProviderFactory="true"
       fileExtensions="wh" ecorePackage="WhileLang.ecore#/">
+    <genClasses ecoreClass="WhileLang.ecore#//Program">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//Program/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//Program/args"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//Program/body"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileLang.ecore#//formals">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//formals/names"/>
+    </genClasses>
     <genClasses ecoreClass="WhileLang.ecore#//S"/>
     <genClasses ecoreClass="WhileLang.ecore#//CompoundS">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//CompoundS/stmts"/>

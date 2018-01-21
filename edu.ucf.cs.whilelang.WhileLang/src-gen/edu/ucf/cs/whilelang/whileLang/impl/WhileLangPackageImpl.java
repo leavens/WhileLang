@@ -15,11 +15,13 @@ import edu.ucf.cs.whilelang.whileLang.Factor;
 import edu.ucf.cs.whilelang.whileLang.IfS;
 import edu.ucf.cs.whilelang.whileLang.NotExpr;
 import edu.ucf.cs.whilelang.whileLang.NumLitExpr;
+import edu.ucf.cs.whilelang.whileLang.Program;
 import edu.ucf.cs.whilelang.whileLang.SkipS;
 import edu.ucf.cs.whilelang.whileLang.VarRefExpr;
 import edu.ucf.cs.whilelang.whileLang.WhileLangFactory;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
 import edu.ucf.cs.whilelang.whileLang.WhileS;
+import edu.ucf.cs.whilelang.whileLang.formals;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -36,6 +38,20 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  */
 public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPackage
 {
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass programEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass formalsEClass = null;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -209,6 +225,66 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(WhileLangPackage.eNS_URI, theWhileLangPackage);
     return theWhileLangPackage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getProgram()
+  {
+    return programEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getProgram_Name()
+  {
+    return (EAttribute)programEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getProgram_Args()
+  {
+    return (EReference)programEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getProgram_Body()
+  {
+    return (EReference)programEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getformals()
+  {
+    return formalsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getformals_Names()
+  {
+    return (EAttribute)formalsEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -681,6 +757,14 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     isCreated = true;
 
     // Create classes and their features
+    programEClass = createEClass(PROGRAM);
+    createEAttribute(programEClass, PROGRAM__NAME);
+    createEReference(programEClass, PROGRAM__ARGS);
+    createEReference(programEClass, PROGRAM__BODY);
+
+    formalsEClass = createEClass(FORMALS);
+    createEAttribute(formalsEClass, FORMALS__NAMES);
+
     sEClass = createEClass(S);
 
     compoundSEClass = createEClass(COMPOUND_S);
@@ -787,6 +871,14 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     factorEClass.getESuperTypes().add(this.getExpr());
 
     // Initialize classes and features; add operations and parameters
+    initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getProgram_Name(), ecorePackage.getEString(), "name", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgram_Args(), this.getformals(), null, "args", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgram_Body(), this.getS(), null, "body", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(formalsEClass, formals.class, "formals", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getformals_Names(), ecorePackage.getEString(), "names", null, 0, -1, formals.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(sEClass, edu.ucf.cs.whilelang.whileLang.S.class, "S", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(compoundSEClass, CompoundS.class, "CompoundS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

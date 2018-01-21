@@ -73,6 +73,20 @@ public class WhileLangSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
+      case WhileLangPackage.PROGRAM:
+      {
+        Program program = (Program)theEObject;
+        T result = caseProgram(program);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case WhileLangPackage.FORMALS:
+      {
+        formals formals = (formals)theEObject;
+        T result = caseformals(formals);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case WhileLangPackage.S:
       {
         S s = (S)theEObject;
@@ -201,6 +215,38 @@ public class WhileLangSwitch<T> extends Switch<T>
       }
       default: return defaultCase(theEObject);
     }
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Program</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Program</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseProgram(Program object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>formals</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>formals</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseformals(formals object)
+  {
+    return null;
   }
 
   /**

@@ -2,7 +2,9 @@ grammar edu.ucf.cs.whilelang.WhileLang with org.eclipse.xtext.common.Terminals
 
 generate whileLang "http://www.ucf.edu/cs/whilelang/WhileLang"
 
-Program returns S: Stmt;
+Program: 'proc' name=ID '(' args=formals ')' 'is' body=Stmt;
+formals: names+=ID (',' names+=ID)*;
+
 Stmt returns S: Assignment | Skip | Block | While | If;
 Block returns CompoundS: '{' stmts+=Stmt (';' stmts+=Stmt)* '}';
 Assignment returns AssignS: (v=ID) ':=' (aexp=Expression);

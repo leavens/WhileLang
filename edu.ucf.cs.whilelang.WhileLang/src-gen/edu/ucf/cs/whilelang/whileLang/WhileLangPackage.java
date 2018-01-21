@@ -58,6 +58,80 @@ public interface WhileLangPackage extends EPackage
   WhileLangPackage eINSTANCE = edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl.init();
 
   /**
+   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.ProgramImpl <em>Program</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ucf.cs.whilelang.whileLang.impl.ProgramImpl
+   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getProgram()
+   * @generated
+   */
+  int PROGRAM = 0;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROGRAM__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROGRAM__ARGS = 1;
+
+  /**
+   * The feature id for the '<em><b>Body</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROGRAM__BODY = 2;
+
+  /**
+   * The number of structural features of the '<em>Program</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROGRAM_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.formalsImpl <em>formals</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ucf.cs.whilelang.whileLang.impl.formalsImpl
+   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getformals()
+   * @generated
+   */
+  int FORMALS = 1;
+
+  /**
+   * The feature id for the '<em><b>Names</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FORMALS__NAMES = 0;
+
+  /**
+   * The number of structural features of the '<em>formals</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FORMALS_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.SImpl <em>S</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -65,7 +139,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getS()
    * @generated
    */
-  int S = 0;
+  int S = 2;
 
   /**
    * The number of structural features of the '<em>S</em>' class.
@@ -84,7 +158,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getCompoundS()
    * @generated
    */
-  int COMPOUND_S = 1;
+  int COMPOUND_S = 3;
 
   /**
    * The feature id for the '<em><b>Stmts</b></em>' containment reference list.
@@ -112,7 +186,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getAssignS()
    * @generated
    */
-  int ASSIGN_S = 2;
+  int ASSIGN_S = 4;
 
   /**
    * The feature id for the '<em><b>V</b></em>' attribute.
@@ -149,7 +223,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getSkipS()
    * @generated
    */
-  int SKIP_S = 3;
+  int SKIP_S = 5;
 
   /**
    * The number of structural features of the '<em>Skip S</em>' class.
@@ -168,7 +242,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getWhileS()
    * @generated
    */
-  int WHILE_S = 4;
+  int WHILE_S = 6;
 
   /**
    * The feature id for the '<em><b>Bexp</b></em>' containment reference.
@@ -205,7 +279,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getIfS()
    * @generated
    */
-  int IF_S = 5;
+  int IF_S = 7;
 
   /**
    * The feature id for the '<em><b>Bexp</b></em>' containment reference.
@@ -251,7 +325,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getExpr()
    * @generated
    */
-  int EXPR = 6;
+  int EXPR = 8;
 
   /**
    * The number of structural features of the '<em>Expr</em>' class.
@@ -270,7 +344,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getVarRefExpr()
    * @generated
    */
-  int VAR_REF_EXPR = 7;
+  int VAR_REF_EXPR = 9;
 
   /**
    * The feature id for the '<em><b>Vname</b></em>' attribute.
@@ -298,7 +372,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getNumLitExpr()
    * @generated
    */
-  int NUM_LIT_EXPR = 8;
+  int NUM_LIT_EXPR = 10;
 
   /**
    * The feature id for the '<em><b>Negated</b></em>' attribute.
@@ -335,7 +409,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBoolLitExpr()
    * @generated
    */
-  int BOOL_LIT_EXPR = 9;
+  int BOOL_LIT_EXPR = 11;
 
   /**
    * The feature id for the '<em><b>Bval</b></em>' attribute.
@@ -363,7 +437,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getNotExpr()
    * @generated
    */
-  int NOT_EXPR = 10;
+  int NOT_EXPR = 12;
 
   /**
    * The feature id for the '<em><b>Bexp</b></em>' containment reference.
@@ -391,7 +465,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBDisj()
    * @generated
    */
-  int BDISJ = 11;
+  int BDISJ = 13;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -437,7 +511,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBConj()
    * @generated
    */
-  int BCONJ = 12;
+  int BCONJ = 14;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -483,7 +557,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBRelExp()
    * @generated
    */
-  int BREL_EXP = 13;
+  int BREL_EXP = 15;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -529,7 +603,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getAExpression()
    * @generated
    */
-  int AEXPRESSION = 14;
+  int AEXPRESSION = 16;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -575,7 +649,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getFactor()
    * @generated
    */
-  int FACTOR = 15;
+  int FACTOR = 17;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -613,6 +687,70 @@ public interface WhileLangPackage extends EPackage
    */
   int FACTOR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 3;
 
+
+  /**
+   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.Program <em>Program</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Program</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.Program
+   * @generated
+   */
+  EClass getProgram();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.Program#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.Program#getName()
+   * @see #getProgram()
+   * @generated
+   */
+  EAttribute getProgram_Name();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.Program#getArgs <em>Args</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Args</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.Program#getArgs()
+   * @see #getProgram()
+   * @generated
+   */
+  EReference getProgram_Args();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.Program#getBody <em>Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Body</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.Program#getBody()
+   * @see #getProgram()
+   * @generated
+   */
+  EReference getProgram_Body();
+
+  /**
+   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.formals <em>formals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>formals</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.formals
+   * @generated
+   */
+  EClass getformals();
+
+  /**
+   * Returns the meta object for the attribute list '{@link edu.ucf.cs.whilelang.whileLang.formals#getNames <em>Names</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Names</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.formals#getNames()
+   * @see #getformals()
+   * @generated
+   */
+  EAttribute getformals_Names();
 
   /**
    * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.S <em>S</em>}'.
@@ -1105,6 +1243,58 @@ public interface WhileLangPackage extends EPackage
    */
   interface Literals
   {
+    /**
+     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.ProgramImpl <em>Program</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ucf.cs.whilelang.whileLang.impl.ProgramImpl
+     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getProgram()
+     * @generated
+     */
+    EClass PROGRAM = eINSTANCE.getProgram();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PROGRAM__NAME = eINSTANCE.getProgram_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROGRAM__ARGS = eINSTANCE.getProgram_Args();
+
+    /**
+     * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROGRAM__BODY = eINSTANCE.getProgram_Body();
+
+    /**
+     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.formalsImpl <em>formals</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ucf.cs.whilelang.whileLang.impl.formalsImpl
+     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getformals()
+     * @generated
+     */
+    EClass FORMALS = eINSTANCE.getformals();
+
+    /**
+     * The meta object literal for the '<em><b>Names</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FORMALS__NAMES = eINSTANCE.getformals_Names();
+
     /**
      * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.SImpl <em>S</em>}' class.
      * <!-- begin-user-doc -->

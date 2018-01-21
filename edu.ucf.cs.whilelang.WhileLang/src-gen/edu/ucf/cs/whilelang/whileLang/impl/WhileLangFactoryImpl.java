@@ -65,6 +65,8 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
   {
     switch (eClass.getClassifierID())
     {
+      case WhileLangPackage.PROGRAM: return createProgram();
+      case WhileLangPackage.FORMALS: return createformals();
       case WhileLangPackage.S: return createS();
       case WhileLangPackage.COMPOUND_S: return createCompoundS();
       case WhileLangPackage.ASSIGN_S: return createAssignS();
@@ -84,6 +86,28 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Program createProgram()
+  {
+    ProgramImpl program = new ProgramImpl();
+    return program;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public formals createformals()
+  {
+    formalsImpl formals = new formalsImpl();
+    return formals;
   }
 
   /**
