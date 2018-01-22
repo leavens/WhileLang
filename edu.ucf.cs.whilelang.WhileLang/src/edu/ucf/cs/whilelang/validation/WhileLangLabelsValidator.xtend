@@ -11,6 +11,8 @@ import edu.ucf.cs.whilelang.whileLang.CompoundS
 import edu.ucf.cs.whilelang.whileLang.WhileS
 import edu.ucf.cs.whilelang.whileLang.IfS
 import edu.ucf.cs.whilelang.whileLang.LabeledExp
+import edu.ucf.cs.whilelang.generator.WhileLangUnparser
+import edu.ucf.cs.whilelang.whileLang.WhileLangPackage
 
 /**
  * This class checks that all labels in a program are unique, and adds labels
@@ -42,8 +44,12 @@ class WhileLangLabelsValidator extends AbstractWhileLangValidator {
             return newLab
         } else {
             if (usedLabels.contains(label)) {
-                System.err.println("Error duplicate label " + label + " for " + ast.toString)
-                error("duplicate label '" + label + "'", ast.eContainingFeature)
+                val up = new WhileLangUnparser()
+                System.err.println("Error duplicate label " + label + " for " + up.unparse(ast))
+                val feat = ast.eContainingFeature
+                // TODO: fix the following, it shouldn't assume an assignment
+                error("duplicate label '" + label + "'", feat, WhileLangPackage.Literals.ASSIGN_S__LABEL)
+                System.err.println("Finished with error report")
             } else {
                 usedLabels.add(label)
             }
