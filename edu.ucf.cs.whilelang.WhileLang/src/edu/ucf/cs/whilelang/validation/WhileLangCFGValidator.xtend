@@ -25,11 +25,11 @@ class WhileLangCFGValidator extends AbstractWhileLangValidator {
 	/** What is the ElementaryBlock labeled by this key? */
 	val itsBlockMap = new FlowGraph<Integer, ElementaryBlock>()
 	/** What set of ElementaryBlocks may flow into the key block? */
-	val inFlowsMap = new FlowGraph<ElementaryBlock, Set<ElementaryBlock>>()
+	val inFlowsMap = new FlowGraph<S, Set<ElementaryBlock>>()
 	/** What is the next ElementaryBlock that lexically follows this one? */
 	val nextFlowMap = new FlowGraph<S, S>()
 	/** What set of ElementaryBlocks may the key flow to? */
-	val outFlowsMap = new FlowGraph<ElementaryBlock, Set<ElementaryBlock>>()
+	val outFlowsMap = new FlowGraph<S, Set<ElementaryBlock>>()
 	
 	@Check
 	def constructCFG(Program p) {
@@ -96,18 +96,21 @@ class WhileLangCFGValidator extends AbstractWhileLangValidator {
     
     def dispatch constructInOutFLows(CompoundS c) {
         for (i : 0..c.stmts.size()-1) {
-            c.stmts.get(i).constructInOutFLows
             if (i == 0) {
                 if (inFlowsMap.containsKey(c)) {
-                    inFlowsMap.put(c.stmts.get(i).initial, inFlowsMap.get(i))
+                    inFlowsMap.put(c.stmts.get(i).initial as ElementaryBlock, 
+                        inFlowsMap.get(c))
                 }
             } else {
-                inFlowsMap.put(c.stmts.get(i), c.stmts.get(i-1).finals)
+                inFlowsMap.put(c.stmts.get(i) as ElementaryBlock, 
+                                c.stmts.get(i-1).finals)
             }
-            if (i < c.stmts.size()-1) {
-                for (s : c.stmts.get(i).finals)
-                outFlowsMap.put(s, nextFlowMap.get(c.stmts.get(i)))               
+            if (i < c.stmts.size()-2) {
+                outFlowsMap.put(c.stmts.get(i) as ElementaryBlock, 
+                                new SetRepUtility(c.stmts.get(i+1).initial as ElementaryBlock
+                                ))               
             }
+            c.stmts.get(i).constructInOutFLows
         }
     }
     

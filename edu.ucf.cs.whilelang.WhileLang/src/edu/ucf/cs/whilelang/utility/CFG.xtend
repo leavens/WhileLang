@@ -14,28 +14,30 @@ import java.util.Set
  */
 class CFG {
 
-    /* The initial() method returns the initial label of an AST node. */
-    def dispatch int initial(AssignS s) {
+    /* The init() method returns the initial ElementaryBlock of a statement. */
+    def dispatch int init(AssignS s) {
         s.label
     }
     
-    def dispatch int initial(SkipS s) {
+    def dispatch int init(SkipS s) {
         s.label
     }
     
-    def dispatch int initial(IfS s) {
+    def dispatch int init(IfS s) {
         s.bexp.label
     }
     
-    def dispatch int initial(WhileS s) {
+    def dispatch int init(WhileS s) {
         s.bexp.label
     }
     
-    def dispatch int initial(CompoundS s) {
-        s.stmts.get(0).initial
+    def dispatch int init(CompoundS s) {
+        s.stmts.get(0).init
     }
 			
-	/* finals() returns the set of all the final labels of an AST node. */
+	/* finals() returns the set of all the labels of the final ElementaryBlocks 
+	 * of a statement.
+	 */
     def dispatch Set<Integer> finals(AssignS s) {
         new SetRepUtility(s.label)
     }
@@ -58,7 +60,7 @@ class CFG {
         s.stmts.get(s.stmts.size()-1).finals
     }
 	
-	/* blocks() returns the set of labels of the elementary blocks in a statement. */
+	/* blocks() returns the set of elementary blocks in a statement. */
     def dispatch Set<ElementaryBlock> blocks(AssignS s) {
         new SetRepUtility(s as ElementaryBlock)
     }
@@ -200,11 +202,11 @@ class CFG {
 	eq Program.getS().outFlows() = SetRepUtility.emptySet();
 	eq IfS.getS1().outFlows() {
 	    return next() == null ? SetRepUtility.emptySet() 
-	    		: SetRepUtility.singleton(next().initial());
+	    		: SetRepUtility.singleton(next().init());
 	}
 	eq IfS.getS2().outFlows() {
 	    return next() == null ? SetRepUtility.emptySet() 
-	    		: SetRepUtility.singleton(next().initial());
+	    		: SetRepUtility.singleton(next().init());
 	}
 	eq WhileS.getS().outFlows() {
 	    return SetRepUtility.singleton(getLabeledExpr().getLabelAST());
@@ -213,20 +215,20 @@ class CFG {
 		if (index == getNumSList()-1) {
 			return outFlows();
 		} else { 
-			return SetRepUtility.singleton(getSList(index+1).initial());
+			return SetRepUtility.singleton(getSList(index+1).init());
 		}
 	}
 	*/
 	
 	/* inh Set<Label> LabeledExpr.outFlows();
 	eq IfS.getLabeledExpr().outFlows() {
-	    Set<Label> ret = SetRepUtility.singleton(getS1().initial());
-	    ret.add(getS2().initial());
+	    Set<Label> ret = SetRepUtility.singleton(getS1().init());
+	    ret.add(getS2().init());
 	    return ret;
 	}
 	eq WhileS.getLabeledExpr().outFlows() {
-		Set<Label> outs = SetRepUtility.singleton(getS().initial());
-		if (next() != null) { outs.add(next().initial()); }
+		Set<Label> outs = SetRepUtility.singleton(getS().init());
+		if (next() != null) { outs.add(next().init()); }
 		return outs;
 	}
 	*/
@@ -238,14 +240,14 @@ class CFG {
 	eq IfS.flows() {
 	     FlowGraph<Label, Label> ret = getS1().flows();
 	     ret.putAll(getS2().flows());
-	     ret.put(getLabeledExpr().getLabelAST(), getS1().initial());
-	     ret.put(getLabeledExpr().getLabelAST(), getS2().initial());
+	     ret.put(getLabeledExpr().getLabelAST(), getS1().init());
+	     ret.put(getLabeledExpr().getLabelAST(), getS2().init());
 	     return ret;
 	  }
 	eq WhileS.flows() {
 	     Label l = getLabeledExpr().getLabelAST();
 	     FlowGraph<Label, Label> ret = getS().flows();
-	     ret.put(l, getS().initial());
+	     ret.put(l, getS().init());
 	     ret.putAll(FlowGraph.crossWith(getS().finals(), l));
 	     return ret;
           }
@@ -254,7 +256,7 @@ class CFG {
 	     for (int i = 1; i < getNumSList()-1; i++) {
 	        ret.putAll(getSList(i-1).flows());
 	        Set<Label> finalsM1 = getSList(i-1).finals();
-	        ret.putAll(FlowGraph.crossWith(finalsM1, getSList(i).initial()));
+	        ret.putAll(FlowGraph.crossWith(finalsM1, getSList(i).init()));
 	     }
 	     ret.putAll(getSList(getNumSList()-1).flows());
 	     return ret;
