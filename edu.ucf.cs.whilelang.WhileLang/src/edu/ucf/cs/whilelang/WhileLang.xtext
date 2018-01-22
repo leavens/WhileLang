@@ -28,6 +28,8 @@ NumLitExpr: num=INT;
 BoolLitExpr: bval='true' | bval='false';
 NotExpr: 'not' (bexp=Primary);
 
+ElementaryBlock: Assignment | Skip | LabeledExp ;
+
 @Override
 terminal SL_COMMENT: '%' !('\n'|'\r')* ('\r'? '\n')?;
 @Override

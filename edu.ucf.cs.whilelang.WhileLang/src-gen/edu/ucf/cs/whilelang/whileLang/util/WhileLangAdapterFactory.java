@@ -146,6 +146,11 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
         return createNotExprAdapter();
       }
       @Override
+      public Adapter caseElementaryBlock(ElementaryBlock object)
+      {
+        return createElementaryBlockAdapter();
+      }
+      @Override
       public Adapter caseBDisj(BDisj object)
       {
         return createBDisjAdapter();
@@ -398,6 +403,21 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createNotExprAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.ElementaryBlock <em>Elementary Block</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ucf.cs.whilelang.whileLang.ElementaryBlock
+   * @generated
+   */
+  public Adapter createElementaryBlockAdapter()
   {
     return null;
   }

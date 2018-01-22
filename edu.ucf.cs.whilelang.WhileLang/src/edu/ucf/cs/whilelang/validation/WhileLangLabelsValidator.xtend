@@ -13,9 +13,8 @@ import edu.ucf.cs.whilelang.whileLang.IfS
 import edu.ucf.cs.whilelang.whileLang.LabeledExp
 
 /**
- * This class contains custom validation rules. 
- *
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
+ * This class checks that all labels in a program are unique, and adds labels
+ * to each elementary block if they are not already given in the program.
  */
 class WhileLangLabelsValidator extends AbstractWhileLangValidator {
 	
@@ -43,8 +42,8 @@ class WhileLangLabelsValidator extends AbstractWhileLangValidator {
             return newLab
         } else {
             if (usedLabels.contains(label)) {
-                System.err.println("issuing error about " + label + " for " + ast.toString)
-                error("duplicate label '" + label+"'", ast.eContainingFeature)
+                System.err.println("Error duplicate label " + label + " for " + ast.toString)
+                error("duplicate label '" + label + "'", ast.eContainingFeature)
             } else {
                 usedLabels.add(label)
             }

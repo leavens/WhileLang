@@ -22,7 +22,7 @@ package edu.ucf.cs.whilelang.whileLang;
  * @model
  * @generated
  */
-public interface AssignS extends S
+public interface AssignS extends S, ElementaryBlock
 {
   /**
    * Returns the value of the '<em><b>V</b></em>' attribute.

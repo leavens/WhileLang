@@ -20,7 +20,7 @@ package edu.ucf.cs.whilelang.whileLang;
  * @model
  * @generated
  */
-public interface SkipS extends S
+public interface SkipS extends S, ElementaryBlock
 {
   /**
    * Returns the value of the '<em><b>Label</b></em>' attribute.

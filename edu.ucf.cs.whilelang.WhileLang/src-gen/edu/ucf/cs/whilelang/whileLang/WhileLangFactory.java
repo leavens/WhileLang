@@ -150,6 +150,15 @@ public interface WhileLangFactory extends EFactory
   NotExpr createNotExpr();
 
   /**
+   * Returns a new object of class '<em>Elementary Block</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Elementary Block</em>'.
+   * @generated
+   */
+  ElementaryBlock createElementaryBlock();
+
+  /**
    * Returns a new object of class '<em>BDisj</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

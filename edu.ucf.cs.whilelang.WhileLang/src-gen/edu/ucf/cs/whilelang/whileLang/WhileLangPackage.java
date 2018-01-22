@@ -336,6 +336,25 @@ public interface WhileLangPackage extends EPackage
   int IF_S_FEATURE_COUNT = S_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.ElementaryBlockImpl <em>Elementary Block</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ucf.cs.whilelang.whileLang.impl.ElementaryBlockImpl
+   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getElementaryBlock()
+   * @generated
+   */
+  int ELEMENTARY_BLOCK = 14;
+
+  /**
+   * The number of structural features of the '<em>Elementary Block</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ELEMENTARY_BLOCK_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.LabeledExpImpl <em>Labeled Exp</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -352,7 +371,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LABELED_EXP__BE = 0;
+  int LABELED_EXP__BE = ELEMENTARY_BLOCK_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -361,7 +380,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LABELED_EXP__LABEL = 1;
+  int LABELED_EXP__LABEL = ELEMENTARY_BLOCK_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Labeled Exp</em>' class.
@@ -370,7 +389,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LABELED_EXP_FEATURE_COUNT = 2;
+  int LABELED_EXP_FEATURE_COUNT = ELEMENTARY_BLOCK_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.ExprImpl <em>Expr</em>}' class.
@@ -511,7 +530,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBDisj()
    * @generated
    */
-  int BDISJ = 14;
+  int BDISJ = 15;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -557,7 +576,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBConj()
    * @generated
    */
-  int BCONJ = 15;
+  int BCONJ = 16;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -603,7 +622,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBRelExp()
    * @generated
    */
-  int BREL_EXP = 16;
+  int BREL_EXP = 17;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -649,7 +668,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getAExpression()
    * @generated
    */
-  int AEXPRESSION = 17;
+  int AEXPRESSION = 18;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -695,7 +714,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getFactor()
    * @generated
    */
-  int FACTOR = 18;
+  int FACTOR = 19;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1093,6 +1112,16 @@ public interface WhileLangPackage extends EPackage
    * @generated
    */
   EReference getNotExpr_Bexp();
+
+  /**
+   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.ElementaryBlock <em>Elementary Block</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Elementary Block</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.ElementaryBlock
+   * @generated
+   */
+  EClass getElementaryBlock();
 
   /**
    * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.BDisj <em>BDisj</em>}'.
@@ -1631,6 +1660,16 @@ public interface WhileLangPackage extends EPackage
      * @generated
      */
     EReference NOT_EXPR__BEXP = eINSTANCE.getNotExpr_Bexp();
+
+    /**
+     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.ElementaryBlockImpl <em>Elementary Block</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ucf.cs.whilelang.whileLang.impl.ElementaryBlockImpl
+     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getElementaryBlock()
+     * @generated
+     */
+    EClass ELEMENTARY_BLOCK = eINSTANCE.getElementaryBlock();
 
     /**
      * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.BDisjImpl <em>BDisj</em>}' class.

@@ -17,12 +17,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="stmts" upperBound="-1"
         eType="#//S" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AssignS" eSuperTypes="#//S">
+  <eClassifiers xsi:type="ecore:EClass" name="AssignS" eSuperTypes="#//S #//ElementaryBlock">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="v" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="aexp" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SkipS" eSuperTypes="#//S">
+  <eClassifiers xsi:type="ecore:EClass" name="SkipS" eSuperTypes="#//S #//ElementaryBlock">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WhileS" eSuperTypes="#//S">
@@ -39,7 +39,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="s2" eType="#//CompoundS"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LabeledExp">
+  <eClassifiers xsi:type="ecore:EClass" name="LabeledExp" eSuperTypes="#//ElementaryBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="be" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
@@ -56,6 +56,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="NotExpr" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bexp" eType="#//Expr" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementaryBlock"/>
   <eClassifiers xsi:type="ecore:EClass" name="BDisj" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

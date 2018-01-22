@@ -10,6 +10,7 @@ import edu.ucf.cs.whilelang.whileLang.BDisj;
 import edu.ucf.cs.whilelang.whileLang.BRelExp;
 import edu.ucf.cs.whilelang.whileLang.BoolLitExpr;
 import edu.ucf.cs.whilelang.whileLang.CompoundS;
+import edu.ucf.cs.whilelang.whileLang.ElementaryBlock;
 import edu.ucf.cs.whilelang.whileLang.Expr;
 import edu.ucf.cs.whilelang.whileLang.Factor;
 import edu.ucf.cs.whilelang.whileLang.Formals;
@@ -136,6 +137,13 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * @generated
    */
   private EClass notExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass elementaryBlockEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -580,6 +588,16 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getElementaryBlock()
+  {
+    return elementaryBlockEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBDisj()
   {
     return bDisjEClass;
@@ -853,6 +871,8 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     notExprEClass = createEClass(NOT_EXPR);
     createEReference(notExprEClass, NOT_EXPR__BEXP);
 
+    elementaryBlockEClass = createEClass(ELEMENTARY_BLOCK);
+
     bDisjEClass = createEClass(BDISJ);
     createEReference(bDisjEClass, BDISJ__LEFT);
     createEAttribute(bDisjEClass, BDISJ__OP);
@@ -910,9 +930,12 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     // Add supertypes to classes
     compoundSEClass.getESuperTypes().add(this.getS());
     assignSEClass.getESuperTypes().add(this.getS());
+    assignSEClass.getESuperTypes().add(this.getElementaryBlock());
     skipSEClass.getESuperTypes().add(this.getS());
+    skipSEClass.getESuperTypes().add(this.getElementaryBlock());
     whileSEClass.getESuperTypes().add(this.getS());
     ifSEClass.getESuperTypes().add(this.getS());
+    labeledExpEClass.getESuperTypes().add(this.getElementaryBlock());
     varRefExprEClass.getESuperTypes().add(this.getExpr());
     numLitExprEClass.getESuperTypes().add(this.getExpr());
     boolLitExprEClass.getESuperTypes().add(this.getExpr());
@@ -971,6 +994,8 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
 
     initEClass(notExprEClass, NotExpr.class, "NotExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNotExpr_Bexp(), this.getExpr(), null, "bexp", null, 0, 1, NotExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(elementaryBlockEClass, ElementaryBlock.class, "ElementaryBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(bDisjEClass, BDisj.class, "BDisj", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBDisj_Left(), this.getExpr(), null, "left", null, 0, 1, BDisj.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

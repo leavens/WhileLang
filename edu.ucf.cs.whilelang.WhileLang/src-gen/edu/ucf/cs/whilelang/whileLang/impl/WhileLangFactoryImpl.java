@@ -79,6 +79,7 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
       case WhileLangPackage.NUM_LIT_EXPR: return createNumLitExpr();
       case WhileLangPackage.BOOL_LIT_EXPR: return createBoolLitExpr();
       case WhileLangPackage.NOT_EXPR: return createNotExpr();
+      case WhileLangPackage.ELEMENTARY_BLOCK: return createElementaryBlock();
       case WhileLangPackage.BDISJ: return createBDisj();
       case WhileLangPackage.BCONJ: return createBConj();
       case WhileLangPackage.BREL_EXP: return createBRelExp();
@@ -241,6 +242,17 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
   {
     NotExprImpl notExpr = new NotExprImpl();
     return notExpr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ElementaryBlock createElementaryBlock()
+  {
+    ElementaryBlockImpl elementaryBlock = new ElementaryBlockImpl();
+    return elementaryBlock;
   }
 
   /**

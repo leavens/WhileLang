@@ -52,6 +52,7 @@
     <genClasses ecoreClass="WhileLang.ecore#//NotExpr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//NotExpr/bexp"/>
     </genClasses>
+    <genClasses ecoreClass="WhileLang.ecore#//ElementaryBlock"/>
     <genClasses ecoreClass="WhileLang.ecore#//BDisj">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//BDisj/left"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//BDisj/op"/>

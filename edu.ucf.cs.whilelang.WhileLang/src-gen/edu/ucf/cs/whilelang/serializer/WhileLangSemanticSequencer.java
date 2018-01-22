@@ -143,6 +143,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Contexts:
 	 *     Stmt returns AssignS
 	 *     Assignment returns AssignS
+	 *     ElementaryBlock returns AssignS
 	 *
 	 * Constraint:
 	 *     ((v=ID aexp=Expression) | (v=ID aexp=Expression label=INT))
@@ -369,6 +370,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * Contexts:
 	 *     LabeledExp returns LabeledExp
+	 *     ElementaryBlock returns LabeledExp
 	 *
 	 * Constraint:
 	 *     (be=Expression | (be=Expression label=INT))
@@ -454,6 +456,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Contexts:
 	 *     Stmt returns SkipS
 	 *     Skip returns SkipS
+	 *     ElementaryBlock returns SkipS
 	 *
 	 * Constraint:
 	 *     label=INT?

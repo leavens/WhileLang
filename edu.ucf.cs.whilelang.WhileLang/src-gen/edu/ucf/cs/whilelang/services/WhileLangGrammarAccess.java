@@ -775,6 +775,29 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//Primary
 		public RuleCall getBexpPrimaryParserRuleCall_1_0() { return cBexpPrimaryParserRuleCall_1_0; }
 	}
+	public class ElementaryBlockElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.ElementaryBlock");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cAssignmentParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cSkipParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cLabeledExpParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//ElementaryBlock:
+		//	Assignment | Skip | LabeledExp;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Assignment | Skip | LabeledExp
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//Assignment
+		public RuleCall getAssignmentParserRuleCall_0() { return cAssignmentParserRuleCall_0; }
+		
+		//Skip
+		public RuleCall getSkipParserRuleCall_1() { return cSkipParserRuleCall_1; }
+		
+		//LabeledExp
+		public RuleCall getLabeledExpParserRuleCall_2() { return cLabeledExpParserRuleCall_2; }
+	}
 	
 	
 	private final ProgramElements pProgram;
@@ -797,6 +820,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	private final NumLitExprElements pNumLitExpr;
 	private final BoolLitExprElements pBoolLitExpr;
 	private final NotExprElements pNotExpr;
+	private final ElementaryBlockElements pElementaryBlock;
 	private final TerminalRule tSL_COMMENT;
 	private final TerminalRule tINT;
 	private final TerminalRule tOPPLUS;
@@ -834,6 +858,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		this.pNumLitExpr = new NumLitExprElements();
 		this.pBoolLitExpr = new BoolLitExprElements();
 		this.pNotExpr = new NotExprElements();
+		this.pElementaryBlock = new ElementaryBlockElements();
 		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.SL_COMMENT");
 		this.tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.INT");
 		this.tOPPLUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.OPPLUS");
@@ -1068,6 +1093,16 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getNotExprRule() {
 		return getNotExprAccess().getRule();
+	}
+	
+	//ElementaryBlock:
+	//	Assignment | Skip | LabeledExp;
+	public ElementaryBlockElements getElementaryBlockAccess() {
+		return pElementaryBlock;
+	}
+	
+	public ParserRule getElementaryBlockRule() {
+		return getElementaryBlockAccess().getRule();
 	}
 	
 	//@ Override terminal SL_COMMENT:

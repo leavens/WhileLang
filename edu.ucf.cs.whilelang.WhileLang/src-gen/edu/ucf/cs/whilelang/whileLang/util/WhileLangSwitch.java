@@ -107,6 +107,7 @@ public class WhileLangSwitch<T> extends Switch<T>
         AssignS assignS = (AssignS)theEObject;
         T result = caseAssignS(assignS);
         if (result == null) result = caseS(assignS);
+        if (result == null) result = caseElementaryBlock(assignS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -115,6 +116,7 @@ public class WhileLangSwitch<T> extends Switch<T>
         SkipS skipS = (SkipS)theEObject;
         T result = caseSkipS(skipS);
         if (result == null) result = caseS(skipS);
+        if (result == null) result = caseElementaryBlock(skipS);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -138,6 +140,7 @@ public class WhileLangSwitch<T> extends Switch<T>
       {
         LabeledExp labeledExp = (LabeledExp)theEObject;
         T result = caseLabeledExp(labeledExp);
+        if (result == null) result = caseElementaryBlock(labeledExp);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -177,6 +180,13 @@ public class WhileLangSwitch<T> extends Switch<T>
         NotExpr notExpr = (NotExpr)theEObject;
         T result = caseNotExpr(notExpr);
         if (result == null) result = caseExpr(notExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case WhileLangPackage.ELEMENTARY_BLOCK:
+      {
+        ElementaryBlock elementaryBlock = (ElementaryBlock)theEObject;
+        T result = caseElementaryBlock(elementaryBlock);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -444,6 +454,22 @@ public class WhileLangSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseNotExpr(NotExpr object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Elementary Block</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Elementary Block</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseElementaryBlock(ElementaryBlock object)
   {
     return null;
   }
