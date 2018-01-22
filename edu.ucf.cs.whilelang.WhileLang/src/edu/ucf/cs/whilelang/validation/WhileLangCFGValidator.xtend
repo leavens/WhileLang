@@ -13,6 +13,7 @@ import edu.ucf.cs.whilelang.whileLang.WhileS
 import java.util.Map
 import java.util.Set
 import org.eclipse.xtext.validation.Check
+import edu.ucf.cs.whilelang.whileLang.S
 
 /**
  * This class checks constructs a control flow graph (CFG) for the program.
@@ -80,7 +81,7 @@ class WhileLangCFGValidator extends AbstractWhileLangValidator {
             }
         }
     }
-    
+            
     def dispatch constructFlows(WhileS c) {
         // construct the flows of the body
         c.block.constructFlows

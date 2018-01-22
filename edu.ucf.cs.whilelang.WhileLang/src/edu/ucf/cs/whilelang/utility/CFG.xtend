@@ -28,7 +28,9 @@ class CFG {
         cfgMap.clear()
     }
     
-    /* The init() method returns the initial ElementaryBlock of a statement. */
+    /** The init() method returns the label of the initial 
+     * ElementaryBlock of a statement.
+     */
     def dispatch int init(AssignS s) {
         s.label
     }
@@ -51,8 +53,8 @@ class CFG {
     
     def dispatch int init(S s) { return 0; }
 			
-	/* finals() returns the set of all the labels of the final ElementaryBlocks 
-	 * of a statement.
+	/** finals() returns the set of all the labels of the 
+	 * final ElementaryBlocks of a statement.
 	 */
     def dispatch Set<Integer> finals(AssignS s) {
         new SetRepUtility(s.label)
