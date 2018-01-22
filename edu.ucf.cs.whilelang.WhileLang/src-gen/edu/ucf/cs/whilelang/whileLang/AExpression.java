@@ -11,12 +11,12 @@ package edu.ucf.cs.whilelang.whileLang;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.AExpression#getLeft <em>Left</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.AExpression#getOp <em>Op</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.AExpression#getRight <em>Right</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getAExpression()
  * @model

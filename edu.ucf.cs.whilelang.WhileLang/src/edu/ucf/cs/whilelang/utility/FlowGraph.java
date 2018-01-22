@@ -2,65 +2,84 @@ package edu.ucf.cs.whilelang.utility;
 
 import java.util.AbstractMap;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-/** A Map from labels to labels that can be used as a flow graph. 
- * @param <V>
- * @param <K>*/
-public class FlowGraph<K, V> extends AbstractMap<K, V> implements Map<K, V> {
-	
+import edu.ucf.cs.whilelang.whileLang.S;
+
+/** A Map from statements (S) to sets of pairs of labels 
+ * (Set<Map.Entry<Integer,Integer>>) that can be used as a flow graph. 
+ */
+public class FlowGraph 
+		extends AbstractMap<S, Set<Map.Entry<Integer,Integer>>> 
+//		implements Map<S, Set<Map.Entry<Integer,Integer>>> 
+{	
 	/** The representation of this flowgraph. */
-	private Map<K, V> map = new HashMap<K, V>();
+	private Map<S, Set<Map.Entry<Integer,Integer>>> map 
+		= new HashMap<S, Set<Map.Entry<Integer,Integer>>>();
 	
 	/** Initialize this object to be an empty flowgraph. */
 	public FlowGraph() {
 	}
 	
-	public FlowGraph(K k, V v) {
-		map.put(k, v);
+	/** Initialize this object to be a singleton flowgraph. */
+	public FlowGraph(S s, Set<Map.Entry<Integer,Integer>> flws) {
+		map.put(s, flws);
 	}
 	
-	public Set<Map.Entry<K,V>> entrySet(){
+	/** reinitialize this flow graph. */
+	public void clear() {
+		map.clear();
+	}
+	
+	/** Returns this map as a set of pairs.*/
+	public Set<Map.Entry<S, Set<Map.Entry<Integer, Integer>>>> entrySet(){
 		return map.entrySet();
 	}
 	
-	@Override
-	public V get(Object key) { return map.get(key); }
+	/** What is the set of flows for stmt? */
+	public Set<Map.Entry<Integer,Integer>> get(S stmt) { 
+		return map.get(stmt); 
+	}
 	
+	@Override
+	public Set<Map.Entry<Integer,Integer>> put(S stmt, 
+			                              Set<Map.Entry<Integer,Integer>> fls) {
+		return map.put(stmt, fls);
+	}
+	
+	public Set<Map.Entry<Integer,Integer>> putUnion(S stmt, 
+                                          Set<Map.Entry<Integer,Integer>> fls) {
+		if (map.containsKey(stmt)) {
+		    Set<Map.Entry<Integer,Integer>> ret = map.get(stmt);
+		    ret.addAll(fls);
+		    map.put(stmt, ret);
+		    return ret;
+		} else {
+			return map.put(stmt, fls);
+		}
+	}
 	/** Returns the converse of this map as a relation. */
-	public Map<V,Set<K>> converse() { 
-		Map<V, Set<K>>rev = new HashMap<V,Set<K>>();
-		for (Map.Entry<K,V> kv : map.entrySet()) {
-			V val = kv.getValue();
-			if (rev.containsKey(val)) {
-				Set<K> s = (Set<K>) rev.get(val);
-				s.add(kv.getKey());
-				rev.put(val,s);
+	public Map<Set<Map.Entry<Integer,Integer>>, Set<S>> converse() { 
+		Map<Set<Map.Entry<Integer,Integer>>, Set<S>> ret 
+			= new HashMap<Set<Map.Entry<Integer,Integer>>, Set<S>>();
+		for (Map.Entry<S, Set<Map.Entry<Integer,Integer>>> sp : map.entrySet()) {
+			Set<Map.Entry<Integer,Integer>> fls = sp.getValue();
+			if (ret.containsKey(fls)) {
+				Set<S> s = ret.get(fls);
+				s.add(sp.getKey());
+				ret.put(fls,s);
 			} else {
-			   Set<K> s = new HashSet<K>();
-			   s.add(kv.getKey());
-			   rev.put(kv.getValue(), s);
+			   Set<S> s = new SetRepUtility<S>(sp.getKey());
+			   ret.put(fls, s);
 			}
 		}
-		return rev;
+		return ret;
 	}
 	
-	/** Returns the set of keys that map to the given value. */
-	public Set<K> whatMapsTo(V v) {
-		Map<V,Set<K>> rev = converse();
-		return rev.get(v);
+	/** Returns the set of keys that map to the given Value. */
+	public Set<S> whatMapsTo(Set<Map.Entry<Integer,Integer>> fls) {
+		Map<Set<Map.Entry<Integer,Integer>>, Set<S>> ret = converse();
+		return ret.get(fls);
 	}
-	
-	public static <T> FlowGraph<T, T> crossWith(/*@ non_null @*/ Set<T> s, T e) {
-		FlowGraph<T, T> ret = new FlowGraph<T, T>();
-		Iterator<T> i = s.iterator();
-	    while (i.hasNext()) {
-		   ret.put(i.next(), e);
-		}
-	    return ret;
-	}
-
 }

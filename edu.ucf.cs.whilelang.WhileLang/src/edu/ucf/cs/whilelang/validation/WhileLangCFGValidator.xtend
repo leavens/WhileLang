@@ -1,41 +1,31 @@
 package edu.ucf.cs.whilelang.validation
 
-import edu.ucf.cs.whilelang.utility.LabelUtility
-import edu.ucf.cs.whilelang.whileLang.Program
-import edu.ucf.cs.whilelang.utility.FlowGraph
-import org.eclipse.xtext.validation.Check
-import edu.ucf.cs.whilelang.whileLang.AssignS
-import org.eclipse.emf.ecore.EObject
-import edu.ucf.cs.whilelang.whileLang.SkipS
-import edu.ucf.cs.whilelang.whileLang.CompoundS
-import edu.ucf.cs.whilelang.whileLang.WhileS
-import edu.ucf.cs.whilelang.whileLang.IfS
-import edu.ucf.cs.whilelang.whileLang.LabeledExp
-import edu.ucf.cs.whilelang.whileLang.ElementaryBlock
-import edu.ucf.cs.whilelang.whileLang.S
 import edu.ucf.cs.whilelang.utility.CFG
-import java.util.Set
+import edu.ucf.cs.whilelang.utility.Pair
 import edu.ucf.cs.whilelang.utility.SetRepUtility
+import edu.ucf.cs.whilelang.whileLang.AssignS
+import edu.ucf.cs.whilelang.whileLang.CompoundS
+import edu.ucf.cs.whilelang.whileLang.ElementaryBlock
+import edu.ucf.cs.whilelang.whileLang.IfS
+import edu.ucf.cs.whilelang.whileLang.Program
+import edu.ucf.cs.whilelang.whileLang.SkipS
+import edu.ucf.cs.whilelang.whileLang.WhileS
+import java.util.Map
+import java.util.Set
+import org.eclipse.xtext.validation.Check
 
 /**
  * This class checks constructs a control flow graph (CFG) for the program.
  */
 class WhileLangCFGValidator extends AbstractWhileLangValidator {
 	
-	/** What is the ElementaryBlock labeled by this key? */
-	val itsBlockMap = new FlowGraph<Integer, ElementaryBlock>()
-	/** What set of ElementaryBlocks may flow into the key block? */
-	val inFlowsMap = new FlowGraph<S, Set<ElementaryBlock>>()
-	/** What is the next ElementaryBlock that lexically follows this one? */
-	val nextFlowMap = new FlowGraph<S, S>()
-	/** What set of ElementaryBlocks may the key flow to? */
-	val outFlowsMap = new FlowGraph<S, Set<ElementaryBlock>>()
+	val itsBlockMap = CFG.itsBlockMap
+	val cfgMap = CFG.cfgMap
 	
 	@Check
 	def constructCFG(Program p) {
 		p.body.constructIBM
-		p.body.constructNextFlows
-		p.body.constructInOutFlows
+		p.body.constructFlows
 	}
 		
 	// Statements
@@ -63,72 +53,62 @@ class WhileLangCFGValidator extends AbstractWhileLangValidator {
         ifs.s1.constructIBM
         ifs.s2.constructIBM
     } 
-    
-    def dispatch constructNextFlows(CompoundS c) {
-        for (i : 0..c.stmts.size()-2) {
-            nextFlowMap.put(c.stmts.get(i), c.stmts.get(i+1))
-            if (c.stmts.get(i) instanceof IfS) {
-                nextFlowMap.put((c.stmts.get(i) as IfS).s1, c.stmts.get(i+1))
-                nextFlowMap.put((c.stmts.get(i) as IfS).s1, c.stmts.get(i+1))
-            }
-        }
-        if (nextFlowMap.containsKey(c)) {
-            nextFlowMap.put(c.stmts.get(c.stmts.size()-1), nextFlowMap.get(c))
-        }
-    }
-    
-    def dispatch constructNextFlows(WhileS ws) {
-        nextFlowMap.put(ws.block, ws)
-        ws.block.constructNextFlows
-    }
-    
-    def dispatch constructNextFlows(IfS s) {
-        s.s1.constructNextFlows
-        s.s2.constructNextFlows
-    }
-    
-    def dispatch constructNextFlows(S s) {}
-    
-    // in and out flows
-    def dispatch constructInOutFLows(AssignS a) {}
-    
-    def dispatch constructInOutFLows(SkipS s) {}
-    
-    def dispatch constructInOutFLows(CompoundS c) {
-        for (i : 0..c.stmts.size()-1) {
-            if (i == 0) {
-                if (inFlowsMap.containsKey(c)) {
-                    inFlowsMap.put(c.stmts.get(i).initial as ElementaryBlock, 
-                        inFlowsMap.get(c))
-                }
-            } else {
-                inFlowsMap.put(c.stmts.get(i) as ElementaryBlock, 
-                                c.stmts.get(i-1).finals)
-            }
-            if (i < c.stmts.size()-2) {
-                outFlowsMap.put(c.stmts.get(i) as ElementaryBlock, 
-                                new SetRepUtility(c.stmts.get(i+1).initial as ElementaryBlock
-                                ))               
-            }
-            c.stmts.get(i).constructInOutFLows
-        }
-    }
-    
-    def dispatch constructInOutFLows(WhileS ws) {
-        if (inFlowsMap.containsKey(ws.bexp as ElementaryBlock)) {
-            inFlowsMap.get(ws.bexp as ElementaryBlock).add(ws as ElementaryBlock)    
-        } else {
-            inFlowsMap.put(ws.bexp as ElementaryBlock, new SetRepUtility(ws as ElementaryBlock))
-        }
         
-        ws.block.constructInOutFLows
+    // flows
+    def dispatch constructFlows(AssignS a) {}
+    
+    def dispatch constructFlows(SkipS s) {}
+    
+    def dispatch constructFlows(CompoundS c) {
+        // recursively treat each sub-statement
+        for (i : 0..c.stmts.size()-1) {
+            c.stmts.get(i).constructFlows
+        }
+        // the flows of each sub-statement are in the flows of c
+        for (i : 0..c.stmts.size()-1) {
+            cfgMap.putUnion(c, cfgMap.get(c.stmts.get(i)))
+        }
+        // the flows of c also contain a flow from each statement to the next
+        for (i : 0..c.stmts.size()-2) {
+            for (Set<Integer> flabs : c.stmts.get(i).finals) {
+                for (j : flabs) {
+                    cfgMap.putUnion(c, 
+                        new SetRepUtility<Map.Entry<Integer,Integer>>(
+                            new Pair<Integer,Integer>(j, c.stmts.get(i+1).init)
+                        ))
+                }
+            }
+        }
+    }
+    
+    def dispatch constructFlows(WhileS c) {
+        // construct the flows of the body
+        c.block.constructFlows
+        cfgMap.putUnion(c, cfgMap.get(c.block))
+        cfgMap.putUnion(c, new SetRepUtility(new Pair<Integer,Integer>(c.bexp.label, c.block.init)))
+        for (Set<Integer> flabs : c.block.finals) {
+            for (j : flabs) {
+                cfgMap.putUnion(c, new SetRepUtility<Map.Entry<Integer,Integer>>(
+                    new Pair<Integer,Integer>(j, c.bexp.label)
+                ))
+            }
+        }
     }   
     
-    def dispatch constructInOutFLows(IfS ifs) {
-        itsBlockMap.put(ifs.bexp.label, ifs.bexp as ElementaryBlock)
-        ifs.s1.constructInOutFLows
-        ifs.s2.constructInOutFLows
-    } 
-    
-
+    def dispatch constructFlows(IfS ifs) {
+        // construct the flows of the two sub-statements
+        ifs.s1.constructFlows
+        ifs.s2.constructFlows
+        // add in all those flows
+        cfgMap.putUnion(ifs, cfgMap.get(ifs.s1))
+        cfgMap.putUnion(ifs, cfgMap.get(ifs.s2))
+        // add flows from the test to the init of each sub-statement
+        cfgMap.putUnion(ifs, new SetRepUtility<Map.Entry<Integer,Integer>>(
+                    new Pair<Integer,Integer>(ifs.bexp.label, ifs.s1.init)
+                ))
+        cfgMap.putUnion(ifs, new SetRepUtility<Map.Entry<Integer,Integer>>(
+                    new Pair<Integer,Integer>(ifs.bexp.label, ifs.s2.init)
+                ))
+    }
+   
 }

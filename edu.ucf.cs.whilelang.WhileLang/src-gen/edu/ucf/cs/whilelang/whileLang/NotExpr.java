@@ -11,10 +11,10 @@ package edu.ucf.cs.whilelang.whileLang;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.NotExpr#getBexp <em>Bexp</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getNotExpr()
  * @model

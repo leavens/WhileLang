@@ -11,12 +11,12 @@ package edu.ucf.cs.whilelang.whileLang;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.AssignS#getV <em>V</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.AssignS#getAexp <em>Aexp</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.AssignS#getLabel <em>Label</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getAssignS()
  * @model
