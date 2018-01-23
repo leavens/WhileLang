@@ -1,7 +1,6 @@
 package edu.ucf.cs.whilelang.validation
 
 import edu.ucf.cs.whilelang.utility.CFG
-import edu.ucf.cs.whilelang.utility.EBHolder
 import edu.ucf.cs.whilelang.utility.FlowGraph
 import edu.ucf.cs.whilelang.utility.Pair
 import edu.ucf.cs.whilelang.utility.SetRepUtility
