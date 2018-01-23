@@ -39,7 +39,7 @@ public interface WhileLangPackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://www.cs.ucf.edu/~leavens/whilelang/WhileLang";
+  String eNS_URI = "http://www.ucf.edu/cs/whilelang/WhileLang";
 
   /**
    * The package namespace name.

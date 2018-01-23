@@ -2,7 +2,8 @@ grammar edu.ucf.cs.whilelang.WhileLang with org.eclipse.xtext.common.Terminals
 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
-generate whileLang "http://www.cs.ucf.edu/~leavens/whilelang/WhileLang"
+// the following is not real on purpose
+generate whileLang "http://www.ucf.edu/cs/whilelang/WhileLang"
 
 Program: 'proc' name=ID '(' (args=Formals)? ')' 'is' body=Stmt;
 Formals: names+=ID (',' names+=ID)*;
