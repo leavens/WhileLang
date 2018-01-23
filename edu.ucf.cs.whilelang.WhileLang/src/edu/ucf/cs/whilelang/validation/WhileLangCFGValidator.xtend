@@ -13,6 +13,7 @@ import edu.ucf.cs.whilelang.whileLang.SkipS
 import edu.ucf.cs.whilelang.whileLang.WhileS
 import java.util.Map
 import org.eclipse.xtext.validation.Check
+import edu.ucf.cs.whilelang.whileLang.ElementaryBlock
 
 /**
  * This class constructs a control flow graph (CFG) for the program.
@@ -22,7 +23,7 @@ import org.eclipse.xtext.validation.Check
 class WhileLangCFGValidator extends AbstractWhileLangValidator {
     
     /** What is the ElementaryBlock with the given label? */
-    val Map<Integer, EBHolder> itsBlockMap = CFG.itsBlockMap
+    val Map<Integer, ElementaryBlock> itsBlockMap = CFG.itsBlockMap
     /** What is the set of flows within each statement? */
     val FlowGraph cfgMap = CFG.cfgMap
 		
@@ -35,13 +36,13 @@ class WhileLangCFGValidator extends AbstractWhileLangValidator {
 	/** Constructs the itsBlockMap mapping 
 	 * where the given statement refers to the enclosing block. */
 	def dispatch void constructIBM(AssignS a) {
-	    itsBlockMap.put(a.label, new EBHolder(a))
+	    itsBlockMap.put(a.label, a)
 	}
 	
     /** Constructs the itsBlockMap mapping 
      * where the given statement refers to the enclosing block. */
 	def dispatch void constructIBM(SkipS s) {
-        itsBlockMap.put(s.label, new EBHolder(s))
+        itsBlockMap.put(s.label, s)
     }
     
     /** Constructs the itsBlockMap mapping 
@@ -55,14 +56,14 @@ class WhileLangCFGValidator extends AbstractWhileLangValidator {
     /** Constructs the itsBlockMap mapping 
      * where the given statement refers to the enclosing block. */
     def dispatch void constructIBM(WhileS ws) {
-        itsBlockMap.put(ws.bexp.label, new EBHolder(ws.bexp))
+        itsBlockMap.put(ws.bexp.label, ws.bexp)
         ws.block.constructIBM
     }	
     
     /** Constructs the itsBlockMap mapping 
      * where the given statement refers to the enclosing block. */
     def dispatch void constructIBM(IfS ifs) {
-        itsBlockMap.put(ifs.bexp.label, new EBHolder(ifs.bexp))
+        itsBlockMap.put(ifs.bexp.label, ifs.bexp)
         ifs.s1.constructIBM
         ifs.s2.constructIBM
     } 

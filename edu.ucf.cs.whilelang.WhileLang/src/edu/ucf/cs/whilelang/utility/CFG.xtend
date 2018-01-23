@@ -14,18 +14,18 @@ import java.util.HashMap
 class CFG {
     
     /** What is the ElementaryBlock with the given label? */
-    public static val Map<Integer, EBHolder> itsBlockMap 
-        = new HashMap<Integer, EBHolder>()
+    public static val Map<Integer, ElementaryBlock> itsBlockMap 
+        = new HashMap<Integer, ElementaryBlock>()
     /** What is the set of flows within each statement? */
     public static val FlowGraph cfgMap = new FlowGraph()
     
     /** Return the ElementaryBlock with the given label. */
     def static ElementaryBlock blockOf(int lab) {
-        val ebh = itsBlockMap.get(lab)
-        if (ebh === null) {
+        val eb = itsBlockMap.get(lab)
+        if (eb === null) {
             throw new NoSuchBlockException("no block for" + lab)
         } else {
-            return ebh.getBlock();
+            return eb;
         }
     }
 
@@ -95,33 +95,33 @@ class CFG {
     }
     
     /** Returns the set of elementary blocks in a statement. */
-    def dispatch static Set<EBHolder> blocks(AssignS s) {
-        new SetRepUtility(new EBHolder(s))
+    def dispatch static Set<ElementaryBlock> blocks(AssignS s) {
+        new SetRepUtility(s as ElementaryBlock)
     }
     
     /** Returns the set of elementary blocks in a statement. */
-    def dispatch static Set<EBHolder> blocks(SkipS s) {
-        new SetRepUtility(new EBHolder(s))
+    def dispatch static Set<ElementaryBlock> blocks(SkipS s) {
+        new SetRepUtility(s as ElementaryBlock)
     }
     
     /** Returns the set of elementary blocks in a statement. */
-    def dispatch static Set<EBHolder> blocks(IfS s) {
+    def dispatch static Set<ElementaryBlock> blocks(IfS s) {
          val ret = s.s1.blocks
          ret.addAll(s.s2.blocks)
-         ret.add(new EBHolder(s.bexp as ElementaryBlock))
+         ret.add(s.bexp as ElementaryBlock)
          return ret
     }
     
     /** Returns the set of elementary blocks in a statement. */
-    def dispatch static Set<EBHolder> blocks(WhileS s) {
-         val Set<EBHolder> ret = s.block.blocks
-         ret.add(new EBHolder(s.bexp as ElementaryBlock))
+    def dispatch static Set<ElementaryBlock> blocks(WhileS s) {
+         val Set<ElementaryBlock> ret = s.block.blocks
+         ret.add(s.bexp as ElementaryBlock)
          return ret
     }
     
     /** Returns the set of elementary blocks in a statement. */
-    def dispatch static Set<EBHolder> blocks(CompoundS s) {
-         val ret = new SetRepUtility<EBHolder>();
+    def dispatch static Set<ElementaryBlock> blocks(CompoundS s) {
+         val ret = new SetRepUtility<ElementaryBlock>();
          for (c : s.stmts) {
             ret.addAll(c.blocks);
          }
@@ -129,8 +129,8 @@ class CFG {
     }
     
     /** Returns the set of elementary blocks in a statement. */
-    def dispatch static Set<EBHolder> blocks(S s) { 
-        return new SetRepUtility<EBHolder>();
+    def dispatch static Set<ElementaryBlock> blocks(S s) { 
+        return new SetRepUtility<ElementaryBlock>();
     }
     
     /** Returns the set of the labels of all elementary blocks in a statement. */
