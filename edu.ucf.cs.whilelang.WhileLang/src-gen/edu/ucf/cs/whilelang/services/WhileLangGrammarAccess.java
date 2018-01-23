@@ -466,19 +466,19 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOpORTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cRightExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		private final RuleCall cRightBConjParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
 		//BDisj Expr:
-		//	BConj ({BDisj.left=current} op=OR right=Expression)?;
+		//	BConj ({BDisj.left=current} op=OR right=BConj)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//BConj ({BDisj.left=current} op=OR right=Expression)?
+		//BConj ({BDisj.left=current} op=OR right=BConj)*
 		public Group getGroup() { return cGroup; }
 		
 		//BConj
 		public RuleCall getBConjParserRuleCall_0() { return cBConjParserRuleCall_0; }
 		
-		//({BDisj.left=current} op=OR right=Expression)?
+		//({BDisj.left=current} op=OR right=BConj)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{BDisj.left=current}
@@ -490,11 +490,11 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//OR
 		public RuleCall getOpORTerminalRuleCall_1_1_0() { return cOpORTerminalRuleCall_1_1_0; }
 		
-		//right=Expression
+		//right=BConj
 		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
 		
-		//Expression
-		public RuleCall getRightExpressionParserRuleCall_1_2_0() { return cRightExpressionParserRuleCall_1_2_0; }
+		//BConj
+		public RuleCall getRightBConjParserRuleCall_1_2_0() { return cRightBConjParserRuleCall_1_2_0; }
 	}
 	public class BConjElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.BConj");
@@ -505,19 +505,19 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOpANDTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cRightBConjParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		private final RuleCall cRightBRelExpParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
 		//BConj Expr:
-		//	BRelExp ({BConj.left=current} op=AND right=BConj)?;
+		//	BRelExp ({BConj.left=current} op=AND right=BRelExp)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//BRelExp ({BConj.left=current} op=AND right=BConj)?
+		//BRelExp ({BConj.left=current} op=AND right=BRelExp)*
 		public Group getGroup() { return cGroup; }
 		
 		//BRelExp
 		public RuleCall getBRelExpParserRuleCall_0() { return cBRelExpParserRuleCall_0; }
 		
-		//({BConj.left=current} op=AND right=BConj)?
+		//({BConj.left=current} op=AND right=BRelExp)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{BConj.left=current}
@@ -529,11 +529,11 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//AND
 		public RuleCall getOpANDTerminalRuleCall_1_1_0() { return cOpANDTerminalRuleCall_1_1_0; }
 		
-		//right=BConj
+		//right=BRelExp
 		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
 		
-		//BConj
-		public RuleCall getRightBConjParserRuleCall_1_2_0() { return cRightBConjParserRuleCall_1_2_0; }
+		//BRelExp
+		public RuleCall getRightBRelExpParserRuleCall_1_2_0() { return cRightBRelExpParserRuleCall_1_2_0; }
 	}
 	public class BRelExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.BRelExp");
@@ -583,19 +583,19 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOpOPPLUSTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cRightAExpressionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		private final RuleCall cRightFactorParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
 		//AExpression Expr:
-		//	Factor ({AExpression.left=current} op=OPPLUS right=AExpression)?;
+		//	Factor ({AExpression.left=current} op=OPPLUS right=Factor)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Factor ({AExpression.left=current} op=OPPLUS right=AExpression)?
+		//Factor ({AExpression.left=current} op=OPPLUS right=Factor)*
 		public Group getGroup() { return cGroup; }
 		
 		//Factor
 		public RuleCall getFactorParserRuleCall_0() { return cFactorParserRuleCall_0; }
 		
-		//({AExpression.left=current} op=OPPLUS right=AExpression)?
+		//({AExpression.left=current} op=OPPLUS right=Factor)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{AExpression.left=current}
@@ -607,11 +607,11 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//OPPLUS
 		public RuleCall getOpOPPLUSTerminalRuleCall_1_1_0() { return cOpOPPLUSTerminalRuleCall_1_1_0; }
 		
-		//right=AExpression
+		//right=Factor
 		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
 		
-		//AExpression
-		public RuleCall getRightAExpressionParserRuleCall_1_2_0() { return cRightAExpressionParserRuleCall_1_2_0; }
+		//Factor
+		public RuleCall getRightFactorParserRuleCall_1_2_0() { return cRightFactorParserRuleCall_1_2_0; }
 	}
 	public class FactorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Factor");
@@ -622,19 +622,19 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOpAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOpOPMULTerminalRuleCall_1_1_0 = (RuleCall)cOpAssignment_1_1.eContents().get(0);
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cRightFactorParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		private final RuleCall cRightPrimaryParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
 		//Factor Expr:
-		//	Primary ({Factor.left=current} op=OPMUL right=Factor)?;
+		//	Primary ({Factor.left=current} op=OPMUL right=Primary)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Primary ({Factor.left=current} op=OPMUL right=Factor)?
+		//Primary ({Factor.left=current} op=OPMUL right=Primary)*
 		public Group getGroup() { return cGroup; }
 		
 		//Primary
 		public RuleCall getPrimaryParserRuleCall_0() { return cPrimaryParserRuleCall_0; }
 		
-		//({Factor.left=current} op=OPMUL right=Factor)?
+		//({Factor.left=current} op=OPMUL right=Primary)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{Factor.left=current}
@@ -646,11 +646,11 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//OPMUL
 		public RuleCall getOpOPMULTerminalRuleCall_1_1_0() { return cOpOPMULTerminalRuleCall_1_1_0; }
 		
-		//right=Factor
+		//right=Primary
 		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
 		
-		//Factor
-		public RuleCall getRightFactorParserRuleCall_1_2_0() { return cRightFactorParserRuleCall_1_2_0; }
+		//Primary
+		public RuleCall getRightPrimaryParserRuleCall_1_2_0() { return cRightPrimaryParserRuleCall_1_2_0; }
 	}
 	public class PrimaryElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Primary");
@@ -996,7 +996,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BDisj Expr:
-	//	BConj ({BDisj.left=current} op=OR right=Expression)?;
+	//	BConj ({BDisj.left=current} op=OR right=BConj)*;
 	public BDisjElements getBDisjAccess() {
 		return pBDisj;
 	}
@@ -1006,7 +1006,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BConj Expr:
-	//	BRelExp ({BConj.left=current} op=AND right=BConj)?;
+	//	BRelExp ({BConj.left=current} op=AND right=BRelExp)*;
 	public BConjElements getBConjAccess() {
 		return pBConj;
 	}
@@ -1026,7 +1026,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AExpression Expr:
-	//	Factor ({AExpression.left=current} op=OPPLUS right=AExpression)?;
+	//	Factor ({AExpression.left=current} op=OPPLUS right=Factor)*;
 	public AExpressionElements getAExpressionAccess() {
 		return pAExpression;
 	}
@@ -1036,7 +1036,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Factor Expr:
-	//	Primary ({Factor.left=current} op=OPMUL right=Factor)?;
+	//	Primary ({Factor.left=current} op=OPMUL right=Primary)*;
 	public FactorElements getFactorAccess() {
 		return pFactor;
 	}

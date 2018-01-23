@@ -872,9 +872,9 @@ ruleBDisj returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getBDisjAccess().getRightExpressionParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getBDisjAccess().getRightBConjParserRuleCall_1_2_0());
 					}
-					lv_right_3_0=ruleExpression
+					lv_right_3_0=ruleBConj
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getBDisjRule());
@@ -883,12 +883,12 @@ ruleBDisj returns [EObject current=null]
 							$current,
 							"right",
 							lv_right_3_0,
-							"edu.ucf.cs.whilelang.WhileLang.Expression");
+							"edu.ucf.cs.whilelang.WhileLang.BConj");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)?
+		)*
 	)
 ;
 
@@ -945,9 +945,9 @@ ruleBConj returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getBConjAccess().getRightBConjParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getBConjAccess().getRightBRelExpParserRuleCall_1_2_0());
 					}
-					lv_right_3_0=ruleBConj
+					lv_right_3_0=ruleBRelExp
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getBConjRule());
@@ -956,12 +956,12 @@ ruleBConj returns [EObject current=null]
 							$current,
 							"right",
 							lv_right_3_0,
-							"edu.ucf.cs.whilelang.WhileLang.BConj");
+							"edu.ucf.cs.whilelang.WhileLang.BRelExp");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)?
+		)*
 	)
 ;
 
@@ -1091,9 +1091,9 @@ ruleAExpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAExpressionAccess().getRightAExpressionParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getAExpressionAccess().getRightFactorParserRuleCall_1_2_0());
 					}
-					lv_right_3_0=ruleAExpression
+					lv_right_3_0=ruleFactor
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAExpressionRule());
@@ -1102,12 +1102,12 @@ ruleAExpression returns [EObject current=null]
 							$current,
 							"right",
 							lv_right_3_0,
-							"edu.ucf.cs.whilelang.WhileLang.AExpression");
+							"edu.ucf.cs.whilelang.WhileLang.Factor");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)?
+		)*
 	)
 ;
 
@@ -1164,9 +1164,9 @@ ruleFactor returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getFactorAccess().getRightFactorParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getFactorAccess().getRightPrimaryParserRuleCall_1_2_0());
 					}
-					lv_right_3_0=ruleFactor
+					lv_right_3_0=rulePrimary
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getFactorRule());
@@ -1175,12 +1175,12 @@ ruleFactor returns [EObject current=null]
 							$current,
 							"right",
 							lv_right_3_0,
-							"edu.ucf.cs.whilelang.WhileLang.Factor");
+							"edu.ucf.cs.whilelang.WhileLang.Primary");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)?
+		)*
 	)
 ;
 

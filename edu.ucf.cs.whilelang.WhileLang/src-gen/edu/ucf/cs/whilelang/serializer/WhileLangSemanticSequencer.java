@@ -120,7 +120,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Primary returns AExpression
 	 *
 	 * Constraint:
-	 *     (left=AExpression_AExpression_1_0 op=OPPLUS right=AExpression)
+	 *     (left=AExpression_AExpression_1_0 op=OPPLUS right=Factor)
 	 */
 	protected void sequence_AExpression(ISerializationContext context, AExpression semanticObject) {
 		if (errorAcceptor != null) {
@@ -134,7 +134,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAExpressionAccess().getAExpressionLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getAExpressionAccess().getOpOPPLUSTerminalRuleCall_1_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getAExpressionAccess().getRightAExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getAExpressionAccess().getRightFactorParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -169,7 +169,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Primary returns BConj
 	 *
 	 * Constraint:
-	 *     (left=BConj_BConj_1_0 op=AND right=BConj)
+	 *     (left=BConj_BConj_1_0 op=AND right=BRelExp)
 	 */
 	protected void sequence_BConj(ISerializationContext context, BConj semanticObject) {
 		if (errorAcceptor != null) {
@@ -183,7 +183,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getBConjAccess().getBConjLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getBConjAccess().getOpANDTerminalRuleCall_1_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getBConjAccess().getRightBConjParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getBConjAccess().getRightBRelExpParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -204,7 +204,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Primary returns BDisj
 	 *
 	 * Constraint:
-	 *     (left=BDisj_BDisj_1_0 op=OR right=Expression)
+	 *     (left=BDisj_BDisj_1_0 op=OR right=BConj)
 	 */
 	protected void sequence_BDisj(ISerializationContext context, BDisj semanticObject) {
 		if (errorAcceptor != null) {
@@ -218,7 +218,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getBDisjAccess().getBDisjLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getBDisjAccess().getOpORTerminalRuleCall_1_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getBDisjAccess().getRightExpressionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getBDisjAccess().getRightBConjParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -311,7 +311,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Primary returns Factor
 	 *
 	 * Constraint:
-	 *     (left=Factor_Factor_1_0 op=OPMUL right=Factor)
+	 *     (left=Factor_Factor_1_0 op=OPMUL right=Primary)
 	 */
 	protected void sequence_Factor(ISerializationContext context, Factor semanticObject) {
 		if (errorAcceptor != null) {
@@ -325,7 +325,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getFactorAccess().getFactorLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getFactorAccess().getOpOPMULTerminalRuleCall_1_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getFactorAccess().getRightFactorParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getFactorAccess().getRightPrimaryParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
