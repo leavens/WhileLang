@@ -12,12 +12,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.Program#getName <em>Name</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.Program#getArgs <em>Args</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.Program#getBody <em>Body</em>}</li>
  * </ul>
+ * </p>
  *
  * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getProgram()
  * @model
