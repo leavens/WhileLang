@@ -47,8 +47,8 @@ class WhileLangLabelsValidator extends AbstractWhileLangValidator {
                 val up = new WhileLangUnparser()
                 System.err.println("Error duplicate label " + label + " for " + up.unparse(ast))
                 val feat = ast.eContainingFeature
-                // TODO: fix the following, it shouldn't assume an assignment
-                error("duplicate label '" + label + "'", feat, WhileLangPackage.Literals.ASSIGN_S__LABEL)
+                // TODO: fix the following, it doesn't highlight properly
+                error("duplicate label '" + label + "'", feat)
                 System.err.println("Finished with error report")
             } else {
                 usedLabels.add(label)

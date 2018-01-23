@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.ProgramImpl#getName <em>Name</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.ProgramImpl#getArgs <em>Args</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.ProgramImpl#getBody <em>Body</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
