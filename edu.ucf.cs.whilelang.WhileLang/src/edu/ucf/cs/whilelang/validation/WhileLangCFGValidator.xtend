@@ -15,7 +15,7 @@ import java.util.Map
 import org.eclipse.xtext.validation.Check
 
 /**
- * This class checks constructs a control flow graph (CFG) for the program.
+ * This class constructs a control flow graph (CFG) for the program.
  * See Section 2.1 of "Principles of Program Analysis"
  * by Nielsen, Nielsen, and Hankin (Springer-Verlag, 1999 and 2005).
  */

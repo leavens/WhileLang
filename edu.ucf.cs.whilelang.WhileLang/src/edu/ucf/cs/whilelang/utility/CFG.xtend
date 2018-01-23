@@ -14,7 +14,8 @@ import java.util.HashMap
 class CFG {
     
     /** What is the ElementaryBlock with the given label? */
-    public static val Map<Integer, EBHolder> itsBlockMap = new HashMap<Integer, EBHolder>()
+    public static val Map<Integer, EBHolder> itsBlockMap 
+        = new HashMap<Integer, EBHolder>()
     /** What is the set of flows within each statement? */
     public static val FlowGraph cfgMap = new FlowGraph()
     
