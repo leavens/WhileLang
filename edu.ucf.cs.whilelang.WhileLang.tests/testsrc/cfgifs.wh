@@ -1,0 +1,19 @@
+program cfg1(a,b,r) is {
+    if [a < b]^1
+    then {
+        if [a < b - 1]^2
+        then {
+             [r := 2]^3;
+             [r := r+1]^4
+        } else {
+            [r := 5]^5
+        }
+    } else {
+        if [a+1 < b]^6
+        then {
+            [r := -7]^7
+        } else {
+            [skip]^8
+        }
+    }
+}

@@ -23,7 +23,7 @@ class CFG {
     def static ElementaryBlock blockOf(int lab) {
         val eb = itsBlockMap.get(lab)
         if (eb === null) {
-            throw new NoSuchBlockException("no block for" + lab)
+            throw new NoSuchBlockException("no block for label " + lab)
         } else {
             return eb;
         }

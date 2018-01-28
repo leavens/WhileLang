@@ -22,10 +22,12 @@ import edu.ucf.cs.whilelang.whileLang.ElementaryBlock
 class WhileLangCFGValidator extends AbstractWhileLangValidator {
     
     /** What is the ElementaryBlock with the given label? */
-    val Map<Integer, ElementaryBlock> itsBlockMap = CFG.itsBlockMap
+    val static Map<Integer, ElementaryBlock> itsBlockMap = CFG.itsBlockMap
     /** What is the set of flows within each statement? */
-    val FlowGraph cfgMap = CFG.cfgMap
-		
+    val static FlowGraph cfgMap = CFG.cfgMap
+    
+	/** Construct the CFG for the given program. 
+	 * Assumes that the labels have already been added to the program. */	
 	@Check
 	def constructCFG(Program p) {
 		p.body.constructIBM
@@ -69,11 +71,15 @@ class WhileLangCFGValidator extends AbstractWhileLangValidator {
         
     /** Constructs the cfgMap mapping 
      * where the given statement maps to all of the flows within it. */
-    def dispatch void constructFlows(AssignS a) {}
+    def dispatch void constructFlows(AssignS a) {
+        cfgMap.putUnion(a, new SetRepUtility<Map.Entry<Integer,Integer>>())
+    }
     
     /** Constructs the cfgMap mapping 
      * where the given statement maps to all of the flows within it. */
-    def dispatch void constructFlows(SkipS s) {}
+    def dispatch void constructFlows(SkipS s) {
+        cfgMap.putUnion(s, new SetRepUtility<Map.Entry<Integer,Integer>>())      
+    }
     
     /** Constructs the cfgMap mapping 
      * where the given statement maps to all of the flows within it. */

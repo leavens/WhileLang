@@ -3,6 +3,8 @@ package edu.ucf.cs.whilelang.tests;
 import com.google.inject.Inject
 import edu.ucf.cs.whilelang.validation.WhileLangValidator
 import edu.ucf.cs.whilelang.whileLang.Program
+import edu.ucf.cs.whilelang.whileLang.CompoundS
+import edu.ucf.cs.whilelang.whileLang.WhileS
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.testing.util.ParseHelper
@@ -28,7 +30,8 @@ class CFGTest {
 	
 	@Inject extension ParseHelper<Program> parseHelper
 	
-	/** Parse a program from the given file name. */
+	/** Parse a program from the given file name and validate it, 
+	 * then return the validated AST. */
 	def Program fromFileName(String fn) {
 		val injector = new WhileLangStandaloneSetup().createInjectorAndDoEMFRegistration()
 		val resourceSet = injector.getInstance(XtextResourceSet)
@@ -45,14 +48,86 @@ class CFGTest {
 		val i = CFG.init(p.body)
 		Assert.assertTrue("init of cfg1.wh was " + i + " not 1", CFG.init(p.body) == 1)
 	}
-//
-//	public void testOutFlowsProg() throws IOException, Exception {
-//		Program p = parseFromFile("testsrc/cfg1.wh");
-//		S pbody = p.getS();
-//		Set<Label> outs = pbody.outFlows();
-//		assertEquals(0, outs.size());
-//	}
-//
+
+	@Test
+	def void testFinals1() {
+		val p = fromFileName("testsrc/cfg1.wh");
+		val outs = CFG.finals(p.body)
+		Assert.assertEquals(1, outs.size());
+		Assert.assertTrue("finals of cfg1.wh is {3}", outs.contains(3))
+	}
+
+	@Test
+	def void testFinalsIfs() {
+		val p = fromFileName("testsrc/cfgifs.wh");
+		val outs = CFG.finals(p.body)
+		Assert.assertEquals(4, outs.size());
+		Assert.assertTrue("finals of cfgifs.wh is {4,5,7,8}", 
+				outs.contains(4) && outs.contains(5) && outs.contains(7) && outs.contains(8))
+	}
+	
+	@Test
+	def void testLabels1() {
+		val p = fromFileName("testsrc/cfg1.wh");
+		val labs = CFG.labels(p.body)
+		Assert.assertEquals(6, labs.size());
+		for (i: 1..6) {
+			Assert.assertTrue("labels of cfg1.wh contains " +i, 
+				labs.contains(i))
+		}
+	}
+
+	@Test
+	def void testLabelsIfs() {
+		val p = fromFileName("testsrc/cfgifs.wh");
+		val labs = CFG.labels(p.body)
+		Assert.assertEquals(8, labs.size());
+		for (i: 1..8) {
+			Assert.assertTrue("labels of cfgifs.wh contains " +i, 
+				labs.contains(i))
+		}
+	}
+	
+	@Test
+	def void testBlocks1() {
+		val p = fromFileName("testsrc/cfg1.wh");
+		val CompoundS bod = p.body as CompoundS
+		val blks = CFG.blocks(bod)
+		Assert.assertEquals(6, blks.size())
+		for (i: 0..1) {
+			Assert.assertTrue("blocks of cfg1.wh contains block with label " + (i+1),
+					blks.contains(bod.stmts.get(i)));
+		}
+		val wl = bod.stmts.get(2) as WhileS
+		Assert.assertTrue("blocks of cfg1.wh contains while loop's test",
+				blks.contains(wl.bexp));
+		val wlbod = wl.block
+		for (i: 0..2) {
+			Assert.assertTrue("blocks of cfg1.wh's loop contains block with label " + (i+4),
+					blks.contains(wlbod.stmts.get(i)));
+		}
+	}
+
+	@Test
+	def void testBlockOf1() {
+		val p = fromFileName("testsrc/cfg1.wh");
+		Assert.assertEquals("itsBlockMap has size 6", 6, CFG.itsBlockMap.size())
+		val CompoundS bod = p.body as CompoundS
+		for (i: 0..1) {
+			Assert.assertEquals(bod.stmts.get(i), CFG.blockOf(i+1))
+		}
+        val wl = bod.stmts.get(2) as WhileS
+        Assert.assertEquals("block 3 of cfg1.wh is the while loop's test",
+                wl.bexp, CFG.blockOf(3));
+        val wlbod = wl.block
+        for (i: 0..2) {
+            Assert.assertEquals("block" + (i+4) + " of cfg1.wh's loop found",
+                    wlbod.stmts.get(i), CFG.blockOf(i+4));
+        }
+		
+	}
+
+
 //	public void testOutFlows1() throws IOException, Exception {
 //		Program p = parseFromFile("testsrc/cfg1.wh");
 //		assertTrue(p.getS() instanceof CompoundS);
