@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.IfSImpl#getBexp <em>Bexp</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.IfSImpl#getS1 <em>S1</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.IfSImpl#getS2 <em>S2</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

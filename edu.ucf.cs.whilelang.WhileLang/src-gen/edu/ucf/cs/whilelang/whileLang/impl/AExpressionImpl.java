@@ -21,12 +21,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AExpressionImpl#getLeft <em>Left</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AExpressionImpl#getOp <em>Op</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.AExpressionImpl#getRight <em>Right</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
