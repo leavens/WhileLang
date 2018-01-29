@@ -23,8 +23,11 @@ BConj returns Expr: BRelExp ({BConj.left=current} op=AND right=BRelExp)*;
 BRelExp returns Expr: AExpression ({BRelExp.left=current} op=OP_R right=AExpression)?;
 AExpression returns Expr: Factor ({AExpression.left=current} op=OPPLUS right=Factor)*;
 Factor returns Expr: Primary ({Factor.left=current} op=OPMUL right=Primary)*;
-Primary returns Expr: VarRefExpr | NumLitExpr | BoolLitExpr | NotExpr | '(' Expression ')';
+Primary returns Expr: VarRefExpr | NumLitExpr | SignedNum | BoolLitExpr | NotExpr 
+                    | '(' Expression ')'
+;
 VarRefExpr: vname=ID;
+SignedNum: (sign=OPPLUS) (nval=Primary);
 NumLitExpr: num=INT;
 BoolLitExpr: bval='true' | bval='false';
 NotExpr: 'not' (bexp=Primary);
@@ -33,8 +36,6 @@ ElementaryBlock: Assignment | Skip | LabeledExp ;
 
 @Override
 terminal SL_COMMENT: '%' !('\n'|'\r')* ('\r'? '\n')?;
-@Override
-terminal INT returns ecore::EInt: ('0'..'9')+ | '-'('0'..'9')+;
 terminal OPPLUS: '+' | '-';
 terminal OPMUL: '*' | '/';
 terminal OR: 'or';

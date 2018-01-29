@@ -49,12 +49,22 @@ class ParserTest {
 	// Statements
 	@Test
 	def void testSimpleAssign() {
-		assertParseOk("proc testSimpleAssign(x) is { x := 3 - 1*4 }")
+		assertParseOk("proc testSimpleAssign(x) is { x := 3-1*4 }")
 	}
 
     @Test
     def void testNegInt() {
         assertParseOk("proc testSimpleAssign(x) is { x := -2 - -3 }")
+    }
+
+    @Test
+    def void testNegInt2() {
+        assertParseOk("proc testSimpleAssign(x) is { x := --3 }")
+    }
+
+    @Test
+    def void testUnaryOp3() {
+        assertParseOk("proc testSimpleAssign(x) is { x := ---3; x := -+x }")
     }
 	
 	@Test
@@ -73,7 +83,7 @@ class ParserTest {
 	def void testNestedStmts() {
 		assertParseOk('''
 				proc testNestedStmts(i,z,k,j) is {
-					i := z + 5*5*4/3 - 4*6+8 - k; 
+					i := z + 5*5*4/3 - 4*6+8-k; 
 					j := (3+4)*7;
 					{
 						if i < 0 
@@ -85,7 +95,7 @@ class ParserTest {
 						} else { 
 							if q >= 7 and y <= 5 or 3 != 4 
 							then { skip } 
-							else { skip; x := x*4 - 1 }
+							else { skip; x := x*4-1 }
 						}; 
 						s := s+403 - 1 
 					}; 

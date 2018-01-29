@@ -474,7 +474,7 @@ ruleAssignment returns [EObject current=null]
 							$current,
 							"label",
 							lv_label_9_0,
-							"edu.ucf.cs.whilelang.WhileLang.INT");
+							"org.eclipse.xtext.common.Terminals.INT");
 					}
 				)
 			)
@@ -543,7 +543,7 @@ ruleSkip returns [EObject current=null]
 							$current,
 							"label",
 							lv_label_6_0,
-							"edu.ucf.cs.whilelang.WhileLang.INT");
+							"org.eclipse.xtext.common.Terminals.INT");
 					}
 				)
 			)
@@ -786,7 +786,7 @@ ruleLabeledExp returns [EObject current=null]
 							$current,
 							"label",
 							lv_label_5_0,
-							"edu.ucf.cs.whilelang.WhileLang.INT");
+							"org.eclipse.xtext.common.Terminals.INT");
 					}
 				)
 			)
@@ -1219,39 +1219,48 @@ rulePrimary returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimaryAccess().getBoolLitExprParserRuleCall_2());
+			newCompositeNode(grammarAccess.getPrimaryAccess().getSignedNumParserRuleCall_2());
 		}
-		this_BoolLitExpr_2=ruleBoolLitExpr
+		this_SignedNum_2=ruleSignedNum
 		{
-			$current = $this_BoolLitExpr_2.current;
+			$current = $this_SignedNum_2.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPrimaryAccess().getNotExprParserRuleCall_3());
+			newCompositeNode(grammarAccess.getPrimaryAccess().getBoolLitExprParserRuleCall_3());
 		}
-		this_NotExpr_3=ruleNotExpr
+		this_BoolLitExpr_3=ruleBoolLitExpr
 		{
-			$current = $this_NotExpr_3.current;
+			$current = $this_BoolLitExpr_3.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPrimaryAccess().getNotExprParserRuleCall_4());
+		}
+		this_NotExpr_4=ruleNotExpr
+		{
+			$current = $this_NotExpr_4.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		(
-			otherlv_4='('
+			otherlv_5='('
 			{
-				newLeafNode(otherlv_4, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_4_0());
+				newLeafNode(otherlv_5, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_5_0());
 			}
 			{
-				newCompositeNode(grammarAccess.getPrimaryAccess().getExpressionParserRuleCall_4_1());
+				newCompositeNode(grammarAccess.getPrimaryAccess().getExpressionParserRuleCall_5_1());
 			}
-			this_Expression_5=ruleExpression
+			this_Expression_6=ruleExpression
 			{
-				$current = $this_Expression_5.current;
+				$current = $this_Expression_6.current;
 				afterParserOrEnumRuleCall();
 			}
-			otherlv_6=')'
+			otherlv_7=')'
 			{
-				newLeafNode(otherlv_6, grammarAccess.getPrimaryAccess().getRightParenthesisKeyword_4_2());
+				newLeafNode(otherlv_7, grammarAccess.getPrimaryAccess().getRightParenthesisKeyword_5_2());
 			}
 		)
 	)
@@ -1292,6 +1301,62 @@ ruleVarRefExpr returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleSignedNum
+entryRuleSignedNum returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getSignedNumRule()); }
+	iv_ruleSignedNum=ruleSignedNum
+	{ $current=$iv_ruleSignedNum.current; }
+	EOF;
+
+// Rule SignedNum
+ruleSignedNum returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_sign_0_0=RULE_OPPLUS
+				{
+					newLeafNode(lv_sign_0_0, grammarAccess.getSignedNumAccess().getSignOPPLUSTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getSignedNumRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"sign",
+						lv_sign_0_0,
+						"edu.ucf.cs.whilelang.WhileLang.OPPLUS");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSignedNumAccess().getNvalPrimaryParserRuleCall_1_0());
+				}
+				lv_nval_1_0=rulePrimary
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSignedNumRule());
+					}
+					set(
+						$current,
+						"nval",
+						lv_nval_1_0,
+						"edu.ucf.cs.whilelang.WhileLang.Primary");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
 // Entry rule entryRuleNumLitExpr
 entryRuleNumLitExpr returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getNumLitExprRule()); }
@@ -1321,7 +1386,7 @@ ruleNumLitExpr returns [EObject current=null]
 					$current,
 					"num",
 					lv_num_0_0,
-					"edu.ucf.cs.whilelang.WhileLang.INT");
+					"org.eclipse.xtext.common.Terminals.INT");
 			}
 		)
 	)
@@ -1419,8 +1484,6 @@ ruleNotExpr returns [EObject current=null]
 
 RULE_SL_COMMENT : '%' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-RULE_INT : (('0'..'9')+|'-' ('0'..'9')+);
-
 RULE_OPPLUS : ('+'|'-');
 
 RULE_OPMUL : ('*'|'/');
@@ -1432,6 +1495,8 @@ RULE_AND : 'and';
 RULE_OP_R : ('=='|'!='|'<='|'>='|'<'|'>');
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+
+RULE_INT : ('0'..'9')+;
 
 RULE_STRING : ('"' ('\\' .|~(('\\'|'"')))* '"'|'\'' ('\\' .|~(('\\'|'\'')))* '\'');
 

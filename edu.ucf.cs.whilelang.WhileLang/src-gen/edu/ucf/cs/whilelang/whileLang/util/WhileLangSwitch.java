@@ -159,6 +159,14 @@ public class WhileLangSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case WhileLangPackage.SIGNED_NUM:
+      {
+        SignedNum signedNum = (SignedNum)theEObject;
+        T result = caseSignedNum(signedNum);
+        if (result == null) result = caseExpr(signedNum);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case WhileLangPackage.NUM_LIT_EXPR:
       {
         NumLitExpr numLitExpr = (NumLitExpr)theEObject;
@@ -406,6 +414,22 @@ public class WhileLangSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseVarRefExpr(VarRefExpr object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Signed Num</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Signed Num</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSignedNum(SignedNum object)
   {
     return null;
   }

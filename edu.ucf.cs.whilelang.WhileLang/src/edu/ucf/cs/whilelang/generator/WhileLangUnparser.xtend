@@ -15,6 +15,7 @@ import edu.ucf.cs.whilelang.whileLang.NumLitExpr
 import edu.ucf.cs.whilelang.whileLang.SkipS
 import edu.ucf.cs.whilelang.whileLang.VarRefExpr
 import edu.ucf.cs.whilelang.whileLang.WhileS
+import edu.ucf.cs.whilelang.whileLang.SignedNum
 
 /**
  * Produces unparsed version of the While program
@@ -83,6 +84,10 @@ class WhileLangUnparser {
 
     def dispatch String unparse(VarRefExpr vre) {
         vre.vname
+    }
+    
+    def dispatch String unparse(SignedNum sn) {
+        '''«sn.sign»(«sn.nval.unparse»)'''
     }
     
     def dispatch String unparse(NumLitExpr nl) {

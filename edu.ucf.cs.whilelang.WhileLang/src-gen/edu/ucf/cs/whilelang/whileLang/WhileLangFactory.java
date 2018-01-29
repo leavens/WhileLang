@@ -123,6 +123,15 @@ public interface WhileLangFactory extends EFactory
   VarRefExpr createVarRefExpr();
 
   /**
+   * Returns a new object of class '<em>Signed Num</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Signed Num</em>'.
+   * @generated
+   */
+  SignedNum createSignedNum();
+
+  /**
    * Returns a new object of class '<em>Num Lit Expr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

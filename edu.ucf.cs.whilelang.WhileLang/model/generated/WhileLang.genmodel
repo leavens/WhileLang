@@ -43,6 +43,10 @@
     <genClasses ecoreClass="WhileLang.ecore#//VarRefExpr">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//VarRefExpr/vname"/>
     </genClasses>
+    <genClasses ecoreClass="WhileLang.ecore#//SignedNum">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//SignedNum/sign"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//SignedNum/nval"/>
+    </genClasses>
     <genClasses ecoreClass="WhileLang.ecore#//NumLitExpr">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//NumLitExpr/num"/>
     </genClasses>

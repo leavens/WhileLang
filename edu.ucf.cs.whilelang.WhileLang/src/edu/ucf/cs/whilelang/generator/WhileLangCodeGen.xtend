@@ -15,6 +15,7 @@ import edu.ucf.cs.whilelang.whileLang.NumLitExpr
 import edu.ucf.cs.whilelang.whileLang.SkipS
 import edu.ucf.cs.whilelang.whileLang.VarRefExpr
 import edu.ucf.cs.whilelang.whileLang.WhileS
+import edu.ucf.cs.whilelang.whileLang.SignedNum
 
 /**
  * produces Java output to run the program.
@@ -90,7 +91,11 @@ class WhileLangCodeGen {
     def dispatch String toJava(VarRefExpr vre) {
         vre.vname
     }
-    
+
+    def dispatch String toJava(SignedNum sn) {
+        '''«sn.sign»(«sn.nval.toJava»)'''
+    }
+   
     def dispatch String toJava(NumLitExpr nl) {
         nl.num.toString()
     }

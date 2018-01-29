@@ -657,18 +657,20 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cVarRefExprParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cNumLitExprParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cBoolLitExprParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cNotExprParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
-		private final Keyword cLeftParenthesisKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final RuleCall cExpressionParserRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
+		private final RuleCall cSignedNumParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cBoolLitExprParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cNotExprParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
+		private final Keyword cLeftParenthesisKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final RuleCall cExpressionParserRuleCall_5_1 = (RuleCall)cGroup_5.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		
 		//Primary Expr:
-		//	VarRefExpr | NumLitExpr | BoolLitExpr | NotExpr | '(' Expression ')';
+		//	VarRefExpr | NumLitExpr | SignedNum | BoolLitExpr | NotExpr
+		//	| '(' Expression ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//VarRefExpr | NumLitExpr | BoolLitExpr | NotExpr | '(' Expression ')'
+		//VarRefExpr | NumLitExpr | SignedNum | BoolLitExpr | NotExpr | '(' Expression ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//VarRefExpr
@@ -677,23 +679,26 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//NumLitExpr
 		public RuleCall getNumLitExprParserRuleCall_1() { return cNumLitExprParserRuleCall_1; }
 		
+		//SignedNum
+		public RuleCall getSignedNumParserRuleCall_2() { return cSignedNumParserRuleCall_2; }
+		
 		//BoolLitExpr
-		public RuleCall getBoolLitExprParserRuleCall_2() { return cBoolLitExprParserRuleCall_2; }
+		public RuleCall getBoolLitExprParserRuleCall_3() { return cBoolLitExprParserRuleCall_3; }
 		
 		//NotExpr
-		public RuleCall getNotExprParserRuleCall_3() { return cNotExprParserRuleCall_3; }
+		public RuleCall getNotExprParserRuleCall_4() { return cNotExprParserRuleCall_4; }
 		
 		//'(' Expression ')'
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_5() { return cGroup_5; }
 		
 		//'('
-		public Keyword getLeftParenthesisKeyword_4_0() { return cLeftParenthesisKeyword_4_0; }
+		public Keyword getLeftParenthesisKeyword_5_0() { return cLeftParenthesisKeyword_5_0; }
 		
 		//Expression
-		public RuleCall getExpressionParserRuleCall_4_1() { return cExpressionParserRuleCall_4_1; }
+		public RuleCall getExpressionParserRuleCall_5_1() { return cExpressionParserRuleCall_5_1; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_4_2() { return cRightParenthesisKeyword_4_2; }
+		public Keyword getRightParenthesisKeyword_5_2() { return cRightParenthesisKeyword_5_2; }
 	}
 	public class VarRefExprElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.VarRefExpr");
@@ -709,6 +714,33 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ID
 		public RuleCall getVnameIDTerminalRuleCall_0() { return cVnameIDTerminalRuleCall_0; }
+	}
+	public class SignedNumElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.SignedNum");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cSignAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cSignOPPLUSTerminalRuleCall_0_0 = (RuleCall)cSignAssignment_0.eContents().get(0);
+		private final Assignment cNvalAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNvalPrimaryParserRuleCall_1_0 = (RuleCall)cNvalAssignment_1.eContents().get(0);
+		
+		//SignedNum:
+		//	sign=OPPLUS nval=Primary;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//sign=OPPLUS nval=Primary
+		public Group getGroup() { return cGroup; }
+		
+		//sign=OPPLUS
+		public Assignment getSignAssignment_0() { return cSignAssignment_0; }
+		
+		//OPPLUS
+		public RuleCall getSignOPPLUSTerminalRuleCall_0_0() { return cSignOPPLUSTerminalRuleCall_0_0; }
+		
+		//nval=Primary
+		public Assignment getNvalAssignment_1() { return cNvalAssignment_1; }
+		
+		//Primary
+		public RuleCall getNvalPrimaryParserRuleCall_1_0() { return cNvalPrimaryParserRuleCall_1_0; }
 	}
 	public class NumLitExprElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.NumLitExpr");
@@ -817,12 +849,12 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	private final FactorElements pFactor;
 	private final PrimaryElements pPrimary;
 	private final VarRefExprElements pVarRefExpr;
+	private final SignedNumElements pSignedNum;
 	private final NumLitExprElements pNumLitExpr;
 	private final BoolLitExprElements pBoolLitExpr;
 	private final NotExprElements pNotExpr;
 	private final ElementaryBlockElements pElementaryBlock;
 	private final TerminalRule tSL_COMMENT;
-	private final TerminalRule tINT;
 	private final TerminalRule tOPPLUS;
 	private final TerminalRule tOPMUL;
 	private final TerminalRule tOR;
@@ -855,12 +887,12 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		this.pFactor = new FactorElements();
 		this.pPrimary = new PrimaryElements();
 		this.pVarRefExpr = new VarRefExprElements();
+		this.pSignedNum = new SignedNumElements();
 		this.pNumLitExpr = new NumLitExprElements();
 		this.pBoolLitExpr = new BoolLitExprElements();
 		this.pNotExpr = new NotExprElements();
 		this.pElementaryBlock = new ElementaryBlockElements();
 		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.SL_COMMENT");
-		this.tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.INT");
 		this.tOPPLUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.OPPLUS");
 		this.tOPMUL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.OPMUL");
 		this.tOR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.OR");
@@ -1046,7 +1078,8 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Primary Expr:
-	//	VarRefExpr | NumLitExpr | BoolLitExpr | NotExpr | '(' Expression ')';
+	//	VarRefExpr | NumLitExpr | SignedNum | BoolLitExpr | NotExpr
+	//	| '(' Expression ')';
 	public PrimaryElements getPrimaryAccess() {
 		return pPrimary;
 	}
@@ -1063,6 +1096,16 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getVarRefExprRule() {
 		return getVarRefExprAccess().getRule();
+	}
+	
+	//SignedNum:
+	//	sign=OPPLUS nval=Primary;
+	public SignedNumElements getSignedNumAccess() {
+		return pSignedNum;
+	}
+	
+	public ParserRule getSignedNumRule() {
+		return getSignedNumAccess().getRule();
 	}
 	
 	//NumLitExpr:
@@ -1111,12 +1154,6 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		return tSL_COMMENT;
 	}
 	
-	//@ Override terminal INT returns ecore::EInt:
-	//	'0'..'9'+ | '-' '0'..'9'+;
-	public TerminalRule getINTRule() {
-		return tINT;
-	}
-	
 	//terminal OPPLUS:
 	//	'+' | '-';
 	public TerminalRule getOPPLUSRule() {
@@ -1151,6 +1188,12 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	//	'^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 	public TerminalRule getIDRule() {
 		return gaTerminals.getIDRule();
+	}
+	
+	//terminal INT returns ecore::EInt:
+	//	'0'..'9'+;
+	public TerminalRule getINTRule() {
+		return gaTerminals.getINTRule();
 	}
 	
 	//terminal STRING:

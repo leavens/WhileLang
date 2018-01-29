@@ -19,6 +19,7 @@ import edu.ucf.cs.whilelang.whileLang.LabeledExp;
 import edu.ucf.cs.whilelang.whileLang.NotExpr;
 import edu.ucf.cs.whilelang.whileLang.NumLitExpr;
 import edu.ucf.cs.whilelang.whileLang.Program;
+import edu.ucf.cs.whilelang.whileLang.SignedNum;
 import edu.ucf.cs.whilelang.whileLang.SkipS;
 import edu.ucf.cs.whilelang.whileLang.VarRefExpr;
 import edu.ucf.cs.whilelang.whileLang.WhileLangFactory;
@@ -116,6 +117,13 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * @generated
    */
   private EClass varRefExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass signedNumEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -528,6 +536,36 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getSignedNum()
+  {
+    return signedNumEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSignedNum_Sign()
+  {
+    return (EAttribute)signedNumEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSignedNum_Nval()
+  {
+    return (EReference)signedNumEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getNumLitExpr()
   {
     return numLitExprEClass;
@@ -862,6 +900,10 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     varRefExprEClass = createEClass(VAR_REF_EXPR);
     createEAttribute(varRefExprEClass, VAR_REF_EXPR__VNAME);
 
+    signedNumEClass = createEClass(SIGNED_NUM);
+    createEAttribute(signedNumEClass, SIGNED_NUM__SIGN);
+    createEReference(signedNumEClass, SIGNED_NUM__NVAL);
+
     numLitExprEClass = createEClass(NUM_LIT_EXPR);
     createEAttribute(numLitExprEClass, NUM_LIT_EXPR__NUM);
 
@@ -937,6 +979,7 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     ifSEClass.getESuperTypes().add(this.getS());
     labeledExpEClass.getESuperTypes().add(this.getElementaryBlock());
     varRefExprEClass.getESuperTypes().add(this.getExpr());
+    signedNumEClass.getESuperTypes().add(this.getExpr());
     numLitExprEClass.getESuperTypes().add(this.getExpr());
     boolLitExprEClass.getESuperTypes().add(this.getExpr());
     notExprEClass.getESuperTypes().add(this.getExpr());
@@ -985,6 +1028,10 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
 
     initEClass(varRefExprEClass, VarRefExpr.class, "VarRefExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVarRefExpr_Vname(), ecorePackage.getEString(), "vname", null, 0, 1, VarRefExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(signedNumEClass, SignedNum.class, "SignedNum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSignedNum_Sign(), ecorePackage.getEString(), "sign", null, 0, 1, SignedNum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSignedNum_Nval(), this.getExpr(), null, "nval", null, 0, 1, SignedNum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(numLitExprEClass, NumLitExpr.class, "NumLitExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNumLitExpr_Num(), ecorePackage.getEInt(), "num", null, 0, 1, NumLitExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

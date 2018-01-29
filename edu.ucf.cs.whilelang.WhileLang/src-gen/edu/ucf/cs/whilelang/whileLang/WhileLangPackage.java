@@ -343,7 +343,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getElementaryBlock()
    * @generated
    */
-  int ELEMENTARY_BLOCK = 14;
+  int ELEMENTARY_BLOCK = 15;
 
   /**
    * The number of structural features of the '<em>Elementary Block</em>' class.
@@ -439,6 +439,43 @@ public interface WhileLangPackage extends EPackage
   int VAR_REF_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.SignedNumImpl <em>Signed Num</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ucf.cs.whilelang.whileLang.impl.SignedNumImpl
+   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getSignedNum()
+   * @generated
+   */
+  int SIGNED_NUM = 11;
+
+  /**
+   * The feature id for the '<em><b>Sign</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SIGNED_NUM__SIGN = EXPR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Nval</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SIGNED_NUM__NVAL = EXPR_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Signed Num</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SIGNED_NUM_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.NumLitExprImpl <em>Num Lit Expr</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -446,7 +483,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getNumLitExpr()
    * @generated
    */
-  int NUM_LIT_EXPR = 11;
+  int NUM_LIT_EXPR = 12;
 
   /**
    * The feature id for the '<em><b>Num</b></em>' attribute.
@@ -474,7 +511,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBoolLitExpr()
    * @generated
    */
-  int BOOL_LIT_EXPR = 12;
+  int BOOL_LIT_EXPR = 13;
 
   /**
    * The feature id for the '<em><b>Bval</b></em>' attribute.
@@ -502,7 +539,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getNotExpr()
    * @generated
    */
-  int NOT_EXPR = 13;
+  int NOT_EXPR = 14;
 
   /**
    * The feature id for the '<em><b>Bexp</b></em>' containment reference.
@@ -530,7 +567,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBDisj()
    * @generated
    */
-  int BDISJ = 15;
+  int BDISJ = 16;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -576,7 +613,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBConj()
    * @generated
    */
-  int BCONJ = 16;
+  int BCONJ = 17;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -622,7 +659,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBRelExp()
    * @generated
    */
-  int BREL_EXP = 17;
+  int BREL_EXP = 18;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -668,7 +705,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getAExpression()
    * @generated
    */
-  int AEXPRESSION = 18;
+  int AEXPRESSION = 19;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -714,7 +751,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getFactor()
    * @generated
    */
-  int FACTOR = 19;
+  int FACTOR = 20;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1049,6 +1086,38 @@ public interface WhileLangPackage extends EPackage
    * @generated
    */
   EAttribute getVarRefExpr_Vname();
+
+  /**
+   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.SignedNum <em>Signed Num</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Signed Num</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.SignedNum
+   * @generated
+   */
+  EClass getSignedNum();
+
+  /**
+   * Returns the meta object for the attribute '{@link edu.ucf.cs.whilelang.whileLang.SignedNum#getSign <em>Sign</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Sign</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.SignedNum#getSign()
+   * @see #getSignedNum()
+   * @generated
+   */
+  EAttribute getSignedNum_Sign();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.SignedNum#getNval <em>Nval</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Nval</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.SignedNum#getNval()
+   * @see #getSignedNum()
+   * @generated
+   */
+  EReference getSignedNum_Nval();
 
   /**
    * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.NumLitExpr <em>Num Lit Expr</em>}'.
@@ -1606,6 +1675,32 @@ public interface WhileLangPackage extends EPackage
      * @generated
      */
     EAttribute VAR_REF_EXPR__VNAME = eINSTANCE.getVarRefExpr_Vname();
+
+    /**
+     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.SignedNumImpl <em>Signed Num</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ucf.cs.whilelang.whileLang.impl.SignedNumImpl
+     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getSignedNum()
+     * @generated
+     */
+    EClass SIGNED_NUM = eINSTANCE.getSignedNum();
+
+    /**
+     * The meta object literal for the '<em><b>Sign</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SIGNED_NUM__SIGN = eINSTANCE.getSignedNum_Sign();
+
+    /**
+     * The meta object literal for the '<em><b>Nval</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SIGNED_NUM__NVAL = eINSTANCE.getSignedNum_Nval();
 
     /**
      * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.NumLitExprImpl <em>Num Lit Expr</em>}' class.

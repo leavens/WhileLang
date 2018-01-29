@@ -76,6 +76,7 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
       case WhileLangPackage.LABELED_EXP: return createLabeledExp();
       case WhileLangPackage.EXPR: return createExpr();
       case WhileLangPackage.VAR_REF_EXPR: return createVarRefExpr();
+      case WhileLangPackage.SIGNED_NUM: return createSignedNum();
       case WhileLangPackage.NUM_LIT_EXPR: return createNumLitExpr();
       case WhileLangPackage.BOOL_LIT_EXPR: return createBoolLitExpr();
       case WhileLangPackage.NOT_EXPR: return createNotExpr();
@@ -209,6 +210,17 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
   {
     VarRefExprImpl varRefExpr = new VarRefExprImpl();
     return varRefExpr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SignedNum createSignedNum()
+  {
+    SignedNumImpl signedNum = new SignedNumImpl();
+    return signedNum;
   }
 
   /**

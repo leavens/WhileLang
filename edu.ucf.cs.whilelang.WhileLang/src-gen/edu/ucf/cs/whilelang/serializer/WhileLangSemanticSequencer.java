@@ -19,6 +19,7 @@ import edu.ucf.cs.whilelang.whileLang.LabeledExp;
 import edu.ucf.cs.whilelang.whileLang.NotExpr;
 import edu.ucf.cs.whilelang.whileLang.NumLitExpr;
 import edu.ucf.cs.whilelang.whileLang.Program;
+import edu.ucf.cs.whilelang.whileLang.SignedNum;
 import edu.ucf.cs.whilelang.whileLang.SkipS;
 import edu.ucf.cs.whilelang.whileLang.VarRefExpr;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
@@ -89,6 +90,9 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case WhileLangPackage.PROGRAM:
 				sequence_Program(context, (Program) semanticObject); 
+				return; 
+			case WhileLangPackage.SIGNED_NUM:
+				sequence_SignedNum(context, (SignedNum) semanticObject); 
 				return; 
 			case WhileLangPackage.SKIP_S:
 				sequence_Skip(context, (SkipS) semanticObject); 
@@ -449,6 +453,39 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Program(ISerializationContext context, Program semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Expression returns SignedNum
+	 *     BDisj returns SignedNum
+	 *     BDisj.BDisj_1_0 returns SignedNum
+	 *     BConj returns SignedNum
+	 *     BConj.BConj_1_0 returns SignedNum
+	 *     BRelExp returns SignedNum
+	 *     BRelExp.BRelExp_1_0 returns SignedNum
+	 *     AExpression returns SignedNum
+	 *     AExpression.AExpression_1_0 returns SignedNum
+	 *     Factor returns SignedNum
+	 *     Factor.Factor_1_0 returns SignedNum
+	 *     Primary returns SignedNum
+	 *     SignedNum returns SignedNum
+	 *
+	 * Constraint:
+	 *     (sign=OPPLUS nval=Primary)
+	 */
+	protected void sequence_SignedNum(ISerializationContext context, SignedNum semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.SIGNED_NUM__SIGN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.SIGNED_NUM__SIGN));
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.SIGNED_NUM__NVAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.SIGNED_NUM__NVAL));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSignedNumAccess().getSignOPPLUSTerminalRuleCall_0_0(), semanticObject.getSign());
+		feeder.accept(grammarAccess.getSignedNumAccess().getNvalPrimaryParserRuleCall_1_0(), semanticObject.getNval());
+		feeder.finish();
 	}
 	
 	

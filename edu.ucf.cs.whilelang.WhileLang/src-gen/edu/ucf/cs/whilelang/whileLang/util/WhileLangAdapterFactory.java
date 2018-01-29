@@ -131,6 +131,11 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
         return createVarRefExprAdapter();
       }
       @Override
+      public Adapter caseSignedNum(SignedNum object)
+      {
+        return createSignedNumAdapter();
+      }
+      @Override
       public Adapter caseNumLitExpr(NumLitExpr object)
       {
         return createNumLitExprAdapter();
@@ -358,6 +363,21 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createVarRefExprAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.SignedNum <em>Signed Num</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ucf.cs.whilelang.whileLang.SignedNum
+   * @generated
+   */
+  public Adapter createSignedNumAdapter()
   {
     return null;
   }

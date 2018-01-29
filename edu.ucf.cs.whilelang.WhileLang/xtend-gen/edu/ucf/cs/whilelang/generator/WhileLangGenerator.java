@@ -82,6 +82,22 @@ public class WhileLangGenerator extends AbstractGenerator {
     _builder.append("public static void main(String[] args) {");
     _builder.newLine();
     _builder.append("        ");
+    _builder.append("int ");
+    {
+      EList<String> _names = p.getArgs().getNames();
+      boolean _hasElements = false;
+      for(final String f : _names) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(",", "        ");
+        }
+        _builder.append(f, "        ");
+      }
+    }
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
     String _java = new WhileLangCodeGen().toJava(p.getBody());
     _builder.append(_java, "        ");
     _builder.newLineIfNotEmpty();

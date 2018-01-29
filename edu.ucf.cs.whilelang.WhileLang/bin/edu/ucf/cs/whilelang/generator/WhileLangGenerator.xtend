@@ -34,6 +34,7 @@ class WhileLangGenerator extends AbstractGenerator {
         '''
         public class «p.name» {
             public static void main(String[] args) {
+                int «FOR f : p.args.names SEPARATOR ','»«f»«ENDFOR»;
                 «new WhileLangCodeGen().toJava(p.body)»
             }
         }
