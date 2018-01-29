@@ -11,12 +11,12 @@ package edu.ucf.cs.whilelang.whileLang;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.IfS#getBexp <em>Bexp</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.IfS#getS1 <em>S1</em>}</li>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.IfS#getS2 <em>S2</em>}</li>
  * </ul>
- * </p>
  *
  * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getIfS()
  * @model

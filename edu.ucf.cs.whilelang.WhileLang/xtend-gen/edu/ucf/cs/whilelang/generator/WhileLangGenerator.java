@@ -11,6 +11,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.IntegerRange;
 
 /**
  * Generates code from your model files on save.
@@ -96,6 +97,41 @@ public class WhileLangGenerator extends AbstractGenerator {
       }
     }
     _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("if (args.length != ");
+    int _size = p.getArgs().getNames().size();
+    _builder.append(_size, "        ");
+    _builder.append(") {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("            ");
+    _builder.append("System.err.println(\"");
+    String _name_1 = p.getName();
+    _builder.append(_name_1, "            ");
+    _builder.append(" expects ");
+    int _size_1 = p.getArgs().getNames().size();
+    _builder.append(_size_1, "            ");
+    _builder.append(" arguments\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("            ");
+    _builder.append("System.exit(1);");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("        ");
+    {
+      int _size_2 = p.getArgs().getNames().size();
+      int _minus = (_size_2 - 1);
+      IntegerRange _upTo = new IntegerRange(0, _minus);
+      for(final Integer i : _upTo) {
+        String _get = p.getArgs().getNames().get((i).intValue());
+        _builder.append(_get, "        ");
+        _builder.append(" = Integer.valueOf(args[");
+        _builder.append(i, "        ");
+        _builder.append("]);");
+      }
+    }
     _builder.newLineIfNotEmpty();
     _builder.append("        ");
     String _java = new WhileLangCodeGen().toJava(p.getBody());

@@ -25,7 +25,7 @@ class WhileLangCodeGen {
     // Statements
     def dispatch String toJava(AssignS a) {
         '''
-        «a.v» = «a.aexp.toJava»; /* «a.label.toString» */
+        «a.v» = «a.aexp.toJava»; /*«a.label.toString»*/
         '''
     }
   	
@@ -41,7 +41,7 @@ class WhileLangCodeGen {
 
     def dispatch String toJava(SkipS s) {
         '''
-        /* «s.label.toString» */;
+        /*«s.label.toString»*/;
         '''
     }
 
@@ -77,15 +77,15 @@ class WhileLangCodeGen {
     }
     
     def dispatch String toJava(BRelExp be) {
-        '''(«be.left.toJava» «be.op» «be.right.toJava»)'''
+        '''(«be.left.toJava»«be.op»«be.right.toJava»)'''
     }
 
     def dispatch String toJava(AExpression ae) {
-        '''(«ae.left.toJava» «ae.op» «ae.right.toJava»)'''
+        '''(«ae.left.toJava»«ae.op»«ae.right.toJava»)'''
     }
 
     def dispatch String toJava(Factor ae) {
-        '''(«ae.left.toJava» «ae.op» «ae.right.toJava»)'''
+        '''(«ae.left.toJava»«ae.op»«ae.right.toJava»)'''
     }
 
     def dispatch String toJava(VarRefExpr vre) {

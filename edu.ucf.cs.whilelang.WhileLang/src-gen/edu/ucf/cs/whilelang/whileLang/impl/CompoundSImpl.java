@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link edu.ucf.cs.whilelang.whileLang.impl.CompoundSImpl#getStmts <em>Stmts</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

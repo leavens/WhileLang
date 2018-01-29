@@ -71,15 +71,15 @@ class WhileLangUnparser {
     }
     
     def dispatch String unparse(BRelExp be) {
-        '''(«be.left.unparse» «be.op» «be.right.unparse»)'''
+        '''(«be.left.unparse»«be.op»«be.right.unparse»)'''
     }
 
     def dispatch String unparse(AExpression ae) {
-        '''(«ae.left.unparse» «ae.op» «ae.right.unparse»)'''
+        '''(«ae.left.unparse»«ae.op»«ae.right.unparse»)'''
     }
 
     def dispatch String unparse(Factor ae) {
-        '''(«ae.left.unparse» «ae.op» «ae.right.unparse»)'''
+        '''(«ae.left.unparse»«ae.op»«ae.right.unparse»)'''
     }
 
     def dispatch String unparse(VarRefExpr vre) {
