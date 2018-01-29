@@ -146,4 +146,20 @@ public class SetRepUtility<T> implements Set<T> {
 	public void clear() {
 		h.clear();
 	}
+	
+	@Override
+	public String toString() {
+		StringBuffer ret = new StringBuffer();
+		ret.append("{");
+		T elems[] = (T []) h.toArray();
+		for (int i = 0; i < elems.length-1; i++) {
+			ret.append(elems[i].toString());
+			ret.append(", ");
+		}
+		if (elems.length > 0) {
+			ret.append(elems[elems.length-1].toString());
+		}
+		ret.append("}");
+		return ret.toString();
+	}
 }

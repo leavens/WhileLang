@@ -1,4 +1,4 @@
-program cfg1(q,r,x,y) is {
+proc cfg1(q,r,x,y) is {
     q := 0; % 1
     r := x; % 2
     while (r >= y) do % 3

@@ -1,4 +1,4 @@
-program cfg1(a,b,r) is {
+proc cfg1(a,b,r) is {
     if [a < b]^1
     then {
         if [a < b - 1]^2

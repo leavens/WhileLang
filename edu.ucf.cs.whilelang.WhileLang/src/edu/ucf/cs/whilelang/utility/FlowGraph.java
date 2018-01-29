@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import edu.ucf.cs.whilelang.generator.WhileLangUnparser;
 import edu.ucf.cs.whilelang.whileLang.S;
 
 /** A Map from statements (S) to sets of pairs of labels 
@@ -51,7 +52,7 @@ public class FlowGraph
 
 	/** Adds the mapping from stmt to all of the flows in fls, unioning the
 	 * flows in fls with the other flows that may already be present for stmt.
-	 * @param stmt a StmtHolder for the statement
+	 * @param stmt a statement
 	 * @param fls a set of flows (a flowgraph)
 	 */
 	public Set<Map.Entry<Integer,Integer>> putUnion(S stmt, 
@@ -62,7 +63,24 @@ public class FlowGraph
 		    map.put(stmt, ret);
 		    return ret;
 		} else {
-			return map.put(stmt, fls);
+			// create a new set for this key, don't alias with an old one!
+			Set<Map.Entry<Integer,Integer>> ret = 
+					new SetRepUtility<Map.Entry<Integer,Integer>>();
+			ret.addAll(fls);
+			return map.put(stmt, ret);
 		}
+	}
+	
+	@Override
+	public String toString() {
+		WhileLangUnparser wup = new WhileLangUnparser();
+		StringBuffer ret = new StringBuffer();
+		ret.append("{\n");
+		for (Map.Entry<S, Set<Map.Entry<Integer,Integer>>> m : map.entrySet()) {
+			ret.append("(" + wup.unparse(m.getKey()) + ", " 
+					       + m.getValue().toString() + ")\n");
+		}
+		ret.append("}");
+		return ret.toString();
 	}
 }

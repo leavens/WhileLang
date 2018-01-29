@@ -1,23 +1,24 @@
 package edu.ucf.cs.whilelang.tests;
 
 import com.google.inject.Inject
+import edu.ucf.cs.whilelang.WhileLangStandaloneSetup
+import edu.ucf.cs.whilelang.utility.CFG
+import edu.ucf.cs.whilelang.utility.Pair
 import edu.ucf.cs.whilelang.validation.WhileLangValidator
-import edu.ucf.cs.whilelang.whileLang.Program
 import edu.ucf.cs.whilelang.whileLang.CompoundS
+import edu.ucf.cs.whilelang.whileLang.IfS
+import edu.ucf.cs.whilelang.whileLang.Program
 import edu.ucf.cs.whilelang.whileLang.WhileS
+import java.io.FileInputStream
+import java.util.HashMap
+import org.eclipse.emf.common.util.URI
+import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.testing.util.ParseHelper
-import org.junit.runner.RunWith
-import java.io.FileInputStream
-import org.junit.Test
 import org.junit.Assert
-import edu.ucf.cs.whilelang.WhileLangStandaloneSetup
-import edu.ucf.cs.whilelang.utility.CFG
-import org.eclipse.emf.ecore.resource.ResourceSet
-import org.eclipse.xtext.resource.XtextResourceSet
-import org.eclipse.emf.common.util.URI
-import java.util.HashMap
+import org.junit.Test
+import org.junit.runner.RunWith
 
 /**
  * JUnit (4) tests for inFlows and outFlows attributes. 
@@ -48,6 +49,26 @@ class CFGTest {
 		val i = CFG.init(p.body)
 		Assert.assertTrue("init of cfg1.wh was " + i + " not 1", CFG.init(p.body) == 1)
 	}
+	
+	@Test
+	def void testInit1A() {
+		val p = fromFileName("testsrc/cfg1.wh");
+		val CompoundS bod = p.body as CompoundS
+		for (i : 0..1) {
+			val ini = CFG.init(bod.stmts.get(i))
+			Assert.assertEquals(i+1, ini)
+		}
+		val wl = bod.stmts.get(2) as WhileS
+		val wli = CFG.init(wl)
+		Assert.assertEquals("init of cfg1.wh's while loop is 3", 3, wli)
+		val wlbod = wl.block
+		for (i: 0..2) {
+			val start = CFG.init(wlbod.stmts.get(i))
+			Assert.assertEquals("block " + (i+4) + " of cfg1.wh's loop body has init " + (i+4),
+					i+4, start);
+		}
+
+	}
 
 	@Test
 	def void testFinals1() {
@@ -56,6 +77,30 @@ class CFGTest {
 		Assert.assertEquals(1, outs.size());
 		Assert.assertTrue("finals of cfg1.wh is {3}", outs.contains(3))
 	}
+	
+	@Test
+	def void testFinals1A() {
+		val p = fromFileName("testsrc/cfg1.wh");
+		val CompoundS bod = p.body as CompoundS
+		for (i : 0..1) {
+			val fini = CFG.finals(bod.stmts.get(i))
+			Assert.assertTrue("finals of cfg1.wh label " + (i+1) + " is {" + (i+1) +"}", 
+					fini.size() == 1 && fini.contains(i+1))
+		}
+		val wl = bod.stmts.get(2) as WhileS
+		val wlf = CFG.finals(wl)
+		Assert.assertEquals("size of while loop finals is 1", 1, wlf.size())
+		Assert.assertTrue("finals of cfg1.wh's while loop is {3}", 
+						wlf.contains(3))
+		val wlbod = wl.block
+		for (i: 0..2) {
+			val fin = CFG.finals(wlbod.stmts.get(i))
+			Assert.assertTrue("block " + (i+4) + " of cfg1.wh's loop body has finals {" + (i+4) + "}",
+					fin.size() == 1 && fin.contains(i+4));
+		}
+
+	}
+	
 
 	@Test
 	def void testFinalsIfs() {
@@ -75,6 +120,16 @@ class CFGTest {
 			Assert.assertTrue("labels of cfg1.wh contains " +i, 
 				labs.contains(i))
 		}
+		val bod = p.body as CompoundS
+		for (i: 0..1) {
+			val ls = CFG.labels(bod.stmts.get(i))
+			Assert.assertEquals(1, ls.size());
+			Assert.assertTrue("labels of cfg1.wh is {" + (i+1) + "}",
+					ls.contains(i+1))
+		}
+		val wl = bod.stmts.get(2) as WhileS
+		val wlabs = CFG.labels(wl)
+		Assert.assertEquals(4, wlabs.size());
 	}
 
 	@Test
@@ -126,117 +181,57 @@ class CFGTest {
         }
 		
 	}
+	
+	@Test
+    def void testFlowsOf1() {
+        val p = fromFileName("testsrc/cfg1.wh");
+        Assert.assertEquals("cfgMap has size 8", 8, CFG.cfgMap.size())
+        val CompoundS bod = p.body as CompoundS
+        // System.out.println(CFG.cfgMap.toString())
+        for (i: 0..1) {
+            val flmap = CFG.flowsOf(bod.stmts.get(i))
+            Assert.assertEquals("In cfg1.wh block " + (i+1) + " is empty",
+                    0, flmap.size()) 
+        }
+        val wl = bod.stmts.get(2) as WhileS
+        val wflows = CFG.flowsOf(wl)
+        Assert.assertEquals("loop of cfg1.wh has 4 flows", 4, wflows.size())
+        // System.out.println("flows of loop: " + wflows.toString())
+        Assert.assertTrue("loop in cfg1.wh has expected flow (3,4)",
+               wflows.contains(new Pair<Integer,Integer>(3,4)));
+        Assert.assertTrue("loop in cfg1.wh has expected flow (4,5)",
+                wflows.contains(new Pair<Integer,Integer>(4,5)));
+        Assert.assertTrue("loop in cfg1.wh has expected flow (5,6)",
+                wflows.contains(new Pair<Integer,Integer>(5,6)));
+        Assert.assertTrue("loop in cfg1.wh has expected flow (6,3)",
+        		wflows.contains(new Pair<Integer,Integer>(6,3)));
+    }
 
-
-//	public void testOutFlows1() throws IOException, Exception {
-//		Program p = parseFromFile("testsrc/cfg1.wh");
-//		assertTrue(p.getS() instanceof CompoundS);
-//		S stmt1 = ((CompoundS)p.getS()).getSList(0);
-//		Set<Label> outs = stmt1.outFlows();
-//		assertEquals(1, outs.size());
-//		assertTrue(outs.contains(new NumLabel("2")));
-//	}
-//
-//	public void testOutFlows2() throws IOException, Exception {
-//		Program p = parseFromFile("testsrc/cfg1.wh");
-//		assertTrue(p.getS() instanceof CompoundS);
-//		S stmt2 = ((CompoundS)p.getS()).getSList(1);
-//		Set<Label> outs = stmt2.outFlows();
-//		assertEquals(1, outs.size());
-//		assertTrue(outs.contains(new NumLabel("6")));
-//	}
-//	
-//	public void testOutFlows3() throws IOException, Exception {
-//		Program p = parseFromFile("testsrc/cfg1.wh");
-//		assertTrue(p.getS() instanceof CompoundS);
-//		S stmt3 = ((CompoundS)p.getS()).getSList(2);
-//		assertTrue(stmt3 instanceof WhileS);
-//		WhileS wh = (WhileS)stmt3;
-//		LabeledExpr blk6 = wh.getLabeledExpr();
-//		Set<Label> outs = blk6.outFlows();
-//		assertEquals(2, outs.size());
-//		assertTrue(outs.contains(new NumLabel("3")));
-//		assertTrue(outs.contains(new NumLabel("7")));
-//	}
-//	
-//	public void testInFlows3() throws IOException, Exception {
-//		Program p = parseFromFile("testsrc/cfg1.wh");
-//		assertTrue(p.getS() instanceof CompoundS);
-//		S stmt3 = ((CompoundS)p.getS()).getSList(2);
-//		assertTrue(stmt3 instanceof WhileS);
-//		WhileS wh = (WhileS)stmt3;
-//		LabeledExpr blk6 = wh.getLabeledExpr();
-//		Set<Label> ins = blk6.inFlows();
-//		assertEquals(2, ins.size());
-//		assertTrue(ins.contains(new NumLabel("5")));
-//		assertTrue(ins.contains(new NumLabel("2")));
-//	}
-//
-//	public void testWhileBodyFlows() throws IOException, Exception {
-//		Program p = parseFromFile("testsrc/cfg1.wh");
-//		assertTrue(p.getS() instanceof CompoundS);
-//		S stmt6 = ((CompoundS)p.getS()).getSList(2);
-//		assertTrue(stmt6 instanceof WhileS);
-//		WhileS wh = (WhileS)stmt6;
-//		CompoundS body = (CompoundS)wh.getS();
-//		S stmt3 = body.getSList(0);
-//		Set<Label> ins = stmt3.inFlows();
-//		assertEquals(1, ins.size());
-//		assertTrue(ins.contains(new NumLabel("6")));
-//		Set<Label> outs = stmt3.outFlows();
-//		assertEquals(1, outs.size());
-//		assertTrue(outs.contains(new NumLabel("4")));
-//	}
-//	
-//	public void testProgLabels() throws IOException, Exception {
-//		Program p = parseFromFile("testsrc/cfg1.wh");
-//		assertTrue(p.getS() instanceof CompoundS);
-//		S stmt6 = ((CompoundS)p.getS()).getSList(2);
-//		assertTrue(stmt6 instanceof WhileS);
-//		WhileS wh = (WhileS)stmt6;
-//		CompoundS body = (CompoundS)wh.getS();
-//		AssignS stmt3 = (AssignS) body.getSList(0);
-//		Set<Label> labs = stmt3.progLabels();
-//		assertEquals(7, labs.size());
-//		assertTrue(labs.contains(new NumLabel("1")));
-//		assertTrue(labs.contains(new NumLabel("2")));
-//		assertTrue(labs.contains(new NumLabel("3")));
-//		assertTrue(labs.contains(new NumLabel("4")));
-//		assertTrue(labs.contains(new NumLabel("5")));
-//		assertTrue(labs.contains(new NumLabel("6")));
-//		assertTrue(labs.contains(new NumLabel("7")));
-//	}
-//
-//	public void testProgFVs() throws IOException, Exception {
-//		Program p = parseFromFile("testsrc/cfg1.wh");
-//		assertTrue(p.getS() instanceof CompoundS);
-//		S stmt6 = ((CompoundS)p.getS()).getSList(2);
-//		assertTrue(stmt6 instanceof WhileS);
-//		WhileS wh = (WhileS)stmt6;
-//		CompoundS body = (CompoundS)wh.getS();
-//		AssignS stmt3 = (AssignS) body.getSList(0);
-//		Set<String> vars = stmt3.progFV();
-//		assertEquals(4, vars.size());
-//		assertTrue(vars.contains("q"));
-//		assertTrue(vars.contains("r"));
-//		assertTrue(vars.contains("x"));
-//		assertTrue(vars.contains("y"));
-//	}
-//
-//	public CFGTests(String s) {
-//		super(s);
-//	}
-//	
-//	public static junit.framework.Test suite() {
-//		return new junit.framework.TestSuite(tests.CFGTests.class);
-//	}
-//
-//	public static void main(String args[]) {
-//		if (args.length == 1 && args[0].equals("-text")) {
-//			junit.textui.TestRunner.run(CFGTests.class);
-//		} else {
-//			junit.swingui.TestRunner.run(CFGTests.class);
-//		}
-//	}
-
+    @Test
+    def void testFlowsOfIfs() {
+        val p = fromFileName("testsrc/cfgifs.wh");
+        Assert.assertEquals("cfgMap has size 15", 15, CFG.cfgMap.size())
+        val CompoundS bod = p.body as CompoundS
+        // System.out.println(CFG.cfgMap.toString())
+        val IfS ifs = bod.stmts.get(0) as IfS;
+        val bflows = CFG.flowsOf(bod)
+        val ifsflows = CFG.flowsOf(ifs)
+        // bflows.equals(ifs) doesn't work (as is using wrong notion of equals)
+        Assert.assertEquals("flows of program same as if statement in body",
+            bflows.size(), ifsflows.size())
+        for (m: bflows) {
+            Assert.assertTrue("elem in bflows is in ifsflows",
+                ifsflows.contains(m))
+        }
+        val truePart = ifs.s1
+        val tpflows = CFG.flowsOf(truePart)
+        Assert.assertEquals("3 flows in outer true part", 3, tpflows.size())
+        Assert.assertTrue("if in cfgifs.wh has expected flow (2,3)",
+               tpflows.contains(new Pair<Integer,Integer>(2,3)));
+        Assert.assertTrue("if in cfgifs.wh has expected flow (3,4)",
+               tpflows.contains(new Pair<Integer,Integer>(3,4)));
+        Assert.assertTrue("if in cfgifs.wh has expected flow (2,5)",
+               tpflows.contains(new Pair<Integer,Integer>(2,5)));
+    }
+	
 }

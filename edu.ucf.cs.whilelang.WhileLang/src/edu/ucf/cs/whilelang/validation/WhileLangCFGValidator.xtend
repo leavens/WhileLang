@@ -30,6 +30,7 @@ class WhileLangCFGValidator extends AbstractWhileLangValidator {
 	 * Assumes that the labels have already been added to the program. */	
 	@Check
 	def constructCFG(Program p) {
+	    resetMaps()
 		p.body.constructIBM
 		p.body.constructFlows
 	}
@@ -93,7 +94,7 @@ class WhileLangCFGValidator extends AbstractWhileLangValidator {
             cfgMap.putUnion(c, cfgMap.get(c.stmts.get(i)))
         }
         // the flows of c also contain a flow from each statement to the next
-        for (i : 0..c.stmts.size()-2) {
+        for (i : 0..<c.stmts.size()-1) {
             for (j : CFG.finals(c.stmts.get(i))) {
                     cfgMap.putUnion(c, 
                         new SetRepUtility<Map.Entry<Integer,Integer>>(

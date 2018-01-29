@@ -18,4 +18,20 @@ public class Pair<K,V> extends SimpleEntry<K, V> {
 		return "(" + getKey().toString() + "," 
 			       + getValue().toString() + ")";
 	}
+	
+	@Override
+	public boolean equals(Object oth) {
+		if (oth == null || !(oth instanceof Pair)) {
+			return false;
+		}
+		@SuppressWarnings("unchecked")
+		Pair<K,V> po = (Pair<K,V>) oth;
+		return this.getKey().equals(po.getKey())
+				&& this.getValue().equals(po.getValue());
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getKey().hashCode() + this.getValue().hashCode();
+	}
 }
