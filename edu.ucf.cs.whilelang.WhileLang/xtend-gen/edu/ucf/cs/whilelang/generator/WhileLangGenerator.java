@@ -83,22 +83,6 @@ public class WhileLangGenerator extends AbstractGenerator {
     _builder.append("public static void main(String[] args) {");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("int ");
-    {
-      EList<String> _names = p.getArgs().getNames();
-      boolean _hasElements = false;
-      for(final String f : _names) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(",", "        ");
-        }
-        _builder.append(f, "        ");
-      }
-    }
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("        ");
     _builder.append("if (args.length != ");
     int _size = p.getArgs().getNames().size();
     _builder.append(_size, "        ");
@@ -120,6 +104,22 @@ public class WhileLangGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("        ");
+    _builder.append("int ");
+    {
+      EList<String> _names = p.getArgs().getNames();
+      boolean _hasElements = false;
+      for(final String f : _names) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(",", "        ");
+        }
+        _builder.append(f, "        ");
+      }
+    }
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
     {
       int _size_2 = p.getArgs().getNames().size();
       int _minus = (_size_2 - 1);
@@ -134,9 +134,45 @@ public class WhileLangGenerator extends AbstractGenerator {
     }
     _builder.newLineIfNotEmpty();
     _builder.append("        ");
+    _builder.append("System.out.print(\"input:\");");
+    _builder.newLine();
+    _builder.append("        ");
+    {
+      EList<String> _names_1 = p.getArgs().getNames();
+      for(final String f_1 : _names_1) {
+        _builder.append("System.out.print(\" ");
+        _builder.append(f_1, "        ");
+        _builder.append(" = \" + ");
+        _builder.append(f_1, "        ");
+        _builder.append(");");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("System.out.println();");
+    _builder.newLine();
+    _builder.append("        ");
     String _java = new WhileLangCodeGen().toJava(p.getBody());
     _builder.append(_java, "        ");
     _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("System.out.print(\"final:\");");
+    _builder.newLine();
+    _builder.append("        ");
+    {
+      EList<String> _names_2 = p.getArgs().getNames();
+      for(final String f_2 : _names_2) {
+        _builder.append("System.out.print(\" ");
+        _builder.append(f_2, "        ");
+        _builder.append(" = \" + ");
+        _builder.append(f_2, "        ");
+        _builder.append(");");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    _builder.append("        ");
+    _builder.append("System.out.println();");
+    _builder.newLine();
     _builder.append("    ");
     _builder.append("}");
     _builder.newLine();
