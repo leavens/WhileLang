@@ -1,6 +1,7 @@
 package edu.ucf.cs.whilelang.generator
 
 import edu.ucf.cs.whilelang.whileLang.AExpression
+import edu.ucf.cs.whilelang.whileLang.AssertS
 import edu.ucf.cs.whilelang.whileLang.AssignS
 import edu.ucf.cs.whilelang.whileLang.BConj
 import edu.ucf.cs.whilelang.whileLang.BDisj
@@ -55,7 +56,11 @@ class WhileLangUnparser {
         else «i.s2.unparse»
         '''
     }
-    
+ 
+    def dispatch String unparse(AssertS a) {
+        '''assert «a.bexp.unparse»'''
+    }
+       
     // LabeledExp
     def dispatch String unparse(LabeledExp le) {
         '''[«le.be.unparse»]^«le.label.toString»'''
@@ -99,7 +104,7 @@ class WhileLangUnparser {
     }
     
     def dispatch String unparse(NotExpr ne) {
-        '''!(«ne.bexp.unparse»)'''
+        '''not («ne.bexp.unparse»)'''
     }
     
 }

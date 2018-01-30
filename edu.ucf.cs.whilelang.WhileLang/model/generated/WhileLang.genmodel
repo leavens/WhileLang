@@ -35,6 +35,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//IfS/s1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//IfS/s2"/>
     </genClasses>
+    <genClasses ecoreClass="WhileLang.ecore#//AssertS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//AssertS/bexp"/>
+    </genClasses>
     <genClasses ecoreClass="WhileLang.ecore#//LabeledExp">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileLang.ecore#//LabeledExp/be"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileLang.ecore#//LabeledExp/label"/>

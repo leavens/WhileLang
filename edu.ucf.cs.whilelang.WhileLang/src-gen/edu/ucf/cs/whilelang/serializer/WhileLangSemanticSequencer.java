@@ -6,6 +6,7 @@ package edu.ucf.cs.whilelang.serializer;
 import com.google.inject.Inject;
 import edu.ucf.cs.whilelang.services.WhileLangGrammarAccess;
 import edu.ucf.cs.whilelang.whileLang.AExpression;
+import edu.ucf.cs.whilelang.whileLang.AssertS;
 import edu.ucf.cs.whilelang.whileLang.AssignS;
 import edu.ucf.cs.whilelang.whileLang.BConj;
 import edu.ucf.cs.whilelang.whileLang.BDisj;
@@ -51,6 +52,9 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 			switch (semanticObject.eClass().getClassifierID()) {
 			case WhileLangPackage.AEXPRESSION:
 				sequence_AExpression(context, (AExpression) semanticObject); 
+				return; 
+			case WhileLangPackage.ASSERT_S:
+				sequence_Assert(context, (AssertS) semanticObject); 
 				return; 
 			case WhileLangPackage.ASSIGN_S:
 				sequence_Assignment(context, (AssignS) semanticObject); 
@@ -139,6 +143,25 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 		feeder.accept(grammarAccess.getAExpressionAccess().getAExpressionLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getAExpressionAccess().getOpOPPLUSTerminalRuleCall_1_1_0(), semanticObject.getOp());
 		feeder.accept(grammarAccess.getAExpressionAccess().getRightFactorParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Stmt returns AssertS
+	 *     Assert returns AssertS
+	 *
+	 * Constraint:
+	 *     bexp=LabeledExp
+	 */
+	protected void sequence_Assert(ISerializationContext context, AssertS semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, WhileLangPackage.Literals.ASSERT_S__BEXP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileLangPackage.Literals.ASSERT_S__BEXP));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAssertAccess().getBexpLabeledExpParserRuleCall_1_0(), semanticObject.getBexp());
 		feeder.finish();
 	}
 	

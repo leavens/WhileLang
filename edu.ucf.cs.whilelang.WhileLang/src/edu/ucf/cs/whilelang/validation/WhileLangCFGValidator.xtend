@@ -4,6 +4,7 @@ import edu.ucf.cs.whilelang.utility.CFG
 import edu.ucf.cs.whilelang.utility.FlowGraph
 import edu.ucf.cs.whilelang.utility.Pair
 import edu.ucf.cs.whilelang.utility.SetRepUtility
+import edu.ucf.cs.whilelang.whileLang.AssertS
 import edu.ucf.cs.whilelang.whileLang.AssignS
 import edu.ucf.cs.whilelang.whileLang.CompoundS
 import edu.ucf.cs.whilelang.whileLang.IfS
@@ -69,6 +70,11 @@ class WhileLangCFGValidator extends AbstractWhileLangValidator {
         ifs.s1.constructIBM
         ifs.s2.constructIBM
     } 
+    
+    /** Constructs the itsBlockMap mapping for this assert statement. */
+    def dispatch void constructIBM(AssertS a) {
+        itsBlockMap.put(a.bexp.label, a.bexp)
+    }
         
     /** Constructs the cfgMap mapping 
      * where the given statement maps to all of the flows within it. */
@@ -134,6 +140,10 @@ class WhileLangCFGValidator extends AbstractWhileLangValidator {
         cfgMap.putUnion(ifs, new SetRepUtility<Map.Entry<Integer,Integer>>(
                     new Pair<Integer,Integer>(ifs.bexp.label, CFG.init(ifs.s2))
                 ))
+    }
+    
+    def dispatch void constructFlows(AssertS a) {
+        cfgMap.putUnion(a, new SetRepUtility<Map.Entry<Integer,Integer>>())
     }
 
     /** initialize the global static maps */

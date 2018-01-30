@@ -39,6 +39,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="s2" eType="#//CompoundS"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssertS" eSuperTypes="#//S">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bexp" eType="#//LabeledExp"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LabeledExp" eSuperTypes="#//ElementaryBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="be" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

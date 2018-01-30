@@ -117,12 +117,13 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cWhileParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cIfParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cAssertParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		//Stmt S:
-		//	Assignment | Skip | Block | While | If;
+		//	Assignment | Skip | Block | While | If | Assert;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Assignment | Skip | Block | While | If
+		//Assignment | Skip | Block | While | If | Assert
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Assignment
@@ -139,6 +140,9 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//If
 		public RuleCall getIfParserRuleCall_4() { return cIfParserRuleCall_4; }
+		
+		//Assert
+		public RuleCall getAssertParserRuleCall_5() { return cAssertParserRuleCall_5; }
 	}
 	public class BlockElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Block");
@@ -394,6 +398,29 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Block
 		public RuleCall getS2BlockParserRuleCall_5_0() { return cS2BlockParserRuleCall_5_0; }
+	}
+	public class AssertElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Assert");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAssertKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cBexpAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cBexpLabeledExpParserRuleCall_1_0 = (RuleCall)cBexpAssignment_1.eContents().get(0);
+		
+		//Assert AssertS:
+		//	'assert' bexp=LabeledExp;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'assert' bexp=LabeledExp
+		public Group getGroup() { return cGroup; }
+		
+		//'assert'
+		public Keyword getAssertKeyword_0() { return cAssertKeyword_0; }
+		
+		//bexp=LabeledExp
+		public Assignment getBexpAssignment_1() { return cBexpAssignment_1; }
+		
+		//LabeledExp
+		public RuleCall getBexpLabeledExpParserRuleCall_1_0() { return cBexpLabeledExpParserRuleCall_1_0; }
 	}
 	public class LabeledExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.LabeledExp");
@@ -840,6 +867,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	private final SkipElements pSkip;
 	private final WhileElements pWhile;
 	private final IfElements pIf;
+	private final AssertElements pAssert;
 	private final LabeledExpElements pLabeledExp;
 	private final ExpressionElements pExpression;
 	private final BDisjElements pBDisj;
@@ -878,6 +906,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSkip = new SkipElements();
 		this.pWhile = new WhileElements();
 		this.pIf = new IfElements();
+		this.pAssert = new AssertElements();
 		this.pLabeledExp = new LabeledExpElements();
 		this.pExpression = new ExpressionElements();
 		this.pBDisj = new BDisjElements();
@@ -948,7 +977,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Stmt S:
-	//	Assignment | Skip | Block | While | If;
+	//	Assignment | Skip | Block | While | If | Assert;
 	public StmtElements getStmtAccess() {
 		return pStmt;
 	}
@@ -1005,6 +1034,16 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getIfRule() {
 		return getIfAccess().getRule();
+	}
+	
+	//Assert AssertS:
+	//	'assert' bexp=LabeledExp;
+	public AssertElements getAssertAccess() {
+		return pAssert;
+	}
+	
+	public ParserRule getAssertRule() {
+		return getAssertAccess().getRule();
 	}
 	
 	//LabeledExp:

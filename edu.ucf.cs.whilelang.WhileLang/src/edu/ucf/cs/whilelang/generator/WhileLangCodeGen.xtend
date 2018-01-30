@@ -1,6 +1,7 @@
 package edu.ucf.cs.whilelang.generator
 
 import edu.ucf.cs.whilelang.whileLang.AExpression
+import edu.ucf.cs.whilelang.whileLang.AssertS
 import edu.ucf.cs.whilelang.whileLang.AssignS
 import edu.ucf.cs.whilelang.whileLang.BConj
 import edu.ucf.cs.whilelang.whileLang.BDisj
@@ -60,6 +61,10 @@ class WhileLangCodeGen {
     		«i.s2.toJava»
     	}
     	'''
+    }
+    
+    def dispatch String toJava(AssertS a) {
+        '''assert «a.bexp.toJava»;'''
     }
     
     // LabeledExp

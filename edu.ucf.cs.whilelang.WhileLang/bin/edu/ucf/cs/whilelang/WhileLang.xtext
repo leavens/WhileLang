@@ -8,13 +8,14 @@ generate whileLang "http://www.ucf.edu/cs/whilelang/WhileLang"
 Program: 'proc' name=ID '(' (args=Formals)? ')' 'is' body=Stmt;
 Formals: names+=ID (',' names+=ID)*;
 
-Stmt returns S: Assignment | Skip | Block | While | If;
+Stmt returns S: Assignment | Skip | Block | While | If | Assert;
 Block returns CompoundS: '{' stmts+=Stmt (';' stmts+=Stmt)* '}';
 Assignment returns AssignS: (v=ID) ':=' (aexp=Expression) 
     | '[' (v=ID) ':=' (aexp=Expression) ']' '^' (label=INT);
 Skip returns SkipS: 'skip' {SkipS} | '[' 'skip' ']' '^' (label=INT);
 While returns WhileS: 'while' (bexp=LabeledExp) 'do' (block=Block);
 If returns IfS: 'if' (bexp=LabeledExp) 'then' (s1=Block) 'else' (s2=Block);
+Assert returns AssertS: 'assert' (bexp=LabeledExp);
 LabeledExp returns LabeledExp: (be=Expression) | '[' (be=Expression) ']' '^' (label=INT);
 
 Expression returns Expr: BDisj;

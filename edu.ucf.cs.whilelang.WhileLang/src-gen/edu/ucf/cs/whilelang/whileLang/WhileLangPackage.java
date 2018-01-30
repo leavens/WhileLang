@@ -336,6 +336,34 @@ public interface WhileLangPackage extends EPackage
   int IF_S_FEATURE_COUNT = S_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.AssertSImpl <em>Assert S</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see edu.ucf.cs.whilelang.whileLang.impl.AssertSImpl
+   * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getAssertS()
+   * @generated
+   */
+  int ASSERT_S = 8;
+
+  /**
+   * The feature id for the '<em><b>Bexp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERT_S__BEXP = S_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Assert S</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERT_S_FEATURE_COUNT = S_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.ElementaryBlockImpl <em>Elementary Block</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -343,7 +371,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getElementaryBlock()
    * @generated
    */
-  int ELEMENTARY_BLOCK = 15;
+  int ELEMENTARY_BLOCK = 16;
 
   /**
    * The number of structural features of the '<em>Elementary Block</em>' class.
@@ -362,7 +390,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getLabeledExp()
    * @generated
    */
-  int LABELED_EXP = 8;
+  int LABELED_EXP = 9;
 
   /**
    * The feature id for the '<em><b>Be</b></em>' containment reference.
@@ -399,7 +427,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getExpr()
    * @generated
    */
-  int EXPR = 9;
+  int EXPR = 10;
 
   /**
    * The number of structural features of the '<em>Expr</em>' class.
@@ -418,7 +446,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getVarRefExpr()
    * @generated
    */
-  int VAR_REF_EXPR = 10;
+  int VAR_REF_EXPR = 11;
 
   /**
    * The feature id for the '<em><b>Vname</b></em>' attribute.
@@ -446,7 +474,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getSignedNum()
    * @generated
    */
-  int SIGNED_NUM = 11;
+  int SIGNED_NUM = 12;
 
   /**
    * The feature id for the '<em><b>Sign</b></em>' attribute.
@@ -483,7 +511,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getNumLitExpr()
    * @generated
    */
-  int NUM_LIT_EXPR = 12;
+  int NUM_LIT_EXPR = 13;
 
   /**
    * The feature id for the '<em><b>Num</b></em>' attribute.
@@ -511,7 +539,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBoolLitExpr()
    * @generated
    */
-  int BOOL_LIT_EXPR = 13;
+  int BOOL_LIT_EXPR = 14;
 
   /**
    * The feature id for the '<em><b>Bval</b></em>' attribute.
@@ -539,7 +567,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getNotExpr()
    * @generated
    */
-  int NOT_EXPR = 14;
+  int NOT_EXPR = 15;
 
   /**
    * The feature id for the '<em><b>Bexp</b></em>' containment reference.
@@ -567,7 +595,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBDisj()
    * @generated
    */
-  int BDISJ = 16;
+  int BDISJ = 17;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -613,7 +641,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBConj()
    * @generated
    */
-  int BCONJ = 17;
+  int BCONJ = 18;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -659,7 +687,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getBRelExp()
    * @generated
    */
-  int BREL_EXP = 18;
+  int BREL_EXP = 19;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -705,7 +733,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getAExpression()
    * @generated
    */
-  int AEXPRESSION = 19;
+  int AEXPRESSION = 20;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -751,7 +779,7 @@ public interface WhileLangPackage extends EPackage
    * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getFactor()
    * @generated
    */
-  int FACTOR = 20;
+  int FACTOR = 21;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1023,6 +1051,27 @@ public interface WhileLangPackage extends EPackage
    * @generated
    */
   EReference getIfS_S2();
+
+  /**
+   * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.AssertS <em>Assert S</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Assert S</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.AssertS
+   * @generated
+   */
+  EClass getAssertS();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.AssertS#getBexp <em>Bexp</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Bexp</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.AssertS#getBexp()
+   * @see #getAssertS()
+   * @generated
+   */
+  EReference getAssertS_Bexp();
 
   /**
    * Returns the meta object for class '{@link edu.ucf.cs.whilelang.whileLang.LabeledExp <em>Labeled Exp</em>}'.
@@ -1621,6 +1670,24 @@ public interface WhileLangPackage extends EPackage
      * @generated
      */
     EReference IF_S__S2 = eINSTANCE.getIfS_S2();
+
+    /**
+     * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.AssertSImpl <em>Assert S</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see edu.ucf.cs.whilelang.whileLang.impl.AssertSImpl
+     * @see edu.ucf.cs.whilelang.whileLang.impl.WhileLangPackageImpl#getAssertS()
+     * @generated
+     */
+    EClass ASSERT_S = eINSTANCE.getAssertS();
+
+    /**
+     * The meta object literal for the '<em><b>Bexp</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSERT_S__BEXP = eINSTANCE.getAssertS_Bexp();
 
     /**
      * The meta object literal for the '{@link edu.ucf.cs.whilelang.whileLang.impl.LabeledExpImpl <em>Labeled Exp</em>}' class.

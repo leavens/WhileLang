@@ -116,6 +116,11 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
         return createIfSAdapter();
       }
       @Override
+      public Adapter caseAssertS(AssertS object)
+      {
+        return createAssertSAdapter();
+      }
+      @Override
       public Adapter caseLabeledExp(LabeledExp object)
       {
         return createLabeledExpAdapter();
@@ -318,6 +323,21 @@ public class WhileLangAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIfSAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link edu.ucf.cs.whilelang.whileLang.AssertS <em>Assert S</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see edu.ucf.cs.whilelang.whileLang.AssertS
+   * @generated
+   */
+  public Adapter createAssertSAdapter()
   {
     return null;
   }

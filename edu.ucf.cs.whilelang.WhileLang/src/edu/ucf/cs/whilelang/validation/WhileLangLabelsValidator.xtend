@@ -4,6 +4,7 @@ import edu.ucf.cs.whilelang.utility.LabelUtility
 import edu.ucf.cs.whilelang.whileLang.Program
 import java.util.HashSet
 import org.eclipse.xtext.validation.Check
+import edu.ucf.cs.whilelang.whileLang.AssertS
 import edu.ucf.cs.whilelang.whileLang.AssignS
 import org.eclipse.emf.ecore.EObject
 import edu.ucf.cs.whilelang.whileLang.SkipS
@@ -91,6 +92,10 @@ class WhileLangLabelsValidator extends AbstractWhileLangValidator {
         checkLabel(ifs.s1)
         checkLabel(ifs.s2)
     } 
+    
+    def dispatch checkLabel(AssertS a) {
+        checkLabel(a.bexp)
+    }
     
     // LabeledExp
     def dispatch checkLabel(LabeledExp le) {

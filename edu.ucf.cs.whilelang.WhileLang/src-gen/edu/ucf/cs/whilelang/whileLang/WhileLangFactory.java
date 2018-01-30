@@ -96,6 +96,15 @@ public interface WhileLangFactory extends EFactory
   IfS createIfS();
 
   /**
+   * Returns a new object of class '<em>Assert S</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assert S</em>'.
+   * @generated
+   */
+  AssertS createAssertS();
+
+  /**
    * Returns a new object of class '<em>Labeled Exp</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

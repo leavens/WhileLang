@@ -1,5 +1,6 @@
 package edu.ucf.cs.whilelang.utility
 
+import edu.ucf.cs.whilelang.whileLang.AssertS
 import edu.ucf.cs.whilelang.whileLang.AssignS
 import edu.ucf.cs.whilelang.whileLang.SkipS
 import edu.ucf.cs.whilelang.whileLang.IfS
@@ -60,6 +61,11 @@ class CFG {
     }
     
     /** Returns the label of the initial ElementaryBlock of a statement. */
+    def dispatch static int init(AssertS s) {
+        s.bexp.label
+    }
+       
+    /** Returns the label of the initial ElementaryBlock of a statement. */
     def dispatch static int init(S s) { return 0; }
             
     /** Returns all the labels of the final ElementaryBlocks of a statement. */
@@ -88,6 +94,11 @@ class CFG {
     def dispatch static Set<Integer> finals(CompoundS s) {
         s.stmts.get(s.stmts.size()-1).finals
     }
+    
+    /** Returns all the labels of the final ElementaryBlocks of a statement. */
+    def dispatch static Set<Integer> finals(AssertS s) {
+        new SetRepUtility(s.bexp.label)
+    } 
     
     /** Returns all the labels of the final ElementaryBlocks of a statement. */
     def dispatch static Set<Integer> finals(S s) {
@@ -129,6 +140,12 @@ class CFG {
     }
     
     /** Returns the set of elementary blocks in a statement. */
+    def dispatch static Set<ElementaryBlock> blocks(AssertS s) {
+        new SetRepUtility(s.bexp as ElementaryBlock)
+    }
+    
+    
+    /** Returns the set of elementary blocks in a statement. */
     def dispatch static Set<ElementaryBlock> blocks(S s) { 
         return new SetRepUtility<ElementaryBlock>();
     }
@@ -165,6 +182,11 @@ class CFG {
              ret.addAll(c.labels);
          }
          return ret;
+    }
+    
+    /** Returns the set of the labels of all elementary blocks in a statement. */
+    def dispatch static Set<Integer> labels(AssertS s) {
+        new SetRepUtility(s.bexp.label)
     }
     
     /** Returns the set of the labels of all elementary blocks in a statement. */

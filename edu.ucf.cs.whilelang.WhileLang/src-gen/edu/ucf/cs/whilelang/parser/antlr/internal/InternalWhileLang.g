@@ -272,6 +272,15 @@ ruleStmt returns [EObject current=null]
 			$current = $this_If_4.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getStmtAccess().getAssertParserRuleCall_5());
+		}
+		this_Assert_5=ruleAssert
+		{
+			$current = $this_Assert_5.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -697,6 +706,48 @@ ruleIf returns [EObject current=null]
 						"s2",
 						lv_s2_5_0,
 						"edu.ucf.cs.whilelang.WhileLang.Block");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleAssert
+entryRuleAssert returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAssertRule()); }
+	iv_ruleAssert=ruleAssert
+	{ $current=$iv_ruleAssert.current; }
+	EOF;
+
+// Rule Assert
+ruleAssert returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='assert'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getAssertAccess().getAssertKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAssertAccess().getBexpLabeledExpParserRuleCall_1_0());
+				}
+				lv_bexp_1_0=ruleLabeledExp
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAssertRule());
+					}
+					set(
+						$current,
+						"bexp",
+						lv_bexp_1_0,
+						"edu.ucf.cs.whilelang.WhileLang.LabeledExp");
 					afterParserOrEnumRuleCall();
 				}
 			)

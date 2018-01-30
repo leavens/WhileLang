@@ -30,6 +30,11 @@ class ParserTest {
 		val errors = result.eResource.errors
 		Assert.assertFalse("Expected to find parse error in " + s, errors.isEmpty)
 	}
+
+    @Test
+    def void testAssert1() {
+        assertParseOk("proc testAssert1() is {assert true}");
+    }
 	  
 	@Test
 	def void testSimpleBlock() {

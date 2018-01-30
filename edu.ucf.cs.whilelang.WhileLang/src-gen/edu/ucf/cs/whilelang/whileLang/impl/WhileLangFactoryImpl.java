@@ -73,6 +73,7 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
       case WhileLangPackage.SKIP_S: return createSkipS();
       case WhileLangPackage.WHILE_S: return createWhileS();
       case WhileLangPackage.IF_S: return createIfS();
+      case WhileLangPackage.ASSERT_S: return createAssertS();
       case WhileLangPackage.LABELED_EXP: return createLabeledExp();
       case WhileLangPackage.EXPR: return createExpr();
       case WhileLangPackage.VAR_REF_EXPR: return createVarRefExpr();
@@ -177,6 +178,17 @@ public class WhileLangFactoryImpl extends EFactoryImpl implements WhileLangFacto
   {
     IfSImpl ifS = new IfSImpl();
     return ifS;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AssertS createAssertS()
+  {
+    AssertSImpl assertS = new AssertSImpl();
+    return assertS;
   }
 
   /**

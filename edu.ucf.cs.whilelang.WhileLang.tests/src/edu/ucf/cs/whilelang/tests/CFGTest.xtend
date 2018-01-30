@@ -44,6 +44,14 @@ class CFGTest {
 	}
 	
 	@Test
+	def void testCFGAssert() {
+	    val p = fromFileName("testsrc/cfgassert.wh")
+	    val bod = p.body as CompoundS
+	    val bf = CFG.flowsOf(bod)
+	    Assert.assertEquals(1, bf.size())
+	}
+	
+	@Test
 	def void testCFGInit() {
 		val p = fromFileName("testsrc/cfg1.wh")
 		val i = CFG.init(p.body)

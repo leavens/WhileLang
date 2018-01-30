@@ -4,6 +4,7 @@
 package edu.ucf.cs.whilelang.whileLang.impl;
 
 import edu.ucf.cs.whilelang.whileLang.AExpression;
+import edu.ucf.cs.whilelang.whileLang.AssertS;
 import edu.ucf.cs.whilelang.whileLang.AssignS;
 import edu.ucf.cs.whilelang.whileLang.BConj;
 import edu.ucf.cs.whilelang.whileLang.BDisj;
@@ -96,6 +97,13 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * @generated
    */
   private EClass ifSEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass assertSEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -469,6 +477,26 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
   public EReference getIfS_S2()
   {
     return (EReference)ifSEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAssertS()
+  {
+    return assertSEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAssertS_Bexp()
+  {
+    return (EReference)assertSEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -891,6 +919,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     createEReference(ifSEClass, IF_S__S1);
     createEReference(ifSEClass, IF_S__S2);
 
+    assertSEClass = createEClass(ASSERT_S);
+    createEReference(assertSEClass, ASSERT_S__BEXP);
+
     labeledExpEClass = createEClass(LABELED_EXP);
     createEReference(labeledExpEClass, LABELED_EXP__BE);
     createEAttribute(labeledExpEClass, LABELED_EXP__LABEL);
@@ -977,6 +1008,7 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     skipSEClass.getESuperTypes().add(this.getElementaryBlock());
     whileSEClass.getESuperTypes().add(this.getS());
     ifSEClass.getESuperTypes().add(this.getS());
+    assertSEClass.getESuperTypes().add(this.getS());
     labeledExpEClass.getESuperTypes().add(this.getElementaryBlock());
     varRefExprEClass.getESuperTypes().add(this.getExpr());
     signedNumEClass.getESuperTypes().add(this.getExpr());
@@ -1019,6 +1051,9 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     initEReference(getIfS_Bexp(), this.getLabeledExp(), null, "bexp", null, 0, 1, IfS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfS_S1(), this.getCompoundS(), null, "s1", null, 0, 1, IfS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfS_S2(), this.getCompoundS(), null, "s2", null, 0, 1, IfS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(assertSEClass, AssertS.class, "AssertS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAssertS_Bexp(), this.getLabeledExp(), null, "bexp", null, 0, 1, AssertS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(labeledExpEClass, LabeledExp.class, "LabeledExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLabeledExp_Be(), this.getExpr(), null, "be", null, 0, 1, LabeledExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
