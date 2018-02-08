@@ -1,0 +1,4 @@
+proc cfgassert(a,b) is {
+    assert [a == b+1]^1;
+    assert [a < b]^2
+}

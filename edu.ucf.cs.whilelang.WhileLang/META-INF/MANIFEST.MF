@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: edu.ucf.cs.whilelang.WhileLang
-Bundle-Vendor: My Company
+Bundle-Vendor: University of Central Florida
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: edu.ucf.cs.whilelang.WhileLang; singleton:=true
 Bundle-ActivationPolicy: lazy
