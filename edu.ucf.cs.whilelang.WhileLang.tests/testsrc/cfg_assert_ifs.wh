@@ -1,0 +1,21 @@
+proc cfg_assert_ifs(a,b,r) is {
+    if [a < b]^1
+    then {
+        if [a < b - 1]^2
+        then {
+             [r := 2]^3;
+             assert [r == 2]^4
+        } else {
+            [r := 5]^5;
+            assert [r == 5]^6
+        }
+    } else {
+        if [a+1 < b]^7
+        then {
+            [r := -7]^8
+        } else {
+            [skip]^9
+        }
+    };
+    assert [r >= 1]^10
+}
