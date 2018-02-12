@@ -360,16 +360,16 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBexpLabeledExpParserRuleCall_1_0 = (RuleCall)cBexpAssignment_1.eContents().get(0);
 		private final Keyword cThenKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cS1Assignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cS1BlockParserRuleCall_3_0 = (RuleCall)cS1Assignment_3.eContents().get(0);
+		private final RuleCall cS1StmtParserRuleCall_3_0 = (RuleCall)cS1Assignment_3.eContents().get(0);
 		private final Keyword cElseKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cS2Assignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cS2BlockParserRuleCall_5_0 = (RuleCall)cS2Assignment_5.eContents().get(0);
+		private final RuleCall cS2StmtParserRuleCall_5_0 = (RuleCall)cS2Assignment_5.eContents().get(0);
 		
 		//If IfS:
-		//	'if' bexp=LabeledExp 'then' s1=Block 'else' s2=Block;
+		//	'if' bexp=LabeledExp 'then' s1=Stmt 'else' s2=Stmt;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'if' bexp=LabeledExp 'then' s1=Block 'else' s2=Block
+		//'if' bexp=LabeledExp 'then' s1=Stmt 'else' s2=Stmt
 		public Group getGroup() { return cGroup; }
 		
 		//'if'
@@ -384,20 +384,20 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//'then'
 		public Keyword getThenKeyword_2() { return cThenKeyword_2; }
 		
-		//s1=Block
+		//s1=Stmt
 		public Assignment getS1Assignment_3() { return cS1Assignment_3; }
 		
-		//Block
-		public RuleCall getS1BlockParserRuleCall_3_0() { return cS1BlockParserRuleCall_3_0; }
+		//Stmt
+		public RuleCall getS1StmtParserRuleCall_3_0() { return cS1StmtParserRuleCall_3_0; }
 		
 		//'else'
 		public Keyword getElseKeyword_4() { return cElseKeyword_4; }
 		
-		//s2=Block
+		//s2=Stmt
 		public Assignment getS2Assignment_5() { return cS2Assignment_5; }
 		
-		//Block
-		public RuleCall getS2BlockParserRuleCall_5_0() { return cS2BlockParserRuleCall_5_0; }
+		//Stmt
+		public RuleCall getS2StmtParserRuleCall_5_0() { return cS2StmtParserRuleCall_5_0; }
 	}
 	public class AssertElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Assert");
@@ -1027,7 +1027,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//If IfS:
-	//	'if' bexp=LabeledExp 'then' s1=Block 'else' s2=Block;
+	//	'if' bexp=LabeledExp 'then' s1=Stmt 'else' s2=Stmt;
 	public IfElements getIfAccess() {
 		return pIf;
 	}

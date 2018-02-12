@@ -671,9 +671,9 @@ ruleIf returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getIfAccess().getS1BlockParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getIfAccess().getS1StmtParserRuleCall_3_0());
 				}
-				lv_s1_3_0=ruleBlock
+				lv_s1_3_0=ruleStmt
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getIfRule());
@@ -682,7 +682,7 @@ ruleIf returns [EObject current=null]
 						$current,
 						"s1",
 						lv_s1_3_0,
-						"edu.ucf.cs.whilelang.WhileLang.Block");
+						"edu.ucf.cs.whilelang.WhileLang.Stmt");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -694,9 +694,9 @@ ruleIf returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getIfAccess().getS2BlockParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getIfAccess().getS2StmtParserRuleCall_5_0());
 				}
-				lv_s2_5_0=ruleBlock
+				lv_s2_5_0=ruleStmt
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getIfRule());
@@ -705,7 +705,7 @@ ruleIf returns [EObject current=null]
 						$current,
 						"s2",
 						lv_s2_5_0,
-						"edu.ucf.cs.whilelang.WhileLang.Block");
+						"edu.ucf.cs.whilelang.WhileLang.Stmt");
 					afterParserOrEnumRuleCall();
 				}
 			)

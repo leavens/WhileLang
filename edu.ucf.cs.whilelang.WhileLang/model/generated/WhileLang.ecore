@@ -34,10 +34,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="IfS" eSuperTypes="#//S">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bexp" eType="#//LabeledExp"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="s1" eType="#//CompoundS"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="s2" eType="#//CompoundS"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="s1" eType="#//S" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="s2" eType="#//S" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssertS" eSuperTypes="#//S">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bexp" eType="#//LabeledExp"

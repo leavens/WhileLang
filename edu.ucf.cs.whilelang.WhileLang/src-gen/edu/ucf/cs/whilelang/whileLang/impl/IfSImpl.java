@@ -3,9 +3,9 @@
  */
 package edu.ucf.cs.whilelang.whileLang.impl;
 
-import edu.ucf.cs.whilelang.whileLang.CompoundS;
 import edu.ucf.cs.whilelang.whileLang.IfS;
 import edu.ucf.cs.whilelang.whileLang.LabeledExp;
+import edu.ucf.cs.whilelang.whileLang.S;
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -51,7 +51,7 @@ public class IfSImpl extends SImpl implements IfS
    * @generated
    * @ordered
    */
-  protected CompoundS s1;
+  protected S s1;
 
   /**
    * The cached value of the '{@link #getS2() <em>S2</em>}' containment reference.
@@ -61,7 +61,7 @@ public class IfSImpl extends SImpl implements IfS
    * @generated
    * @ordered
    */
-  protected CompoundS s2;
+  protected S s2;
 
   /**
    * <!-- begin-user-doc -->
@@ -137,7 +137,7 @@ public class IfSImpl extends SImpl implements IfS
    * <!-- end-user-doc -->
    * @generated
    */
-  public CompoundS getS1()
+  public S getS1()
   {
     return s1;
   }
@@ -147,9 +147,9 @@ public class IfSImpl extends SImpl implements IfS
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetS1(CompoundS newS1, NotificationChain msgs)
+  public NotificationChain basicSetS1(S newS1, NotificationChain msgs)
   {
-    CompoundS oldS1 = s1;
+    S oldS1 = s1;
     s1 = newS1;
     if (eNotificationRequired())
     {
@@ -164,7 +164,7 @@ public class IfSImpl extends SImpl implements IfS
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setS1(CompoundS newS1)
+  public void setS1(S newS1)
   {
     if (newS1 != s1)
     {
@@ -185,7 +185,7 @@ public class IfSImpl extends SImpl implements IfS
    * <!-- end-user-doc -->
    * @generated
    */
-  public CompoundS getS2()
+  public S getS2()
   {
     return s2;
   }
@@ -195,9 +195,9 @@ public class IfSImpl extends SImpl implements IfS
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetS2(CompoundS newS2, NotificationChain msgs)
+  public NotificationChain basicSetS2(S newS2, NotificationChain msgs)
   {
-    CompoundS oldS2 = s2;
+    S oldS2 = s2;
     s2 = newS2;
     if (eNotificationRequired())
     {
@@ -212,7 +212,7 @@ public class IfSImpl extends SImpl implements IfS
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setS2(CompoundS newS2)
+  public void setS2(S newS2)
   {
     if (newS2 != s2)
     {
@@ -282,10 +282,10 @@ public class IfSImpl extends SImpl implements IfS
         setBexp((LabeledExp)newValue);
         return;
       case WhileLangPackage.IF_S__S1:
-        setS1((CompoundS)newValue);
+        setS1((S)newValue);
         return;
       case WhileLangPackage.IF_S__S2:
-        setS2((CompoundS)newValue);
+        setS2((S)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -305,10 +305,10 @@ public class IfSImpl extends SImpl implements IfS
         setBexp((LabeledExp)null);
         return;
       case WhileLangPackage.IF_S__S1:
-        setS1((CompoundS)null);
+        setS1((S)null);
         return;
       case WhileLangPackage.IF_S__S2:
-        setS2((CompoundS)null);
+        setS2((S)null);
         return;
     }
     super.eUnset(featureID);

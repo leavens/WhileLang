@@ -59,12 +59,12 @@ public interface IfS extends S
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>S1</em>' containment reference.
-   * @see #setS1(CompoundS)
+   * @see #setS1(S)
    * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getIfS_S1()
    * @model containment="true"
    * @generated
    */
-  CompoundS getS1();
+  S getS1();
 
   /**
    * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.IfS#getS1 <em>S1</em>}' containment reference.
@@ -74,7 +74,7 @@ public interface IfS extends S
    * @see #getS1()
    * @generated
    */
-  void setS1(CompoundS value);
+  void setS1(S value);
 
   /**
    * Returns the value of the '<em><b>S2</b></em>' containment reference.
@@ -85,12 +85,12 @@ public interface IfS extends S
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>S2</em>' containment reference.
-   * @see #setS2(CompoundS)
+   * @see #setS2(S)
    * @see edu.ucf.cs.whilelang.whileLang.WhileLangPackage#getIfS_S2()
    * @model containment="true"
    * @generated
    */
-  CompoundS getS2();
+  S getS2();
 
   /**
    * Sets the value of the '{@link edu.ucf.cs.whilelang.whileLang.IfS#getS2 <em>S2</em>}' containment reference.
@@ -100,6 +100,6 @@ public interface IfS extends S
    * @see #getS2()
    * @generated
    */
-  void setS2(CompoundS value);
+  void setS2(S value);
 
 } // IfS

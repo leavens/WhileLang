@@ -14,7 +14,7 @@ Assignment returns AssignS: (v=ID) ':=' (aexp=Expression)
     | '[' (v=ID) ':=' (aexp=Expression) ']' '^' (label=INT);
 Skip returns SkipS: 'skip' {SkipS} | '[' 'skip' ']' '^' (label=INT);
 While returns WhileS: 'while' (bexp=LabeledExp) 'do' (block=Block);
-If returns IfS: 'if' (bexp=LabeledExp) 'then' (s1=Block) 'else' (s2=Block);
+If returns IfS: 'if' (bexp=LabeledExp) 'then' (s1=Stmt) 'else' (s2=Stmt);
 Assert returns AssertS: 'assert' (bexp=LabeledExp);
 LabeledExp returns LabeledExp: (be=Expression) | '[' (be=Expression) ']' '^' (label=INT);
 

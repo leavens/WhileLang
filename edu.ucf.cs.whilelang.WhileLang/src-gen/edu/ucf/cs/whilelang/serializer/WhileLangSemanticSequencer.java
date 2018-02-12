@@ -375,7 +375,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     If returns IfS
 	 *
 	 * Constraint:
-	 *     (bexp=LabeledExp s1=Block s2=Block)
+	 *     (bexp=LabeledExp s1=Stmt s2=Stmt)
 	 */
 	protected void sequence_If(ISerializationContext context, IfS semanticObject) {
 		if (errorAcceptor != null) {
@@ -388,8 +388,8 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getIfAccess().getBexpLabeledExpParserRuleCall_1_0(), semanticObject.getBexp());
-		feeder.accept(grammarAccess.getIfAccess().getS1BlockParserRuleCall_3_0(), semanticObject.getS1());
-		feeder.accept(grammarAccess.getIfAccess().getS2BlockParserRuleCall_5_0(), semanticObject.getS2());
+		feeder.accept(grammarAccess.getIfAccess().getS1StmtParserRuleCall_3_0(), semanticObject.getS1());
+		feeder.accept(grammarAccess.getIfAccess().getS2StmtParserRuleCall_5_0(), semanticObject.getS2());
 		feeder.finish();
 	}
 	
