@@ -1,0 +1,6 @@
+proc vb2(a,b,y,z) is {
+  if [a-b > a+b]^1
+  then [x := a+b]^2
+  else [y := a+b]^3;
+  [z := a]^4
+}

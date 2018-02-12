@@ -1,0 +1,6 @@
+% original file
+proc dup_label(x,y,z) is {
+    [x := 1]^1;
+    [y := 2]^1;
+    [z := x+y]^1
+}

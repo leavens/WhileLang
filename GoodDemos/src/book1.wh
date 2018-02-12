@@ -1,0 +1,10 @@
+% original code
+proc book1(k,i,j,t,n) is {
+   [k := i*j-1]^1;
+   while [i*j-1 < n]^2
+   do { 
+          [t := a+k]^3;
+          [j := j+1]^4;
+          [k := i*j-1]^5
+      }
+}

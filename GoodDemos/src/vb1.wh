@@ -1,0 +1,18 @@
+% original code
+proc vb1(x,y,a,b) is
+{ [x := a+b]^1;
+  [y := a+b]^2;
+
+  if [a-b > a+b]^3
+  then [x := a+b]^4 else [y := a+b]^5;
+
+  [q := r]^7;
+  [z := a+b]^8;
+
+  if [a>b]^9
+  then [x := a+b]^10 else [y := a+b]^11;
+
+  if [a>b]^12
+  then [x := a+b]^13 else [y := 641]^14
+}
+
