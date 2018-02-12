@@ -147,6 +147,7 @@ public class SetRepUtility<T> implements Set<T> {
 		h.clear();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public String toString() {
 		StringBuffer ret = new StringBuffer();

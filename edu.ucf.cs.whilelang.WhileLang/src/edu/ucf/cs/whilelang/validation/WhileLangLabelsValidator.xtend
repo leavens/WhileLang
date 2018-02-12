@@ -68,37 +68,37 @@ class WhileLangLabelsValidator extends AbstractWhileLangValidator {
     }
 	
 	// Statements
-	def dispatch checkLabel(AssignS a) {
+	def dispatch void checkLabel(AssignS a) {
 	    a.label = checkTheLabel(a, a.label)
 	}
 	
-	def dispatch checkLabel(SkipS s) {
+	def dispatch void checkLabel(SkipS s) {
         s.label = checkTheLabel(s, s.label)
     }
     
-    def dispatch checkLabel(CompoundS c) {
+    def dispatch void checkLabel(CompoundS c) {
         for (s : c.stmts) {
             checkLabel(s)
         }
     }
     
-    def dispatch checkLabel(WhileS ws) {
+    def dispatch void checkLabel(WhileS ws) {
         checkLabel(ws.bexp)
         checkLabel(ws.block)
     }	
     
-    def dispatch checkLabel(IfS ifs) {
+    def dispatch void checkLabel(IfS ifs) {
         checkLabel(ifs.bexp)
         checkLabel(ifs.s1)
         checkLabel(ifs.s2)
     } 
     
-    def dispatch checkLabel(AssertS a) {
+    def dispatch void checkLabel(AssertS a) {
         checkLabel(a.bexp)
     }
     
     // LabeledExp
-    def dispatch checkLabel(LabeledExp le) {
+    def dispatch void checkLabel(LabeledExp le) {
         le.label = checkTheLabel(le,le.label)
     } 
 }
