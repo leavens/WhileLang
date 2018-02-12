@@ -8,6 +8,7 @@
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/xtext/**"/>
 			<accessrule kind="accessible" pattern="com/google/inject/**"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/**"/>
 		</accessrules>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
