@@ -1,7 +1,7 @@
 # WhileLang
 The WHILE language as used in several Programming Language texts, here for a course in program analysis at UCF
 
-Note that once you clone this, you'll have to generate the XText artifacts by right clicking on edu.ucf.cs.whilelang.WhileLang/src/WhileLang.xtext and selecting "Generate XText Artifacts...". Then the project has to build to get rid of the errors.
+Note that once you clone this, you'll have to generate the XText artifacts by right clicking on edu.ucf.cs.whilelang.WhileLang/src/WhileLang.xtext and selecting "Generate XText Artifacts...". (Proceed with the build even though there are errors.) Then the project has to build to get rid of the errors.
 
     If necessary, change the JRE System Library to Alternate JRE
       by changing the buildpath settings in each project,
@@ -14,3 +14,5 @@ Note that once you clone this, you'll have to generate the XText artifacts by ri
                       select alternate JRE.
 
      I also changed access restriction errors into warnings
+
+In addition to the edu.ucf.cs.whilelang.* subprojects, the subprojects ErrorDemos and GoodDemos contain while language programs that can be used in the generated eclipse plugin.
