@@ -9,8 +9,10 @@ import edu.ucf.cs.whilelang.whileLang.Program
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 public class WhileLangValidator extends AbstractWhileLangValidator {
+    
 	@Check
 	def checkStaticConstraints(Program p) {
+	    new WhileLangProcArgsValidator().checkUniqueNames(p.args)
 		new WhileLangLabelsValidator().checkUniqueLabels(p)
 		new WhileLangCFGValidator().constructCFG(p)
 	}
