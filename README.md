@@ -13,6 +13,7 @@ Note that once you clone this, you'll have to generate the XText artifacts by ri
                       select JRE System Library,
                       select alternate JRE.
 
-     I also changed access restriction errors into warnings
+     I also changed access restriction errors into warnings 
+     (this may no longer be necessary)
 
-In addition to the edu.ucf.cs.whilelang.* subprojects, the subprojects ErrorDemos and GoodDemos contain while language programs that can be used in the generated eclipse plugin.
+In addition to the edu.ucf.cs.whilelang.* sub-projects, the sub-projects ErrorDemos and GoodDemos contain while language programs that can be used in the generated eclipse plugin.

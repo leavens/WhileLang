@@ -3,6 +3,7 @@ package edu.ucf.cs.whilelang.validation;
 import edu.ucf.cs.whilelang.validation.AbstractWhileLangValidator;
 import edu.ucf.cs.whilelang.validation.WhileLangCFGValidator;
 import edu.ucf.cs.whilelang.validation.WhileLangLabelsValidator;
+import edu.ucf.cs.whilelang.validation.WhileLangProcArgsValidator;
 import edu.ucf.cs.whilelang.whileLang.Program;
 import org.eclipse.xtext.validation.Check;
 
@@ -15,6 +16,7 @@ import org.eclipse.xtext.validation.Check;
 public class WhileLangValidator extends AbstractWhileLangValidator {
   @Check
   public void checkStaticConstraints(final Program p) {
+    new WhileLangProcArgsValidator().checkUniqueNames(p.getArgs());
     new WhileLangLabelsValidator().checkUniqueLabels(p);
     new WhileLangCFGValidator().constructCFG(p);
   }
