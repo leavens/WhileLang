@@ -4,9 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class PVAsMap<Label, L extends PropertySpace> implements PropertyVector<Label, L> {
-	Map<Label, L> entries = new HashMap<Label, L>();
-	Map<Label, L> exits = new HashMap<Label, L>();
+public class PVAsMap<Label, L extends PropertySpace> 
+		implements PropertyVector<Label, L> 
+{
+	/** The entry elements of the vector */
+	protected Map<Label, L> entries = new HashMap<Label, L>();
+	/** The exit elements of the vector */
+	protected Map<Label, L> exits = new HashMap<Label, L>();
 	
 	/** Initialize this to an empty property vector. */
 	public PVAsMap() {}

@@ -9,7 +9,8 @@ public abstract class AbstractFunctionVector<Label, L extends PropertySpace>
 {
 	/** Return a new function vector that is the fixed-point of the function vector over all the labels. */
 	@Override
-	public PropertyVector<Label, L> fix(Set<Label> labels, PropertyVector<Label, L> initial) {
+	public PropertyVector<Label, L> fix(Set<Label> labels, 
+									    PropertyVector<Label, L> initial) {
 		PropertyVector<Label, L> last = initial;
 		PropertyVector<Label, L> curr = next(labels, last);
 		while (!last.equals(curr)) {
