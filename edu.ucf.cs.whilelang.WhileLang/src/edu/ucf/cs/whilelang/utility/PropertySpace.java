@@ -8,17 +8,23 @@ import java.util.Set;
 public interface PropertySpace {
 	/** Return the lattice join of the given sets. 
 	 * This is the property space's combination operator. */
+	/*@ pure @*/
 	PropertySpace joinAll(Set<PropertySpace> sets);
 	
 	/** Return the lattice's least upper bound of the given sets. */
+	/*@ pure @*/
 	PropertySpace lub(Set<PropertySpace> sets);
 	
-	/** Is left over-approximated (in the lattice ordering) by right? */
-	boolean leq(PropertySpace left, PropertySpace right);
+	/** Is this over-approximated (in the lattice ordering) by v? */
+	/*@ pure @*/
+	boolean leq(PropertySpace v);
 	
-	/** Is this property space equal to o (as a property space)? */
+	/** Is this property space value equal to o (as a property space value)? */
+	/*@ pure @*/
 	boolean equals(Object o);
 	
-	/** Return the bottom element of this property space. The result should be leq to all other elements. */
-	PropertySpace bottom();
+	/** Is this the bottom element of this property space? 
+	 *  That is, is this leq to all other elements? */
+	/*@ pure @*/
+	boolean isBottom();
 }

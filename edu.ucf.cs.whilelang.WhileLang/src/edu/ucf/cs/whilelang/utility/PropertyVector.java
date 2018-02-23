@@ -11,8 +11,28 @@ public interface PropertyVector<Label, L> {
 	public void put(Access a, Label lab, L value);
 	
 	/** Return the value in the vector for the given access (entry or exit) and label. */
+	/*@ pure @*/
 	L get(Access access, Label l);
-	
+
+	/** Return the set of labels of this property vector. */
+	/*@ pure @*/
+	Set<Label> getLabels();
+
+	/** Is this property vector pointwise over-approximated by oth (as a PropertyVector)? */
+	/*@ requires this.getLabels().equals(oth.getLabels());
+	/*@ pure @*/
+	boolean leq(PropertyVector<Label, L> oth);
+
 	/** Is this property vector equal (at each access and label) to oth (as a PropertyVector)? */
+	/*@ also
+	  @   requires oth instanceof PropertyVector<Label, L>;
+	  @   ensures \result ==> this.getLabels().equals(((PropertyVector<Label, L>) oth).getLabels())
+	  @                      && (\forall Label lab; this.getLabels().has(lab);
+	  @                                  this.get(Access.ENTRY, lab).equals(
+	  @                                  ((PropertyVector<Label, L>) oth).get(Access.ENTRY, lab))
+	  @                                  && this.get(Access.EXIT, lab).equals(
+	  @                                  ((PropertyVector<Label, L>) oth).get(Access.EXIT, lab)));
+	  @*/
+	/*@ pure @*/
 	boolean equals(Object oth);
 }
