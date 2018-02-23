@@ -8,8 +8,10 @@ public class PVAsMap<Label, L> implements PropertyVector<Label, L> {
 	Map<Label, L> entries = new HashMap<Label, L>();
 	Map<Label, L> exits = new HashMap<Label, L>();
 	
+	/** Initialize this to an empty property vector. */
 	public PVAsMap() {}
 	
+	/** Initialize this to a property vector such that each value is initial. */
 	public PVAsMap(Set<Label> labels, L initial) {
 		this.putAll(labels, initial);
 	}
@@ -57,6 +59,8 @@ public class PVAsMap<Label, L> implements PropertyVector<Label, L> {
 		return ret;
 	}
 
+	@Override
+	/** Return a hash code for this property vector. */
 	public int hashCode() {
 		int ret = 0;
 		for (Label lab : entries.keySet()) {

@@ -2,7 +2,8 @@ package edu.ucf.cs.whilelang.utility;
 
 import java.util.Set;
 
-/** This class encapsulates finding fixedpoints for FunctionVectors */
+/** This class encapsulates a simple default implementation of
+ * finding fixed-points for FunctionVectors */
 public abstract class AbstractFunctionVector<Label, L> implements FunctionVector<Label, L> {
 
 	/** Return a new function vector that is the fixed-point of the function vector over all the labels. */

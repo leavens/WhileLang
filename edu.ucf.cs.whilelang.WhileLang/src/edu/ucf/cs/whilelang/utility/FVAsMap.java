@@ -4,12 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-/** A way to represent Function Vectors as a pair of maps */
+/** Function Vectors represented as a pair of maps */
 public class FVAsMap<Label, L> extends AbstractFunctionVector<Label, L> {
 	
 	protected Map<Label, AnalysisFun<Label, L>> entryfuns = new HashMap<Label, AnalysisFun<Label, L>>();
 	protected Map<Label, AnalysisFun<Label, L>> exitfuns = new HashMap<Label, AnalysisFun<Label, L>>();
 	
+	/** Create a FVAsMap with no mappings. */
 	public FVAsMap() {}
 	
 	/** Construct this vector with the given entry and exit functions. */
@@ -43,5 +44,4 @@ public class FVAsMap<Label, L> extends AbstractFunctionVector<Label, L> {
 		}
 		return ret;
 	}
-
 }
