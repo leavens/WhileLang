@@ -6,7 +6,7 @@ import java.util.Set;
 /** A vector of Analysis functions. 
  * @param Label, is the type of the labels in the Control Flow Graph.
  * @param L is the type of the elements of property vectors. */
-public interface FunctionVector<Label, L> {
+public interface FunctionVector<Label, L extends PropertySpace> {
 	//@ public model Map<Label, AnalysisFun<Label, L>> entries, exits;
 	//@ public invariant entries.keySet().equals(exits.keySet());
 	//@ public invariant isMonotone(entries) && isMonotone(exits);

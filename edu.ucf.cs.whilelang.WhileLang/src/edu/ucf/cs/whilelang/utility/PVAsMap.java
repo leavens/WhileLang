@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class PVAsMap<Label, L> implements PropertyVector<Label, L> {
+public class PVAsMap<Label, L extends PropertySpace> implements PropertyVector<Label, L> {
 	Map<Label, L> entries = new HashMap<Label, L>();
 	Map<Label, L> exits = new HashMap<Label, L>();
 	
@@ -65,6 +65,22 @@ public class PVAsMap<Label, L> implements PropertyVector<Label, L> {
 		int ret = 0;
 		for (Label lab : entries.keySet()) {
 			ret += entries.get(lab).hashCode() + exits.get(lab).hashCode();
+		}
+		return ret;
+	}
+
+	@Override
+	public Set<Label> getLabels() {
+		return entries.keySet();
+	}
+
+	@Override
+	public boolean leq(PropertyVector<Label, L> ov) {
+		boolean ret = true;
+		for (Label lab: entries.keySet()) {
+			ret &= entries.get(lab).leq(ov.get(Access.ENTRY, lab))
+					&& exits.get(lab).leq(ov.get(Access.EXIT, lab));
+			if (!ret) { return false; }
 		}
 		return ret;
 	}

@@ -5,8 +5,9 @@ import java.util.Map;
 import java.util.Set;
 
 /** Function Vectors represented as a pair of maps */
-public class FVAsMap<Label, L> extends AbstractFunctionVector<Label, L> {
-	
+public class FVAsMap<Label, L extends PropertySpace> 
+		extends AbstractFunctionVector<Label, L> 
+{
 	protected Map<Label, AnalysisFun<Label, L>> entryfuns = new HashMap<Label, AnalysisFun<Label, L>>();
 	protected Map<Label, AnalysisFun<Label, L>> exitfuns = new HashMap<Label, AnalysisFun<Label, L>>();
 	

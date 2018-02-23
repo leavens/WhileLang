@@ -4,8 +4,9 @@ import java.util.Set;
 
 /** This class encapsulates a simple default implementation of
  * finding fixed-points for FunctionVectors */
-public abstract class AbstractFunctionVector<Label, L> implements FunctionVector<Label, L> {
-
+public abstract class AbstractFunctionVector<Label, L extends PropertySpace> 
+		implements FunctionVector<Label, L> 
+{
 	/** Return a new function vector that is the fixed-point of the function vector over all the labels. */
 	@Override
 	public PropertyVector<Label, L> fix(Set<Label> labels, PropertyVector<Label, L> initial) {

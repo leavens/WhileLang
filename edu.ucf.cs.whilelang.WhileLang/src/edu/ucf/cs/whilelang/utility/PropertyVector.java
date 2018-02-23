@@ -2,7 +2,7 @@ package edu.ucf.cs.whilelang.utility;
 
 import java.util.Set;
 
-public interface PropertyVector<Label, L> {
+public interface PropertyVector<Label, L extends PropertySpace> {
 	
 	/** Define the value of this vector to be the given value for each access and label. */
 	void putAll(Set<Label> labels, L initial);
