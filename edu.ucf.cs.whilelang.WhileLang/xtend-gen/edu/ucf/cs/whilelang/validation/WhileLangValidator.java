@@ -1,9 +1,6 @@
 package edu.ucf.cs.whilelang.validation;
 
 import edu.ucf.cs.whilelang.validation.AbstractWhileLangValidator;
-import edu.ucf.cs.whilelang.validation.WhileLangCFGValidator;
-import edu.ucf.cs.whilelang.validation.WhileLangLabelsValidator;
-import edu.ucf.cs.whilelang.validation.WhileLangProcArgsValidator;
 import edu.ucf.cs.whilelang.whileLang.Program;
 import org.eclipse.xtext.validation.Check;
 
@@ -15,9 +12,9 @@ import org.eclipse.xtext.validation.Check;
 @SuppressWarnings("all")
 public class WhileLangValidator extends AbstractWhileLangValidator {
   @Check
-  public void checkStaticConstraints(final Program p) {
-    new WhileLangProcArgsValidator().checkUniqueNames(p.getArgs());
-    new WhileLangLabelsValidator().checkUniqueLabels(p);
-    new WhileLangCFGValidator().constructCFG(p);
+  public Object checkStaticConstraints(final Program p) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nInvalid number of arguments. The constructor WhileLangRDAnalysis() is not applicable for the arguments (Program)"
+      + "\nThe method computeAnalysis() from the type WhileLangRDAnalysis refers to the missing type Object");
   }
 }
