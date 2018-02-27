@@ -2,6 +2,7 @@ package edu.ucf.cs.whilelang.utility;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 
 /** The property space for the Reaching Definitions analysis. 
  * @author Gary T. Leavens
@@ -77,5 +78,11 @@ public class RDPropertySpace implements PropertySpace {
 	@Override
 	public int hashCode() {
 		return this.rep.hashCode();
+	}
+
+	/** Removes all of the elements of this property space 
+	 * that satisfy the given predicate. */
+	public void removeIf(Predicate<Pair<String, MaybeLabel>> p) {
+	    this.rep.removeIf(p);
 	}
 }

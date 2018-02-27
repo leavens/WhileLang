@@ -8,12 +8,15 @@ import edu.ucf.cs.whilelang.utility.RDPropertySpace
 import edu.ucf.cs.whilelang.utility.PropertyVector
 import edu.ucf.cs.whilelang.utility.PVAsMap
 import edu.ucf.cs.whilelang.utility.CFG
-// import edu.ucf.cs.whilelang.utility.MaybeLabel
 import java.util.HashMap
 import edu.ucf.cs.whilelang.whileLang.AssignS
 import edu.ucf.cs.whilelang.utility.AnalysisFun
 import edu.ucf.cs.whilelang.whileLang.SkipS
 import edu.ucf.cs.whilelang.utility.Access
+import edu.ucf.cs.whilelang.whileLang.LabeledExp
+import edu.ucf.cs.whilelang.utility.MaybeLabel
+import edu.ucf.cs.whilelang.utility.Pair
+import java.util.function.Predicate
 
 /**
  * This class constructs the Reaching Definitions (RD) analysis for the given program.
@@ -54,7 +57,13 @@ class WhileLangRDAnalysis {
         {
             override apply(PropertyVector<Integer, RDPropertySpace> arg) {
                     val entryInfo = arg.get(Access.ENTRY, s.label)
-                    throw new UnsupportedOperationException("TODO: auto-generated method stub")
+                    // subtract the kill info
+                    entryInfo.removeIf(new Predicate<Pair<String, MaybeLabel>>() {
+                            override boolean test(Pair<String, MaybeLabel> p) { 
+                               p.key.equals(s.v);
+                        }
+                    })                     
+                    return entryInfo  // TODO subtract kill and add gen
             }
         }
     }
@@ -65,7 +74,18 @@ class WhileLangRDAnalysis {
         new AnalysisFun<Integer, RDPropertySpace>() 
         {
             override apply(PropertyVector<Integer, RDPropertySpace> arg) {
-                    throw new UnsupportedOperationException("TODO: auto-generated method stub")
+                    return arg.get(Access.ENTRY, s.label)
+            }
+        }
+    }
+
+    def dispatch AnalysisFun<Integer, RDPropertySpace>
+        exitFunFor(LabeledExp s) 
+    {
+        new AnalysisFun<Integer, RDPropertySpace>() 
+        {
+            override apply(PropertyVector<Integer, RDPropertySpace> arg) {
+                    return arg.get(Access.ENTRY, s.label)
             }
         }
     }
