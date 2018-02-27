@@ -13,6 +13,7 @@ import java.util.HashMap
 import edu.ucf.cs.whilelang.whileLang.AssignS
 import edu.ucf.cs.whilelang.utility.AnalysisFun
 import edu.ucf.cs.whilelang.whileLang.SkipS
+import edu.ucf.cs.whilelang.utility.Access
 
 /**
  * This class constructs the Reaching Definitions (RD) analysis for the given program.
@@ -52,6 +53,7 @@ class WhileLangRDAnalysis {
         new AnalysisFun<Integer, RDPropertySpace>() 
         {
             override apply(PropertyVector<Integer, RDPropertySpace> arg) {
+                    val entryInfo = arg.get(Access.ENTRY, s.label)
                     throw new UnsupportedOperationException("TODO: auto-generated method stub")
             }
         }
