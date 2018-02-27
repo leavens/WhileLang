@@ -15,7 +15,7 @@ public class WhileLangValidator extends AbstractWhileLangValidator {
 	    new WhileLangProcArgsValidator().checkUniqueNames(p.args)
 		new WhileLangLabelsValidator().checkUniqueLabels(p)
 		new WhileLangCFGValidator().constructCFG(p)
-		new WhileLangRDAnalysis(p).computeAnalysis()
+		// new WhileLangRDAnalysis(p).computeAnalysis()
 	}
 
 }
