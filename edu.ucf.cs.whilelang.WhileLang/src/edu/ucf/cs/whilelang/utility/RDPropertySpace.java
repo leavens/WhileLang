@@ -82,7 +82,21 @@ public class RDPropertySpace implements PropertySpace {
 
 	/** Removes all of the elements of this property space 
 	 * that satisfy the given predicate. */
-	public void removeIf(Predicate<Pair<String, MaybeLabel>> p) {
-	    this.rep.removeIf(p);
+	public RDPropertySpace removeIf(Predicate<Pair<String, MaybeLabel>> p) {
+		Set<Pair<String, MaybeLabel>> ret = new HashSet<Pair<String, MaybeLabel>>();
+		for (Pair<String, MaybeLabel> e : this.rep) {
+			if (!p.test(e)) {
+				ret.add(e);
+			}
+		}
+	    return new RDPropertySpace(ret);
+	}
+	
+	/** Add the given pair to this property space info. */
+	public RDPropertySpace add(Pair<String, MaybeLabel> p) {
+		Set<Pair<String, MaybeLabel>> ret = new HashSet<Pair<String, MaybeLabel>>();
+		ret.addAll(this.rep);
+		ret.add(p);
+	    return new RDPropertySpace(ret);
 	}
 }

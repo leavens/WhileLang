@@ -5,13 +5,13 @@ public class MaybeLabel {
 	protected int value;
 	
 	/** Initialize this to be a question mark label. */
-	MaybeLabel() {
+	public MaybeLabel() {
 		value = -1;
 	}
 	
 	/** Initialize this to be the label lab. */
 	//@ requires lab > 0;
-	MaybeLabel(int lab) {
+	public MaybeLabel(int lab) {
 		value = lab;
 	}
 
