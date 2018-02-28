@@ -28,14 +28,14 @@ import static extension edu.ucf.cs.whilelang.utility.ASTExtensions.*
  */
 class WhileLangRDAnalysis {
     
-    /** The program's statement. */
+    /** This program's statement. */
     var S progBody;
      
     /** The Function Vector that represents the RD analysis for this program. */
     var FunctionVector<Integer, RDPropertySpace> RDFunVec; 
     /** The Property Vector that is the fixed point of the RD analysis 
      * for this program. */
-    public var PropertyVector<Integer, RDPropertySpace> RDTuple;
+    public var PropertyVector<Integer, RDPropertySpace> RDInfo;
          
     /** Initialize the function vector and property vector. */       
     new (Program p) {
@@ -53,7 +53,7 @@ class WhileLangRDAnalysis {
     def computeAnalysis() {
         val labels = CFG.labels(progBody)
         val botvec = new PVAsMap<Integer, RDPropertySpace>(labels, new RDPropertySpace())
-        RDTuple = RDFunVec.fix(labels, botvec)
+        RDInfo = RDFunVec.fix(labels, botvec)
     }
 
     /** Return the exit function for the given elementary block argument. */
