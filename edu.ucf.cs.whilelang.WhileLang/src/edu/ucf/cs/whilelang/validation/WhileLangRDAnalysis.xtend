@@ -17,6 +17,9 @@ import edu.ucf.cs.whilelang.whileLang.LabeledExp
 import edu.ucf.cs.whilelang.utility.MaybeLabel
 import edu.ucf.cs.whilelang.utility.Pair
 import java.util.function.Predicate
+import edu.ucf.cs.whilelang.whileLang.ElementaryBlock
+import java.util.HashSet
+import static extension edu.ucf.cs.whilelang.utility.ASTExtensions.*
 
 /**
  * This class constructs the Reaching Definitions (RD) analysis for the given program.
@@ -33,23 +36,51 @@ class WhileLangRDAnalysis {
     /** The Property Vector that is the fixed point of the RD analysis 
      * for this program. */
     public var PropertyVector<Integer, RDPropertySpace> RDTuple;
-     
+         
     /** Initialize the function vector and property vector. */       
-    def WhileLangRDAnalysis(Program p) {
+    new (Program p) {
         progBody = p.body
         val entryfuns = new HashMap<Integer, AnalysisFun<Integer, RDPropertySpace>>()
         val exitfuns = new HashMap<Integer, AnalysisFun<Integer, RDPropertySpace>>()
         for (lab : CFG.labels(progBody)) {
             val bl = CFG.itsBlockMap.get(lab)
-            //entryfuns.put(lab, TODO)
+            entryfuns.put(lab, entryFunFor(bl))
+            exitfuns.put(lab, exitFunFor(bl))
         }
         RDFunVec = new FVAsMap<Integer, RDPropertySpace>(entryfuns, exitfuns)
     }
-    
+        
     def computeAnalysis() {
-        RDTuple = RDFunVec.fix(CFG.labels(progBody), new PVAsMap<Integer, RDPropertySpace>())
+        val labels = CFG.labels(progBody)
+        val botvec = new PVAsMap<Integer, RDPropertySpace>(labels, new RDPropertySpace())
+        RDTuple = RDFunVec.fix(labels, botvec)
+    }
+
+    /** Return the exit function for the given elementary block argument. */
+    def AnalysisFun<Integer, RDPropertySpace>
+        entryFunFor(ElementaryBlock block) 
+    {
+        new AnalysisFun<Integer, RDPropertySpace>() 
+        {
+            override apply(PropertyVector<Integer, RDPropertySpace> arg) {
+                if (CFG.init(progBody) == block.itsLabel) {
+                    new RDPropertySpace()
+                } else {
+                    val ret = new RDPropertySpace()
+                    val pairsets = new HashSet()
+                    for (lab_pair : CFG.cfgMap.get(progBody)) {
+                        if (lab_pair.value == block.itsLabel) {
+                            pairsets.add(arg.get(Access.EXIT, block.itsLabel))
+                        }
+                    }
+                    ret.joinAll(pairsets)
+                    return ret
+                }
+            }
+        }
     }
     
+    /** Return the exit function for the given elementary block argument. */
     def dispatch AnalysisFun<Integer, RDPropertySpace>
         exitFunFor(AssignS s) 
     {
@@ -58,16 +89,20 @@ class WhileLangRDAnalysis {
             override apply(PropertyVector<Integer, RDPropertySpace> arg) {
                     val entryInfo = arg.get(Access.ENTRY, s.label)
                     // subtract the kill info
-                    entryInfo.removeIf(new Predicate<Pair<String, MaybeLabel>>() {
+                    var ret = entryInfo.removeIf(new Predicate<Pair<String, MaybeLabel>>() 
+                        {
                             override boolean test(Pair<String, MaybeLabel> p) { 
                                p.key.equals(s.v);
                         }
-                    })                     
-                    return entryInfo  // TODO subtract kill and add gen
+                    })
+                    // add the generated info
+                    ret = ret.add(new Pair(s.v, new MaybeLabel(s.label)));                    
+                    return ret;
             }
         }
     }
  
+    /** Return the exit function for the given elementary block argument. */
     def dispatch AnalysisFun<Integer, RDPropertySpace>
         exitFunFor(SkipS s) 
     {
@@ -79,6 +114,7 @@ class WhileLangRDAnalysis {
         }
     }
 
+    /** Return the exit function for the given elementary block argument. */
     def dispatch AnalysisFun<Integer, RDPropertySpace>
         exitFunFor(LabeledExp s) 
     {

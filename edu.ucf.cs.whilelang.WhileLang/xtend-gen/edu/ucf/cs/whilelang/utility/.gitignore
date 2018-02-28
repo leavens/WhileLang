@@ -2,3 +2,6 @@
 /.CFG.xtendbin
 /CFG.java
 /.FreeVars.java._trace
+/FreeVars.java
+/.ElementaryBlockUtils.java._trace
+/.ASTExtensions.java._trace
