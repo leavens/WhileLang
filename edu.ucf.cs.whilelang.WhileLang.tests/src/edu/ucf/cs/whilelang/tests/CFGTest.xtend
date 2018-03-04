@@ -28,21 +28,20 @@ import org.junit.runner.RunWith
 @RunWith(XtextRunner)
 @InjectWith(WhileLangInjectorProvider)
 class CFGTest {
-	
-	@Inject extension ParseHelper<Program> parseHelper
-	
-	/** Parse a program from the given file name and validate it, 
-	 * then return the validated AST. */
-	def Program fromFileName(String fn) {
-		val injector = new WhileLangStandaloneSetup().createInjectorAndDoEMFRegistration()
-		val resourceSet = injector.getInstance(XtextResourceSet)
-		val uri = URI.createURI(fn)
-		// val xtextResource = resourceSet.getResource(uri, true);
-		val p = parse(new FileInputStream(fn), uri, new HashMap(), resourceSet)
-		new WhileLangValidator().checkStaticConstraints(p)
-		return p
-	}
-	
+    
+    /** Parse a program from the given file name and validate it, 
+     * then return the validated AST. */
+    @Inject extension ParseHelper<Program> parseHelper  
+    def Program fromFileName(String fn) {
+        val injector = new WhileLangStandaloneSetup().createInjectorAndDoEMFRegistration()
+        val resourceSet = injector.getInstance(XtextResourceSet)
+        val uri = URI.createURI(fn)
+        // val xtextResource = resourceSet.getResource(uri, true);
+        val p = parse(new FileInputStream(fn), uri, new HashMap(), resourceSet)
+        new WhileLangValidator().checkStaticConstraints(p)
+        return p
+    }   
+    
 	@Test
 	def void testCFGAssert() {
 	    val p = fromFileName("testsrc/cfgassert.wh")
@@ -69,7 +68,7 @@ class CFGTest {
 		val wl = bod.stmts.get(2) as WhileS
 		val wli = CFG.init(wl)
 		Assert.assertEquals("init of cfg1.wh's while loop is 3", 3, wli)
-		val wlbod = wl.block
+		val wlbod = wl.block as CompoundS
 		for (i: 0..2) {
 			val start = CFG.init(wlbod.stmts.get(i))
 			Assert.assertEquals("block " + (i+4) + " of cfg1.wh's loop body has init " + (i+4),
@@ -100,7 +99,7 @@ class CFGTest {
 		Assert.assertEquals("size of while loop finals is 1", 1, wlf.size())
 		Assert.assertTrue("finals of cfg1.wh's while loop is {3}", 
 						wlf.contains(3))
-		val wlbod = wl.block
+		val wlbod = wl.block as CompoundS
 		for (i: 0..2) {
 			val fin = CFG.finals(wlbod.stmts.get(i))
 			Assert.assertTrue("block " + (i+4) + " of cfg1.wh's loop body has finals {" + (i+4) + "}",
@@ -164,7 +163,7 @@ class CFGTest {
 		val wl = bod.stmts.get(2) as WhileS
 		Assert.assertTrue("blocks of cfg1.wh contains while loop's test",
 				blks.contains(wl.bexp));
-		val wlbod = wl.block
+		val wlbod = wl.block as CompoundS
 		for (i: 0..2) {
 			Assert.assertTrue("blocks of cfg1.wh's loop contains block with label " + (i+4),
 					blks.contains(wlbod.stmts.get(i)));
@@ -182,7 +181,7 @@ class CFGTest {
         val wl = bod.stmts.get(2) as WhileS
         Assert.assertEquals("block 3 of cfg1.wh is the while loop's test",
                 wl.bexp, CFG.blockOf(3));
-        val wlbod = wl.block
+        val wlbod = wl.block as CompoundS
         for (i: 0..2) {
             Assert.assertEquals("block" + (i+4) + " of cfg1.wh's loop found",
                     wlbod.stmts.get(i), CFG.blockOf(i+4));

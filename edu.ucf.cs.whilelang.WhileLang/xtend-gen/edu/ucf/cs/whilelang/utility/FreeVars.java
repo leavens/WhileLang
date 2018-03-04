@@ -1,19 +1,25 @@
 package edu.ucf.cs.whilelang.utility;
 
-import com.google.common.base.Objects;
-import edu.ucf.cs.whilelang.whileLang.BConj;
-import edu.ucf.cs.whilelang.whileLang.BDisj;
-import edu.ucf.cs.whilelang.whileLang.BRelExp;
+import edu.ucf.cs.whilelang.utility.ASTExtensions;
+import edu.ucf.cs.whilelang.whileLang.AssertS;
+import edu.ucf.cs.whilelang.whileLang.AssignS;
 import edu.ucf.cs.whilelang.whileLang.BoolLitExpr;
+import edu.ucf.cs.whilelang.whileLang.CompoundS;
 import edu.ucf.cs.whilelang.whileLang.Expr;
-import edu.ucf.cs.whilelang.whileLang.Factor;
+import edu.ucf.cs.whilelang.whileLang.IfS;
+import edu.ucf.cs.whilelang.whileLang.LabeledExp;
 import edu.ucf.cs.whilelang.whileLang.NotExpr;
 import edu.ucf.cs.whilelang.whileLang.NumLitExpr;
+import edu.ucf.cs.whilelang.whileLang.S;
 import edu.ucf.cs.whilelang.whileLang.SignedNum;
+import edu.ucf.cs.whilelang.whileLang.SkipS;
 import edu.ucf.cs.whilelang.whileLang.VarRefExpr;
+import edu.ucf.cs.whilelang.whileLang.WhileS;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * The FV method computes the set of free variables in an expression.
@@ -62,95 +68,107 @@ public class FreeVars {
    */
   protected Set<String> _FV(final Expr e) {
     final HashSet<String> ret = new HashSet<String>();
-    ret.addAll(this.FV(this.getLeft(e)));
-    ret.addAll(this.FV(this.getRight(e)));
+    ret.addAll(this.FV(ASTExtensions.leftSubExp(e)));
+    ret.addAll(this.FV(ASTExtensions.rightSubExp(e)));
     return ret;
   }
   
   /**
-   * Return the left subexpression.
+   * Return the set of free variables used in the given labeled expression.
    */
-  public Expr getLeft(final Expr expr) {
-    Expr _switchResult = null;
-    boolean _matched = false;
-    if (Objects.equal(expr, BDisj.class)) {
-      _matched=true;
-      _switchResult = this.getLeft(expr);
-    }
-    if (!_matched) {
-      if (Objects.equal(expr, BConj.class)) {
-        _matched=true;
-        _switchResult = this.getLeft(expr);
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(expr, BRelExp.class)) {
-        _matched=true;
-        _switchResult = this.getLeft(expr);
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(expr, Factor.class)) {
-        _matched=true;
-        _switchResult = this.getLeft(expr);
-      }
-    }
-    if (!_matched) {
-      throw new RuntimeException("Missing case in getLeft for Expr");
-    }
-    return _switchResult;
+  protected Set<String> _FV(final LabeledExp labe) {
+    return this.FV(labe.getBe());
   }
   
   /**
-   * Return the right subexpression.
+   * Return the set of free variables used in the given statement.
    */
-  public Expr getRight(final Expr expr) {
-    Expr _switchResult = null;
-    boolean _matched = false;
-    if (Objects.equal(expr, BDisj.class)) {
-      _matched=true;
-      _switchResult = this.getRight(expr);
-    }
-    if (!_matched) {
-      if (Objects.equal(expr, BConj.class)) {
-        _matched=true;
-        _switchResult = this.getRight(expr);
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(expr, BRelExp.class)) {
-        _matched=true;
-        _switchResult = this.getRight(expr);
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(expr, Factor.class)) {
-        _matched=true;
-        _switchResult = this.getRight(expr);
-      }
-    }
-    if (!_matched) {
-      throw new RuntimeException("Missing case in getRight for Expr");
-    }
-    return _switchResult;
+  protected Set<String> _FV(final AssignS s) {
+    final HashSet<String> ret = new HashSet<String>();
+    ret.add(s.getV());
+    ret.addAll(this.FV(s.getAexp()));
+    return ret;
   }
   
-  public Set<String> FV(final Expr b) {
-    if (b instanceof BoolLitExpr) {
-      return _FV((BoolLitExpr)b);
-    } else if (b instanceof NotExpr) {
-      return _FV((NotExpr)b);
-    } else if (b instanceof NumLitExpr) {
-      return _FV((NumLitExpr)b);
-    } else if (b instanceof SignedNum) {
-      return _FV((SignedNum)b);
-    } else if (b instanceof VarRefExpr) {
-      return _FV((VarRefExpr)b);
-    } else if (b != null) {
-      return _FV(b);
+  /**
+   * Return the set of free variables used in the given statement.
+   */
+  protected Set<String> _FV(final SkipS s) {
+    return new HashSet<String>();
+  }
+  
+  /**
+   * Return the set of free variables used in the given statement.
+   */
+  protected Set<String> _FV(final CompoundS blk) {
+    final HashSet<String> ret = new HashSet<String>();
+    EList<S> _stmts = blk.getStmts();
+    for (final S s : _stmts) {
+      ret.addAll(this.FV(s));
+    }
+    return ret;
+  }
+  
+  /**
+   * Return the set of free variables used in the given statement.
+   */
+  protected Set<String> _FV(final WhileS s) {
+    final HashSet<String> ret = new HashSet<String>();
+    ret.addAll(this.FV(s.getBexp()));
+    ret.addAll(this.FV(s.getBlock()));
+    return ret;
+  }
+  
+  /**
+   * Return the set of free variables used in the given statement.
+   */
+  protected Set<String> _FV(final IfS s) {
+    final HashSet<String> ret = new HashSet<String>();
+    ret.addAll(this.FV(s.getBexp()));
+    ret.addAll(this.FV(s.getS1()));
+    ret.addAll(this.FV(s.getS2()));
+    return ret;
+  }
+  
+  /**
+   * Return the set of free variables used in the given statement.
+   */
+  protected Set<String> _FV(final AssertS s) {
+    final HashSet<String> ret = new HashSet<String>();
+    ret.addAll(this.FV(s.getBexp()));
+    return ret;
+  }
+  
+  public Set<String> FV(final EObject s) {
+    if (s instanceof AssertS) {
+      return _FV((AssertS)s);
+    } else if (s instanceof AssignS) {
+      return _FV((AssignS)s);
+    } else if (s instanceof BoolLitExpr) {
+      return _FV((BoolLitExpr)s);
+    } else if (s instanceof CompoundS) {
+      return _FV((CompoundS)s);
+    } else if (s instanceof IfS) {
+      return _FV((IfS)s);
+    } else if (s instanceof LabeledExp) {
+      return _FV((LabeledExp)s);
+    } else if (s instanceof NotExpr) {
+      return _FV((NotExpr)s);
+    } else if (s instanceof NumLitExpr) {
+      return _FV((NumLitExpr)s);
+    } else if (s instanceof SignedNum) {
+      return _FV((SignedNum)s);
+    } else if (s instanceof SkipS) {
+      return _FV((SkipS)s);
+    } else if (s instanceof VarRefExpr) {
+      return _FV((VarRefExpr)s);
+    } else if (s instanceof WhileS) {
+      return _FV((WhileS)s);
+    } else if (s instanceof Expr) {
+      return _FV((Expr)s);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(b).toString());
+        Arrays.<Object>asList(s).toString());
     }
   }
 }

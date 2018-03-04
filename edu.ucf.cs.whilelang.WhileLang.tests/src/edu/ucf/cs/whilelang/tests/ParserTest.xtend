@@ -108,4 +108,15 @@ class ParserTest {
 				}
 				''')  
 	}
+	
+    @Test
+    def void testSimpleWhile() {
+        assertParseOk('''
+                proc testSimpleWhile(i) is {
+                    i := 3;
+                    while i > 0
+                    do i := i-1
+                }
+                ''')  
+    }
 }

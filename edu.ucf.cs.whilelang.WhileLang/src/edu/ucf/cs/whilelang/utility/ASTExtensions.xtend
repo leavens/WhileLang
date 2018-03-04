@@ -13,7 +13,7 @@ import edu.ucf.cs.whilelang.whileLang.AExpression
 /** Functions defined on AST interface types: ElementaryBlock and Expr. 
  * For ElementaryBlocks this defines the extension function itsLabel(ElementaryBlock).
  * For Expr this defines the extension functions leftSubExp(Expr) and rightSubExp(Expr)*/
-class ASTExtensions {
+class ASTExtensions {    
 
     /** Return the label of this elementary block. */         
     def static dispatch int itsLabel(AssignS s) {

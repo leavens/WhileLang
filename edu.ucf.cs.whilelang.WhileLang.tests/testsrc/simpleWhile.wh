@@ -1,0 +1,5 @@
+proc simpleWhile(i) is {
+     i := 3; % 1
+     while i > 0  % 2
+     do i := i-1  % 3
+}

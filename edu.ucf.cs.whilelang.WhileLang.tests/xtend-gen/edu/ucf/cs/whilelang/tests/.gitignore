@@ -6,3 +6,8 @@
 /.ParserTest.xtendbin
 /ParserTest.java
 /WhileLangParsingTest.java
+/.FVTest.java._trace
+/.ParseHelpers.java._trace
+/.ParsingHelpers.java._trace
+/FVTest.java
+/.FVTest.xtendbin
