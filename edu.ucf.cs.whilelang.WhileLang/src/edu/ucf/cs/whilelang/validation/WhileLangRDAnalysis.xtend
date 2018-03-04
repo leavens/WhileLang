@@ -20,6 +20,7 @@ import java.util.function.Predicate
 import edu.ucf.cs.whilelang.whileLang.ElementaryBlock
 import java.util.HashSet
 import static extension edu.ucf.cs.whilelang.utility.ASTExtensions.*
+import edu.ucf.cs.whilelang.utility.FreeVars
 
 /**
  * This class constructs the Reaching Definitions (RD) analysis for the given program.
@@ -30,6 +31,7 @@ class WhileLangRDAnalysis {
     
     /** This program's statement. */
     var S progBody;
+    val fvars = new FreeVars()
      
     /** The Function Vector that represents the RD analysis for this program. */
     var FunctionVector<Integer, RDPropertySpace> RDFunVec; 
@@ -64,7 +66,7 @@ class WhileLangRDAnalysis {
         {
             override apply(PropertyVector<Integer, RDPropertySpace> arg) {
                 if (CFG.init(progBody) == block.itsLabel) {
-                    new RDPropertySpace()
+                    new RDPropertySpace(fvars.FV(progBody), new MaybeLabel())
                 } else {
                     val ret = new RDPropertySpace()
                     val pairsets = new HashSet()

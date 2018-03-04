@@ -12,10 +12,21 @@ public class RDPropertySpace implements PropertySpace {
 	/** The set of pairs that is the property. */
 	protected Set<Pair<String, MaybeLabel>> rep; 
 	
-	/** Return the bottom element of this property space (the empty set). */
+	/** Initialize this property space element to be the bottom element 
+	 * of this property space (the empty set). */
 	/*@ pure @*/
 	public RDPropertySpace() {
 		rep = new HashSet<Pair<String, MaybeLabel>>();
+	}
+	
+	/** Initialize this property space element to be 
+	 * a mapping from all variables in the program to the given label. */
+	public RDPropertySpace(Set<String> fvs, MaybeLabel lab) {
+		Set<Pair<String, MaybeLabel>> ret = new HashSet<Pair<String, MaybeLabel>>();
+		for (String name : fvs) {
+			ret.add(new Pair<String,MaybeLabel>(name, lab));
+		}
+		rep = ret;
 	}
 	
 	/** Return a property space element with the given set of pairs. 

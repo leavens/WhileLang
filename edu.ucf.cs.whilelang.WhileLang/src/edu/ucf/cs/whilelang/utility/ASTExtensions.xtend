@@ -8,6 +8,7 @@ import edu.ucf.cs.whilelang.whileLang.BDisj
 import edu.ucf.cs.whilelang.whileLang.BConj
 import edu.ucf.cs.whilelang.whileLang.BRelExp
 import edu.ucf.cs.whilelang.whileLang.Factor
+import edu.ucf.cs.whilelang.whileLang.AExpression
 
 /** Functions defined on AST interface types: ElementaryBlock and Expr. 
  * For ElementaryBlocks this defines the extension function itsLabel(ElementaryBlock).
@@ -46,6 +47,11 @@ class ASTExtensions {
     }
     
     /** Return the left subexpression. */
+    def static dispatch Expr leftSubExp(AExpression e) {
+        e.left
+    }
+    
+    /** Return the left subexpression. */
     def static dispatch Expr leftSubExp(Factor e) {
         e.left
     }
@@ -63,6 +69,11 @@ class ASTExtensions {
     
     /** Return the right subexpression. */
     def static dispatch Expr rightSubExp(BRelExp e) {
+        e.right
+    }
+    
+    /** Return the right subexpression. */
+    def static dispatch Expr rightSubExp(AExpression e) {
         e.right
     }
     
