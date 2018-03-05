@@ -103,11 +103,28 @@ public class RDPropertySpace implements PropertySpace {
 	    return new RDPropertySpace(ret);
 	}
 	
-	/** Add the given pair to this property space info. */
-	public RDPropertySpace add(Pair<String, MaybeLabel> p) {
+	/** Add the given pair to this property space info, returning a new one. */
+	public RDPropertySpace insert(Pair<String, MaybeLabel> p) {
 		Set<Pair<String, MaybeLabel>> ret = new HashSet<Pair<String, MaybeLabel>>();
 		ret.addAll(this.rep);
 		ret.add(p);
 	    return new RDPropertySpace(ret);
+	}
+	
+	/** Return a string representation of this property space info. */
+	@Override
+	public String toString() {
+		StringBuffer ret = new StringBuffer();
+		ret.append('{');
+		int sz = this.rep.size();
+		for (Pair<String, MaybeLabel> p : this.rep) {
+			ret.append(p.toString());
+			if (sz > 1) {
+				ret.append(", ");
+			}
+			sz--;
+		}
+		ret.append('}');
+		return ret.toString();
 	}
 }

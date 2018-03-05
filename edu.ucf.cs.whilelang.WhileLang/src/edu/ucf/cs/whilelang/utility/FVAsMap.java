@@ -24,7 +24,7 @@ public class FVAsMap<Label, L extends PropertySpace>
 	public L apply(Access a, Label l, PropertyVector<Label, L> arg) {
 		if (a.equals(Access.ENTRY)) {
 			return entryfuns.get(l).apply(arg);
-		} else { /* Acess.EXIT */
+		} else { /* Access.EXIT */
 			return exitfuns.get(l).apply(arg);
 		}
 	}

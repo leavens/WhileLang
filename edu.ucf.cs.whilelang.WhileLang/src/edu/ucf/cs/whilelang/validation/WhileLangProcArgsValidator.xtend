@@ -3,6 +3,7 @@ package edu.ucf.cs.whilelang.validation
 import edu.ucf.cs.whilelang.whileLang.Formals
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage.Literals
 import java.util.HashSet
+import org.eclipse.xtext.validation.Check
 
 /** Validates the uniqueness of names in the list of a proc's formals. */
 class WhileLangProcArgsValidator extends AbstractWhileLangValidator {
@@ -11,7 +12,8 @@ class WhileLangProcArgsValidator extends AbstractWhileLangValidator {
     
     public static val DUPLICATE_FORMAL = ISSUE_CODE_PREFIX + "DuplicateFormal"
     
-    /** Check that the names in formals are all unique. */    
+    /** Check that the names in formals are all unique. */
+    @Check    
     def checkUniqueNames(Formals formals) {
         val checked = new HashSet<String>()
         for (e: formals.names) {

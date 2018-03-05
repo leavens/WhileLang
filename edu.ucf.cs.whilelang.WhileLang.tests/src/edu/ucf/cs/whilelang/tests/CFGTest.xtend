@@ -19,6 +19,8 @@ import org.eclipse.xtext.testing.util.ParseHelper
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.Map.Entry
+import java.util.Set
 
 /**
  * JUnit (4) tests for inFlows and outFlows attributes. 
@@ -239,6 +241,21 @@ class CFGTest {
                tpflows.contains(new Pair<Integer,Integer>(3,4)));
         Assert.assertTrue("if in cfgifs.wh has expected flow (2,5)",
                tpflows.contains(new Pair<Integer,Integer>(2,5)));
+    }
+    
+    @Test
+    def void testSimpleWhile() {
+        val p = fromFileName("testsrc/simpleWhile.wh");
+        Assert.assertEquals("cfgMap should have size 4", 4, CFG.cfgMap.size())
+        val CompoundS bod = p.body as CompoundS
+        // System.out.println("CFG of " + bod + " is:")
+        // System.out.println(CFG.cfgMap.toString())
+        val WhileS whs = bod.stmts.get(1) as WhileS;
+        val Set<Entry<Integer, Integer>> whflows = CFG.cfgMap.get(whs)
+        val shouldBeMap = new HashMap<Integer, Integer>();
+        shouldBeMap.put(2,3);
+        shouldBeMap.put(3,2);
+        Assert.assertEquals(shouldBeMap.entrySet(), whflows);        
     }
 	
 }

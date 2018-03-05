@@ -4,3 +4,7 @@
 /.WhileLangStandaloneSetup.xtendbin
 /WhileLangRuntimeModule.java
 /WhileLangStandaloneSetup.java
+/generator/
+/scoping/
+/utility/
+/validation/

@@ -8,8 +8,8 @@ import java.util.Set;
  */
 public interface PropertySpace {
 	/** Return the lattice join of the given sets. 
-	 * This is the property space's combination operator. */
-	/*@ pure @*/
+	 * This is an in-place (mutating) version of the property space's 
+	 * combination operator. */
 	PropertySpace joinAll(Set<PropertySpace> sets);
 	
 	/** Return the lattice's least upper bound of the given sets. */

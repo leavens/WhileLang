@@ -42,7 +42,6 @@ public class FlowGraph
 	public Set<Map.Entry<Integer,Integer>> get(S stmt) { 
 		return map.get(stmt); 
 	}
-
 	
 	@Override
 	public Set<Map.Entry<Integer,Integer>> put(S stmt, 
@@ -67,7 +66,8 @@ public class FlowGraph
 			Set<Map.Entry<Integer,Integer>> ret = 
 					new SetRepUtility<Map.Entry<Integer,Integer>>();
 			ret.addAll(fls);
-			return map.put(stmt, ret);
+			map.put(stmt, ret);
+			return ret;
 		}
 	}
 	

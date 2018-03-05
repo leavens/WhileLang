@@ -72,6 +72,41 @@ public class PVAsMap<Label, L extends PropertySpace>
 		}
 		return ret;
 	}
+	
+	@Override
+	/** Return a string representation of this property space vector. */
+	public String toString() {
+		StringBuffer ret = new StringBuffer();
+		ret.append("(entries: {");
+		int sz = entries.keySet().size();
+		for (Label lab : entries.keySet()) {
+			ret.append('(');
+			ret.append(lab.toString());
+			ret.append("|->");
+			ret.append(entries.get(lab).toString());
+			ret.append(")");
+			if (sz > 1) {
+				ret.append(", ");
+			}
+			sz--;
+		}
+		ret.append("}\n");
+		ret.append(" exits  : {");
+		sz = exits.keySet().size();
+		for (Label lab : exits.keySet()) {
+			ret.append('(');
+			ret.append(lab.toString());
+			ret.append("|->");
+			ret.append(exits.get(lab).toString());
+			ret.append(")");
+			if (sz > 1) {
+				ret.append(", ");
+			}
+			sz--;
+		}
+		ret.append("})");
+		return ret.toString();
+	}
 
 	@Override
 	public Set<Label> getLabels() {

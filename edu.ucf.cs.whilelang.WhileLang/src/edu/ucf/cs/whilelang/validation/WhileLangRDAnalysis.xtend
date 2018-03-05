@@ -21,6 +21,7 @@ import edu.ucf.cs.whilelang.whileLang.ElementaryBlock
 import java.util.HashSet
 import static extension edu.ucf.cs.whilelang.utility.ASTExtensions.*
 import edu.ucf.cs.whilelang.utility.FreeVars
+import edu.ucf.cs.whilelang.utility.PropertySpace
 
 /**
  * This class constructs the Reaching Definitions (RD) analysis for the given program.
@@ -68,14 +69,14 @@ class WhileLangRDAnalysis {
                 if (CFG.init(progBody) == block.itsLabel) {
                     new RDPropertySpace(fvars.FV(progBody), new MaybeLabel())
                 } else {
-                    val ret = new RDPropertySpace()
+                    var RDPropertySpace ret = new RDPropertySpace()
                     val pairsets = new HashSet()
                     for (lab_pair : CFG.cfgMap.get(progBody)) {
                         if (lab_pair.value == block.itsLabel) {
-                            pairsets.add(arg.get(Access.EXIT, block.itsLabel))
+                            pairsets.add(arg.get(Access.EXIT, lab_pair.key))
                         }
                     }
-                    ret.joinAll(pairsets)
+                    ret = ret.joinAll(pairsets) as RDPropertySpace
                     return ret
                 }
             }
@@ -98,7 +99,7 @@ class WhileLangRDAnalysis {
                         }
                     })
                     // add the generated info
-                    ret = ret.add(new Pair(s.v, new MaybeLabel(s.label)));                    
+                    ret = ret.insert(new Pair(s.v, new MaybeLabel(s.label)));                    
                     return ret;
             }
         }
