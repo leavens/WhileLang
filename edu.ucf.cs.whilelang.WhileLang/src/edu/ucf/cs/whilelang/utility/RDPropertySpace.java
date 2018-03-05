@@ -19,8 +19,15 @@ public class RDPropertySpace implements PropertySpace {
 		rep = new HashSet<Pair<String, MaybeLabel>>();
 	}
 	
+	/** Initialize this property space element to be a mapping from the
+	 * given name to the given label. */
+	public RDPropertySpace(String name, MaybeLabel lab) {
+		rep = new HashSet<Pair<String, MaybeLabel>>();
+		rep.add(new Pair<String, MaybeLabel>(name, lab));
+	}
+	
 	/** Initialize this property space element to be 
-	 * a mapping from all variables in the program to the given label. */
+	 * a mapping from the given set of variables (fvs) to the given label (lab). */
 	public RDPropertySpace(Set<String> fvs, MaybeLabel lab) {
 		Set<Pair<String, MaybeLabel>> ret = new HashSet<Pair<String, MaybeLabel>>();
 		for (String name : fvs) {
@@ -36,25 +43,33 @@ public class RDPropertySpace implements PropertySpace {
 		rep = s;
 	}
 	
+	/** Return a copy of this property space element. */
+	@Override
+	public RDPropertySpace copy() {
+		RDPropertySpace ret = new RDPropertySpace();
+		ret.join(this);
+		return ret;
+	}
+	
 	/** @see edu.ucf.cs.whilelang.utility.PropertySpace#joinAll(java.util.Set) */
 	@Override
-	public PropertySpace joinAll(Set<PropertySpace> sets) {
-		Set<Pair<String, MaybeLabel>> ret = new HashSet<Pair<String, MaybeLabel>>();
+	public void joinAll(Set<PropertySpace> sets) {
 		for (PropertySpace e : sets) {
 			if (e instanceof RDPropertySpace) {
 				RDPropertySpace v = (RDPropertySpace) e;
-				ret.addAll(v.rep);
+				rep.addAll(v.rep);
 			} else {
 				throw new IllegalArgumentException();
 			}
 		}
-		return new RDPropertySpace(ret);
 	}
 
 	/** @see edu.ucf.cs.whilelang.utility.PropertySpace#lub(java.util.Set) */
 	@Override
 	public PropertySpace lub(Set<PropertySpace> sets) {
-		return joinAll(sets);
+		RDPropertySpace ret = new RDPropertySpace();
+		ret.joinAll(sets);
+		return ret;
 	}
 
 	/** @see edu.ucf.cs.whilelang.utility.PropertySpace#leq(edu.ucf.cs.whilelang.utility.PropertySpace)
@@ -93,22 +108,18 @@ public class RDPropertySpace implements PropertySpace {
 
 	/** Removes all of the elements of this property space 
 	 * that satisfy the given predicate. */
-	public RDPropertySpace removeIf(Predicate<Pair<String, MaybeLabel>> p) {
-		Set<Pair<String, MaybeLabel>> ret = new HashSet<Pair<String, MaybeLabel>>();
-		for (Pair<String, MaybeLabel> e : this.rep) {
-			if (!p.test(e)) {
-				ret.add(e);
-			}
-		}
-	    return new RDPropertySpace(ret);
+	public void removeIf(Predicate<Pair<String, MaybeLabel>> p) {
+		rep.removeIf(p);
 	}
 	
-	/** Add the given pair to this property space info, returning a new one. */
-	public RDPropertySpace insert(Pair<String, MaybeLabel> p) {
-		Set<Pair<String, MaybeLabel>> ret = new HashSet<Pair<String, MaybeLabel>>();
-		ret.addAll(this.rep);
-		ret.add(p);
-	    return new RDPropertySpace(ret);
+	/** Join the given element with this property space info, in place. */
+	public void join(PropertySpace p) {
+		if (p instanceof RDPropertySpace) {
+			RDPropertySpace v = (RDPropertySpace) p;
+			rep.addAll(v.rep);
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	/** Return a string representation of this property space info. */

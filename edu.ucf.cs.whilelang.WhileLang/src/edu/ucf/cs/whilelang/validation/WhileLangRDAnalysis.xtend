@@ -22,6 +22,7 @@ import java.util.HashSet
 import java.util.function.Predicate
 
 import static extension edu.ucf.cs.whilelang.utility.ASTExtensions.*
+import java.util.Set
 
 /**
  * This class constructs the Reaching Definitions (RD) analysis for the given program.
@@ -76,7 +77,7 @@ class WhileLangRDAnalysis {
                             pairsets.add(arg.get(Access.EXIT, lab_pair.key))
                         }
                     }
-                    ret = ret.joinAll(pairsets) as RDPropertySpace
+                    ret.joinAll(pairsets)
                     return ret
                 }
             }
@@ -92,14 +93,15 @@ class WhileLangRDAnalysis {
             override apply(PropertyVector<Integer, RDPropertySpace> arg) {
                     val entryInfo = arg.get(Access.ENTRY, s.label)
                     // subtract the kill info
-                    var ret = entryInfo.removeIf(new Predicate<Pair<String, MaybeLabel>>() 
+                    val ret = entryInfo.copy() as RDPropertySpace
+                    ret.removeIf(new Predicate<Pair<String, MaybeLabel>>() 
                         {
                             override boolean test(Pair<String, MaybeLabel> p) { 
                                p.key.equals(s.v);
-                        }
-                    })
+                            }
+                        })
                     // add the generated info
-                    ret = ret.insert(new Pair(s.v, new MaybeLabel(s.label)));                    
+                    ret.join(new RDPropertySpace(s.v, new MaybeLabel(s.label)));                   
                     return ret;
             }
         }
