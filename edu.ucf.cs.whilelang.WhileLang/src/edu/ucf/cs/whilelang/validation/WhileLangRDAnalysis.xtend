@@ -1,27 +1,27 @@
 package edu.ucf.cs.whilelang.validation
 
+import edu.ucf.cs.whilelang.utility.Access
+import edu.ucf.cs.whilelang.utility.AnalysisFun
+import edu.ucf.cs.whilelang.utility.CFG
+import edu.ucf.cs.whilelang.utility.FVAsMap
+import edu.ucf.cs.whilelang.utility.FreeVars
+import edu.ucf.cs.whilelang.utility.FunctionVector
+import edu.ucf.cs.whilelang.utility.MaybeLabel
+import edu.ucf.cs.whilelang.utility.PVAsMap
+import edu.ucf.cs.whilelang.utility.Pair
+import edu.ucf.cs.whilelang.utility.PropertyVector
+import edu.ucf.cs.whilelang.utility.RDPropertySpace
+import edu.ucf.cs.whilelang.whileLang.AssignS
+import edu.ucf.cs.whilelang.whileLang.ElementaryBlock
+import edu.ucf.cs.whilelang.whileLang.LabeledExp
 import edu.ucf.cs.whilelang.whileLang.Program
 import edu.ucf.cs.whilelang.whileLang.S
-import edu.ucf.cs.whilelang.utility.FunctionVector
-import edu.ucf.cs.whilelang.utility.FVAsMap
-import edu.ucf.cs.whilelang.utility.RDPropertySpace
-import edu.ucf.cs.whilelang.utility.PropertyVector
-import edu.ucf.cs.whilelang.utility.PVAsMap
-import edu.ucf.cs.whilelang.utility.CFG
-import java.util.HashMap
-import edu.ucf.cs.whilelang.whileLang.AssignS
-import edu.ucf.cs.whilelang.utility.AnalysisFun
 import edu.ucf.cs.whilelang.whileLang.SkipS
-import edu.ucf.cs.whilelang.utility.Access
-import edu.ucf.cs.whilelang.whileLang.LabeledExp
-import edu.ucf.cs.whilelang.utility.MaybeLabel
-import edu.ucf.cs.whilelang.utility.Pair
-import java.util.function.Predicate
-import edu.ucf.cs.whilelang.whileLang.ElementaryBlock
+import java.util.HashMap
 import java.util.HashSet
+import java.util.function.Predicate
+
 import static extension edu.ucf.cs.whilelang.utility.ASTExtensions.*
-import edu.ucf.cs.whilelang.utility.FreeVars
-import edu.ucf.cs.whilelang.utility.PropertySpace
 
 /**
  * This class constructs the Reaching Definitions (RD) analysis for the given program.
