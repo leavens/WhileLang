@@ -22,7 +22,6 @@ import java.util.HashSet
 import java.util.function.Predicate
 
 import static extension edu.ucf.cs.whilelang.utility.ASTExtensions.*
-import java.util.Set
 
 /**
  * This class constructs the Reaching Definitions (RD) analysis for the given program.
