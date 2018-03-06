@@ -106,7 +106,7 @@ public class RDPropertySpace
 	
 	/** Join the given element with this property space info, in place. */
 	public void join(RDPropertySpace v) {
-			rep.addAll(v.rep);
+	    rep.addAll(v.rep);
 	}
 	
 	/** Return a string representation of this property space info. */
@@ -127,7 +127,7 @@ public class RDPropertySpace
 	}
 
 	/** Return the image of the string in this property space.
-	 * That is, return the set of all labels where vname may have been 
+	 * That is, return the set of all labels where vname may have been last
 	 * defined (assigned). 
 	 * @param vname, the variable name */
 	public Set<MaybeLabel> get(String vname) {

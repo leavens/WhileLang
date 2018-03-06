@@ -52,7 +52,8 @@ class WhileLangRDAnalysis {
         }
         RDFunVec = new FVAsMap<Integer, RDPropertySpace, Pair<String, MaybeLabel>>(entryfuns, exitfuns)
     }
-        
+     
+    /** Compute the Reaching Definitions analysis (the RDInfo static field). */   
     def computeAnalysis() {
         val labels = CFG.labels(progBody)
         val botvec = new PVAsMap<Integer, RDPropertySpace, Pair<String, MaybeLabel>>(labels, new RDPropertySpace())
@@ -66,19 +67,19 @@ class WhileLangRDAnalysis {
         new AnalysisFun<Integer, RDPropertySpace, Pair<String, MaybeLabel>>() 
         {
             override apply(PropertyVector<Integer, RDPropertySpace, 
-                           Pair<String, MaybeLabel>> arg)
+                                          Pair<String, MaybeLabel>> arg)
             {
                 if (CFG.init(progBody) == block.itsLabel) {
                     new RDPropertySpace(fvars.FV(progBody), new MaybeLabel())
                 } else {
                     var RDPropertySpace ret = new RDPropertySpace()
-                    val pairsets = new HashSet()
+                    val rdInfoSet = new HashSet()
                     for (lab_pair : CFG.cfgMap.get(progBody)) {
                         if (lab_pair.value == block.itsLabel) {
-                            pairsets.add(arg.get(Access.EXIT, lab_pair.key))
+                            rdInfoSet.add(arg.get(Access.EXIT, lab_pair.key))
                         }
                     }
-                    ret.joinAll(pairsets)
+                    ret.joinAll(rdInfoSet)
                     return ret
                 }
             }
@@ -92,7 +93,7 @@ class WhileLangRDAnalysis {
         new AnalysisFun<Integer, RDPropertySpace, Pair<String, MaybeLabel>>() 
         {
             override apply(PropertyVector<Integer, RDPropertySpace,
-                           Pair<String, MaybeLabel>> arg)
+                                          Pair<String, MaybeLabel>> arg)
             {
                     val entryInfo = arg.get(Access.ENTRY, s.label)
                     // subtract the kill info
