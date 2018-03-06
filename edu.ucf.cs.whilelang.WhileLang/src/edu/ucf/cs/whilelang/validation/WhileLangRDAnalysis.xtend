@@ -35,37 +35,39 @@ class WhileLangRDAnalysis {
     val fvars = new FreeVars()
      
     /** The Function Vector that represents the RD analysis for this program. */
-    var FunctionVector<Integer, RDPropertySpace> RDFunVec; 
+    var FunctionVector<Integer, RDPropertySpace, Pair<String, MaybeLabel>> RDFunVec; 
     /** The Property Vector that is the fixed point of the RD analysis 
      * for this program. */
-    public var PropertyVector<Integer, RDPropertySpace> RDInfo;
+    public var PropertyVector<Integer, RDPropertySpace, Pair<String, MaybeLabel>> RDInfo;
          
     /** Initialize the function vector and property vector. */       
     new (Program p) {
         progBody = p.body
-        val entryfuns = new HashMap<Integer, AnalysisFun<Integer, RDPropertySpace>>()
-        val exitfuns = new HashMap<Integer, AnalysisFun<Integer, RDPropertySpace>>()
+        val entryfuns = new HashMap<Integer, AnalysisFun<Integer, RDPropertySpace, Pair<String, MaybeLabel>>>()
+        val exitfuns = new HashMap<Integer, AnalysisFun<Integer, RDPropertySpace, Pair<String, MaybeLabel>>>()
         for (lab : CFG.labels(progBody)) {
             val bl = CFG.itsBlockMap.get(lab)
             entryfuns.put(lab, entryFunFor(bl))
             exitfuns.put(lab, exitFunFor(bl))
         }
-        RDFunVec = new FVAsMap<Integer, RDPropertySpace>(entryfuns, exitfuns)
+        RDFunVec = new FVAsMap<Integer, RDPropertySpace, Pair<String, MaybeLabel>>(entryfuns, exitfuns)
     }
         
     def computeAnalysis() {
         val labels = CFG.labels(progBody)
-        val botvec = new PVAsMap<Integer, RDPropertySpace>(labels, new RDPropertySpace())
+        val botvec = new PVAsMap<Integer, RDPropertySpace, Pair<String, MaybeLabel>>(labels, new RDPropertySpace())
         RDInfo = RDFunVec.fix(labels, botvec)
     }
 
     /** Return the exit function for the given elementary block argument. */
-    def AnalysisFun<Integer, RDPropertySpace>
+    def AnalysisFun<Integer, RDPropertySpace, Pair<String, MaybeLabel>>
         entryFunFor(ElementaryBlock block) 
     {
-        new AnalysisFun<Integer, RDPropertySpace>() 
+        new AnalysisFun<Integer, RDPropertySpace, Pair<String, MaybeLabel>>() 
         {
-            override apply(PropertyVector<Integer, RDPropertySpace> arg) {
+            override apply(PropertyVector<Integer, RDPropertySpace, 
+                           Pair<String, MaybeLabel>> arg)
+            {
                 if (CFG.init(progBody) == block.itsLabel) {
                     new RDPropertySpace(fvars.FV(progBody), new MaybeLabel())
                 } else {
@@ -84,12 +86,14 @@ class WhileLangRDAnalysis {
     }
     
     /** Return the exit function for the given elementary block argument. */
-    def dispatch AnalysisFun<Integer, RDPropertySpace>
+    def dispatch AnalysisFun<Integer, RDPropertySpace, Pair<String, MaybeLabel>>
         exitFunFor(AssignS s) 
     {
-        new AnalysisFun<Integer, RDPropertySpace>() 
+        new AnalysisFun<Integer, RDPropertySpace, Pair<String, MaybeLabel>>() 
         {
-            override apply(PropertyVector<Integer, RDPropertySpace> arg) {
+            override apply(PropertyVector<Integer, RDPropertySpace,
+                           Pair<String, MaybeLabel>> arg)
+            {
                     val entryInfo = arg.get(Access.ENTRY, s.label)
                     // subtract the kill info
                     val ret = entryInfo.copy() as RDPropertySpace
@@ -107,27 +111,31 @@ class WhileLangRDAnalysis {
     }
  
     /** Return the exit function for the given elementary block argument. */
-    def dispatch AnalysisFun<Integer, RDPropertySpace>
+    def dispatch AnalysisFun<Integer, RDPropertySpace, Pair<String, MaybeLabel>>
         exitFunFor(SkipS s) 
     {
-        new AnalysisFun<Integer, RDPropertySpace>() 
+        new AnalysisFun<Integer, RDPropertySpace, Pair<String, MaybeLabel>>() 
         {
-            override apply(PropertyVector<Integer, RDPropertySpace> arg) {
+            override apply(PropertyVector<Integer, 
+                                          RDPropertySpace,
+                                          Pair<String, MaybeLabel>> arg)
+            {
                     return arg.get(Access.ENTRY, s.label)
             }
         }
     }
 
     /** Return the exit function for the given elementary block argument. */
-    def dispatch AnalysisFun<Integer, RDPropertySpace>
+    def dispatch AnalysisFun<Integer, RDPropertySpace, Pair<String, MaybeLabel>>
         exitFunFor(LabeledExp s) 
     {
-        new AnalysisFun<Integer, RDPropertySpace>() 
+        new AnalysisFun<Integer, RDPropertySpace, Pair<String, MaybeLabel>>() 
         {
-            override apply(PropertyVector<Integer, RDPropertySpace> arg) {
+            override apply(PropertyVector<Integer, RDPropertySpace,
+                Pair<String, MaybeLabel>> arg)
+            {
                     return arg.get(Access.ENTRY, s.label)
             }
         }
-    }
-   
+    }  
 }

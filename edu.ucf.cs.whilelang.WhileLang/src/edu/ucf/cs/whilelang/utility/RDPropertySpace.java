@@ -125,4 +125,18 @@ public class RDPropertySpace
 		ret.append('}');
 		return ret.toString();
 	}
+
+	/** Return the image of the string in this property space.
+	 * That is, return the set of all labels where vname may have been 
+	 * defined (assigned). 
+	 * @param vname, the variable name */
+	public Set<MaybeLabel> get(String vname) {
+	    Set<MaybeLabel> ret = new HashSet<MaybeLabel>();
+	    for (Pair<String, MaybeLabel> p : this.rep) {
+	    	if (p.getKey().equals(vname)) {
+	    		ret.add(p.getValue());
+	    	}
+	    }
+	    return ret;
+	}
 }
