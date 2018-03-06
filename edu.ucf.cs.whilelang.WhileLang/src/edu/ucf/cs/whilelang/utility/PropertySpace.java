@@ -4,32 +4,34 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 
-/** Property Spaces as in Static Analysis.
+/** Property Spaces as in static analysis.
+ * @param L, the type of the property space
+ * @param E, the type of the elements in the property space
  * @author Gary T. Leavens
  */
-public interface PropertySpace {
+public interface PropertySpace<L extends PropertySpace<L,E>,E> {
 	/** Return a copy of this property space element. */
-	PropertySpace copy();
+	L copy();
 	
 	/** Return the lattice join of the given sets. 
 	 * This is an in-place (mutating) version of the property space's 
 	 * combination operator. */
-	void joinAll(Set<PropertySpace> sets);
+	void joinAll(Set<L> sets);
 	
 	/** Join the given element with this property space info, in place. */
-	void join(PropertySpace p);	
+	void join(L p);	
 	
 	/** Removes all of the elements of this property space 
 	 * that satisfy the given predicate. */
-	void removeIf(Predicate<Pair<String, MaybeLabel>> p);
+	void removeIf(Predicate<E> p);
 	
 	/** Return the lattice's least upper bound of the given sets. */
 	/*@ pure @*/
-	PropertySpace lub(Set<PropertySpace> sets);
+	L lub(Set<L> sets);
 	
 	/** Is this over-approximated (in the lattice ordering) by v? */
 	/*@ pure @*/
-	boolean leq(PropertySpace v);
+	boolean leq(L v);
 	
 	/** Is this property space value equal to o (as a property space value)? */
 	/*@ pure @*/

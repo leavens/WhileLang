@@ -7,9 +7,11 @@ import java.util.function.Predicate;
 /** The property space for the Reaching Definitions analysis. 
  * @author Gary T. Leavens
  */
-public class RDPropertySpace implements PropertySpace {
+public class RDPropertySpace 
+        implements PropertySpace<RDPropertySpace, Pair<String, MaybeLabel>> 
+{
 
-	/** The set of pairs that is the property. */
+	/** The set of pairs that represents the property. */
 	protected Set<Pair<String, MaybeLabel>> rep; 
 	
 	/** Initialize this property space element to be the bottom element 
@@ -19,8 +21,8 @@ public class RDPropertySpace implements PropertySpace {
 		rep = new HashSet<Pair<String, MaybeLabel>>();
 	}
 	
-	/** Initialize this property space element to be a mapping from the
-	 * given name to the given label. */
+	/** Initialize this property space element to be 
+	 * a set containing a singleton pair with the given name and label. */
 	public RDPropertySpace(String name, MaybeLabel lab) {
 		rep = new HashSet<Pair<String, MaybeLabel>>();
 		rep.add(new Pair<String, MaybeLabel>(name, lab));
@@ -53,20 +55,15 @@ public class RDPropertySpace implements PropertySpace {
 	
 	/** @see edu.ucf.cs.whilelang.utility.PropertySpace#joinAll(java.util.Set) */
 	@Override
-	public void joinAll(Set<PropertySpace> sets) {
-		for (PropertySpace e : sets) {
-			if (e instanceof RDPropertySpace) {
-				RDPropertySpace v = (RDPropertySpace) e;
-				rep.addAll(v.rep);
-			} else {
-				throw new IllegalArgumentException();
-			}
+	public void joinAll(Set<RDPropertySpace> sets) {
+		for (RDPropertySpace e : sets) {
+			rep.addAll(e.rep);
 		}
 	}
 
 	/** @see edu.ucf.cs.whilelang.utility.PropertySpace#lub(java.util.Set) */
 	@Override
-	public PropertySpace lub(Set<PropertySpace> sets) {
+	public RDPropertySpace lub(Set<RDPropertySpace> sets) {
 		RDPropertySpace ret = new RDPropertySpace();
 		ret.joinAll(sets);
 		return ret;
@@ -75,13 +72,8 @@ public class RDPropertySpace implements PropertySpace {
 	/** @see edu.ucf.cs.whilelang.utility.PropertySpace#leq(edu.ucf.cs.whilelang.utility.PropertySpace)
 	 */
 	@Override
-	public boolean leq(PropertySpace e) {
-		if (e instanceof RDPropertySpace) {
-			RDPropertySpace v = (RDPropertySpace) e;
-			return v.rep.containsAll(this.rep);
-		} else {
-			throw new IllegalArgumentException();
-		}
+	public boolean leq(RDPropertySpace v) {
+		return v.rep.containsAll(this.rep);
 	}
 
 	/** @see edu.ucf.cs.whilelang.utility.PropertySpace#isBottom() */
@@ -113,13 +105,8 @@ public class RDPropertySpace implements PropertySpace {
 	}
 	
 	/** Join the given element with this property space info, in place. */
-	public void join(PropertySpace p) {
-		if (p instanceof RDPropertySpace) {
-			RDPropertySpace v = (RDPropertySpace) p;
+	public void join(RDPropertySpace v) {
 			rep.addAll(v.rep);
-		} else {
-			throw new IllegalArgumentException();
-		}
 	}
 	
 	/** Return a string representation of this property space info. */

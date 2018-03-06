@@ -6,7 +6,10 @@ import java.util.Set;
 /** A vector of Analysis functions. 
  * @param Label, is the type of the labels in the Control Flow Graph.
  * @param L is the type of the elements of property vectors. */
-public interface FunctionVector<Label, L extends PropertySpace> {
+public interface FunctionVector<Label, 
+                                L extends PropertySpace<L,E>,
+                                E> 
+{
 	//@ public model Map<Label, AnalysisFun<Label, L>> entries, exits;
 	//@ public invariant entries.keySet().equals(exits.keySet());
 	//@ public invariant isMonotone(entries) && isMonotone(exits);
@@ -15,7 +18,7 @@ public interface FunctionVector<Label, L extends PropertySpace> {
 	 * at the given label l 
 	 * for the given property vector arg. */
 	/*@ pure @*/
-	L apply(Access a, Label l, PropertyVector<Label, L> arg);
+	L apply(Access a, Label l, PropertyVector<Label, L, E> arg);
 	
 	/*@ ensures \result == (forall Label lab;; (\forall L v1;; (\forall L v2;;
 	  @                        v1.leq(v2) ==> f(lab, v1).leq(f(lab, v2)))));
@@ -35,8 +38,8 @@ public interface FunctionVector<Label, L extends PropertySpace> {
 	//@ assignable entries, exits;
 	//@ ensures this.entries.equals(entryfuns);
 	//@ ensures this.exits.equals(exitfuns);
-	void initialize(Map<Label, AnalysisFun<Label, L>> entryfuns, 
-					Map<Label, AnalysisFun<Label, L>> exitfuns);
+	void initialize(Map<Label, AnalysisFun<Label, L, E>> entryfuns, 
+					Map<Label, AnalysisFun<Label, L, E>> exitfuns);
 
 	/** Return a new function vector that is one iteration of the function vector over all the labels
 	 *  for the given vector argument. */
@@ -45,7 +48,7 @@ public interface FunctionVector<Label, L extends PropertySpace> {
 	/*@ ensures (\forall Label lab; labels.has(lab); 
 	  @             \result.get(Access.EXIT, lab).equals(exits.get(lab).apply(arg))); @*/
 	/*@ pure @*/
-	PropertyVector<Label, L> next(Set<Label> labels, PropertyVector<Label, L> arg);
+	PropertyVector<Label, L, E> next(Set<Label> labels, PropertyVector<Label, L, E> arg);
 	
 	/** Return a new function vector that is the least fixed-point of the 
 	 * function vector over all the labels 
@@ -56,5 +59,5 @@ public interface FunctionVector<Label, L extends PropertySpace> {
 	  @ ensures (\forall PropertyVector<Label, L> v; v.equals(next(v));
 	  @                  \result.leq(v));  @*/
 	/*@ pure @*/
-	PropertyVector<Label, L> fix(Set<Label> labels, PropertyVector<Label, L> initial);
+	PropertyVector<Label, L, E> fix(Set<Label> labels, PropertyVector<Label, L, E> initial);
 }

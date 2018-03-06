@@ -3,9 +3,10 @@ package edu.ucf.cs.whilelang.utility;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
 
-public class PVAsMap<Label, L extends PropertySpace> 
-		implements PropertyVector<Label, L> 
+public class PVAsMap<Label, L extends PropertySpace<L,E>, E> 
+		implements PropertyVector<Label, L, E> 
 {
 	/** The entry elements of the vector */
 	protected Map<Label, L> entries = new HashMap<Label, L>();
@@ -53,7 +54,7 @@ public class PVAsMap<Label, L extends PropertySpace>
 			return false;
 		}
 		@SuppressWarnings("unchecked")
-		PropertyVector<Label, L> ov = (PropertyVector<Label, L>) oth;
+		PropertyVector<Label, L, E> ov = (PropertyVector<Label, L, E>) oth;
 		boolean ret = true;
 		for (Label lab: entries.keySet()) {
 			ret &= entries.get(lab).equals(ov.get(Access.ENTRY, lab))
@@ -114,12 +115,91 @@ public class PVAsMap<Label, L extends PropertySpace>
 	}
 
 	@Override
-	public boolean leq(PropertyVector<Label, L> ov) {
+	public boolean leq(PropertyVector<Label, L, E> ov) {
 		boolean ret = true;
+		if (!entries.keySet().equals(ov.getLabels())) {
+			return false;
+		}
 		for (Label lab: entries.keySet()) {
 			ret &= entries.get(lab).leq(ov.get(Access.ENTRY, lab))
 					&& exits.get(lab).leq(ov.get(Access.EXIT, lab));
 			if (!ret) { return false; }
+		}
+		return ret;
+	}
+
+	@Override
+	public PVAsMap<Label, L, E> copy() {
+		PVAsMap<Label,L,E> ret = new PVAsMap<Label,L,E>();
+		for (Label lab: entries.keySet()) {
+			ret.put(Access.ENTRY, lab, entries.get(lab));
+		}
+		for (Label lab: exits.keySet()) {
+			ret.put(Access.EXIT, lab, exits.get(lab));
+		}
+		return ret;
+	}
+
+	/*@ requires (\forall PropertyVector<Label,L,E> v; vs.contains(v);
+	  @                   this.getLabels().equals(v.getLabels())); @*/
+	@Override
+	public void joinAll(Set<PropertyVector<Label, L, E>> vs) {
+		for (PropertyVector<Label, L, E> v : vs) {
+			this.join(v);
+		}
+	}
+
+	//@ requires this.getLabels().equals(v.getLabels());
+	@Override
+	public void join(PropertyVector<Label, L, E> v) {
+		for (Label lab : v.getLabels()) {
+			L entryv = entries.get(lab);
+			entryv.join(v.get(Access.ENTRY, lab));
+			entries.put(lab, entryv);
+			L exitv = exits.get(lab);
+			exitv.join(v.get(Access.EXIT, lab));
+			exits.put(lab, exitv);
+		}
+	}
+
+	@Override
+	public void removeIf(Predicate<E> p) {
+		for (Label lab : entries.keySet()) {
+			L entryv = entries.get(lab);
+			entryv.removeIf(p);
+			L exitv = exits.get(lab);
+			exitv.removeIf(p);
+		}		
+	}
+
+	/*@ requires (\forall PropertyVector<Label,L,E> v; vs.contains(v);
+	  @                   this.getLabels().equals(v.getLabels())); @*/
+	@Override
+	public PropertyVector<Label, L, E> lub(Set<PropertyVector<Label, L, E>> vs) {
+		PVAsMap<Label, L, E> ret = new PVAsMap<Label,L,E>();
+		boolean foundOne = false;
+		for (PropertyVector<Label, L, E> v : vs) {
+			for (Label lab : v.getLabels()) {
+			    ret.entries.put(lab, v.get(Access.ENTRY, lab));
+			    ret.exits.put(lab, v.get(Access.EXIT, lab));
+			}
+			foundOne=true;
+			break;
+		}
+		if (foundOne) {
+			ret.joinAll(vs);
+		}
+		return ret;
+	}
+
+	@Override
+	public boolean isBottom() {
+		boolean ret = true;
+		for (Label lab : entries.keySet()) {
+			ret &= entries.get(lab).isBottom() & exits.get(lab).isBottom();
+			if (!ret) {
+				return false;
+			}
 		}
 		return ret;
 	}

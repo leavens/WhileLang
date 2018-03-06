@@ -2,7 +2,11 @@ package edu.ucf.cs.whilelang.utility;
 
 import java.util.Set;
 
-public interface PropertyVector<Label, L extends PropertySpace> {
+public interface PropertyVector<Label, 
+                                L extends PropertySpace<L,E>,
+                                E>
+		extends PropertySpace<PropertyVector<Label,L,E>,E>
+{
 	
 	/** Define the value of this vector to be the given value for each access and label. */
 	void putAll(Set<Label> labels, L initial);
@@ -21,7 +25,7 @@ public interface PropertyVector<Label, L extends PropertySpace> {
 	/** Is this property vector pointwise over-approximated by oth (as a PropertyVector)? */
 	/*@ requires this.getLabels().equals(oth.getLabels());
 	/*@ pure @*/
-	boolean leq(PropertyVector<Label, L> oth);
+	boolean leq(PropertyVector<Label, L, E> oth);
 
 	/** Is this property vector equal (at each access and label) to oth (as a PropertyVector)? */
 	/*@ also
