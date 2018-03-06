@@ -2,6 +2,8 @@ package edu.ucf.cs.whilelang.utility;
 
 import java.util.Set;
 
+/** A vector, for each type of access (ENTRY, EXIT) and for each label,
+ * the property space information at that program point. */
 public interface PropertyVector<Label, 
                                 L extends PropertySpace<L,E>,
                                 E>

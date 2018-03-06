@@ -13,6 +13,8 @@ public class PVAsMap<Label, L extends PropertySpace<L,E>, E>
 	/** The exit elements of the vector */
 	protected Map<Label, L> exits = new HashMap<Label, L>();
 	
+	//@ protected invariant entries.keySet().equals(exits.keySet());
+	
 	/** Initialize this to an empty property vector. */
 	public PVAsMap() {}
 	
@@ -55,7 +57,7 @@ public class PVAsMap<Label, L extends PropertySpace<L,E>, E>
 		}
 		@SuppressWarnings("unchecked")
 		PropertyVector<Label, L, E> ov = (PropertyVector<Label, L, E>) oth;
-		boolean ret = true;
+		boolean ret = this.getLabels().equals(ov.getLabels());
 		for (Label lab: entries.keySet()) {
 			ret &= entries.get(lab).equals(ov.get(Access.ENTRY, lab))
 					&& exits.get(lab).equals(ov.get(Access.EXIT, lab));
@@ -177,30 +179,12 @@ public class PVAsMap<Label, L extends PropertySpace<L,E>, E>
 	@Override
 	public PropertyVector<Label, L, E> lub(Set<PropertyVector<Label, L, E>> vs) {
 		PVAsMap<Label, L, E> ret = new PVAsMap<Label,L,E>();
-		boolean foundOne = false;
-		for (PropertyVector<Label, L, E> v : vs) {
-			for (Label lab : v.getLabels()) {
-			    ret.entries.put(lab, v.get(Access.ENTRY, lab));
-			    ret.exits.put(lab, v.get(Access.EXIT, lab));
-			}
-			foundOne=true;
-			break;
-		}
-		if (foundOne) {
-			ret.joinAll(vs);
-		}
+		ret.joinAll(vs);
 		return ret;
 	}
 
 	@Override
 	public boolean isBottom() {
-		boolean ret = true;
-		for (Label lab : entries.keySet()) {
-			ret &= entries.get(lab).isBottom() & exits.get(lab).isBottom();
-			if (!ret) {
-				return false;
-			}
-		}
-		return ret;
+		return entries.keySet().isEmpty();
 	}
 }

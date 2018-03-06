@@ -97,7 +97,7 @@ class WhileLangRDAnalysis {
             {
                     val entryInfo = arg.get(Access.ENTRY, s.label)
                     // subtract the kill info
-                    val ret = entryInfo.copy() as RDPropertySpace
+                    val ret = entryInfo.copy()
                     ret.removeIf(new Predicate<Pair<String, MaybeLabel>>() 
                         {
                             override boolean test(Pair<String, MaybeLabel> p) { 
@@ -121,7 +121,7 @@ class WhileLangRDAnalysis {
                                           RDPropertySpace,
                                           Pair<String, MaybeLabel>> arg)
             {
-                    return arg.get(Access.ENTRY, s.label)
+                    return arg.get(Access.ENTRY, s.label).copy()
             }
         }
     }
@@ -135,7 +135,7 @@ class WhileLangRDAnalysis {
             override apply(PropertyVector<Integer, RDPropertySpace,
                 Pair<String, MaybeLabel>> arg)
             {
-                    return arg.get(Access.ENTRY, s.label)
+                    return arg.get(Access.ENTRY, s.label).copy()
             }
         }
     }  

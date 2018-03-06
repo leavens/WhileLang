@@ -3,7 +3,8 @@ package edu.ucf.cs.whilelang.utility;
 import java.util.Map;
 import java.util.Set;
 
-/** A vector of Analysis functions. 
+/** A vector of Analysis functions; i.e., for each program point (pair of ENTRY/EXIT
+ * and label), what is the transfer function for that label. 
  * @param Label, is the type of the labels in the Control Flow Graph.
  * @param L is the type of the elements of property vectors. */
 public interface FunctionVector<Label, 

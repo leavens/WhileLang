@@ -31,6 +31,7 @@ public class FVAsMap<Label, L extends PropertySpace<L,E>, E>
 		}
 	}
 
+	// TODO: fix the argument and rep exposure here
 	@Override
 	public void initialize(Map<Label, AnalysisFun<Label, L, E>> entryfuns, 
 						   Map<Label, AnalysisFun<Label, L, E>> exitfuns) {

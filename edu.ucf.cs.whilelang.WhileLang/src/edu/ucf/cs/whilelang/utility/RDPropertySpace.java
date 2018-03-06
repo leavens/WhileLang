@@ -31,11 +31,10 @@ public class RDPropertySpace
 	/** Initialize this property space element to be 
 	 * a mapping from the given set of variables (fvs) to the given label (lab). */
 	public RDPropertySpace(Set<String> fvs, MaybeLabel lab) {
-		Set<Pair<String, MaybeLabel>> ret = new HashSet<Pair<String, MaybeLabel>>();
+		rep = new HashSet<Pair<String, MaybeLabel>>();
 		for (String name : fvs) {
-			ret.add(new Pair<String,MaybeLabel>(name, lab));
+			rep.add(new Pair<String,MaybeLabel>(name, lab));
 		}
-		rep = ret;
 	}
 	
 	/** Return a property space element with the given set of pairs. 
