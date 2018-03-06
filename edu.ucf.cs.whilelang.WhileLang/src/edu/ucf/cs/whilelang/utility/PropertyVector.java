@@ -4,15 +4,13 @@ import java.util.Set;
 
 /** A vector, for each type of access (ENTRY, EXIT) and for each label,
  * the property space information at that program point. */
-public interface PropertyVector<Label, 
-                                L extends PropertySpace<L,E>,
-                                E>
-		extends PropertySpace<PropertyVector<Label,L,E>,E>
+public interface PropertyVector<Label, L extends PropertySpace<L>>
+		extends PropertySpace<PropertyVector<Label,L>>
 {
 	
 	/** Define the value of this vector to be the given value for each access and label. */
 	void putAll(Set<Label> labels, L initial);
-	
+		
 	/** set the value of this vector for the given access and label to the given value. */
 	public void put(Access a, Label lab, L value);
 	
@@ -27,7 +25,7 @@ public interface PropertyVector<Label,
 	/** Is this property vector pointwise over-approximated by oth (as a PropertyVector)? */
 	/*@ requires this.getLabels().equals(oth.getLabels());
 	/*@ pure @*/
-	boolean leq(PropertyVector<Label, L, E> oth);
+	boolean leq(PropertyVector<Label, L> oth);
 
 	/** Is this property vector equal (at each access and label) to oth (as a PropertyVector)? */
 	/*@ also

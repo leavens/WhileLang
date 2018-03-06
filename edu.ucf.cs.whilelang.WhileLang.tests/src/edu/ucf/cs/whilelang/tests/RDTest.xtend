@@ -100,10 +100,10 @@ class RDTest {
         val p = fromFileName("testsrc/simpleWhile.wh")
         val rda = new WhileLangRDAnalysis(p)
         rda.computeAnalysis()
-        val PropertyVector<Integer, RDPropertySpace, Pair<String, MaybeLabel>> rd = rda.RDInfo
+        val PropertyVector<Integer, RDPropertySpace> rd = rda.RDInfo
         /** The expected value of the RD analysis for this program. */
-        val PropertyVector<Integer, RDPropertySpace, Pair<String, MaybeLabel>> shouldBeRD 
-            = new PVAsMap<Integer, RDPropertySpace, Pair<String, MaybeLabel>>()
+        val PropertyVector<Integer, RDPropertySpace> shouldBeRD 
+            = new PVAsMap<Integer, RDPropertySpace>()
         val ent1 = new RDPropertySpace("i", new MaybeLabel())
         shouldBeRD.put(Access.ENTRY,1,ent1)
         val ent2 = new RDPropertySpace("i", new MaybeLabel(1))
@@ -127,7 +127,7 @@ class RDTest {
         val p = fromFileName("testsrc/cfg1.wh")
         val rda = new WhileLangRDAnalysis(p)
         rda.computeAnalysis()
-        val PropertyVector<Integer, RDPropertySpace, Pair<String, MaybeLabel>> rd = rda.RDInfo
+        val PropertyVector<Integer, RDPropertySpace> rd = rda.RDInfo
         val bod = p.body as CompoundS
         val fv = new FreeVars()
         val fvsbod = fv.FV(bod)

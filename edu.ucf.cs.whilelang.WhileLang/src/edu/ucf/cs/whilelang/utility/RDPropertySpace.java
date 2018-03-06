@@ -8,7 +8,7 @@ import java.util.function.Predicate;
  * @author Gary T. Leavens
  */
 public class RDPropertySpace 
-        implements PropertySpace<RDPropertySpace, Pair<String, MaybeLabel>> 
+        implements PropertySpace<RDPropertySpace> 
 {
 
 	/** The set of pairs that represents the property. */
@@ -96,14 +96,9 @@ public class RDPropertySpace
 	public int hashCode() {
 		return this.rep.hashCode();
 	}
-
-	/** Removes all of the elements of this property space 
-	 * that satisfy the given predicate. */
-	public void removeIf(Predicate<Pair<String, MaybeLabel>> p) {
-		rep.removeIf(p);
-	}
 	
 	/** Join the given element with this property space info, in place. */
+	@Override
 	public void join(RDPropertySpace v) {
 	    rep.addAll(v.rep);
 	}
@@ -123,6 +118,12 @@ public class RDPropertySpace
 		}
 		ret.append('}');
 		return ret.toString();
+	}
+	
+	/** Removes all of the elements of this property space 
+	 * that satisfy the given predicate. */
+	public void removeIf(Predicate<Pair<String, MaybeLabel>> p) {
+		rep.removeIf(p);
 	}
 
 	/** Return the image of the string in this property space.

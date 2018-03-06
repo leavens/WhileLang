@@ -1,7 +1,6 @@
 package edu.ucf.cs.whilelang.utility;
 
 import java.util.Set;
-import java.util.function.Predicate;
 
 
 /** Property Spaces as in static analysis.
@@ -9,7 +8,7 @@ import java.util.function.Predicate;
  * @param E, the type of the elements in the property space
  * @author Gary T. Leavens
  */
-public interface PropertySpace<L extends PropertySpace<L,E>,E> {
+public interface PropertySpace<L extends PropertySpace<L>> {
 	/** Return a copy of this property space element. */
 	L copy();
 	
@@ -20,10 +19,6 @@ public interface PropertySpace<L extends PropertySpace<L,E>,E> {
 	
 	/** Join the given element with this property space info, in place. */
 	void join(L p);	
-	
-	/** Removes all of the elements of this property space 
-	 * that satisfy the given predicate. */
-	void removeIf(Predicate<E> p);
 	
 	/** Return the lattice's least upper bound of the given sets. */
 	/*@ pure @*/

@@ -4,29 +4,28 @@ import java.util.Set;
 
 /** This class encapsulates a simple default implementation of
  * finding fixed-points for FunctionVectors */
-public abstract class AbstractFunctionVector<Label, 
-                                             L extends PropertySpace<L,E>, 
-                                             E> 
-		implements FunctionVector<Label, L, E> 
+public abstract class AbstractFunctionVector<Label, L extends PropertySpace<L>> 
+		implements FunctionVector<Label, L> 
 {
-	/** Return a new function vector that is the fixed-point of the function vector over all the labels. */
+	/** Return a new function vector that is the fixed-point 
+	 * of the function vector over all the labels. */
 	@Override
-	public PropertyVector<Label, L, E> fix(Set<Label> labels, 
-									       PropertyVector<Label, L, E> initial) 
+	public PropertyVector<Label, L> fix(Set<Label> labels, 
+									    PropertyVector<Label, L> initial) 
 	{
 		final boolean TRACE = false;
-		PropertyVector<Label, L, E> last = initial;
+		PropertyVector<Label, L> last = initial;
 		if (TRACE) {
 			System.out.println("fix's last = initial is:");
 			System.out.println(last.toString());
 		}
-		PropertyVector<Label, L, E> curr = next(labels, last);
+		PropertyVector<Label, L> curr = next(labels, last);
 		while (!last.equals(curr)) {
 			if (TRACE) {
 				System.out.println("curr is:");
 				System.out.println(curr.toString());
 			}
-			PropertyVector<Label, L, E> temp = next(labels, curr);
+			PropertyVector<Label, L> temp = next(labels, curr);
 			last = curr;
 			curr = temp;
 		}
@@ -37,5 +36,4 @@ public abstract class AbstractFunctionVector<Label,
 		// last.equals(curr), so last (and curr) is a fixed-point.
 		return last;
 	}
-
 }
