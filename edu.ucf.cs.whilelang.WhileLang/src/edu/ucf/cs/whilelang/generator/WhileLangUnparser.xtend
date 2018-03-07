@@ -17,11 +17,22 @@ import edu.ucf.cs.whilelang.whileLang.SkipS
 import edu.ucf.cs.whilelang.whileLang.VarRefExpr
 import edu.ucf.cs.whilelang.whileLang.WhileS
 import edu.ucf.cs.whilelang.whileLang.SignedNum
+import edu.ucf.cs.whilelang.whileLang.Program
 
 /**
  * Produces unparsed version of the While program
  */
 class WhileLangUnparser {
+    
+    /** Unparse the given program. */
+    def dispatch String unparse(Program p) {
+        '''
+        % unparsed code
+        proc «p.name»(«IF p.vformals !== null»val «FOR i: p.vformals.names SEPARATOR ', '»«i»«ENDFOR»«ENDIF»«IF p.vformals !== null && p.rformals !== null», «ENDIF»«IF p.rformals !== null»res «FOR i: p.rformals.names SEPARATOR ', '»«i»«ENDFOR»«ENDIF») is
+        «unparse(p.body)»
+        '''   
+    }
+    
     
     // Statements
     def dispatch String unparse(AssignS s) {
@@ -105,6 +116,5 @@ class WhileLangUnparser {
     
     def dispatch String unparse(NotExpr ne) {
         '''not («ne.bexp.unparse»)'''
-    }
-    
+    }  
 }

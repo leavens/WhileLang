@@ -33,7 +33,9 @@ class FreeVars {
     
     /** Return the set of Free Variables in the given expression. */
     def dispatch Set<String> FV(SignedNum n) {
-        return new HashSet()
+        val ret = new HashSet()
+        ret.addAll(FV(n.nval)) // n.nval is a Primary, so could be a variable
+        return ret
     }
     
     /** Return the set of Free Variables in the given expression. */

@@ -1,4 +1,5 @@
-proc cfgifs(a,b,r) is {
+% original code
+proc cfgifs(val a,b, res r) is {
     if [a < b]^1
     then {
         if [a < b - 1]^2

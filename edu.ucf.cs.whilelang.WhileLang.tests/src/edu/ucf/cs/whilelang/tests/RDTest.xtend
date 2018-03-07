@@ -45,6 +45,7 @@ class RDTest {
         return p
     } 
     
+    /** Test the equals method of Pair */
     @Test
     def void testPairEquals() {
         val p1 = new Pair<Integer, MaybeLabel>(1, new MaybeLabel())
@@ -62,6 +63,7 @@ class RDTest {
         Assert.assertNotEquals(p3,p4)   
     } 
     
+    /** Test the equals method of RDPropertySpace */
     @Test
     def void testRDPSpaceEquals() {
         val rdpBot = new RDPropertySpace()
@@ -78,6 +80,7 @@ class RDTest {
         Assert.assertEquals(rd2, rd)    
     } 
     
+    /** Test the equals method of PropertyVector<MaybeLabel, RDPropertySpace> */
     @Test
     def void testPropertyVectorEquals() {
         val p = fromFileName("testsrc/simpleWhile.wh")
@@ -95,6 +98,7 @@ class RDTest {
         Assert.assertNotEquals(pvbot, pv2)
     }
     
+    /** Test the Reaching Definitions analysis for the simpleWhile.wh program. */
     @Test
     def void testPropertyVectorSimpleWh() {
         val p = fromFileName("testsrc/simpleWhile.wh")
@@ -104,7 +108,7 @@ class RDTest {
         /** The expected value of the RD analysis for this program. */
         val PropertyVector<Integer, RDPropertySpace> shouldBeRD 
             = new PVAsMap<Integer, RDPropertySpace>()
-        val ent1 = new RDPropertySpace("i", new MaybeLabel())
+        val ent1 = new RDPropertySpace() // i is a res variable, not a val!
         shouldBeRD.put(Access.ENTRY,1,ent1)
         val ent2 = new RDPropertySpace("i", new MaybeLabel(1))
         ent2.join(new RDPropertySpace("i", new MaybeLabel(3)))
@@ -122,6 +126,7 @@ class RDTest {
         Assert.assertEquals(shouldBeRD, rd)
     }
 	
+    /** Test the Reaching Definitions analysis for the cfg1.wh program. */
     @Test
     def void testRDcfg1() {
         val p = fromFileName("testsrc/cfg1.wh")
@@ -132,18 +137,43 @@ class RDTest {
         val fv = new FreeVars()
         val fvsbod = fv.FV(bod)
         Assert.assertEquals(4, fvsbod.size())
-        val allQuestions = new RDPropertySpace(fvsbod, new MaybeLabel())
+        Assert.assertEquals(2, rda.inFormals.size())
+        val allQuestions = new RDPropertySpace(rda.inFormals, new MaybeLabel())
         Assert.assertEquals(allQuestions, rd.get(Access.ENTRY, 1))
-        var ex1 = new RDPropertySpace()
-        for (v : fvsbod) {
-            if (v.equals("q")) {
-                ex1.join(new RDPropertySpace("q", new MaybeLabel(1)))
-            } else {
-                ex1.join(new RDPropertySpace(v, new MaybeLabel()))
-            }   
-        }
+        val ex1 = allQuestions.copy()
+        ex1.join(new RDPropertySpace("q", new MaybeLabel(1)))
         // System.out.println(ex1.toString())
         Assert.assertEquals(rd.labels, CFG.labels(bod)) 
         Assert.assertEquals(ex1, rd.get(Access.EXIT, 1))
+        val ent2 = ex1.copy()
+        Assert.assertEquals(ent2, rd.get(Access.ENTRY, 2))
+        val ex2 = ent2.copy()
+        ex2.join(new RDPropertySpace("r", new MaybeLabel(2)))
+        Assert.assertEquals(ex2, rd.get(Access.EXIT, 2))
+        val ent3 = ex2.copy()
+        ent3.join(new RDPropertySpace("r", new MaybeLabel(4)))
+        ent3.join(new RDPropertySpace("q", new MaybeLabel(6)))
+        Assert.assertEquals(ent3, rd.get(Access.ENTRY, 3))
+        val ex3 = ent3.copy()
+        Assert.assertEquals(ex3, rd.get(Access.EXIT, 3))
+        val ent4 = ex3.copy()
+        Assert.assertEquals(ent4, rd.get(Access.ENTRY, 4))
+        val ex4 = new RDPropertySpace()
+        ex4.join(new RDPropertySpace(rda.inFormals, new MaybeLabel()))
+        ex4.join(new RDPropertySpace("r", new MaybeLabel(4)))
+        ex4.join(new RDPropertySpace("q", new MaybeLabel(1)))
+        ex4.join(new RDPropertySpace("q", new MaybeLabel(6)))
+        Assert.assertEquals(ex4, rd.get(Access.EXIT, 4))
+        val ent5 = ex4.copy()
+        Assert.assertEquals(ent5, rd.get(Access.ENTRY, 5))
+        val ex5 = ent5.copy()
+        Assert.assertEquals(ex5, rd.get(Access.EXIT, 5))
+        val ent6 = ex5.copy()
+        Assert.assertEquals(ent6, rd.get(Access.ENTRY, 6))
+        val ex6 = new RDPropertySpace()
+        ex6.join(new RDPropertySpace(rda.inFormals, new MaybeLabel()))
+        ex6.join(new RDPropertySpace("r", new MaybeLabel(4)))
+        ex6.join(new RDPropertySpace("q", new MaybeLabel(6)))
+        Assert.assertEquals(ex6, rd.get(Access.EXIT, 6))
     }  
 }

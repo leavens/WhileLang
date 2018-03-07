@@ -22,6 +22,7 @@ import java.util.HashSet
 import java.util.function.Predicate
 
 import static extension edu.ucf.cs.whilelang.utility.ASTExtensions.*
+import java.util.Set
 
 /**
  * This class constructs the Reaching Definitions (RD) analysis for the given program.
@@ -32,7 +33,7 @@ class WhileLangRDAnalysis {
     
     /** This program's statement. */
     var S progBody;
-    val fvars = new FreeVars()
+    public val Set<String> inFormals = new HashSet();
      
     /** The Function Vector that represents the RD analysis for this program. */
     var FunctionVector<Integer, RDPropertySpace> RDFunVec; 
@@ -43,6 +44,11 @@ class WhileLangRDAnalysis {
     /** Initialize the function vector and property vector. */       
     new (Program p) {
         progBody = p.body
+        if (p.vformals !== null) {
+            for (vf : p.vformals.names) {
+                inFormals.add(vf)
+            }
+        }
         val entryfuns = new HashMap<Integer, AnalysisFun<Integer, RDPropertySpace>>()
         val exitfuns = new HashMap<Integer, AnalysisFun<Integer, RDPropertySpace>>()
         for (lab : CFG.labels(progBody)) {
@@ -68,7 +74,9 @@ class WhileLangRDAnalysis {
         {
             override apply(PropertyVector<Integer, RDPropertySpace> arg) {
                 if (CFG.init(progBody) == block.itsLabel) {
-                    new RDPropertySpace(fvars.FV(progBody), new MaybeLabel())
+                    // Only the val formals are considered to be defined at ?
+                    // Note that res formals are not considered defined at all.
+                    new RDPropertySpace(inFormals, new MaybeLabel())
                 } else {
                     var RDPropertySpace ret = new RDPropertySpace()
                     val rdInfoSet = new HashSet()

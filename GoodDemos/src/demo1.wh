@@ -1,5 +1,5 @@
 % original file
-proc demo1 (x,y) is {
+proc demo1 (val x, res y) is {
     x := x--x++x;
     y := x+7-2*3
 }

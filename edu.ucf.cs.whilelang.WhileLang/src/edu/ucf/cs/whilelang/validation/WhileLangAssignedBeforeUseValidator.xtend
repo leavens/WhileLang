@@ -86,7 +86,8 @@ class WhileLangAssignedBeforeUseValidator extends AbstractWhileLangValidator {
         for (String v : fv.FV(exp)) {
             val RDPropertySpace info = rd.RDInfo.get(Access.ENTRY,lab)
             val Set<MaybeLabel> labs = info.get(v)
-            labs.remove(new MaybeLabel())  // don't count ?
+            // Note that ? is considered to be okay, for val parameters,
+            // so we don't remove such ? labels.
             if (labs.isEmpty()) {
                 issueError(pname, v, exp, lab)
             }

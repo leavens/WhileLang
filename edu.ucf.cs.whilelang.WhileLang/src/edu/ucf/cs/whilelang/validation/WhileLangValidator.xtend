@@ -12,7 +12,7 @@ public class WhileLangValidator extends AbstractWhileLangValidator {
     
 	@Check
 	def checkStaticConstraints(Program p) {
-	    new WhileLangProcArgsValidator().checkUniqueNames(p.args)
+	    new WhileLangProcArgsValidator().checkUniqueFormals(p)
 		new WhileLangLabelsValidator().checkUniqueLabels(p)
 		new WhileLangCFGValidator().constructCFG(p)
 		new WhileLangAssignedBeforeUseValidator().checkAssignedBeforeUse(p)

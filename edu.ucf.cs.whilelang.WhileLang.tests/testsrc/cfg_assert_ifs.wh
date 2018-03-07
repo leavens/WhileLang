@@ -1,4 +1,4 @@
-proc cfg_assert_ifs(a,b,r) is {
+proc cfg_assert_ifs(val a,b, res r) is {
     if [a < b]^1
     then {
         if [a < b - 1]^2

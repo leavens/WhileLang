@@ -1,4 +1,5 @@
-proc cfg1(q,r,x,y) is {
+% original code
+proc cfg1(val x,y, res q, r) is {
     q := 0; % 1
     r := x; % 2
     while (r >= y) do % 3

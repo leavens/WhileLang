@@ -54,28 +54,28 @@ class ParserTest {
 	// Statements
 	@Test
 	def void testSimpleAssign() {
-		assertParseOk("proc testSimpleAssign(x) is { x := 3-1*4 }")
+		assertParseOk("proc testSimpleAssign(res x) is { x := 3-1*4 }")
 	}
 
     @Test
     def void testNegInt() {
-        assertParseOk("proc testSimpleAssign(x) is { x := -2 - -3 }")
+        assertParseOk("proc testSimpleAssign(res x) is { x := -2 - -3 }")
     }
 
     @Test
     def void testNegInt2() {
-        assertParseOk("proc testSimpleAssign(x) is { x := --3 }")
+        assertParseOk("proc testSimpleAssign(res x) is { x := --3 }")
     }
 
     @Test
     def void testUnaryOp3() {
-        assertParseOk("proc testSimpleAssign(x) is { x := ---3; x := -+x }")
+        assertParseOk("proc testSimpleAssign(res x) is { x := ---3; x := -+x }")
     }
 	
 	@Test
 	def void testCompoundSWithIf() {
 		assertParseOk('''
-				proc testCompoundSWithIf(i, j, x) is
+				proc testCompoundSWithIf(res i, j, x) is
 				{ skip; 
 				  i := 3; 
 				  j := i*i - 5/7+2; 
@@ -87,7 +87,7 @@ class ParserTest {
 	@Test
 	def void testNestedStmts() {
 		assertParseOk('''
-				proc testNestedStmts(i,z,k,j) is {
+				proc testNestedStmts(val z,s,k,q, res i,j,x,y) is {
 					i := z + 5*5*4/3 - 4*6+8-k; 
 					j := (3+4)*7;
 					{
@@ -98,9 +98,9 @@ class ParserTest {
 							   while 3 < z 
 							   do { z := z+1 }
 						} else { 
-							if q >= 7 and y <= 5 or 3 != 4 
+							if q >= 7 and k <= 5 or 3 != 4 
 							then { skip } 
-							else { skip; x := x*4-1 }
+							else { skip; x := k*4-1 }
 						}; 
 						s := s+403 - 1 
 					}; 
@@ -112,7 +112,7 @@ class ParserTest {
     @Test
     def void testSimpleWhile() {
         assertParseOk('''
-                proc testSimpleWhile(i) is {
+                proc testSimpleWhile(res i) is {
                     i := 3;
                     while i > 0
                     do i := i-1

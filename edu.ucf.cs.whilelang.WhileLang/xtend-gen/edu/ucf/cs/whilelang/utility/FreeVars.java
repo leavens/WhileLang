@@ -46,7 +46,9 @@ public class FreeVars {
    * Return the set of Free Variables in the given expression.
    */
   protected Set<String> _FV(final SignedNum n) {
-    return new HashSet<String>();
+    final HashSet<String> ret = new HashSet<String>();
+    ret.addAll(this.FV(n.getNval()));
+    return ret;
   }
   
   /**
