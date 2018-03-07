@@ -3,11 +3,10 @@ package edu.ucf.cs.whilelang.validation
 import edu.ucf.cs.whilelang.whileLang.Formals
 import edu.ucf.cs.whilelang.whileLang.Program
 import edu.ucf.cs.whilelang.whileLang.WhileLangPackage.Literals
-import java.util.HashSet
-import org.eclipse.emf.common.util.EList
-import org.eclipse.xtext.validation.Check
-import java.util.List
 import java.util.ArrayList
+import java.util.HashSet
+import java.util.List
+import org.eclipse.xtext.validation.Check
 
 /** Validates the uniqueness of names in the list of a proc's formals. */
 class WhileLangProcArgsValidator extends AbstractWhileLangValidator {

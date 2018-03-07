@@ -1,20 +1,19 @@
 package edu.ucf.cs.whilelang.validation
 
+import edu.ucf.cs.whilelang.generator.WhileLangUnparser
 import edu.ucf.cs.whilelang.utility.LabelUtility
-import edu.ucf.cs.whilelang.whileLang.Program
-import edu.ucf.cs.whilelang.whileLang.S
-import java.util.HashSet
-import org.eclipse.xtext.validation.Check
 import edu.ucf.cs.whilelang.whileLang.AssertS
 import edu.ucf.cs.whilelang.whileLang.AssignS
-import org.eclipse.emf.ecore.EObject
-import edu.ucf.cs.whilelang.whileLang.SkipS
 import edu.ucf.cs.whilelang.whileLang.CompoundS
-import edu.ucf.cs.whilelang.whileLang.WhileS
 import edu.ucf.cs.whilelang.whileLang.IfS
 import edu.ucf.cs.whilelang.whileLang.LabeledExp
-import edu.ucf.cs.whilelang.generator.WhileLangUnparser
-import edu.ucf.cs.whilelang.whileLang.WhileLangPackage.Literals
+import edu.ucf.cs.whilelang.whileLang.Program
+import edu.ucf.cs.whilelang.whileLang.S
+import edu.ucf.cs.whilelang.whileLang.SkipS
+import edu.ucf.cs.whilelang.whileLang.WhileS
+import java.util.HashSet
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.validation.Check
 
 /**
  * This class checks that all labels in a program are unique, and adds labels

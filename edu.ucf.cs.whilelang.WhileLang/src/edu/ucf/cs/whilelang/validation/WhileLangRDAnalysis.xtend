@@ -4,7 +4,6 @@ import edu.ucf.cs.whilelang.utility.Access
 import edu.ucf.cs.whilelang.utility.AnalysisFun
 import edu.ucf.cs.whilelang.utility.CFG
 import edu.ucf.cs.whilelang.utility.FVAsMap
-import edu.ucf.cs.whilelang.utility.FreeVars
 import edu.ucf.cs.whilelang.utility.FunctionVector
 import edu.ucf.cs.whilelang.utility.MaybeLabel
 import edu.ucf.cs.whilelang.utility.PVAsMap
@@ -19,10 +18,10 @@ import edu.ucf.cs.whilelang.whileLang.S
 import edu.ucf.cs.whilelang.whileLang.SkipS
 import java.util.HashMap
 import java.util.HashSet
+import java.util.Set
 import java.util.function.Predicate
 
 import static extension edu.ucf.cs.whilelang.utility.ASTExtensions.*
-import java.util.Set
 
 /**
  * This class constructs the Reaching Definitions (RD) analysis for the given program.
