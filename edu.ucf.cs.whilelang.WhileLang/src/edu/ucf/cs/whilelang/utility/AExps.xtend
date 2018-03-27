@@ -22,9 +22,10 @@ import java.util.HashSet
 import java.util.Set
 
 import static extension edu.ucf.cs.whilelang.utility.ASTExtensions.*
+import edu.ucf.cs.whilelang.generator.WhileLangUnparser
 
 /** The Aexp method computes the set of non-trivial arithmetic expressions 
- * in a statement.
+ * in a statement or expression.
  */
 class AExps {
     /** Return the set of non-trivial arithmetic expressions in the given expression. */
@@ -58,18 +59,26 @@ class AExps {
     /** Return the set of non-trivial arithmetic expressions in the given expression. */
     def dispatch Set<Expr> Aexp(Expr e) {
         val ret = new HashSet()
-        if (nonTrivalArithExp(e)) { ret.add(e) }
+        if (nonTrivialArithExp(e)) { ret.add(e) }
         ret.addAll(Aexp(e.leftSubExp))
         ret.addAll(Aexp(e.rightSubExp))
         return ret
     }
     
-    def dispatch boolean nonTrivalArithExp(BDisj expr) { false }
-    def dispatch boolean nonTrivalArithExp(BConj expr) { false }
-    def dispatch boolean nonTrivalArithExp(BRelExp expr) { false }
-    def dispatch boolean nonTrivalArithExp(AExpression expr) { true }
-    def dispatch boolean nonTrivalArithExp(Factor expr) { true }
-    def dispatch boolean nonTrivalArithExp(Expr expr) { false }   
+    /** Is the given expression an non-trivial arithmetic expression? */
+    def dispatch boolean nonTrivialArithExp(BDisj expr) { false }
+    /** Is the given expression an non-trivial arithmetic expression? */
+    def dispatch boolean nonTrivialArithExp(BConj expr) { false }
+    /** Is the given expression an non-trivial arithmetic expression? */
+    def dispatch boolean nonTrivialArithExp(BRelExp expr) { false }
+    /** Is the given expression an non-trivial arithmetic expression? */
+    def dispatch boolean nonTrivialArithExp(AExpression expr) { true }
+    /** Is the given expression an non-trivial arithmetic expression? */
+    def dispatch boolean nonTrivialArithExp(Factor expr) { true }
+    /** Is the given expression an non-trivial arithmetic expression? */
+    def dispatch boolean nonTrivialArithExp(SignedNum expr) { true }
+    /** Is the given expression an non-trivial arithmetic expression? */
+    def dispatch boolean nonTrivialArithExp(Expr expr) { false }   
     
     /** Return the set of non-trivial arithmetic expressions in the given labeled expression. */
     def dispatch Set<Expr> Aexp(LabeledExp labe) {
@@ -120,4 +129,19 @@ class AExps {
         ret.addAll(Aexp(s.bexp))
         return ret
     }    
+    
+    /** Return a string represenation of the given set of expressions. */
+    def String setOfExprToString(Set<Expr> st) {
+        val WhileLangUnparser wlup = new WhileLangUnparser();
+        val StringBuffer ret = new StringBuffer();
+        ret.append("{");
+        var sz = st.size();
+        for (e: st) {
+            ret.append(wlup.unparse(e));
+            if (sz > 1) { ret.append(", "); }
+            sz--;
+        }
+        ret.append("}");
+        return ret.toString();
+    }
 }
