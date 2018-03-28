@@ -79,11 +79,11 @@ class WhileLangUnparser {
     
     // Expressions         
     def dispatch String unparse(BDisj be) {
-        '''(«be.left.unparse» || «be.right.unparse»)'''
+        '''(«be.left.unparse» or «be.right.unparse»)'''
     }
     
     def dispatch String unparse(BConj be) {
-        '''(«be.left.unparse» && «be.right.unparse»)'''
+        '''(«be.left.unparse» and «be.right.unparse»)'''
     }
     
     def dispatch String unparse(BRelExp be) {

@@ -26,6 +26,7 @@ class WhileLangLabelsValidator extends AbstractWhileLangValidator {
 	@Check
 	def checkUniqueLabels(Program p) {
 	    LabelUtility.reset()
+	    usedLabels.clear()
 		p.body.checkLabel
 	}
 	
@@ -46,7 +47,9 @@ class WhileLangLabelsValidator extends AbstractWhileLangValidator {
         } else {
             if (usedLabels.contains(label)) {
                 val up = new WhileLangUnparser()
-                System.err.println("Error duplicate label " + label + " for " + up.unparse(ast))
+                if (ast !== null) {
+                    System.err.println("Error duplicate label " + label + " for " + up.unparse(ast))  
+                }
 //                val feat = ast.eContainingFeature
 //                // TODO: fix the following, it doesn't highlight properly
 //                error("duplicate label '" + label + "'",
@@ -97,7 +100,9 @@ class WhileLangLabelsValidator extends AbstractWhileLangValidator {
         checkLabel(a.bexp)
     }
   
-    def dispatch void checkLabel(S s) {}
+    def dispatch void checkLabel(S s) {
+        System.err.println("Reached case for S in checkLabel!")
+    }
     
     // LabeledExp
     def dispatch void checkLabel(LabeledExp le) {
