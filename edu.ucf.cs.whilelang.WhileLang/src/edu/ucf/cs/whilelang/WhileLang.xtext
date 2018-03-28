@@ -25,8 +25,7 @@ BRelExp returns Expr: AExpression ({BRelExp.left=current} op=OP_R right=AExpress
 AExpression returns Expr: Factor ({AExpression.left=current} op=OPPLUS right=Factor)*;
 Factor returns Expr: Primary ({Factor.left=current} op=OPMUL right=Primary)*;
 Primary returns Expr: VarRefExpr | NumLitExpr | SignedNum | BoolLitExpr | NotExpr 
-                    | '(' Expression ')'
-;
+                    | '(' Expression ')';
 VarRefExpr: vname=ID;
 SignedNum: (sign=OPPLUS) (nval=Primary);
 NumLitExpr: num=INT;

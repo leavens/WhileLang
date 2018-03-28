@@ -22,6 +22,9 @@ import edu.ucf.cs.whilelang.whileLang.AssignS
 import edu.ucf.cs.whilelang.whileLang.IfS
 import edu.ucf.cs.whilelang.whileLang.BRelExp
 import edu.ucf.cs.whilelang.whileLang.Expr
+import static extension edu.ucf.cs.whilelang.utility.ASTExtensions.*
+import java.util.Set
+import edu.ucf.cs.whilelang.whileLang.AssertS
 
 /**
  * JUnit (4) tests for the Aexp method of AExps 
@@ -42,7 +45,20 @@ class AexpTest {
         val p = parse(new FileInputStream(fn), uri, new HashMap(), resourceSet)
         new WhileLangValidator().checkStaticConstraints(p)
         return p
-    }   
+    } 
+    
+    /** Assert equality with nice formatting of messages. */
+    def static void checkEquality(String exp_name, Set<Expr> exp, 
+                                  String act_name, Set<Expr> act) 
+    {
+        val aes = new AExps()
+        val msg = exp_name + " is " + aes.setOfExprToString(exp) 
+                  + "\n" + act_name + " is " + aes.setOfExprToString(act)
+        if (!exp.equals(act)) {
+            System.err.println(msg)
+        }
+        Assert.assertEquals(msg, exp, act)
+    }
 	
     @Test
     def void testAexpcfg1() {
@@ -51,16 +67,10 @@ class AexpTest {
         val aes = new AExps()
         val s0 = bod.stmts.get(0)  // AST for statement labeled 1
         val e0 = new HashSet() // s0 has no non-trivial arith. exps.
-        val aes0 = aes.Aexp(s0)
-        Assert.assertEquals("e0 is " + aes.setOfExprToString(e0)
-                            + " and aes.Aexp(s0) is " + aes.setOfExprToString(aes0), 
-                            e0, aes0)  
+        checkEquality("e0", e0, "aes.Aexp(s0)", aes.Aexp(s0)) 
         val s1 = bod.stmts.get(1)
         val e1 = new HashSet()
-        val aes1 = aes.Aexp(s1)
-        Assert.assertEquals("e1 is " + aes.setOfExprToString(e1)
-                            + " and aes.Aexp(s1) is " + aes.setOfExprToString(aes1), 
-                            e1, aes1)
+        checkEquality("e1", e1, "aes.Aexp(s1)", aes.Aexp(s1))
         val s2 = bod.stmts.get(2)
         val e2 = new HashSet()
         val wb = (s2 as WhileS).block as CompoundS
@@ -68,14 +78,8 @@ class AexpTest {
         e2.add(wb0.aexp as Expr)
         val wb2 = wb.stmts.get(2) as AssignS
         e2.add(wb2.aexp as Expr)
-        val aes2 = aes.Aexp(s2)
-        Assert.assertEquals("e2 is " + aes.setOfExprToString(e2)
-                            + " and aes.Aexp(s2) is " + aes.setOfExprToString(aes2), 
-                            e2, aes2)
-        val aesbod = aes.Aexp(bod)
-        Assert.assertEquals("e2 is " + aes.setOfExprToString(e2)
-                            + " and aes.Aexp(bod) is " + aes.setOfExprToString(aesbod), 
-                            e2, aesbod)
+        checkEquality("e2", e2,"aes.Aexp(s2)", aes.Aexp(s2))
+        checkEquality("e2", e2, "aes.Aexp(bod)", aes.Aexp(bod))
     }  
 
 //    TODO: add tests like the following for AExps.Aexp(). 
@@ -92,21 +96,12 @@ class AexpTest {
         val rp1 = s4.aexp // r+1
         val expected = new HashSet()
         expected.add(rp1)
-        val aes4 = aes.Aexp(s4)
-        Assert.assertEquals("expected is " + aes.setOfExprToString(expected)
-                            + " and aes.Aexp(if2) is " + aes.setOfExprToString(aes4), 
-                            expected, aes4)
-        val aes34 = aes.Aexp(s34)
-        Assert.assertEquals("expected is " + aes.setOfExprToString(expected)
-                            + " and aes.Aexp(if2) is " + aes.setOfExprToString(aes34), 
-                            expected, aes34)
+        checkEquality("expected", expected, "aes.Aexp(s4)", aes.Aexp(s4))
+        checkEquality("expected", expected, "aes.Aexp(s34)", aes.Aexp(s34))
         val be2 = if2.bexp.be as BRelExp
         val bm1 = be2.right // b-1
         expected.add(bm1)
-        val ae2 = aes.Aexp(if2)
-        Assert.assertEquals("expected is " + aes.setOfExprToString(expected)
-                            + " and aes.Aexp(if2) is " + aes.setOfExprToString(ae2), 
-                            expected, ae2)
+        checkEquality("expected", expected, "aes.Aexp(if2)", aes.Aexp(if2))
         val c6 = if1.s2 as CompoundS
         val if6 = c6.stmts.get(0) as IfS
         val e6 = (if6.bexp.be as BRelExp).left  // a+1
@@ -115,14 +110,8 @@ class AexpTest {
         val s7 = c7.stmts.get(0) as AssignS
         val e7 = s7.aexp // -7
         expected.add(e7)
-        val aeif1 = aes.Aexp(if1)
-        Assert.assertEquals("expected is " + aes.setOfExprToString(expected)
-                            + " and aes.Aexp(if1) is " + aes.setOfExprToString(aeif1),
-                            expected, aeif1)
-        val aebod = aes.Aexp(bod)                           
-        Assert.assertEquals("expected is " + aes.setOfExprToString(expected)
-                            + " and aes.Aexp(bod) is " + aes.setOfExprToString(aebod),
-                            expected, aebod)
+        checkEquality("expected", expected, "aes.Aexp(if1)", aes.Aexp(if1))
+        checkEquality("expected", expected, "aes.Aexp(bod)", aes.Aexp(bod))
     }  
     
     @Test
@@ -135,46 +124,83 @@ class AexpTest {
         val e3 = s3.aexp
         val expected = new HashSet()
         expected.add(e3)
-        val aes3 = aes.Aexp(s3)
-        Assert.assertEquals("expected is " + aes.setOfExprToString(expected)
-                            + " and aes.Aexp(s3) is " + aes.setOfExprToString(aes3),
-                            expected, aes3)
-        val aes2 = aes.Aexp(s2)
-        Assert.assertEquals("expected is " + aes.setOfExprToString(expected)
-                            + " and aes.Aexp(s2) is " + aes.setOfExprToString(aes2),
-                            expected, aes2)
-        val aesbod = aes.Aexp(bod)
-        Assert.assertEquals("expected is " + aes.setOfExprToString(expected)
-                            + " and aes.Aexp(bod) is " + aes.setOfExprToString(aesbod),
-                            expected, aesbod)
+        checkEquality("expected", expected, "aes.Aexp(s3)", aes.Aexp(s3))
+        checkEquality("expected", expected, "aes.Aexp(s2)", aes.Aexp(s2))
+        checkEquality("expected", expected, "aes.Aexp(bod)", aes.Aexp(bod))
     }  
-    
-//    @Test
-//    def void testAexpexprs() {
-//        val p = fromFileName("testsrc/exprs.wh")
-//        val bod = p.body as CompoundS
-//        val expected = new HashSet()
-//        val fv = new AExps()
-//        expected.add("a")
-//        expected.add("b")
-//        expected.add("c")
-//        expected.add("q")
-//        expected.add("r")
-//        expected.add("y")
-//        expected.add("x")
-//        expected.add("z")
-//        val fvs = fv.Aexp(bod)
-//        Assert.assertEquals(expected, fvs)
-//    }  
-//     
-//	@Test
-//	def void testCFGAssert() {
-//	    val p = fromFileName("testsrc/cfgassert.wh")
-//	    val bod = p.body as CompoundS
-//	    val fvs = new AExps().Aexp(bod)
-//	    val expected = new HashSet()
-//	    expected.add("a")
-//	    expected.add("b")
-//	    Assert.assertEquals(expected, fvs)
-//	}	
+       
+    @Test
+    def void testAexpexprs() {
+        val aes = new AExps()
+        val p = fromFileName("testsrc/exprs.wh")
+        val bod = p.body as CompoundS
+        val s1 = bod.stmts.get(0) as AssignS
+        val e1 = s1.aexp // (((1+2)-(3*q))--(r))
+        val e1left = e1.leftSubExp
+        val e1right = e1.rightSubExp
+        val expected = new HashSet()
+        expected.add(e1)
+        expected.add(e1left)
+        expected.add(e1left.leftSubExp)
+        expected.add(e1left.rightSubExp)
+        expected.add(e1right)
+        val aes1 = aes.Aexp(s1)
+        checkEquality("expected", expected, "aes.Aexp(s1)", aes1)
+        val s2 = bod.stmts.get(1) as AssignS
+        val e2 = s2.aexp // b/(b-c)
+        val exp2 = new HashSet()
+        exp2.add(e2)
+        exp2.add(e2.rightSubExp)
+        val aes2 = aes.Aexp(s2)
+        checkEquality("exp2", exp2, "aes.Aexp(s2)", aes2)
+        val s3 = bod.stmts.get(2) as IfS
+        val s4 = s3.s1 as AssignS
+        val e4 = s4.aexp // (2*(a*b)+c*c)-4*a*c
+        val aes4 = new HashSet()
+        aes4.add(e4)
+        val e4left = e4.leftSubExp // (2*(a*b)+c*c)
+        val e4right = e4.rightSubExp // 4*a*c
+        aes4.add(e4left)
+        aes4.add(e4right)
+        aes4.add(e4right.leftSubExp) // 4*a
+        aes4.add(e4left.leftSubExp) // 2*(a*b)
+        aes4.add(e4left.rightSubExp) // c*c
+        aes4.add(e4left.leftSubExp.rightSubExp) // a*b
+        val aes4v = aes.Aexp(s4)
+        checkEquality("aes4", aes4, "aes.Aexp(s4)", aes4v)
+        val c56 = s3.s2 as CompoundS
+        val s5 = c56.stmts.get(0) as WhileS
+        val s6 = s5.block as AssignS
+        val e6 = s6.aexp // x*x*x*(-q)
+        val aes6 = new HashSet()
+        aes6.add(e6)
+        aes6.add(e6.leftSubExp) // x*x*x
+        aes6.add(e6.rightSubExp) // (-q)
+        val aes6v = aes.Aexp(s6)
+        aes6.add(e6.leftSubExp.leftSubExp) // x*x
+        checkEquality("aes6", aes6, "aes.Aexp(s6)", aes6v)
+        val s5test = s5.bexp.be //x < 0 or -y > 3 and b <= c and c >= b
+        val my = s5test.rightSubExp.leftSubExp.leftSubExp.leftSubExp // -y
+        val aes5 = new HashSet()
+        aes5.addAll(aes6)
+        aes5.add(my)
+        val aes5v = aes.Aexp(s5)
+        checkEquality("aes5", aes5, "aes.Aexp(s5)", aes5v)
+        val aes3 = new HashSet()
+        aes3.addAll(aes5)
+        aes3.addAll(aes4)
+        checkEquality("aes3", aes3, "aes.Aexp(s3)", aes.Aexp(s3))
+    }  
+     
+	@Test
+	def void testCFGAssert() {
+	    val p = fromFileName("testsrc/cfgassert.wh")
+	    val bod = p.body as CompoundS
+	    val aesv = new AExps().Aexp(bod)
+	    val expected = new HashSet()
+	    val s1 = bod.stmts.get(0) as AssertS
+	    val e1 = s1.bexp.be.rightSubExp
+	    expected.add(e1)
+	    checkEquality("expected", expected, "new AExps().Aexp(bod)", aesv)
+	}	
 }
