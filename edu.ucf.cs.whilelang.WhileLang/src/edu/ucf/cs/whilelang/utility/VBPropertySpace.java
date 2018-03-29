@@ -9,6 +9,7 @@ import edu.ucf.cs.whilelang.whileLang.Expr;
 import edu.ucf.cs.whilelang.whileLang.Program;
 
 /** The property space for the Very Busy Expressions analysis. 
+ * Note that the setProgram method must be called before any others!
  * @author Gary T. Leavens
  */
 public class VBPropertySpace 
@@ -19,9 +20,10 @@ public class VBPropertySpace
 	protected Set<Expr> rep; 
 	
 	/** The program that this property space is for. */
-	protected static Program theProg;
+	protected static Program theProg = null;
 	
-	/** Initialize the program for this property space. */
+	/** Initialize the program for this property space. 
+	 * requires p is not null. */
 	public static void setProgram(Program p) {
 		theProg = p;
 	}
