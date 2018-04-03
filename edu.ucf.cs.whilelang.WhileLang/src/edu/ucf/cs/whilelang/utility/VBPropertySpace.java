@@ -3,8 +3,6 @@ package edu.ucf.cs.whilelang.utility;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
-
-import edu.ucf.cs.whilelang.generator.WhileLangUnparser;
 import edu.ucf.cs.whilelang.whileLang.Expr;
 import edu.ucf.cs.whilelang.whileLang.Program;
 
@@ -17,7 +15,7 @@ public class VBPropertySpace
 {
 
 	/** The set of expression ASTs that represents the property. */
-	protected Set<Expr> rep; 
+	protected Set<ExprWrapper> rep; 
 	
 	/** The program that this property space is for. */
 	protected static Program theProg = null;
@@ -33,25 +31,27 @@ public class VBPropertySpace
 	 * requires: theProg is not null */
 	/*@ pure @*/
 	public VBPropertySpace() {
-		rep = new HashSet<Expr>();
+		rep = new HashSet<ExprWrapper>();
 		AExps aes = new AExps();
-		rep.addAll(aes.Aexp(theProg.getBody()));
+		for (Expr e: aes.Aexp(theProg.getBody())) {
+		   rep.add(new ExprWrapper(e));
+		}
 	}
 	
 	/** Initialize this property space element to be 
 	 * a set containing just the given arithmetic expression. 
 	 * requires nonTrivialArithExp(e) */
 	public VBPropertySpace(Expr e) {
-		rep = new HashSet<Expr>();
-		rep.add(e);
+		rep = new HashSet<ExprWrapper>();
+		rep.add(new ExprWrapper(e));
 	}
 	
 	/** Initialize this property space element to be 
 	 * the given set. */
 	 public VBPropertySpace(Set<Expr> s) {
-		rep = new HashSet<Expr>();
+		rep = new HashSet<ExprWrapper>();
 		for (Expr e : s) {
-			rep.add(e);
+			rep.add(new ExprWrapper(e));
 		}
 	}
 	
@@ -121,9 +121,8 @@ public class VBPropertySpace
 		StringBuffer ret = new StringBuffer();
 		ret.append('{');
 		int sz = this.rep.size();
-		WhileLangUnparser wlup = new WhileLangUnparser();
-		for (Expr e : this.rep) {
-			ret.append(wlup.unparse(e));
+		for (ExprWrapper e : this.rep) {
+			ret.append(e.toString());
 			if (sz > 1) {
 				ret.append(", ");
 			}
@@ -136,17 +135,23 @@ public class VBPropertySpace
 	/** Removes all of the elements of this property space 
 	 * that satisfy the given predicate. */
 	public void removeIf(Predicate<Expr> p) {
-		rep.removeIf(p);
+		rep.removeIf(new Predicate<ExprWrapper>() {
+			@Override
+			public boolean test(ExprWrapper ew) {
+				return p.test(ew.getExpr());
+			} });
 	}
 
 	/** Return whether this set contains the given expression. 
 	 * @param e, the arithmetic expression (from the program). */
 	public boolean contains(Expr e) {
-	    return rep.contains(e);
+	    return rep.contains(new ExprWrapper(e));
 	}
 	
 	/** Add the given set of non-trivial arithmetic expressions to this property space. */
 	public void addAll(Set<Expr> se) {
-		rep.addAll(se);
+		for (Expr e: se) {
+		    rep.add(new ExprWrapper(e));
+		}
 	}
 }

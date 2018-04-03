@@ -1,0 +1,7 @@
+% original code
+proc vb2(val a,b, res x,y,z) is {
+  if [a-b > a+b]^1
+  then [x := a+b]^2
+  else [y := a+b]^3;
+  [z := a]^4
+}

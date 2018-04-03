@@ -1,0 +1,18 @@
+% original code
+proc vb1(val a,b,r res x,y,q,z) is
+{ [x := a+b]^1;          % 0
+  [y := a+b]^2;          % 1
+
+  if [a-b > a+b]^3       % 2
+  then [x := a+b]^4 else [y := a+b]^5;
+
+  [q := r]^7;            % 3
+  [z := a+b]^8;          % 4
+
+  if [a>b]^9             % 5
+  then [x := a+b]^10 else [y := a+b]^11;
+
+  if [a>b]^12            % 6
+  then [x := a+b]^13 else [y := 641]^14
+}
+
