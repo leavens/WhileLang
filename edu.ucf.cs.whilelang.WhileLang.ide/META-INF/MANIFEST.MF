@@ -13,4 +13,5 @@ Require-Bundle: edu.ucf.cs.whilelang.WhileLang,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: edu.ucf.cs.whilelang.ide.contentassist.antlr,
  edu.ucf.cs.whilelang.ide.contentassist.antlr.internal
+Automatic-Module-Name: edu.ucf.cs.whilelang.WhileLang.ide
 

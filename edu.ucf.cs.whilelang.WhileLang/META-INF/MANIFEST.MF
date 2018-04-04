@@ -29,3 +29,4 @@ Export-Package: edu.ucf.cs.whilelang.whileLang,
  edu.ucf.cs.whilelang.parser.antlr.internal,
  edu.ucf.cs.whilelang.parser.antlr
 Import-Package: org.apache.log4j
+Automatic-Module-Name: edu.ucf.cs.whilelang.WhileLang

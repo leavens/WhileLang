@@ -23,3 +23,4 @@ Export-Package: edu.ucf.cs.whilelang.ui.contentassist,
  edu.ucf.cs.whilelang.ui.quickfix,
  edu.ucf.cs.whilelang.WhileLang.ui.internal
 Bundle-Activator: edu.ucf.cs.whilelang.WhileLang.ui.internal.WhileLangActivator
+Automatic-Module-Name: edu.ucf.cs.whilelang.WhileLang.ui
