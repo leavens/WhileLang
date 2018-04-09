@@ -472,7 +472,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Program returns Program
 	 *
 	 * Constraint:
-	 *     (name=ID args=Formals? body=Stmt)
+	 *     (name=ID vformals=Formals? rformals=Formals? body=Stmt)
 	 */
 	protected void sequence_Program(ISerializationContext context, Program semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -562,7 +562,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     While returns WhileS
 	 *
 	 * Constraint:
-	 *     (bexp=LabeledExp block=Block)
+	 *     (bexp=LabeledExp block=Stmt)
 	 */
 	protected void sequence_While(ISerializationContext context, WhileS semanticObject) {
 		if (errorAcceptor != null) {
@@ -573,7 +573,7 @@ public class WhileLangSemanticSequencer extends AbstractDelegatingSemanticSequen
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getWhileAccess().getBexpLabeledExpParserRuleCall_1_0(), semanticObject.getBexp());
-		feeder.accept(grammarAccess.getWhileAccess().getBlockBlockParserRuleCall_3_0(), semanticObject.getBlock());
+		feeder.accept(grammarAccess.getWhileAccess().getBlockStmtParserRuleCall_3_0(), semanticObject.getBlock());
 		feeder.finish();
 	}
 	

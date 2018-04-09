@@ -30,18 +30,25 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cArgsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cArgsFormalsParserRuleCall_3_0 = (RuleCall)cArgsAssignment_3.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cIsKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cBodyAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cBodyStmtParserRuleCall_6_0 = (RuleCall)cBodyAssignment_6.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cValKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cVformalsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cVformalsFormalsParserRuleCall_3_1_0 = (RuleCall)cVformalsAssignment_3_1.eContents().get(0);
+		private final Keyword cCommaKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cResKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cRformalsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cRformalsFormalsParserRuleCall_5_1_0 = (RuleCall)cRformalsAssignment_5_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cIsKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cBodyAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cBodyStmtParserRuleCall_8_0 = (RuleCall)cBodyAssignment_8.eContents().get(0);
 		
 		//Program:
-		//	'proc' name=ID '(' args=Formals? ')' 'is' body=Stmt;
+		//	'proc' name=ID '(' ('val' vformals=Formals)? ','? ('res' rformals=Formals)? ')' 'is' body=Stmt;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'proc' name=ID '(' args=Formals? ')' 'is' body=Stmt
+		//'proc' name=ID '(' ('val' vformals=Formals)? ','? ('res' rformals=Formals)? ')' 'is' body=Stmt
 		public Group getGroup() { return cGroup; }
 		
 		//'proc'
@@ -56,23 +63,44 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 		
-		//args=Formals?
-		public Assignment getArgsAssignment_3() { return cArgsAssignment_3; }
+		//('val' vformals=Formals)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//'val'
+		public Keyword getValKeyword_3_0() { return cValKeyword_3_0; }
+		
+		//vformals=Formals
+		public Assignment getVformalsAssignment_3_1() { return cVformalsAssignment_3_1; }
 		
 		//Formals
-		public RuleCall getArgsFormalsParserRuleCall_3_0() { return cArgsFormalsParserRuleCall_3_0; }
+		public RuleCall getVformalsFormalsParserRuleCall_3_1_0() { return cVformalsFormalsParserRuleCall_3_1_0; }
+		
+		//','?
+		public Keyword getCommaKeyword_4() { return cCommaKeyword_4; }
+		
+		//('res' rformals=Formals)?
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//'res'
+		public Keyword getResKeyword_5_0() { return cResKeyword_5_0; }
+		
+		//rformals=Formals
+		public Assignment getRformalsAssignment_5_1() { return cRformalsAssignment_5_1; }
+		
+		//Formals
+		public RuleCall getRformalsFormalsParserRuleCall_5_1_0() { return cRformalsFormalsParserRuleCall_5_1_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
 		
 		//'is'
-		public Keyword getIsKeyword_5() { return cIsKeyword_5; }
+		public Keyword getIsKeyword_7() { return cIsKeyword_7; }
 		
 		//body=Stmt
-		public Assignment getBodyAssignment_6() { return cBodyAssignment_6; }
+		public Assignment getBodyAssignment_8() { return cBodyAssignment_8; }
 		
 		//Stmt
-		public RuleCall getBodyStmtParserRuleCall_6_0() { return cBodyStmtParserRuleCall_6_0; }
+		public RuleCall getBodyStmtParserRuleCall_8_0() { return cBodyStmtParserRuleCall_8_0; }
 	}
 	public class FormalsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.Formals");
@@ -325,13 +353,13 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBexpLabeledExpParserRuleCall_1_0 = (RuleCall)cBexpAssignment_1.eContents().get(0);
 		private final Keyword cDoKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cBlockAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cBlockBlockParserRuleCall_3_0 = (RuleCall)cBlockAssignment_3.eContents().get(0);
+		private final RuleCall cBlockStmtParserRuleCall_3_0 = (RuleCall)cBlockAssignment_3.eContents().get(0);
 		
 		//While WhileS:
-		//	'while' bexp=LabeledExp 'do' block=Block;
+		//	'while' bexp=LabeledExp 'do' block=Stmt;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'while' bexp=LabeledExp 'do' block=Block
+		//'while' bexp=LabeledExp 'do' block=Stmt
 		public Group getGroup() { return cGroup; }
 		
 		//'while'
@@ -346,11 +374,11 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 		//'do'
 		public Keyword getDoKeyword_2() { return cDoKeyword_2; }
 		
-		//block=Block
+		//block=Stmt
 		public Assignment getBlockAssignment_3() { return cBlockAssignment_3; }
 		
-		//Block
-		public RuleCall getBlockBlockParserRuleCall_3_0() { return cBlockBlockParserRuleCall_3_0; }
+		//Stmt
+		public RuleCall getBlockStmtParserRuleCall_3_0() { return cBlockStmtParserRuleCall_3_0; }
 	}
 	public class IfElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "edu.ucf.cs.whilelang.WhileLang.If");
@@ -957,7 +985,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Program:
-	//	'proc' name=ID '(' args=Formals? ')' 'is' body=Stmt;
+	//	'proc' name=ID '(' ('val' vformals=Formals)? ','? ('res' rformals=Formals)? ')' 'is' body=Stmt;
 	public ProgramElements getProgramAccess() {
 		return pProgram;
 	}
@@ -1017,7 +1045,7 @@ public class WhileLangGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//While WhileS:
-	//	'while' bexp=LabeledExp 'do' block=Block;
+	//	'while' bexp=LabeledExp 'do' block=Stmt;
 	public WhileElements getWhileAccess() {
 		return pWhile;
 	}

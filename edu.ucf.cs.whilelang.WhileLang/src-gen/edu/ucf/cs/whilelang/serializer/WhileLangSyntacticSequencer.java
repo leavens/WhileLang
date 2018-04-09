@@ -22,12 +22,14 @@ public class WhileLangSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected WhileLangGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_5_0_a;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_5_0_p;
+	protected AbstractElementAlias match_Program_CommaKeyword_4_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (WhileLangGrammarAccess) access;
 		match_Primary_LeftParenthesisKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_5_0());
 		match_Primary_LeftParenthesisKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_5_0());
+		match_Program_CommaKeyword_4_q = new TokenAlias(false, true, grammarAccess.getProgramAccess().getCommaKeyword_4());
 	}
 	
 	@Override
@@ -46,6 +48,8 @@ public class WhileLangSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Primary_LeftParenthesisKeyword_5_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_5_0_p.equals(syntax))
 				emit_Primary_LeftParenthesisKeyword_5_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Program_CommaKeyword_4_q.equals(syntax))
+				emit_Program_CommaKeyword_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -83,6 +87,20 @@ public class WhileLangSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {Factor.left=}
 	 */
 	protected void emit_Primary_LeftParenthesisKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ','?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     name=ID '(' (ambiguity) ')' 'is' body=Stmt
+	 *     name=ID '(' (ambiguity) 'res' rformals=Formals
+	 *     vformals=Formals (ambiguity) ')' 'is' body=Stmt
+	 *     vformals=Formals (ambiguity) 'res' rformals=Formals
+	 */
+	protected void emit_Program_CommaKeyword_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

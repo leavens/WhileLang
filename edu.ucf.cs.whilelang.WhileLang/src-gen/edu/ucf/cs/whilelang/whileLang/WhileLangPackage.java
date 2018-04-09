@@ -77,13 +77,22 @@ public interface WhileLangPackage extends EPackage
   int PROGRAM__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Args</b></em>' containment reference.
+   * The feature id for the '<em><b>Vformals</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROGRAM__ARGS = 1;
+  int PROGRAM__VFORMALS = 1;
+
+  /**
+   * The feature id for the '<em><b>Rformals</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROGRAM__RFORMALS = 2;
 
   /**
    * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -92,7 +101,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROGRAM__BODY = 2;
+  int PROGRAM__BODY = 3;
 
   /**
    * The number of structural features of the '<em>Program</em>' class.
@@ -101,7 +110,7 @@ public interface WhileLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROGRAM_FEATURE_COUNT = 3;
+  int PROGRAM_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link edu.ucf.cs.whilelang.whileLang.impl.FormalsImpl <em>Formals</em>}' class.
@@ -840,15 +849,26 @@ public interface WhileLangPackage extends EPackage
   EAttribute getProgram_Name();
 
   /**
-   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.Program#getArgs <em>Args</em>}'.
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.Program#getVformals <em>Vformals</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Args</em>'.
-   * @see edu.ucf.cs.whilelang.whileLang.Program#getArgs()
+   * @return the meta object for the containment reference '<em>Vformals</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.Program#getVformals()
    * @see #getProgram()
    * @generated
    */
-  EReference getProgram_Args();
+  EReference getProgram_Vformals();
+
+  /**
+   * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.Program#getRformals <em>Rformals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Rformals</em>'.
+   * @see edu.ucf.cs.whilelang.whileLang.Program#getRformals()
+   * @see #getProgram()
+   * @generated
+   */
+  EReference getProgram_Rformals();
 
   /**
    * Returns the meta object for the containment reference '{@link edu.ucf.cs.whilelang.whileLang.Program#getBody <em>Body</em>}'.
@@ -1498,12 +1518,20 @@ public interface WhileLangPackage extends EPackage
     EAttribute PROGRAM__NAME = eINSTANCE.getProgram_Name();
 
     /**
-     * The meta object literal for the '<em><b>Args</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Vformals</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROGRAM__ARGS = eINSTANCE.getProgram_Args();
+    EReference PROGRAM__VFORMALS = eINSTANCE.getProgram_Vformals();
+
+    /**
+     * The meta object literal for the '<em><b>Rformals</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROGRAM__RFORMALS = eINSTANCE.getProgram_Rformals();
 
     /**
      * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.

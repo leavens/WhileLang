@@ -4,7 +4,9 @@
     nsPrefix="whileLang">
   <eClassifiers xsi:type="ecore:EClass" name="Program">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="args" eType="#//Formals"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vformals" eType="#//Formals"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rformals" eType="#//Formals"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//S" containment="true"/>
   </eClassifiers>
@@ -28,8 +30,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="WhileS" eSuperTypes="#//S">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bexp" eType="#//LabeledExp"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//CompoundS"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//S" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfS" eSuperTypes="#//S">
     <eStructuralFeatures xsi:type="ecore:EReference" name="bexp" eType="#//LabeledExp"

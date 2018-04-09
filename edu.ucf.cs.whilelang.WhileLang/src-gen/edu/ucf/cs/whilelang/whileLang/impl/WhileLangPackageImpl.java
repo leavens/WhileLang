@@ -284,7 +284,7 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getProgram_Args()
+  public EReference getProgram_Vformals()
   {
     return (EReference)programEClass.getEStructuralFeatures().get(1);
   }
@@ -294,9 +294,19 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getProgram_Body()
+  public EReference getProgram_Rformals()
   {
     return (EReference)programEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getProgram_Body()
+  {
+    return (EReference)programEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -891,7 +901,8 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     // Create classes and their features
     programEClass = createEClass(PROGRAM);
     createEAttribute(programEClass, PROGRAM__NAME);
-    createEReference(programEClass, PROGRAM__ARGS);
+    createEReference(programEClass, PROGRAM__VFORMALS);
+    createEReference(programEClass, PROGRAM__RFORMALS);
     createEReference(programEClass, PROGRAM__BODY);
 
     formalsEClass = createEClass(FORMALS);
@@ -1024,7 +1035,8 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
     // Initialize classes and features; add operations and parameters
     initEClass(programEClass, Program.class, "Program", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProgram_Name(), ecorePackage.getEString(), "name", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getProgram_Args(), this.getFormals(), null, "args", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgram_Vformals(), this.getFormals(), null, "vformals", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProgram_Rformals(), this.getFormals(), null, "rformals", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getProgram_Body(), this.getS(), null, "body", null, 0, 1, Program.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(formalsEClass, Formals.class, "Formals", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1045,7 +1057,7 @@ public class WhileLangPackageImpl extends EPackageImpl implements WhileLangPacka
 
     initEClass(whileSEClass, WhileS.class, "WhileS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getWhileS_Bexp(), this.getLabeledExp(), null, "bexp", null, 0, 1, WhileS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getWhileS_Block(), this.getCompoundS(), null, "block", null, 0, 1, WhileS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getWhileS_Block(), this.getS(), null, "block", null, 0, 1, WhileS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ifSEClass, IfS.class, "IfS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getIfS_Bexp(), this.getLabeledExp(), null, "bexp", null, 0, 1, IfS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

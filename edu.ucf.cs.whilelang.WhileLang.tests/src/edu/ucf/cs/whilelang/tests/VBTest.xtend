@@ -30,7 +30,7 @@ import edu.ucf.cs.whilelang.whileLang.Expr
 import static extension edu.ucf.cs.whilelang.utility.ASTExtensions.*
 
 /**
- * JUnit (4) tests for free variables.
+ * JUnit (4) tests for the Very Busy Expressions analysis.
  */
 @RunWith(XtextRunner)
 @InjectWith(WhileLangInjectorProvider)

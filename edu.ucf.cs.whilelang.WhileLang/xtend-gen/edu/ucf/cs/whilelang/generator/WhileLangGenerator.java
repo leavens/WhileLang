@@ -2,16 +2,12 @@ package edu.ucf.cs.whilelang.generator;
 
 import edu.ucf.cs.whilelang.generator.WhileLangCodeGen;
 import edu.ucf.cs.whilelang.generator.WhileLangUnparser;
-import edu.ucf.cs.whilelang.whileLang.Formals;
 import edu.ucf.cs.whilelang.whileLang.Program;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.xbase.lib.IntegerRange;
 
 /**
  * Generates code from your model files on save.
@@ -38,156 +34,13 @@ public class WhileLangGenerator extends AbstractGenerator {
    * Unparse the given program.
    */
   public String unparser(final Program p) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("% unparsed code");
-    _builder.newLine();
-    _builder.append("proc ");
-    String _name = p.getName();
-    _builder.append(_name);
-    _builder.append("(");
-    {
-      Formals _args = p.getArgs();
-      boolean _tripleNotEquals = (_args != null);
-      if (_tripleNotEquals) {
-        {
-          EList<String> _names = p.getArgs().getNames();
-          boolean _hasElements = false;
-          for(final String i : _names) {
-            if (!_hasElements) {
-              _hasElements = true;
-            } else {
-              _builder.appendImmediate(", ", "");
-            }
-            _builder.append(i);
-          }
-        }
-      }
-    }
-    _builder.append(") is");
-    _builder.newLineIfNotEmpty();
-    String _unparse = new WhileLangUnparser().unparse(p.getBody());
-    _builder.append(_unparse);
-    _builder.newLineIfNotEmpty();
-    return _builder.toString();
+    return new WhileLangUnparser().unparse(p);
   }
   
   /**
    * Translate the given program to Java.
    */
   public String compile(final Program p) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("// generated code");
-    _builder.newLine();
-    _builder.append("public class ");
-    String _name = p.getName();
-    _builder.append(_name);
-    _builder.append(" {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("    ");
-    _builder.append("public static void main(String[] args) {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("if (args.length != ");
-    int _size = p.getArgs().getNames().size();
-    _builder.append(_size, "        ");
-    _builder.append(") {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("            ");
-    _builder.append("System.err.println(\"");
-    String _name_1 = p.getName();
-    _builder.append(_name_1, "            ");
-    _builder.append(" expects ");
-    int _size_1 = p.getArgs().getNames().size();
-    _builder.append(_size_1, "            ");
-    _builder.append(" arguments\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("            ");
-    _builder.append("System.exit(1);");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("int ");
-    {
-      EList<String> _names = p.getArgs().getNames();
-      boolean _hasElements = false;
-      for(final String f : _names) {
-        if (!_hasElements) {
-          _hasElements = true;
-        } else {
-          _builder.appendImmediate(",", "        ");
-        }
-        _builder.append(f, "        ");
-      }
-    }
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    {
-      int _size_2 = p.getArgs().getNames().size();
-      int _minus = (_size_2 - 1);
-      IntegerRange _upTo = new IntegerRange(0, _minus);
-      for(final Integer i : _upTo) {
-        _builder.append("        ");
-        String _get = p.getArgs().getNames().get((i).intValue());
-        _builder.append(_get, "        ");
-        _builder.append(" = Integer.valueOf(args[");
-        _builder.append(i, "        ");
-        _builder.append("]);");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("        ");
-    _builder.append("System.out.print(\"input:\");");
-    _builder.newLine();
-    {
-      EList<String> _names_1 = p.getArgs().getNames();
-      for(final String f_1 : _names_1) {
-        _builder.append("        ");
-        _builder.append("System.out.print(\" ");
-        _builder.append(f_1, "        ");
-        _builder.append(" = \" + ");
-        _builder.append(f_1, "        ");
-        _builder.append(");");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("        ");
-    _builder.append("System.out.println();");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("// the body of ");
-    String _name_2 = p.getName();
-    _builder.append(_name_2, "        ");
-    _builder.append(" follows");
-    _builder.newLineIfNotEmpty();
-    _builder.append("        ");
-    String _java = new WhileLangCodeGen().toJava(p.getBody());
-    _builder.append(_java, "        ");
-    _builder.newLineIfNotEmpty();
-    _builder.append("        ");
-    _builder.append("System.out.print(\"final:\");");
-    _builder.newLine();
-    {
-      EList<String> _names_2 = p.getArgs().getNames();
-      for(final String f_2 : _names_2) {
-        _builder.append("        ");
-        _builder.append("System.out.print(\" ");
-        _builder.append(f_2, "        ");
-        _builder.append(" = \" + ");
-        _builder.append(f_2, "        ");
-        _builder.append(");");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("        ");
-    _builder.append("System.out.println();");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    return _builder.toString();
+    return new WhileLangCodeGen().toJava(p);
   }
 }
