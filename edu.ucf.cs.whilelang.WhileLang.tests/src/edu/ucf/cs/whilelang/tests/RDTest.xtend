@@ -26,7 +26,7 @@ import edu.ucf.cs.whilelang.utility.CFG
 import edu.ucf.cs.whilelang.utility.PVAsMap
 
 /**
- * JUnit (4) tests for free variables.
+ * JUnit (4) tests for the Reaching Definitions analysis.
  */
 @RunWith(XtextRunner)
 @InjectWith(WhileLangInjectorProvider)
@@ -108,7 +108,7 @@ class RDTest {
     @Test
     def void testPropertyVectorSimpleWh() {
         val p = fromFileName("testsrc/simpleWhile.wh")
-        val rda = new WhileLangRDAnalysis(p)
+        val WhileLangRDAnalysis rda = new WhileLangRDAnalysis(p)
         rda.computeAnalysis()
         val PropertyVector<Integer, RDPropertySpace> rd = rda.RDInfo
         /** The expected value of the RD analysis for this program. */
