@@ -51,16 +51,49 @@ public class PVAsMap<Label, L extends PropertySpace<L>>
 	
 	/** Is this property vector equal (at each access and label) to oth (as a PropertyVector)? */
 	public boolean equals(Object oth) {
+		final boolean trace = false;
 		if (oth == null || !(oth instanceof PropertyVector)) {
+			if (trace) {
+				if (oth == null) {
+					System.out.flush();
+					System.err.println("PVAsMap.equals returns false due to oth == null");
+				} else {
+					System.out.flush();
+					System.err.println("PVAsMap.equals returns false due to oth has wrong type");
+				}
+			}
 			return false;
 		}
 		@SuppressWarnings("unchecked")
 		PropertyVector<Label, L> ov = (PropertyVector<Label, L>) oth;
 		boolean ret = this.getLabels().equals(ov.getLabels());
+		if (trace) {
+			if (!ret) {
+				System.out.flush();
+				System.err.println("Label sets not the same! " + this.getLabels().toString() + " and " + ov.getLabels().toString());
+			}
+	    }	
 		for (Label lab: entries.keySet()) {
 			ret &= entries.get(lab).equals(ov.get(Access.ENTRY, lab))
 					&& exits.get(lab).equals(ov.get(Access.EXIT, lab));
-			if (!ret) { return false; }
+			if (!ret) {
+				if (trace) {
+					if (!entries.get(lab).equals(ov.get(Access.ENTRY, lab))) {
+						System.out.flush();
+						System.err.println("PVAsMap.equals returns false at entry for label " + lab);
+						System.err.println("entries.get(" + lab + ") is " + entries.get(lab).toString());
+						System.err.println(
+								"ov.get(Access.ENTRY, " + lab + ") is " + ov.get(Access.ENTRY, lab).toString());
+					} else {
+						System.out.flush();
+						System.err.println("PVAsMap.equals returns false at exit for label " + lab);
+						System.err.println("exits.get(" + lab + ") is " + exits.get(lab).toString());
+						System.err
+								.println("ov.get(Access.EXIT, " + lab + ") is " + ov.get(Access.EXIT, lab).toString());
+					}
+				}
+				return false; 
+		    }
 		}
 		return ret;
 	}

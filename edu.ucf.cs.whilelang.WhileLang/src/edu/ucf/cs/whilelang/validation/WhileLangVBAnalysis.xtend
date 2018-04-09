@@ -124,7 +124,9 @@ class WhileLangVBAnalysis {
         new AnalysisFun<Integer, VBPropertySpace>() 
         {
             override apply(PropertyVector<Integer, VBPropertySpace> arg) {
-                val VBPropertySpace ret = arg.get(Access.EXIT, le.label);
+                val VBPropertySpace exitInfo = arg.get(Access.EXIT, le.label);
+                // make a copy of the exit info to prevent aliasing!
+                val ret = exitInfo.copy();
                 // add the generated info
                 ret.addAll(new AExps().Aexp(le));                   
                 return ret;

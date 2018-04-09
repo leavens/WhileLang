@@ -14,21 +14,29 @@ public abstract class AbstractFunctionVector<Label, L extends PropertySpace<L>>
 									    PropertyVector<Label, L> initial) 
 	{
 		final boolean TRACE = false;
+		int count = 0;
+//		final int COUNT_LIMIT = 1250;
 		PropertyVector<Label, L> last = initial;
 		if (TRACE) {
 			System.out.println("fix's last = initial is:");
 			System.out.println(last.toString());
 		}
 		PropertyVector<Label, L> curr = next(labels, last);
-		while (!last.equals(curr)) {
+		while (
+//				count < COUNT_LIMIT && 
+				!last.equals(curr)) {
 			if (TRACE) {
 				System.out.println("curr is:");
 				System.out.println(curr.toString());
 			}
 			PropertyVector<Label, L> temp = next(labels, curr);
+			count++;
 			last = curr;
 			curr = temp;
 		}
+//		if (count >= COUNT_LIMIT) {
+//		 	System.err.println("Count limit exceeded in fix!");
+//		}
 		if (TRACE) {
 		    System.out.println("fix returning:");
 		    System.out.println(last.toString());
