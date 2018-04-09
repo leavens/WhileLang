@@ -14,7 +14,7 @@ public abstract class AbstractFunctionVector<Label, L extends PropertySpace<L>>
 									    PropertyVector<Label, L> initial) 
 	{
 		final boolean TRACE = false;
-		int count = 0;
+//		int count = 0;
 //		final int COUNT_LIMIT = 1250;
 		PropertyVector<Label, L> last = initial;
 		if (TRACE) {
@@ -30,7 +30,7 @@ public abstract class AbstractFunctionVector<Label, L extends PropertySpace<L>>
 				System.out.println(curr.toString());
 			}
 			PropertyVector<Label, L> temp = next(labels, curr);
-			count++;
+//			count++;
 			last = curr;
 			curr = temp;
 		}
