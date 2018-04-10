@@ -209,11 +209,122 @@ class VBTest {
             shouldBeVB.put(Access.ENTRY,i,en3)
         }
         Assert.assertEquals(shouldBeVB, shouldBeVB)
-//        System.out.println("Starting VB analysis for vb1.wh")
         val VBa = new WhileLangVBAnalysis(p)
         VBa.computeAnalysis()
         val PropertyVector<Integer, VBPropertySpace> VB = VBa.VBInfo
-//        System.out.println("Finished VB analysis for vb1.wh")
         Assert.assertEquals(shouldBeVB, VB)
-    }  
+    } 
+    
+    /** Test the Very Busy Expressions analysis for the vb2.wh program. */
+    @Test
+    def void testVBvb2() {
+        val p = fromFileName("testsrc/vb2.wh")
+        VBPropertySpace.setProgram(p)
+        /** The expected value of the VB analysis for this program. */
+        val PropertyVector<Integer, VBPropertySpace> vbexpected 
+            = new PVAsMap<Integer, VBPropertySpace>()
+        val bod = p.body as CompoundS
+        val s1 = bod.stmts.get(0) as IfS
+        val vbemp = new VBPropertySpace(new HashSet())
+        vbexpected.put(Access.EXIT,4,vbemp)
+        vbexpected.put(Access.ENTRY,4,vbemp)
+        vbexpected.put(Access.EXIT,3,vbemp)
+        vbexpected.put(Access.EXIT,2,vbemp)
+        val s3 = s1.s2 as AssignS
+        val vapb = new VBPropertySpace(s3.aexp)
+        vbexpected.put(Access.ENTRY,3,vapb)
+        vbexpected.put(Access.ENTRY,2,vapb)
+        vbexpected.put(Access.EXIT,1,vapb)
+        vbexpected.put(Access.ENTRY,1,new VBPropertySpace())
+        val VBa = new WhileLangVBAnalysis(p)
+        VBa.computeAnalysis()
+        val PropertyVector<Integer, VBPropertySpace> VB = VBa.VBInfo
+        Assert.assertEquals(vbexpected, VB)
+    }
+
+    /** Test the Very Busy Expressions analysis for the vb3.wh program. */
+    @Test
+    def void testVBvb3() {
+        val p = fromFileName("testsrc/vb3.wh")
+        VBPropertySpace.setProgram(p)
+        /** The expected value of the VB analysis for this program. */
+        val PropertyVector<Integer, VBPropertySpace> vbexpected 
+            = new PVAsMap<Integer, VBPropertySpace>()
+        val bod = p.body as CompoundS
+        val s2 = bod.stmts.get(1) as IfS
+        val vbemp = new VBPropertySpace(new HashSet())
+        vbexpected.put(Access.EXIT,4,vbemp)
+        vbexpected.put(Access.EXIT,3,vbemp)
+        val s3 = s2.s1 as AssignS
+        val s4 = s2.s2 as AssignS
+        vbexpected.put(Access.ENTRY,4,new VBPropertySpace(s4.aexp))
+        vbexpected.put(Access.ENTRY,3,new VBPropertySpace(s3.aexp))
+        vbexpected.put(Access.EXIT,2,vbemp)
+        vbexpected.put(Access.ENTRY,2,vbemp)
+        vbexpected.put(Access.EXIT,1,vbemp)
+        vbexpected.put(Access.ENTRY,1,vbemp)
+        val VBa = new WhileLangVBAnalysis(p)
+        VBa.computeAnalysis()
+        val PropertyVector<Integer, VBPropertySpace> VB = VBa.VBInfo
+        Assert.assertEquals(vbexpected, VB)
+    }
+  
+    /** Test the Very Busy Expressions analysis for the vb4.wh program. */
+    @Test
+    def void testVBvb4() {
+        val p = fromFileName("testsrc/vb4.wh")
+        VBPropertySpace.setProgram(p)
+        /** The expected value of the VB analysis for this program. */
+        val PropertyVector<Integer, VBPropertySpace> vbexpected 
+            = new PVAsMap<Integer, VBPropertySpace>()
+        val bod = p.body as CompoundS
+        val s2 = bod.stmts.get(1) as AssignS
+        val s3 = bod.stmts.get(2) as AssignS
+        val vbemp = new VBPropertySpace(new HashSet())
+        vbexpected.put(Access.EXIT,3,vbemp)
+        val v3 = new VBPropertySpace(s3.aexp)
+        vbexpected.put(Access.ENTRY,3,v3)
+        vbexpected.put(Access.EXIT,2,v3)
+        val v2 = new VBPropertySpace(s2.aexp)
+        vbexpected.put(Access.ENTRY,2,v2)
+        vbexpected.put(Access.EXIT,1,v2)
+        vbexpected.put(Access.ENTRY,1,vbemp)
+        val VBa = new WhileLangVBAnalysis(p)
+        VBa.computeAnalysis()
+        val PropertyVector<Integer, VBPropertySpace> VB = VBa.VBInfo
+        Assert.assertEquals(vbexpected, VB)
+    }
+
+    /** Test the Very Busy Expressions analysis for the cfg1.wh program. */
+    @Test
+    def void testCfg1() {
+        val p = fromFileName("testsrc/cfg1.wh")
+        VBPropertySpace.setProgram(p)
+        /** The expected value of the VB analysis for this program. */
+        val PropertyVector<Integer, VBPropertySpace> vbexpected 
+            = new PVAsMap<Integer, VBPropertySpace>()
+        val bod = p.body as CompoundS
+        val s3 = bod.stmts.get(2) as WhileS
+        val wb = s3.block as CompoundS
+        val s6 = wb.stmts.get(2) as AssignS
+        val vbemp = new VBPropertySpace(new HashSet())
+        vbexpected.put(Access.EXIT,3,vbemp)
+        vbexpected.put(Access.ENTRY,3,vbemp)
+        vbexpected.put(Access.EXIT,6,vbemp)
+        val v6 = new VBPropertySpace(s6.aexp)
+        vbexpected.put(Access.ENTRY,6,v6)
+        vbexpected.put(Access.EXIT,5,v6)
+        vbexpected.put(Access.ENTRY,5,v6)
+        vbexpected.put(Access.EXIT,4,v6)
+        vbexpected.put(Access.ENTRY,4,new VBPropertySpace()) // {q+1,r-y}
+        for (i : 1..2) {
+            vbexpected.put(Access.EXIT,i,vbemp)
+            vbexpected.put(Access.ENTRY,i,vbemp)
+        }  
+        val VBa = new WhileLangVBAnalysis(p)
+        VBa.computeAnalysis()
+        val PropertyVector<Integer, VBPropertySpace> VB = VBa.VBInfo
+        Assert.assertEquals(vbexpected, VB)
+    }
+    
 }
