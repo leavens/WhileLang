@@ -15,7 +15,7 @@ public abstract class AbstractFunctionVector<Label, L extends PropertySpace<L>>
 	{
 		final boolean TRACE = false;
 //		int count = 0;
-//		final int COUNT_LIMIT = 1250;
+//		final int COUNT_LIMIT = 50;
 		PropertyVector<Label, L> last = initial;
 		if (TRACE) {
 			System.out.println("fix's last = initial is:");
