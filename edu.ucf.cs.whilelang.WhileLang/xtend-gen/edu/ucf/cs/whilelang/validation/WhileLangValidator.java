@@ -4,6 +4,7 @@ import edu.ucf.cs.whilelang.validation.AbstractWhileLangValidator;
 import edu.ucf.cs.whilelang.validation.WhileLangAssignedBeforeUseValidator;
 import edu.ucf.cs.whilelang.validation.WhileLangCFGValidator;
 import edu.ucf.cs.whilelang.validation.WhileLangLabelsValidator;
+import edu.ucf.cs.whilelang.validation.WhileLangNoRepeatedVBExpValidator;
 import edu.ucf.cs.whilelang.validation.WhileLangProcArgsValidator;
 import edu.ucf.cs.whilelang.whileLang.Program;
 import org.eclipse.xtext.validation.Check;
@@ -21,5 +22,6 @@ public class WhileLangValidator extends AbstractWhileLangValidator {
     new WhileLangLabelsValidator().checkUniqueLabels(p);
     new WhileLangCFGValidator().constructCFG(p);
     new WhileLangAssignedBeforeUseValidator().checkAssignedBeforeUse(p);
+    new WhileLangNoRepeatedVBExpValidator().checkNoRepeatedVBExps(p);
   }
 }

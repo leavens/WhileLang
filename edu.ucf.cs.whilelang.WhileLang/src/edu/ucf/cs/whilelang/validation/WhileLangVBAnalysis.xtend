@@ -41,6 +41,7 @@ class WhileLangVBAnalysis {
     /** Initialize the function vector and property vector. */       
     new (Program p) {
         theProg = p;
+        VBPropertySpace.setProgram(p)
         val entryfuns = new HashMap<Integer, AnalysisFun<Integer, VBPropertySpace>>()
         val exitfuns = new HashMap<Integer, AnalysisFun<Integer, VBPropertySpace>>()
         for (lab : CFG.labels(p.body)) {

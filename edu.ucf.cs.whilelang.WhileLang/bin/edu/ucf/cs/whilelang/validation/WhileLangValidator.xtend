@@ -16,6 +16,7 @@ public class WhileLangValidator extends AbstractWhileLangValidator {
 		new WhileLangLabelsValidator().checkUniqueLabels(p)
 		new WhileLangCFGValidator().constructCFG(p)
 		new WhileLangAssignedBeforeUseValidator().checkAssignedBeforeUse(p)
+		new WhileLangNoRepeatedVBExpValidator().checkNoRepeatedVBExps(p)
 	}
 
 }
